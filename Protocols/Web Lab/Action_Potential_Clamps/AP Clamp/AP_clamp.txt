@@ -1,0 +1,129 @@
+documentation {
+This protocol implements a time dependent voltage clamp protocol which interpolates a sequence of voltages
+provided in an input CSV file, and records the resulting L-type calcium current.
+
+It requires models to provide variables with the annotations:
+ * **oxmeta:membrane\_voltage**
+ * **oxmeta:time**
+ * **oxmeta:membrane\_L\_type\_calcium\_current**
+
+Optionally:
+ * **optionally oxmeta:membrane\_L\_type\_calcium\_current\_open\_probability**
+ * **optionally oxmeta:submembrane\_space\_calcium\_concentration**
+ * **optionally oxmeta:dyadic\_space\_calcium\_concentration**
+ * **optionally oxmeta:cytosolic\_calcium\_concentration**
+ * **optionally oxmeta:submembrane\_space\_sodium\_concentration**
+ * **optionally oxmeta:dyadic\_space\_sodium\_concentration**
+ * **optionally oxmeta:cytosolic\_sodium\_concentration**
+ * **optionally oxmeta:submembrane\_space\_potassium\_concentration**
+ * **optionally oxmeta:dyadic\_space\_potassium\_concentration**
+ * **optionally oxmeta:cytosolic\_potassium\_concentration**
+ * **optionally oxmeta:membrane\_L\_type\_calcium\_current\_ohmic\_driving_term**
+ * **optionally oxmeta:membrane\_L\_type\_calcium\_current\_GHK\_driving_term**
+}
+
+# Load the metadata tags for use with CellML models
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+# A private namespace just used in this protocol, for setting an initial membrane voltage
+namespace local = "urn:fc:local#"
+
+# List inputs 
+inputs {
+    steady_state_time = 10000 # ms
+    clamp_data = load("AP_clamp.csv")
+    initial_voltage = clamp_data[1][0]
+    initial_time = clamp_data[0][0]
+    final_time = clamp_data[0][-1]
+    sampling_interval = 0.1 # ms
+}
+
+# Merge common definitions
+import "common.txt"
+
+library {
+    # Check the voltage clamp data looks like we expect
+    assert clamp_data.IS_ARRAY
+    assert clamp_data.NUM_DIMS == 2
+    assert clamp_data.SHAPE[0] == 2
+ 
+}
+
+# List inputs and outputs of model with units
+model interface {
+    # Model inputs
+    input local:initial_voltage units mV = 0.0
+    input local:initial_time units ms = 0.0
+
+    # The voltage clamp protocol, read from file
+    var clamp units mV
+    define clamp = interpolate("AP_clamp.csv", oxmeta:time, ms, mV)
+    define oxmeta:membrane_voltage = if oxmeta:time < local:initial_time then local:initial_voltage else clamp
+    
+    # Standard model outputs
+    output oxmeta:membrane_L_type_calcium_current units uA_per_cm2
+    output oxmeta:membrane_L_type_calcium_current_open_probability units dimensionless
+    optional oxmeta:membrane_L_type_calcium_current_open_probability
+    output oxmeta:membrane_L_type_calcium_current_ohmic_driving_term units mV
+    output oxmeta:membrane_L_type_calcium_current_GHK_driving_term units C_per_litre
+    optional oxmeta:membrane_L_type_calcium_current_ohmic_driving_term
+    optional oxmeta:membrane_L_type_calcium_current_GHK_driving_term
+    output oxmeta:membrane_voltage units mV
+    output oxmeta:time units ms
+}
+
+# Perform simulations
+tasks {
+    # Run at the initial value of the voltage clamp for a bit to get to steady state
+    simulation timecourse {
+        range time units ms vector [initial_time-steady_state_time, initial_time]
+        modifiers {
+            at start set local:initial_time = initial_time
+            at start set local:initial_voltage = initial_voltage
+            
+        }
+    }
+
+    # Now run through the voltage clamp sequence
+    simulation sim = timecourse {
+        range time units ms uniform initial_time : sampling_interval : final_time
+    }
+}
+
+# Do any calculations/modifications of data before plotting
+post-processing {
+    # Check validity of outputs
+    assert sim:time.IS_ARRAY
+    assert sim:membrane_voltage.IS_ARRAY
+    assert sim:membrane_L_type_calcium_current.IS_ARRAY
+       
+    # Normalise the result by peak
+    #global_min = std:Min(sim:membrane_L_type_calcium_current)[0]
+    #inter_max = std:Max(sim:membrane_L_type_calcium_current)[0]
+    #global_max = if inter_max > 0 then 0 else inter_max 
+    #normalised_LCC = map(lambda I: (I - global_max)/MathML:abs(global_min - global_max), sim:membrane_L_type_calcium_current)
+
+    # Normalize the result by total charge
+    total_charge = std:Sum(sim:membrane_L_type_calcium_current)[0]
+    normalised_LCC = map(lambda I: I/MathML:abs(total_charge), sim:membrane_L_type_calcium_current)
+}
+
+# List any outputs from model which need to be carried forward to plotting or saved
+outputs {
+    I_CaL   = sim:membrane_L_type_calcium_current "I_{CaL}"
+    optional Open_Probability   = sim:membrane_L_type_calcium_current_open_probability "Open_Probability"
+    time    = sim:time                            "Time"
+    voltage = sim:membrane_voltage                "Applied potential"
+    normalised_LCC  units dimensionless "Normalised peak I_{CaL} current"
+    optional driving_term_ohmic   = sim:membrane_L_type_calcium_current_ohmic_driving_term "Driving_Term_Ohmic"
+    optional driving_term_ghk   = sim:membrane_L_type_calcium_current_GHK_driving_term "Driving_Term_GHK"
+}
+
+# Create plots
+plots {
+    plot "I_{CaL} current" using lines { I_CaL   against time }
+    plot "Voltage Clamp"   using lines { voltage against time }
+    plot "normalised IV curve" using lines  { normalised_LCC against time }
+    plot "Open Probability" using lines { Open_Probability   against time }
+    plot "Driving_Term_Ohmic" using lines { driving_term_ohmic against time }
+    plot "Driving_Term_GHK" using lines { driving_term_ghk against time }
+}

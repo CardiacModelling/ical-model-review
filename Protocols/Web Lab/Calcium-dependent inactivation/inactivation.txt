@@ -1,0 +1,128 @@
+# ICaL protcol
+
+documentation {
+# ICaL Peak Current I-V Inactivation Curve
+This protocol implements an inactivation protocol to record the ICaL Peak Current I-V relationship
+for cardiac electrophysiology cell models.
+
+By clamping intra/extra-cellular calcium, we can throw away most of
+the equations of the models to leave just the ICaL components to study.
+
+## Parameters
+
+* **holding\_potential**  The potential at which the cell rests before voltage steps are applied at t=0 (mV).
+* **steady\_state\_time**  The amount of time to leave the current at holding potential before applying steps (ms).
+* **test\_potentials\_inact**  A list of voltages (steps) to clamp the cell to before recording ICaL (mV).
+
+It requires models to provide variables with the annotations:
+
+* **oxmeta:membrane\_voltage**
+* **oxmeta:membrane\_L\_type\_calcium\_current**
+* **oxmeta:time**
+
+Optionally:
+* **oxmeta:extracellular\_calcium\_concentration**
+* **oxmeta:extracellular\_potassium\_concentration**
+* **oxmeta:cytosolic\_potassium\_concentration**
+* **oxmeta:extracellular\_sodium\_concentration**
+* **oxmeta:cytosolic\_sodium\_concentration**
+* **oxmeta:dyadic\_space\_potassium\_concentration**
+* **oxmeta:submembrane\_space\_potassium\_concentration**
+* **oxmeta:dyadic\_space\_sodium\_concentration**
+* **oxmeta:submembrane\_space\_sodium\_concentration**
+}
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+inputs {
+    holding_potential = -90
+    # How long to simulate for to get to steady state at the holding potential.
+    # Note that all timing parameters are in ms.
+    steady_state_time = 10000
+    
+    # Parameters for the inactivation IV curve protocol
+    test_potentials_inact = [ -90.01 + 2*i for i in 0:60 ]
+    pulse1_length_inact = 500     # ms
+    pulse2_length_inact = 120     # ms
+    interval_length_inact = 10000 # ms, i.e. 10 seconds
+}
+
+# Merge common definitions
+import "common_clamp_approach2.txt"
+
+library {
+
+    # Inactivation time points: 0.01ms sampling during pulse 2, no internal sampling elsewhere (just start & end points)
+    # We ensure we sample at the ends of the pulses so modifiers take effect!
+    time_inact = std:Join(std:Join([0, pulse1_length_inact-0.01],
+                                   [pulse1_length_inact + 0.01*i for i in 0:(pulse2_length_inact*100)]),
+                          [pulse1_length_inact + pulse2_length_inact,
+                           pulse1_length_inact + pulse2_length_inact + 0.01,
+                           pulse1_length_inact + pulse2_length_inact + interval_length_inact])
+}
+
+model interface {
+    input oxmeta:membrane_voltage units mV
+    
+    # We could also have used the form 'clamp oxmeta:membrane_voltage to 0 :: mV'
+    define oxmeta:membrane_voltage = 0 :: mV
+}
+
+
+tasks {
+    # Do a pre-run to get the model to steady-state for the holding potential
+    simulation timecourse {
+        range time units ms vector [0, steady_state_time]
+        modifiers {
+            at start set oxmeta:membrane_voltage = holding_potential
+            at end save as holding_state
+        }
+    }
+    
+    # Steady-state inactivation curve simulation
+    simulation inact = nested {
+        range step_voltage units mV vector test_potentials_inact
+        modifiers {
+            # Reset the model to holding potential
+            at start reset to holding_state
+            # Step to next test potential
+            at each loop set oxmeta:membrane_voltage = step_voltage
+        }
+        nests simulation timecourse {
+            range time units ms vector time_inact
+            modifiers {
+                # Step to next test potential
+                #at start set oxmeta:membrane_voltage = step_voltage
+                at each loop set oxmeta:membrane_voltage = \
+                    if MathML:abs(time - pulse1_length_inact) < 1e-6 then 0.01 :: mV else
+                        if MathML:abs(time - (pulse1_length_inact+pulse2_length_inact)) < 1e-6 then holding_potential
+                                                                                               else oxmeta:membrane_voltage
+            }
+        }
+    }
+
+}
+
+post-processing {
+    # Test that expected model outputs exist
+
+    # Time vectors for output & plotting
+    time_inact = inact:time[0]
+
+    # Post-processing for inactivation protocol
+
+    # We record during the second pulse, so ignore the first and last current values
+    recorded_LCC_inact = inact:membrane_L_type_calcium_current[1$4:-3]
+    min_LCC_inact_neg = std:Min(recorded_LCC_inact, 1)[1$0]
+    max_LCC_inact_pos = std:Max(recorded_LCC_inact, 1)[1$0]
+    min_LCC_inact = [if i>45 then max_LCC_inact_pos[i] else min_LCC_inact_neg[i] for i in 0:60]
+}
+
+outputs {
+    
+    # Inactivation protocol outputs
+
+    min_LCC_inact         units uA_per_cm2    "Inactivation: Minimum I_{CaL} current"
+    test_potentials_inact units mV            "Inactivation: Test potential"
+  
+}

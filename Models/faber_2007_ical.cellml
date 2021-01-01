@@ -1,0 +1,1582 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="faber_2007_ical">
+  <units name="C_per_mol">
+    <unit units="second"/>
+    <unit units="ampere"/>
+    <unit units="mole" exponent="-1"/>
+  </units>
+  <units name="cm_per_s">
+    <unit units="metre" multiplier="0.01"/>
+    <unit units="second" exponent="-1"/>
+  </units>
+  <units name="mJ_per_mol_per_K">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-2"/>
+    <unit units="kelvin" exponent="-1"/>
+    <unit units="mole" exponent="-1"/>
+  </units>
+  <units name="mM">
+    <unit units="metre" exponent="-3"/>
+    <unit units="mole"/>
+  </units>
+  <units name="mS_per_uF">
+    <unit units="second" exponent="-1" multiplier="1000"/>
+  </units>
+  <units name="mV">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-3"/>
+    <unit units="ampere" exponent="-1"/>
+  </units>
+  <units name="ms">
+    <unit units="second" multiplier="0.001"/>
+  </units>
+  <units name="s_A_per_m3">
+    <unit units="metre" exponent="-3"/>
+    <unit units="second"/>
+    <unit units="ampere"/>
+  </units>
+  <units name="uA_per_cm2">
+    <unit units="metre" exponent="-2" multiplier="0.01"/>
+    <unit units="ampere"/>
+  </units>
+  <units name="uF">
+    <unit units="gram" exponent="-1" multiplier="1e-09"/>
+    <unit units="metre" exponent="-2"/>
+    <unit units="second" exponent="4"/>
+    <unit units="ampere" exponent="2"/>
+  </units>
+  <component name="L_type_Ca_current">
+    <variable name="C_0" units="dimensionless" initial_value="0.923"/>
+    <variable name="C_0Ca" units="dimensionless" initial_value="0.025"/>
+    <variable name="C_1" units="dimensionless" initial_value="0.049"/>
+    <variable name="C_1Ca" units="dimensionless" initial_value="0.003"/>
+    <variable name="C_2" units="dimensionless" initial_value="0.0"/>
+    <variable name="C_2Ca" units="dimensionless" initial_value="0.0"/>
+    <variable name="C_3" units="dimensionless" initial_value="0.0"/>
+    <variable name="C_3Ca" units="dimensionless" initial_value="0.0"/>
+    <variable name="Ca_ss" units="mM" public_interface="in"/>
+    <variable name="Cao" units="mM" public_interface="in"/>
+    <variable name="F" units="C_per_mol" public_interface="in"/>
+    <variable name="I_Ca" units="dimensionless" initial_value="0.0"/>
+    <variable name="I_maxCa" units="uA_per_cm2"/>
+    <variable name="I_maxK" units="uA_per_cm2"/>
+    <variable name="I_maxNa" units="uA_per_cm2"/>
+    <variable name="I_vf" units="dimensionless" initial_value="0.0"/>
+    <variable name="I_vfCa" units="dimensionless" initial_value="0.0"/>
+    <variable name="I_vs" units="dimensionless" initial_value="0.0"/>
+    <variable name="I_vsCa" units="dimensionless" initial_value="0.0"/>
+    <variable name="K_ss" units="mM" public_interface="in"/>
+    <variable name="Ko" units="mM" public_interface="in"/>
+    <variable name="Na_ss" units="mM" public_interface="in"/>
+    <variable name="Nao" units="mM" public_interface="in"/>
+    <variable name="O" units="dimensionless" initial_value="0.0" cmeta:id="O"/>
+    <variable name="P_Ca" units="cm_per_s" initial_value="0.001215"/>
+    <variable name="P_K" units="cm_per_s" initial_value="4.34e-07"/>
+    <variable name="P_Na" units="cm_per_s" initial_value="1.518e-06"/>
+    <variable name="R" units="mJ_per_mol_per_K" public_interface="in"/>
+    <variable name="T" units="kelvin" public_interface="in"/>
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="alpha" units="mS_per_uF"/>
+    <variable name="alpha_0" units="mS_per_uF"/>
+    <variable name="alpha_1" units="mS_per_uF"/>
+    <variable name="alpha_2" units="mS_per_uF"/>
+    <variable name="alpha_3" units="mS_per_uF"/>
+    <variable name="beta" units="mS_per_uF"/>
+    <variable name="beta_0" units="mS_per_uF"/>
+    <variable name="beta_1" units="mS_per_uF"/>
+    <variable name="beta_2" units="mS_per_uF"/>
+    <variable name="beta_3" units="mS_per_uF"/>
+    <variable name="delta" units="mS_per_uF"/>
+    <variable name="driving_term_ghk" units="s_A_per_m3" cmeta:id="driving_term_ghk"/>
+    <variable name="driving_term_ghk_Ca" units="s_A_per_m3"/>
+    <variable name="driving_term_ghk_K" units="s_A_per_m3"/>
+    <variable name="driving_term_ghk_Na" units="s_A_per_m3"/>
+    <variable name="gamma_Cai" units="dimensionless" initial_value="0.01"/>
+    <variable name="gamma_Cao" units="dimensionless" initial_value="0.341"/>
+    <variable name="gamma_Ki" units="dimensionless" initial_value="0.75"/>
+    <variable name="gamma_Ko" units="dimensionless" initial_value="0.75"/>
+    <variable name="gamma_Nai" units="dimensionless" initial_value="0.75"/>
+    <variable name="gamma_Nao" units="dimensionless" initial_value="0.75"/>
+    <variable name="gamma_f" units="mS_per_uF"/>
+    <variable name="gamma_s" units="mS_per_uF"/>
+    <variable name="i_CaL" units="uA_per_cm2" cmeta:id="i_CaL"/>
+    <variable name="lambda_f" units="mS_per_uF"/>
+    <variable name="lambda_s" units="mS_per_uF"/>
+    <variable name="omega_f" units="mS_per_uF"/>
+    <variable name="omega_fs" units="mS_per_uF"/>
+    <variable name="omega_s" units="mS_per_uF"/>
+    <variable name="omega_sf" units="mS_per_uF"/>
+    <variable name="phi_f" units="mS_per_uF"/>
+    <variable name="phi_s" units="mS_per_uF"/>
+    <variable name="theta" units="mS_per_uF" initial_value="0.01"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_0</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci>beta_0</ci>
+              <ci>C_1</ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci>theta</ci>
+              <ci>C_0Ca</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <ci>alpha_0</ci>
+              <ci>delta</ci>
+            </apply>
+            <ci>C_0</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_0Ca</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci>beta_0</ci>
+              <ci>C_1Ca</ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci>delta</ci>
+              <ci>C_0</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <ci>alpha_0</ci>
+              <ci>theta</ci>
+            </apply>
+            <ci>C_0Ca</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_1</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci>alpha_0</ci>
+                <ci>C_0</ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci>beta_1</ci>
+                <ci>C_2</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>theta</ci>
+              <ci>C_1Ca</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <ci>beta_0</ci>
+                <ci>alpha_1</ci>
+              </apply>
+              <ci>delta</ci>
+            </apply>
+            <ci>C_1</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_1Ca</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci>alpha_0</ci>
+                <ci>C_0Ca</ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci>beta_1</ci>
+                <ci>C_2Ca</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>delta</ci>
+              <ci>C_1</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <ci>beta_0</ci>
+                <ci>alpha_1</ci>
+              </apply>
+              <ci>theta</ci>
+            </apply>
+            <ci>C_1Ca</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_2</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci>alpha_1</ci>
+                <ci>C_1</ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci>beta_2</ci>
+                <ci>C_3</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>theta</ci>
+              <ci>C_2Ca</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <ci>beta_1</ci>
+                <ci>alpha_2</ci>
+              </apply>
+              <ci>delta</ci>
+            </apply>
+            <ci>C_2</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_2Ca</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <ci>alpha_1</ci>
+                <ci>C_1Ca</ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci>beta_2</ci>
+                <ci>C_3Ca</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>delta</ci>
+              <ci>C_2</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <ci>beta_1</ci>
+                <ci>alpha_2</ci>
+              </apply>
+              <ci>theta</ci>
+            </apply>
+            <ci>C_2Ca</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_3</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci>alpha_2</ci>
+                    <ci>C_2</ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci>beta_3</ci>
+                    <ci>O</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>I_vf</ci>
+                  <ci>omega_f</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>I_vs</ci>
+                <ci>omega_s</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>C_3Ca</ci>
+              <ci>theta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <plus/>
+                    <ci>beta_2</ci>
+                    <ci>alpha_3</ci>
+                  </apply>
+                  <ci>gamma_f</ci>
+                </apply>
+                <ci>gamma_s</ci>
+              </apply>
+              <ci>delta</ci>
+            </apply>
+            <ci>C_3</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>C_3Ca</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci>alpha_2</ci>
+                    <ci>C_2Ca</ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci>beta_3</ci>
+                    <ci>I_Ca</ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>I_vfCa</ci>
+                  <ci>omega_f</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>I_vsCa</ci>
+                <ci>omega_s</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>C_3</ci>
+              <ci>delta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <plus/>
+                    <ci>beta_2</ci>
+                    <ci>alpha_3</ci>
+                  </apply>
+                  <ci>gamma_f</ci>
+                </apply>
+                <ci>gamma_s</ci>
+              </apply>
+              <ci>theta</ci>
+            </apply>
+            <ci>C_3Ca</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>I_Ca</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci>alpha_3</ci>
+                  <ci>C_3Ca</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>I_vfCa</ci>
+                  <ci>lambda_f</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>lambda_s</ci>
+                <ci>I_vsCa</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>O</ci>
+              <ci>delta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <ci>beta_3</ci>
+                  <ci>phi_f</ci>
+                </apply>
+                <ci>phi_s</ci>
+              </apply>
+              <ci>theta</ci>
+            </apply>
+            <ci>I_Ca</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>I_maxCa</ci>
+        <apply>
+          <times/>
+          <ci>P_Ca</ci>
+          <ci>driving_term_ghk_Ca</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>I_maxK</ci>
+        <apply>
+          <times/>
+          <ci>P_K</ci>
+          <ci>driving_term_ghk_K</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>I_maxNa</ci>
+        <apply>
+          <times/>
+          <ci>P_Na</ci>
+          <ci>driving_term_ghk_Na</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>I_vf</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci>gamma_f</ci>
+                  <ci>C_3</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>phi_f</ci>
+                  <ci>O</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>omega_sf</ci>
+                <ci>I_vs</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>I_vfCa</ci>
+              <ci>theta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <ci>omega_f</ci>
+                  <ci>lambda_f</ci>
+                </apply>
+                <ci>omega_fs</ci>
+              </apply>
+              <ci>delta</ci>
+            </apply>
+            <ci>I_vf</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>I_vfCa</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci>gamma_f</ci>
+                  <ci>C_3Ca</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>phi_f</ci>
+                  <ci>I_Ca</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>omega_sf</ci>
+                <ci>I_vsCa</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>I_vf</ci>
+              <ci>delta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <ci>omega_f</ci>
+                  <ci>lambda_f</ci>
+                </apply>
+                <ci>omega_fs</ci>
+              </apply>
+              <ci>theta</ci>
+            </apply>
+            <ci>I_vfCa</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>I_vs</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci>gamma_s</ci>
+                  <ci>C_3</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>O</ci>
+                  <ci>phi_s</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>omega_fs</ci>
+                <ci>I_vf</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>I_vsCa</ci>
+              <ci>theta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <ci>omega_s</ci>
+                  <ci>lambda_s</ci>
+                </apply>
+                <ci>omega_sf</ci>
+              </apply>
+              <ci>delta</ci>
+            </apply>
+            <ci>I_vs</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>I_vsCa</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci>gamma_s</ci>
+                  <ci>C_3Ca</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>I_Ca</ci>
+                  <ci>phi_s</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>omega_fs</ci>
+                <ci>I_vfCa</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>I_vs</ci>
+              <ci>delta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <ci>omega_s</ci>
+                  <ci>lambda_s</ci>
+                </apply>
+                <ci>omega_sf</ci>
+              </apply>
+              <ci>theta</ci>
+            </apply>
+            <ci>I_vsCa</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>O</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci>alpha_3</ci>
+                  <ci>C_3</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>lambda_f</ci>
+                  <ci>I_vf</ci>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>lambda_s</ci>
+                <ci>I_vs</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>I_Ca</ci>
+              <ci>theta</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <apply>
+                <plus/>
+                <apply>
+                  <plus/>
+                  <ci>beta_3</ci>
+                  <ci>phi_f</ci>
+                </apply>
+                <ci>phi_s</ci>
+              </apply>
+              <ci>delta</ci>
+            </apply>
+            <ci>O</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>alpha</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.925</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <ci>V</ci>
+              <cn cellml:units="mV">30.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>alpha_0</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">4.0</cn>
+          <ci>alpha</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>alpha_1</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">3.0</cn>
+          <ci>alpha</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>alpha_2</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">2.0</cn>
+          <ci>alpha</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>alpha_3</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <ci>alpha</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.39</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <ci>V</ci>
+              </apply>
+              <cn cellml:units="mV">40.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_0</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <ci>beta</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_1</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">2.0</cn>
+          <ci>beta</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_2</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">3.0</cn>
+          <ci>beta</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_3</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="dimensionless">4.0</cn>
+          <ci>beta</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>delta</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="mS_per_uF">4.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <divide/>
+              <cn cellml:units="mM">1.0</cn>
+              <ci>Ca_ss</ci>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>driving_term_ghk</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <plus/>
+            <apply>
+              <plus/>
+              <ci>I_maxCa</ci>
+              <ci>I_maxK</ci>
+            </apply>
+            <ci>I_maxNa</ci>
+          </apply>
+          <ci>P_Ca</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>driving_term_ghk_Ca</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <cn cellml:units="dimensionless">4.0</cn>
+                  <ci>V</ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci>F</ci>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>R</ci>
+                <ci>T</ci>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci>gamma_Cai</ci>
+                  <ci>Ca_ss</ci>
+                </apply>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2.0</cn>
+                        <ci>V</ci>
+                      </apply>
+                      <ci>F</ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci>R</ci>
+                      <ci>T</ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>gamma_Cao</ci>
+                <ci>Cao</ci>
+              </apply>
+            </apply>
+          </apply>
+          <apply>
+            <minus/>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <times/>
+                    <cn cellml:units="dimensionless">2.0</cn>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>F</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>R</ci>
+                  <ci>T</ci>
+                </apply>
+              </apply>
+            </apply>
+            <cn cellml:units="dimensionless">1.0</cn>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>driving_term_ghk_K</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <cn cellml:units="dimensionless">1.0</cn>
+                  <ci>V</ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci>F</ci>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>R</ci>
+                <ci>T</ci>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci>gamma_Ki</ci>
+                  <ci>K_ss</ci>
+                </apply>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">1.0</cn>
+                        <ci>V</ci>
+                      </apply>
+                      <ci>F</ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci>R</ci>
+                      <ci>T</ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>gamma_Ko</ci>
+                <ci>Ko</ci>
+              </apply>
+            </apply>
+          </apply>
+          <apply>
+            <minus/>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <times/>
+                    <cn cellml:units="dimensionless">1.0</cn>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>F</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>R</ci>
+                  <ci>T</ci>
+                </apply>
+              </apply>
+            </apply>
+            <cn cellml:units="dimensionless">1.0</cn>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>driving_term_ghk_Na</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <cn cellml:units="dimensionless">1.0</cn>
+                  <ci>V</ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci>F</ci>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>R</ci>
+                <ci>T</ci>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci>gamma_Nai</ci>
+                  <ci>Na_ss</ci>
+                </apply>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">1.0</cn>
+                        <ci>V</ci>
+                      </apply>
+                      <ci>F</ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci>R</ci>
+                      <ci>T</ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>gamma_Nao</ci>
+                <ci>Nao</ci>
+              </apply>
+            </apply>
+          </apply>
+          <apply>
+            <minus/>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <times/>
+                    <cn cellml:units="dimensionless">1.0</cn>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>F</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>R</ci>
+                  <ci>T</ci>
+                </apply>
+              </apply>
+            </apply>
+            <cn cellml:units="dimensionless">1.0</cn>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>gamma_f</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.245</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <ci>V</ci>
+              <cn cellml:units="mV">10.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>gamma_s</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.005</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <ci>V</ci>
+              </apply>
+              <cn cellml:units="mV">40.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>i_CaL</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>P_Ca</ci>
+            <ci>driving_term_ghk</ci>
+          </apply>
+          <ci>O</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>lambda_f</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.035</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <ci>V</ci>
+              </apply>
+              <cn cellml:units="mV">300.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>lambda_s</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.0011</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <ci>V</ci>
+              <cn cellml:units="mV">500.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>omega_f</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <apply>
+              <times/>
+              <ci>beta_3</ci>
+              <ci>lambda_f</ci>
+            </apply>
+            <ci>gamma_f</ci>
+          </apply>
+          <apply>
+            <times/>
+            <ci>alpha_3</ci>
+            <ci>phi_f</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>omega_fs</ci>
+        <ci>phi_s</ci>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>omega_s</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <apply>
+              <times/>
+              <ci>beta_3</ci>
+              <ci>lambda_s</ci>
+            </apply>
+            <ci>gamma_s</ci>
+          </apply>
+          <apply>
+            <times/>
+            <ci>alpha_3</ci>
+            <ci>phi_s</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>omega_sf</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <ci>phi_f</ci>
+            <ci>lambda_s</ci>
+          </apply>
+          <ci>lambda_f</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>phi_f</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.02</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <ci>V</ci>
+              <cn cellml:units="mV">500.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>phi_s</ci>
+        <apply>
+          <times/>
+          <cn cellml:units="mS_per_uF">0.03</cn>
+          <apply>
+            <exp/>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <ci>V</ci>
+              </apply>
+              <cn cellml:units="mV">280.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="calcium_dynamics">
+    <variable name="Ca_ss" units="mM" public_interface="out" initial_value="1e-09" cmeta:id="Ca_ss"/>
+    <variable name="K_ss" units="mM" public_interface="out" initial_value="140.0" cmeta:id="K_ss"/>
+    <variable name="Na_ss" units="mM" public_interface="out" initial_value="10.0" cmeta:id="Na_ss"/>
+  </component>
+  <component name="environment">
+    <variable name="time" units="ms" public_interface="out" cmeta:id="time"/>
+  </component>
+  <component name="membrane">
+    <variable name="C" units="uF" initial_value="1.0" cmeta:id="C"/>
+    <variable name="F" units="C_per_mol" public_interface="out" initial_value=" 9.64853415000000095e+04"/>
+    <variable name="R" units="mJ_per_mol_per_K" public_interface="out" initial_value="8314.472"/>
+    <variable name="T" units="kelvin" public_interface="out" initial_value="310.0"/>
+    <variable name="V" units="mV" public_interface="out" cmeta:id="V"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>V</ci>
+        <apply>
+          <minus/>
+          <cn cellml:units="dimensionless">80.0</cn>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="standard_ionic_concentrations">
+    <variable name="Cao" units="mM" public_interface="out" initial_value="2.0" cmeta:id="Cao"/>
+    <variable name="Ko" units="mM" public_interface="out" initial_value="5.0" cmeta:id="Ko"/>
+    <variable name="Nao" units="mM" public_interface="out" initial_value="140.0" cmeta:id="Nao"/>
+  </component>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="calcium_dynamics"/>
+    <map_variables variable_1="Ca_ss" variable_2="Ca_ss"/>
+    <map_variables variable_1="K_ss" variable_2="K_ss"/>
+    <map_variables variable_1="Na_ss" variable_2="Na_ss"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="membrane"/>
+    <map_variables variable_1="F" variable_2="F"/>
+    <map_variables variable_1="R" variable_2="R"/>
+    <map_variables variable_1="T" variable_2="T"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="standard_ionic_concentrations"/>
+    <map_variables variable_1="Cao" variable_2="Cao"/>
+    <map_variables variable_1="Ko" variable_2="Ko"/>
+    <map_variables variable_1="Nao" variable_2="Nao"/>
+  </connection>
+  <rdf:RDF>
+    <rdf:Description rdf:about="#C">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Ca_ss">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Cao">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#K_ss">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_potassium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Ko">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Na_ss">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_sodium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Nao">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#O">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#V">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#driving_term_ghk">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#i_CaL">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#time">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+    </rdf:Description>
+  </rdf:RDF>
+</model>

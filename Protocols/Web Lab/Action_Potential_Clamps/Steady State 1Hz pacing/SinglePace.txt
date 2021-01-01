@@ -1,0 +1,259 @@
+documentation {
+# Run a single pace (or more if desired) of a cell model
+
+This protocol applies a regular square wave stimulus to a cell, simulates a set number of paces (1 by default),
+and records the initial and final state, along with the (norm of) the difference between these states.  It is used
+by steady-pacing protocols to simulate until a pseudo-steady-state is reached.
+
+Note that we use a stimulus of the same amplitude and duration as defined in the model, but specify our own period,
+and that the stimulus is first applied at 0ms.
+
+## Parameters:
+
+The inputs for this protocol allow it to be customised to specific scenarios, for instance different pacing rates.
+
+* **pacing\_period**  The pacing period in milliseconds (1000/frequency in Hz).
+* **num\_inner\_paces**  The number of paces to simulate (defaults to 1).
+
+This protocol requires models to provide variables with the following annotations:
+
+* **oxmeta:membrane\_stimulus\_current**
+* **oxmeta:membrane\_stimulus\_current\_amplitude**
+* **oxmeta:membrane\_stimulus\_current\_duration**
+* **oxmeta:membrane\_voltage**
+* **oxmeta:time**
+* Optionally **oxmeta:cytosolic\_calcium\_concentration**
+}
+
+# The model annotations used by this protocol to interface to models all live in the 'oxford-metadata' ontology
+# defined by the Web Lab team.  By convention we associate the full URI for this ontology with the 'oxmeta' prefix.
+# Terms from the ontology can then be accessed using the shorthand oxmeta:term syntax, as illustrated in the
+# documentation above.
+# The available terms can be seen in the model annotation tool in the Web Lab (available when viewing a model you
+# have uploaded yourself).
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+# This protocol defines two inputs, as noted in the documentation.
+
+inputs {
+    pacing_period = 1000 # ms
+    num_paces = 1        # The number of paces to simulate
+}
+
+# The standard library of post-processing operations is imported and associated with the 'std' prefix.
+
+import std = "BasicLibrary.txt"
+
+# No library section is present in this protocol, so next we define the physical units used later.
+
+units {
+    mV = milli volt
+    ms = milli second
+    mM = milli mole . litre^-1
+}
+
+# A key part of this protocol is the model interface section.  This defines how the protocol can modify and probe the models
+# to which it is applied.
+# (Note that it doesn't matter which order statements appear within the model interface section; authors can choose whatever
+# ordering makes sense to them, and the software will ensure a sensible result if at all possible.)
+
+# Crucially, note that all references to model variables in this section use terms from the ontology declared above (with the
+# oxmeta prefix), rather than whatever variable names are used in the model.  Protocols can only access variables that are
+# annotated with terms from a declared ontology (typically the 'oxmeta' ontology for cardiac electrophysiology, although this
+# is not required by the tools).
+
+model interface {
+
+    optional oxmeta:extracellular_sodium_concentration
+    optional oxmeta:extracellular_potassium_concentration
+    optional oxmeta:extracellular_calcium_concentration
+
+    clamp oxmeta:extracellular_sodium_concentration to 140 :: mM
+    clamp oxmeta:extracellular_potassium_concentration to 5 :: mM
+    clamp oxmeta:extracellular_calcium_concentration to 2 :: mM
+
+    # Clamp some intracellular concentrations too
+    optional oxmeta:cytosolic_sodium_concentration
+    optional oxmeta:submembrane_space_sodium_concentration 
+    optional oxmeta:dyadic_space_sodium_concentration 
+    
+    optional oxmeta:cytosolic_potassium_concentration
+    optional oxmeta:submembrane_space_potassium_concentration 
+    optional oxmeta:dyadic_space_potassium_concentration 
+          
+    clamp oxmeta:cytosolic_sodium_concentration to 10 :: mM     
+    clamp oxmeta:submembrane_space_sodium_concentration to 10 :: mM
+    clamp oxmeta:dyadic_space_sodium_concentration to 10 :: mM
+       
+    clamp oxmeta:cytosolic_potassium_concentration to 140 :: mM
+    clamp oxmeta:submembrane_space_potassium_concentration to 140 :: mM
+    clamp oxmeta:dyadic_space_potassium_concentration to 140 :: mM
+    # Here we start by defining the model inputs.  These are variables that can be changed by the protocol during simulations
+    # (see the discussion of modifiers in the tasks section below).  The initial value assigned to these variables can also
+    # be set, as is done here, overriding whatever is defined in the model.  We can also define what units these variables have
+    # as far as the protocol is concerned; if the model uses different units, values will be units-converted when passed
+    # between model and protocol (if this is not possible, the protocol does not run).
+    # Note that we cannot reference protocol inputs in this section; we need to give actual numbers for the initial values.
+    # These can be overridden in simulations to reflect protocol inputs, and this is done below for the stimulus period.
+
+    input oxmeta:membrane_stimulus_current_offset units ms = 0
+    input oxmeta:membrane_stimulus_current_period units ms = 1000
+
+    # When both units and initial value are specified, as is done above, it is not considered an error if the model does not
+    # possess a variable with the given annotation; instead a new variable is created with the given units and initial value.
+    # If either is omitted, the variable must exist in the model.
+
+    # Next the model outputs are specified.  These are the variables that will be recorded and made available as raw simulation
+    # results.  Again we can specify desired units to perform conversions where necessary.  This helps ensure consistent
+    # comparisons between models.
+
+    output oxmeta:membrane_voltage units mV
+    output oxmeta:time units ms
+
+    # The next output does not specify units, and so will be given in whatever units the model uses.  It is also a special case
+    # annotation: this ontology term is not attached explicitly to a variable in the model, but is added implicitly by the
+    # simulation software to every variable that is a state variable in the ODE system making up the model.  It thus represents
+    # a vector of variables, rather than a single variable.  The corresponding raw simulation result will have one more dimension
+    # than for 'normal' outputs, with the last dimension ranging over the variables forming the vector.
+
+    output oxmeta:state_variable
+
+    # The final output, cytosolic calcium, is defined to be optional in the second line below.  Not all models represent
+    # intracellular calcium, and we still want to be able to simulate such models.  But where the variable is present, it is
+    # useful to be able to analyse its behaviour.  Again we specify units for consistent comparisons between models.
+
+    output oxmeta:cytosolic_calcium_concentration units mM
+    optional oxmeta:cytosolic_calcium_concentration
+
+    output oxmeta:submembrane_space_calcium_concentration units mM
+    optional oxmeta:submembrane_space_calcium_concentration 
+    
+    output oxmeta:dyadic_space_calcium_concentration units mM
+    optional oxmeta:dyadic_space_calcium_concentration
+
+    # Lastly, we alter the definition of the stimulus current applied to the cell.  The variable oxmeta:membrane_stimulus_current
+    # must exist in the model for this to work, but its definition is discarded and replaced by the following equation, allowing
+    # us to specify any functional form for the stimulus.  In this case we apply a simple repeating square wave pulse.
+    # Note that if any of the referenced variables are not found in the model, this is an error.
+    # The backslash (\) at the end of the first line is a continuation character, informing the software that the equation is
+    # continued on the following line.  It is only required where this cannot easily be determined from context (e.g. when within
+    # a bracket or an if expression, as seen elsewhere in the equation).
+
+    define oxmeta:membrane_stimulus_current = \
+        if (oxmeta:time >= oxmeta:membrane_stimulus_current_offset &&
+            ((oxmeta:time - oxmeta:membrane_stimulus_current_offset)
+             - (MathML:floor((oxmeta:time - oxmeta:membrane_stimulus_current_offset) /
+                             oxmeta:membrane_stimulus_current_period) * oxmeta:membrane_stimulus_current_period)
+             <= oxmeta:membrane_stimulus_current_duration))
+        then oxmeta:membrane_stimulus_current_amplitude else 0 :: dimensionless * oxmeta:membrane_stimulus_current_amplitude
+        # The unusual form of the 'else' clause in the line above is a means to obtain a zero in the correct units, without
+        # knowing what units the model uses for currents.
+}
+
+tasks {
+    # The single simulation task runs the desired number of paces, recording start & end states only.
+    # This is achieved with a vector range, which reports only the two given time points.
+
+    simulation sim = timecourse {
+        range time units ms vector [-10, pacing_period * num_paces -10]
+
+        # In this simulation we see the use of modifiers to alter model variables while a simulation is in progress.  These
+        # perform instantaneous modifications at given points, in this case just at the start of the simulation.  Protocols
+        # may only alter certain model variables: those specified as inputs in the model interface, state variables, or the
+        # free variable (typically time).  Again we must use ontology terms to reference model variables.
+
+        modifiers {
+            # Set the stimulus period to be the protocol's pacing interval, and offset to 0ms
+            # (so the first stimulus begins at time 0 ms).  The latter is actually redundant - it matches the value set in
+            # the model interface - but is included here for clarity.
+            at start set oxmeta:membrane_stimulus_current_period = pacing_period # ms
+            at start set oxmeta:membrane_stimulus_current_offset = 0             # ms
+        }
+    }
+}
+
+# The main role of the following post-processing is to determine the difference between the initial
+# and final states of the cell in the simulation above, which is the main output of this protocol.
+# However it also demonstrates some additional features available for use in post-processing,
+# primarily assertions and function definitions.
+
+post-processing {
+    # The following assertions check that expected model outputs exist and are indeed arrays of values.
+    # The assert statement simply checks whether the provided expression evaluates to a non-zero value
+    # (which represents the boolean 'true').  If the expression is zero ('false') then execution of the
+    # post-processing section stops with an error.
+    # The ".IS_ARRAY" syntax is an example of a property, and checks whether the value is of array type.
+    # Similar properties exist for other types of data: IS_SIMPLE_VALUE, IS_NULL, IS_DEFAULT, IS_FUNCTION,
+    # IS_TUPLE and IS_STRING.
+
+    assert sim:time.IS_ARRAY
+    assert sim:membrane_voltage.IS_ARRAY
+    assert sim:state_variable.IS_ARRAY
+
+    # We can also sanity-check the shape of the output arrays.
+
+    assert sim:membrane_voltage.NUM_DIMS == 1
+    assert sim:state_variable.NUM_DIMS == 2
+    assert sim:state_variable.SHAPE[0] == 2 # Corresponding to the initial and final time points
+
+    # The next line defines a utility function 'AbsMinus' for use below.  It is defined concisely by a
+    # single expression, rather than as a sequence of statements; this is really a syntactic shorthand
+    # for a function consisting of a single 'return' statement.  The AbsMinus function takes two arguments,
+    # which are intended to be 1d arrays, and computes the element-wise absolute difference between them.
+    # It does this using the 'map' built-in function, which applies an operation element-wise to one or
+    # more arrays.
+    # The inner map "map(@2:-, x, y)" applies the binary minus operator to the two input arrays, producing
+    # a single 1d array as output.  The outer map then takes the absolute value of each element of this to
+    # produce a 1d final output.
+    # Note that when using operators directly we need to specify how many arguments they take using the @
+    # notation, and that many MathML operators can be used, not just the basic arithmetic and relational
+    # operators that have specific syntax.  It is also possible to pass any function as the first argument
+    # to map, provided that function operates on single values and returns single values.
+
+    def AbsMinus(x, y): map(@1:MathML:abs, map(@2:-, x, y))
+
+    # Finally we have the meat of this section, to work out the (p1 or L1) norm of the difference between the
+    # initial & final states.
+    # We use array indexing to extract these states as 1d vectors from the 2d array produced by the simulation.
+    # We then apply the AbsMinus utility function to compute the (element-wise) absolute difference between
+    # them, and then sum these to compute the norm.  The final [0] converts this sum from a 1d array of
+    # length 1 to a 0d value.
+
+    initial_state_variables = sim:state_variable[0]
+    final_state_variables = sim:state_variable[-1]
+    difference_in_state_variables = AbsMinus(final_state_variables, initial_state_variables)
+    norm_of_differences = std:Sum(difference_in_state_variables)[0]
+}
+
+# While the norm_of_differences result computed above is the main output of interest to protocols which nest
+# this one, we output everything that might be of interest to make this protocol as reusable as possible.
+# Nesting protocols can simply discard outputs that are not relevant in a particular use case.
+
+outputs {
+    # These three outputs are raw simulation results.
+    membrane_voltage = sim:membrane_voltage "Transmembrane potential"
+    time             = sim:time             "Time"
+    state_variables  = sim:state_variable   "All of the state variables"
+
+    # These four outputs are computed in the post-processing section.  Note the 'mixed' units: different
+    # state variables will have different units, and there is currently no way of extracting this information
+    # from the composite array.
+
+    norm_of_differences           units mixed
+    difference_in_state_variables units mixed
+    initial_state_variables       units mixed
+    final_state_variables         units mixed
+
+    # This final output was actually one of the protocol inputs.  It is recorded as an output to facilitate
+    # interpreting the protocol results at a later date, since the inputs used in a particular run of a
+    # protocol are not automatically recorded.
+    num_paces                     units dimensionless "Number of paces simulated"
+}
+
+# This protocol produces a single summary plot of the membrane potential, primarily as a debugging aid if
+# the protocol is run in isolation.
+
+plots {
+    plot "Initial and final potentials" using points { membrane_voltage against time }
+}

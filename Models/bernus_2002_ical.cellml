@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="bernus_2002_ical">
+  <units name="A_per_F">
+    <unit units="gram" multiplier="1000"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-4"/>
+    <unit units="ampere" exponent="-1"/>
+  </units>
+  <units name="C_per_mol">
+    <unit units="second"/>
+    <unit units="ampere"/>
+    <unit units="mole" exponent="-1"/>
+  </units>
+  <units name="mJ_per_mol_per_K">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-2"/>
+    <unit units="kelvin" exponent="-1"/>
+    <unit units="mole" exponent="-1"/>
+  </units>
+  <units name="mM">
+    <unit units="metre" exponent="-3"/>
+    <unit units="mole"/>
+  </units>
+  <units name="mS_per_uF">
+    <unit units="second" exponent="-1" multiplier="1000"/>
+  </units>
+  <units name="mV">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-3"/>
+    <unit units="ampere" exponent="-1"/>
+  </units>
+  <units name="ms">
+    <unit units="second" multiplier="0.001"/>
+  </units>
+  <units name="pF">
+    <unit units="gram" exponent="-1" multiplier="1e-15"/>
+    <unit units="metre" exponent="-2"/>
+    <unit units="second" exponent="4"/>
+    <unit units="ampere" exponent="2"/>
+  </units>
+  <units name="per_mV">
+    <unit units="gram" exponent="-1"/>
+    <unit units="metre" exponent="-2"/>
+    <unit units="second" exponent="3"/>
+    <unit units="ampere"/>
+  </units>
+  <component name="calcium_current">
+    <variable name="Ca_e" units="mM" public_interface="in"/>
+    <variable name="Ca_i" units="mM" public_interface="in"/>
+    <variable name="Driving_term_ohmic" units="mV" cmeta:id="Driving_term_ohmic"/>
+    <variable name="E_Ca" units="mV"/>
+    <variable name="F" units="C_per_mol" public_interface="in"/>
+    <variable name="Open_Prob" units="dimensionless" cmeta:id="Open_Prob"/>
+    <variable name="R" units="mJ_per_mol_per_K" public_interface="in"/>
+    <variable name="T" units="kelvin" public_interface="in"/>
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="d_infinity" units="dimensionless" public_interface="in"/>
+    <variable name="f" units="dimensionless" public_interface="in"/>
+    <variable name="f_Ca" units="dimensionless" public_interface="in"/>
+    <variable name="g_Ca" units="mS_per_uF" initial_value="0.064" cmeta:id="g_Ca"/>
+    <variable name="i_Ca" units="A_per_F" cmeta:id="i_Ca"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>Driving_term_ohmic</ci>
+        <apply>
+          <minus/>
+          <ci>V</ci>
+          <ci>E_Ca</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>E_Ca</ci>
+        <apply>
+          <times/>
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci>R</ci>
+              <ci>T</ci>
+            </apply>
+            <apply>
+              <times/>
+              <cn cellml:units="dimensionless">2.0</cn>
+              <ci>F</ci>
+            </apply>
+          </apply>
+          <apply>
+            <ln/>
+            <apply>
+              <divide/>
+              <ci>Ca_e</ci>
+              <ci>Ca_i</ci>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>Open_Prob</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>d_infinity</ci>
+            <ci>f</ci>
+          </apply>
+          <ci>f_Ca</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>i_Ca</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>g_Ca</ci>
+            <ci>Open_Prob</ci>
+          </apply>
+          <ci>Driving_term_ohmic</ci>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="calcium_current_d_gate">
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="alpha_d" units="mS_per_uF"/>
+    <variable name="beta_d" units="mS_per_uF"/>
+    <variable name="d_infinity" units="dimensionless" public_interface="out"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>alpha_d</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <cn cellml:units="mS_per_uF">14.98</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <cn cellml:units="dimensionless">0.5</cn>
+                </apply>
+                <apply>
+                  <power/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <minus/>
+                      <ci>V</ci>
+                      <cn cellml:units="mV">22.36</cn>
+                    </apply>
+                    <cn cellml:units="mV">16.68</cn>
+                  </apply>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <cn cellml:units="dimensionless">16.68</cn>
+            <apply>
+              <root/>
+              <apply>
+                <times/>
+                <cn cellml:units="dimensionless">2.0</cn>
+                <cn cellml:units="dimensionless"> 3.14159265358979312e+00</cn>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_d</ci>
+        <apply>
+          <minus/>
+          <cn cellml:units="mS_per_uF">0.1471</cn>
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <cn cellml:units="mS_per_uF">5.3</cn>
+              <apply>
+                <exp/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <minus/>
+                    <cn cellml:units="dimensionless">0.5</cn>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <minus/>
+                        <ci>V</ci>
+                        <cn cellml:units="mV">6.27</cn>
+                      </apply>
+                      <cn cellml:units="mV">14.93</cn>
+                    </apply>
+                    <cn cellml:units="dimensionless">2.0</cn>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <cn cellml:units="dimensionless">14.93</cn>
+              <apply>
+                <root/>
+                <apply>
+                  <times/>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                  <cn cellml:units="dimensionless"> 3.14159265358979312e+00</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>d_infinity</ci>
+        <apply>
+          <divide/>
+          <ci>alpha_d</ci>
+          <apply>
+            <plus/>
+            <ci>alpha_d</ci>
+            <ci>beta_d</ci>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="calcium_current_f_Ca_gate">
+    <variable name="Ca_i" units="mM" public_interface="in"/>
+    <variable name="f_Ca" units="dimensionless" public_interface="out"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>f_Ca</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <divide/>
+              <ci>Ca_i</ci>
+              <cn cellml:units="mM">0.0006</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="calcium_current_f_gate">
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="alpha_f" units="mS_per_uF"/>
+    <variable name="beta_f" units="mS_per_uF"/>
+    <variable name="f" units="dimensionless" public_interface="out" initial_value="1.0" cmeta:id="f"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>alpha_f</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="mS_per_uF">0.00687</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <minus/>
+                    <cn cellml:units="mV">6.1546</cn>
+                    <ci>V</ci>
+                  </apply>
+                </apply>
+                <cn cellml:units="mV">6.12</cn>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_f</ci>
+        <apply>
+          <plus/>
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <apply>
+                <times/>
+                <cn cellml:units="mS_per_uF">0.069</cn>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <minus/>
+                      <cn cellml:units="per_mV">0.11</cn>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci>V</ci>
+                      <cn cellml:units="mV">9.825</cn>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <cn cellml:units="mS_per_uF">0.011</cn>
+            </apply>
+            <apply>
+              <plus/>
+              <cn cellml:units="dimensionless">1.0</cn>
+              <apply>
+                <exp/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <minus/>
+                    <cn cellml:units="per_mV">0.278</cn>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci>V</ci>
+                    <cn cellml:units="mV">9.825</cn>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+          <cn cellml:units="mS_per_uF">0.000575</cn>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>f</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <times/>
+            <ci>alpha_f</ci>
+            <apply>
+              <minus/>
+              <cn cellml:units="dimensionless">1.0</cn>
+              <ci>f</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <ci>beta_f</ci>
+            <ci>f</ci>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="environment">
+    <variable name="time" units="ms" public_interface="out" cmeta:id="time"/>
+  </component>
+  <component name="ionic_concentrations">
+    <variable name="Ca_e" units="mM" public_interface="out" initial_value="2.0" cmeta:id="Ca_e"/>
+    <variable name="Ca_i" units="mM" public_interface="out" initial_value="0.0004" cmeta:id="Ca_i"/>
+  </component>
+  <component name="membrane">
+    <variable name="Cm" units="pF" initial_value="153.4" cmeta:id="Cm"/>
+    <variable name="F" units="C_per_mol" public_interface="out" initial_value="96845.0"/>
+    <variable name="R" units="mJ_per_mol_per_K" public_interface="out" initial_value="8314.0"/>
+    <variable name="T" units="kelvin" public_interface="out" initial_value="310.0"/>
+    <variable name="V" units="mV" public_interface="out" cmeta:id="V"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>V</ci>
+        <apply>
+          <minus/>
+          <cn cellml:units="dimensionless">80.0</cn>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <connection>
+    <map_components component_1="calcium_current" component_2="calcium_current_d_gate"/>
+    <map_variables variable_1="d_infinity" variable_2="d_infinity"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current" component_2="calcium_current_f_Ca_gate"/>
+    <map_variables variable_1="f_Ca" variable_2="f_Ca"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current" component_2="calcium_current_f_gate"/>
+    <map_variables variable_1="f" variable_2="f"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current" component_2="ionic_concentrations"/>
+    <map_variables variable_1="Ca_e" variable_2="Ca_e"/>
+    <map_variables variable_1="Ca_i" variable_2="Ca_i"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current" component_2="membrane"/>
+    <map_variables variable_1="F" variable_2="F"/>
+    <map_variables variable_1="R" variable_2="R"/>
+    <map_variables variable_1="T" variable_2="T"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current_d_gate" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current_f_Ca_gate" component_2="ionic_concentrations"/>
+    <map_variables variable_1="Ca_i" variable_2="Ca_i"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current_f_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="calcium_current_f_gate" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <rdf:RDF>
+    <rdf:Description rdf:about="#Ca_e">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Ca_i">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Cm">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Driving_term_ohmic">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Open_Prob">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#V">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#f">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_f_gate"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#g_Ca">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#i_Ca">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#time">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+    </rdf:Description>
+  </rdf:RDF>
+</model>

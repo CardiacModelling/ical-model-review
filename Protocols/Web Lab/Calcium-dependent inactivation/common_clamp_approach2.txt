@@ -1,0 +1,91 @@
+documentation {
+# This file contains components such as units definitions and ionic concentration clamps.
+}
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+# Set up a prefix local to the protocol which can be used to pass parameters into
+# the model interface.
+namespace local = "urn:local#"
+
+import std = "BasicLibrary.txt"
+
+units {
+    mV = milli volt
+    ms = milli second
+    uA_per_cm2 = micro ampere . centi metre^-2 "{/Symbol m}A/cm^2" # Desired units of currents
+    uF_per_cm2 = micro farad . centi metre^-2
+    microamps = micro ampere
+    A_per_F = ampere . farad^-1
+    uM = micro mole . litre^-1 "{/Symbol m}M"
+    mM = milli mole . litre^-1 "mM"
+    per_ms = milli second^-1
+    picoA_per_millimolar = pico ampere . mM^-1
+    uM_ms= micro mole . milli second^-1 "{/Symbol m}M"
+    M_per_s = mole . litre^-1 . second^-1
+    per_mM_per_ms = mM^-1 . ms^-1
+
+}
+
+model interface {
+    # When we're adding new ODEs to the model, it's safest to specify the time units explicitly.
+    # If we don't, and time gets units-converted later due to being an output, figuring out what
+    # to do with our new ODEs is complicated!
+    independent var units ms
+
+    # Standard model outputs
+    output oxmeta:membrane_L_type_calcium_current units uA_per_cm2
+    output oxmeta:membrane_voltage units mV
+    output oxmeta:time units ms
+
+    # Clamp extracellular concs to fixed values
+    # This is a convenience shorthand for 'define var = val'
+    optional oxmeta:extracellular_sodium_concentration
+    clamp oxmeta:extracellular_sodium_concentration to 140 :: mM
+    optional oxmeta:extracellular_potassium_concentration
+    clamp oxmeta:extracellular_potassium_concentration to 5 :: mM
+    optional oxmeta:extracellular_calcium_concentration 
+    clamp oxmeta:extracellular_calcium_concentration to 2 :: mM
+    optional oxmeta:extracellular_chloride_concentration
+    clamp oxmeta:extracellular_chloride_concentration to 150 :: mM
+    
+    # Turn off RyR realease
+    optional oxmeta:SR_release_current
+    clamp oxmeta:SR_release_current to 0 :: units_of(oxmeta:SR_release_current)
+    
+    # Turn off RyR uptake 
+    optional oxmeta:SR_uptake_current
+    clamp oxmeta:SR_uptake_current to 0 :: units_of(oxmeta:SR_uptake_current)
+    
+    optional oxmeta:cytosolic_sodium_concentration  
+    clamp oxmeta:cytosolic_sodium_concentration to 10 :: mM
+    optional oxmeta:cytosolic_potassium_concentration
+    clamp oxmeta:cytosolic_potassium_concentration to 140 :: mM
+
+	optional oxmeta:dyadic_space_sodium_concentration  
+	clamp oxmeta:dyadic_space_sodium_concentration to 10 :: mM 
+	
+	optional oxmeta:dyadic_space_potassium_concentration  
+	clamp oxmeta:dyadic_space_potassium_concentration to 140 :: mM 
+	
+	optional oxmeta:submembrane_space_sodium_concentration
+	clamp oxmeta:submembrane_space_sodium_concentration to 10 :: mM 
+	
+	optional oxmeta:submembrane_space_potassium_concentration
+	clamp oxmeta:submembrane_space_potassium_concentration to 140 :: mM 
+    
+    optional oxmeta:cytosolic_potassium_concentration
+    optional oxmeta:submembrane_space_potassium_concentration 
+    optional oxmeta:dyadic_space_potassium_concentration     
+
+    clamp oxmeta:cytosolic_chloride_concentration to 24 :: mM
+    clamp oxmeta:submembrane_space_chloride_concentration to 24 :: mM
+    clamp oxmeta:dyadic_space_chloride_concentration to 24 :: mM   
+
+    # Units conversion rules
+    var chaste_membrane_capacitance units uF_per_cm2 = 1 # Used by units conversion rules
+    convert A_per_F to uA_per_cm2 by lambda rhs: rhs * chaste_membrane_capacitance
+    convert uA_per_cm2 to A_per_F by lambda rhs: rhs / chaste_membrane_capacitance
+    convert microamps to uA_per_cm2 by lambda rhs: (rhs / oxmeta:membrane_capacitance) * chaste_membrane_capacitance
+    convert uA_per_cm2 to microamps by lambda rhs: (rhs * oxmeta:membrane_capacitance) / chaste_membrane_capacitance
+}

@@ -1,0 +1,348 @@
+# ICaL protcol
+
+documentation {
+# ICaL Peak Current I-V Curve
+This protocol implements a protocol to record the ICaL Peak Current I-V relationship
+for cardiac electrophysiology cell models.
+
+By clamping intra/extra-cellular calcium, we can throw away most of
+the equations of the models to leave just the ICaL components to study.
+
+## Parameters
+
+* **holding\_potential**  The potential at which the cell rests before voltage steps are applied at t=0 (mV).
+* **steady\_state\_time**  The amount of time to leave the current at holding potential before applying steps (ms).
+* **test\_potentials**  A list of voltages (steps) to clamp the cell to before recording ICaL (mV).
+
+It requires models to provide variables with the annotations:
+
+* **oxmeta:membrane\_voltage**
+* **oxmeta:membrane\_L\_type\_calcium\_current**
+* **oxmeta:time**
+
+Optionally:
+* **oxmeta:membrane\_L\_type\_calcium\_current\_open\_probability**
+* **oxmeta:extracellular\_calcium\_concentration**
+* **oxmeta:cytosolic\_calcium\_concentration**
+* **oxmeta:extracellular\_potassium\_concentration**
+* **oxmeta:cytosolic\_potassium\_concentration**
+* **oxmeta:extracellular\_sodium\_concentration**
+* **oxmeta:cytosolic\_sodium\_concentration**
+* **oxmeta:dyadic\_space\_calcium\_concentration**
+* **oxmeta:submembrane\_space\_calcium\_concentration**
+* **oxmeta:dyadic\_space\_potassium\_concentration**
+* **oxmeta:submembrane\_space\_potassium\_concentration**
+* **oxmeta:dyadic\_space\_sodium\_concentration**
+* **oxmeta:submembrane\_space\_sodium\_concentration**
+}
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+inputs {
+    holding_potential = -90
+    # How long to simulate for to get to steady state at the holding potential.
+    # Note that all timing parameters are in ms.
+    steady_state_time = 10000
+    
+    # Parameters for the single pulse pharm protocol 
+    # The values to step the transmembrane potential to: 0 mV 
+    test_potentials_pharm = [ -0.01 + 0*i for i in 0:30 ]
+    # How long to hold at each step voltage
+    pulse_length_pharm = 120
+    # How long to hold at the holding potential between pulses
+    interval_length_pharm = 10000
+
+    # Parameters for the  IV curve protocol
+    # The values to step the transmembrane potential to: -60 to +60 mV in 2mV steps
+    test_potentials = [ -60.01 + 2*i for i in 0:60 ]
+    # How long to hold at each step voltage
+    pulse_length = 120
+    # How long to hold at the holding potential between pulses
+    interval_length = 10000
+
+    # Parameters for the inactivation IV curve protocol
+    test_potentials_inact = [ -90.01 + 2*i for i in 0:60 ]
+    pulse1_length_inact = 500     # ms
+    pulse2_length_inact = 120     # ms
+    interval_length_inact = 10000 # ms, i.e. 10 seconds
+
+    # Parameters for the recovery from inactivation protocol
+    pulse1_length_recovery = 500    # ms
+    between_pulses_recovery = [ 10, 20, 30, 40, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800, 825, 850, 875, 900, 925, 950, 975, 1000 ]
+    pulse2_length_recovery = 120    # ms
+    interval_length_recovery = 5000 # 5 seconds, both before & after each segment
+}
+
+# Merge common definitions
+import "common_clamp_approach2.txt"
+
+library {
+
+    # Sampling points for pharm protocol: 0.01ms sampling during the pulses, no sampling during the intervals
+    # We ensure we sample at the ends of the pulses so modifiers take effect!
+    sim_time = std:Join([0.01*i for i in 0:(pulse_length*100)], [pulse_length, pulse_length + interval_length])
+     
+    # Sampling points for IV curve: 0.01ms sampling during the pulses (pulse + 20 ms), no sampling during the intervals
+    # We ensure we sample at the ends of the pulses so modifiers take effect!
+    sim_time_pharm = std:Join([0.01*i for i in 0:((pulse_length_pharm+20)*100)], [pulse_length_pharm+20, pulse_length_pharm + interval_length_pharm])
+
+    # Inactivation time points: 0.01ms sampling during pulse 2, no internal sampling elsewhere (just start & end points)
+    # We ensure we sample at the ends of the pulses so modifiers take effect!
+    time_inact = std:Join(std:Join([0, pulse1_length_inact-0.01],
+                                   [pulse1_length_inact + 0.01*i for i in 0:(pulse2_length_inact*100)]),
+                          [pulse1_length_inact + pulse2_length_inact,
+                           pulse1_length_inact + pulse2_length_inact + 0.01,
+                           pulse1_length_inact + pulse2_length_inact + interval_length_inact])
+
+    # The recovery protocol is more complex since its duration varies in each segment.
+    # We use a nested protocol for the individual segments, and pad their raw simulation outputs to the same length.
+    max_segment_length_recovery = std:Max(between_pulses_recovery)[0]
+
+#    # Alternative approach: We therefore compute a single time vector for the whole protocol.
+#
+#    def AddSegment(start_time, time_so_far, segments_remaining) {
+#        # This recursive helper function constructs each segment of the time vector for the recovery protocol.
+#        # Each segment consists of an initial interval, pulse 1, segment interval, pulse 2, end interval.
+#        # The sampling varies: we sample at 0.01ms in a window [-30ms, 100ms] around the start of each pulse, and just jump the rest.
+#        # The first pulse is considered to start at time 0; the first pulse of this segment starts at start_time.
+#        # We don't include the initial time point for this segment here, as it will have been included as the final point for the previous one.
+#        part1 = [start_time+i*0.01 for i in -3000:10001]
+#        seg = segments_remaining[0]
+#        part2 = std:Join([start_time+pulse1_length_recovery+seg+i*0.01 for i in -3000:10001],
+#                         [start_time+pulse1_length_recovery+seg+pulse2_length_recovery+interval_length_recovery])
+#        next_time_segment = std:Join(part1, part2)
+#        next_start_time = part2[-1] + interval_length_recovery
+#
+#        # Do recursive call or base case to get the full time vector
+#        time_with_this_segment = std:Join(time_so_far, next_time_segment)
+#        full_time = if segments_remaining.NUM_ELEMENTS == 1 then time_with_this_segment
+#                                                            else AddSegment(next_start_time, time_with_this_segment, segments_remaining[1:])
+#        return full_time
+#    }
+#    # Check the lengths are sufficient to fit our windows.
+#    assert interval_length_recovery > 30
+#    assert pulse1_length_recovery > 130
+#    assert pulse2_length_recovery > 100
+#    time_recovery = AddSegment(0, [-interval_length_recovery], between_pulses_recovery)
+}
+
+model interface {
+    input oxmeta:membrane_voltage units mV
+
+    # Replace the ODE for voltage by a fixed value (the actual value used will be set when running)
+    # We could also have used the form 'clamp oxmeta:membrane_voltage to 0 :: mV'
+    define oxmeta:membrane_voltage = 0 :: mV
+}
+
+tasks {
+    # Do a pre-run to get the model to steady-state for the holding potential
+    simulation timecourse {
+        range time units ms vector [0, steady_state_time]
+        modifiers {
+            at start set oxmeta:membrane_voltage = holding_potential
+            at end save as holding_state
+        }
+    }
+    
+    # Now do the Pharm protocol
+    simulation pharm = nested {
+        range step_voltage units mV vector test_potentials_pharm
+        modifiers {
+            # Step to next test potential
+            at each loop set oxmeta:membrane_voltage = step_voltage
+        }
+        nests simulation timecourse {
+            range time units ms vector sim_time_pharm
+            modifiers {
+                at each loop set oxmeta:membrane_voltage = \
+                    if MathML:abs(time - pulse_length) < 1e-6 then holding_potential else oxmeta:membrane_voltage
+            }
+        }
+    }
+
+    # Now do the IV curve generation
+    simulation sim = nested {
+        range step_voltage units mV vector test_potentials
+        modifiers {
+            # Step to next test potential
+            at each loop set oxmeta:membrane_voltage = step_voltage
+        }
+        nests simulation timecourse {
+            range time units ms vector sim_time
+            modifiers {
+                at each loop set oxmeta:membrane_voltage = \
+                    if MathML:abs(time - pulse_length) < 1e-6 then holding_potential else oxmeta:membrane_voltage
+            }
+        }
+    }
+
+    # Steady-state inactivation curve simulation
+    simulation inact = nested {
+        range step_voltage units mV vector test_potentials_inact
+        modifiers {
+            # Reset the model to holding potential
+            at start reset to holding_state
+            # Step to next test potential
+            at each loop set oxmeta:membrane_voltage = step_voltage
+        }
+        nests simulation timecourse {
+            range time units ms vector time_inact
+            modifiers {
+                # Step to next test potential
+                #at start set oxmeta:membrane_voltage = step_voltage
+                at each loop set oxmeta:membrane_voltage = \
+                    if MathML:abs(time - pulse1_length_inact) < 1e-6 then 0.01 :: mV else
+                        if MathML:abs(time - (pulse1_length_inact+pulse2_length_inact)) < 1e-6 then holding_potential
+                                                                                               else oxmeta:membrane_voltage
+            }
+        }
+    }
+
+    # Recovery from inactivation simulation
+    simulation recovery = nested {
+        range segment_interval units ms vector between_pulses_recovery
+        modifiers {
+            at start reset to holding_state
+        }
+        nests protocol "recovery.txt" {
+            holding_potential    = holding_potential
+            segment_interval     = segment_interval
+            max_segment_interval = max_segment_length_recovery
+            pulse1_length        = pulse1_length_recovery
+            pulse2_length        = pulse2_length_recovery
+            interval_length      = interval_length_recovery
+            select output normalised_current
+            select output clamp_time
+            select output voltage
+            select output window_coords
+            select output raw_LCC
+        }
+    }
+#    simulation recovery = timecourse {
+#        range time units ms vector time_recovery
+#        range clamp_voltage units mV vector voltage_recovery
+#        modifiers {
+#            at start reset to holding_state
+#            at each loop set oxmeta:membrane_voltage = clamp_voltage
+#        }
+#    }
+
+
+}
+
+post-processing {
+    # Test that expected model outputs exist
+    assert sim:time.IS_ARRAY
+    assert sim:membrane_voltage.IS_ARRAY
+    assert sim:membrane_L_type_calcium_current.IS_ARRAY
+    #assert sim:membrane_L_type_calcium_current_open_probability.IS_ARRAY
+
+    # Time vectors for output & plotting
+    time = sim:time[0]
+    time_inact = inact:time[0]
+    time_pharm = pharm:time[0]
+
+    # We look for the minimum (most negative) current in the 80ms window after the start of each pulse
+    window_end_index = find(map(lambda t: t >= 80, sim:time[0]))[0][0]
+    recorded_LCC = sim:membrane_L_type_calcium_current[1$:window_end_index]
+    optional recorded_OP = sim:membrane_L_type_calcium_current_open_probability[1$:window_end_index]
+
+    # Get the minimum tail current (this has the largest magnitude) as a 1d array
+    min_LCC_max = std:Max(recorded_LCC, 1)[1$0]
+    min_LCC_min = std:Min(recorded_LCC, 1)[1$0]
+    min_LCC = [if min_LCC_max[i]>0.0000005 then min_LCC_max[i] else min_LCC_min[i] for i in 0:60]
+    # Normalise the result
+    global_min = std:Min(min_LCC)[0]
+    normalised_LCC = map(lambda I: (I) / MathML:abs(global_min), min_LCC)
+
+    # Get the maximum (this has the largest magnitude) as a 1d array (Open prob)
+    optional max_OP = std:Max(recorded_OP, 1)[1$0]
+    # Normalise the result
+    optional global_max_OP = std:Max(max_OP)[0]
+    optional normalised_OP = map(lambda I: (I) / MathML:abs(global_max_OP), max_OP)
+
+    # Post-processing for inactivation protocol
+
+    # We record during the second pulse, so ignore the first and last current values
+    recorded_LCC_inact = inact:membrane_L_type_calcium_current[1$4:-3]
+    optional recorded_OP_inact = inact:membrane_L_type_calcium_current_open_probability[1$4:-3]
+    min_LCC_inact_neg = std:Min(recorded_LCC_inact, 1)[1$0]
+    max_LCC_inact_pos = std:Max(recorded_LCC_inact, 1)[1$0]
+    min_LCC_inact = [if i>45 then max_LCC_inact_pos[i] else min_LCC_inact_neg[i] for i in 0:60]
+    global_min_inact = std:Min(min_LCC_inact)[0]
+    normalised_LCC_inact = map(lambda I: -(I)/MathML:abs(global_min_inact), min_LCC_inact)
+
+   optional max_OP_inact = std:Max(recorded_OP_inact, 1)[1$0]
+   optional global_max_OP_inact = std:Max(max_OP_inact)[0]
+   optional normalised_OP_inact = map(lambda I: (I)/MathML:abs(global_max_OP_inact), max_OP_inact)
+    # Post-processing for recovery protocol done in nested protocol
+}
+
+outputs {
+    
+    # Pharm protocol outputs
+    membrane_L_type_calcium_current_pharm = pharm:membrane_L_type_calcium_current "L-type calcium current"
+    membrane_voltage_pharm                = pharm:membrane_voltage                "Applied potential"   
+    time_pharm            units ms            "Time"
+ 
+    # Activation IV protocol outputs
+    
+    membrane_L_type_calcium_current = sim:membrane_L_type_calcium_current "L-type calcium current"
+    optional membrane_L_type_calcium_current_open_probability = sim:membrane_L_type_calcium_current_open_probability "L-type calcium current open probability"
+    membrane_voltage                = sim:membrane_voltage                "Applied potential"
+
+    recorded_LCC    units uA_per_cm2    "I_{CaL} after test potentials applied"
+    min_LCC         units uA_per_cm2    "Minimum I_{CaL} current"
+    normalised_LCC  units dimensionless "Normalised peak I_{CaL} current"
+    test_potentials units mV            "Test potential"
+    time            units ms            "Time"
+    optional max_OP         units dimensionless    "Maximum I_{CaL} current open probability"
+    optional normalised_OP  units dimensionless "Normalised peak I_{CaL} current open probability"
+
+    # Inactivation protocol outputs
+
+    recorded_LCC_inact    units uA_per_cm2    "Inactivation: I_{CaL} after test potentials applied"
+    min_LCC_inact         units uA_per_cm2    "Inactivation: Minimum I_{CaL} current"
+    normalised_LCC_inact  units dimensionless "Inactivation: Normalised peak I_{CaL} current"
+    test_potentials_inact units mV            "Inactivation: Test potential"
+    time_inact            units ms            "Time"
+    voltage_inact = inact:membrane_voltage    "Inactivation: Applied potential"
+    raw_LCC_inact = inact:membrane_L_type_calcium_current "Inactivation: Raw L-type calcium current"
+    optional max_OP_inact         units dimensionless    "Inactivation: Maximum I_{CaL} current open probability"
+    optional normalised_OP_inact  units dimensionless "Inactivation: Normalised peak I_{CaL} current open probability"
+
+    # Recovery protocol outputs
+
+    recorded_LCC_recovery   = recovery:raw_LCC            "Recovery: I_{CaL} after test potentials applied"
+    normalised_LCC_recovery = recovery:normalised_current "Recovery: Normalised I_{CaL} current"
+    voltage_recovery        = recovery:voltage            "Recovery: Applied potential"
+    time_recovery           = recovery:clamp_time         "Time"
+    window_coords           = recovery:window_coords      "Time proxy"
+    between_pulses_recovery units ms                      "Time between pulses"
+}
+
+plots {
+    # Pharm protocol     
+    plot "Pharm: L-type calcium current" using lines {membrane_L_type_calcium_current_pharm against time_pharm }
+
+    # Activation IV protocol     
+    plot "normalised IV curve" using linespoints  { normalised_LCC against test_potentials }
+    plot "IV curve"            using linespoints  { min_LCC        against test_potentials }
+    plot "normalised IV curve open probability" using linespoints  { normalised_OP against test_potentials }
+    plot "IV curve open probability"            using linespoints  { max_OP        against test_potentials }
+    plot "IV: Raw L-type calcium current" using lines { membrane_L_type_calcium_current against time key test_potentials }
+    plot "IV: Applied voltage"            using lines { membrane_voltage                against time key test_potentials }
+
+    # Inactivation protocol
+    plot "Inactivation: normalised IV curve" using linespoints { normalised_LCC_inact against test_potentials_inact }
+    plot "Inactivation: IV curve"            using linespoints { min_LCC_inact        against test_potentials_inact }
+    plot "Inactivation: normalised IV curve open probability" using linespoints  { normalised_OP_inact against test_potentials_inact }
+    plot "Inactivation: IV curve open probability"            using linespoints  { max_OP_inact        against test_potentials_inact }
+    plot "Inactivation: raw L-type calcium current" using lines { raw_LCC_inact against time_inact key test_potentials_inact }
+    plot "Inactivation: applied voltage"            using lines { voltage_inact against time_inact key test_potentials_inact }
+
+    # Recovery protocol
+    plot "Recovery: current vs interval" using linespoints { normalised_LCC_recovery against between_pulses_recovery }
+    plot "Recovery: raw L-type calcium current" using lines { recorded_LCC_recovery  against window_coords key between_pulses_recovery }
+    plot "Recovery: applied voltage"            using lines { voltage_recovery       against time_recovery key between_pulses_recovery }
+}

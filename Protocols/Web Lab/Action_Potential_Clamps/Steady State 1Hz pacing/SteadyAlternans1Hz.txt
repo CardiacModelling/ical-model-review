@@ -1,0 +1,37 @@
+# This is a comment.  Comments in a protocol file start with a hash character "#" and continue
+# until the end of a line.
+
+# Most of a protocol file is comprised of blocks, which start with the name of the block, then
+# an opening curly brace "{", and end at the matching closing curly brace "}".
+
+# The order in which blocks appear matters; it is intended to reflect the natural flow of both
+# writing and executing a protocol.  Each block is optional, and may be omitted if not needed
+# for your protocol.  Indeed, the only blocks that appear in this file are "documentation" and
+# "import".
+
+# The first block that may appear is for documenting the protocol.  The documentation block for
+# this protocol is below.
+# The documentation is written using Markdown, and rendered nicely when viewing a protocol
+# description on the Web Lab.  You can find a reference manual for Markdown's syntax at
+# http://daringfireball.net/projects/markdown/syntax and a live editor for trying it out at
+# http://markdownlivepreview.com/
+
+documentation {
+# Steady State action potential evaluation
+
+This protocol implements steady pacing for cardiac electrophysiology cell models, and produces
+the action potential at 1Hz. Note that it is a really simple (4 line) protocol definition, that 
+just imports SteadyStateRunner.txt and sets two of its inputs.
+
+The imported protocol repeatedly paces the cell until the state variables are (approximately)
+unchanging from beat to beat (or a maximum number of paces is reached).  We set each iteration
+to consist of 2 paces, so that steady alternans can be detected.
+}
+
+# The protocol import below essentially makes this protocol behave like the one imported,
+# except that some of its inputs are changed.
+
+import "SteadyStateRunner.txt" {
+    pacing_period = 1000  # ms
+    num_inner_paces = 2   # How many paces to run between comparing state variables
+}

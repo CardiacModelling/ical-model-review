@@ -1,0 +1,123 @@
+# ICaL protcol
+
+documentation {
+# ICaL Peak Current I-V Inactivation Curve
+This protocol implements an inactivation protocol to record the ICaL Peak Current I-V Inactivation relationship
+for cardiac electrophysiology cell models.
+By performing the protocol at multiple calcium conetrations we oberve calcium-dependent inactivation.
+
+By clamping intra/extra-cellular calcium, we can throw away most of
+the equations of the models to leave just the ICaL components to study.
+
+## Parameters
+
+* **holding\_potential**  The potential at which the cell rests before voltage steps are applied at t=0 (mV).
+* **steady\_state\_time**  The amount of time to leave the current at holding potential before applying steps (ms).
+* **test\_potentials\_inact**  A list of voltages (steps) to clamp the cell to before recording ICaL (mV).
+* **calcium_concentration** A list of concentrations to vary the internal calcium concentration values 
+
+It requires models to provide variables with the annotations:
+
+* **oxmeta:membrane\_voltage**
+* **oxmeta:membrane\_L\_type\_calcium\_current**
+* **oxmeta:time**
+
+Optionally:
+* **oxmeta:extracellular\_calcium\_concentration**
+* **oxmeta:cytosolic\_calcium\_concentration**
+* **oxmeta:extracellular\_potassium\_concentration**
+* **oxmeta:cytosolic\_potassium\_concentration**
+* **oxmeta:extracellular\_sodium\_concentration**
+* **oxmeta:cytosolic\_sodium\_concentration**
+* **oxmeta:dyadic\_space\_calcium\_concentration**
+* **oxmeta:submembrane\_space\_calcium\_concentration**
+* **oxmeta:dyadic\_space\_potassium\_concentration**
+* **oxmeta:submembrane\_space\_potassium\_concentration**
+* **oxmeta:dyadic\_space\_sodium\_concentration**
+* **oxmeta:submembrane\_space\_sodium\_concentration**
+}
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+inputs {
+       calcium_concentration = [0.000000001, 0.000000003, 0.00000001, 0.00000003, 0.0000001, 0.0000003, 0.000001, 0.000003, 0.00001, 0.00003, 0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3 ]
+       }
+
+import std = "BasicLibrary.txt"
+
+units {
+    mV = milli volt
+    ms = milli second
+    uA_per_cm2 = micro ampere . centi metre^-2 "{/Symbol m}A/cm^2" # Desired units of currents
+    uF_per_cm2 = micro farad . centi metre^-2
+    microamps = micro ampere
+    A_per_F = ampere . farad^-1
+    uM = micro mole . litre^-1 "{/Symbol m}M"
+    mM = milli mole . litre^-1 "mM"
+    per_ms = milli second^-1
+    picoA_per_millimolar = pico ampere . mM^-1
+    uM_ms= micro mole . milli second^-1 "{/Symbol m}M"
+    M_per_s = mole . litre^-1 . second^-1
+    per_mM_per_ms = mM^-1 . ms^-1
+
+}
+
+model interface {
+    #Given default values to the terms so that terms are created if they don't exist.
+    #They can later be modified in the modifiers section but since they are not required by the model
+    #It will make no difference
+
+    optional oxmeta:cytosolic_calcium_concentration default 0.000000001::mM
+    input oxmeta:cytosolic_calcium_concentration units mM 
+    optional oxmeta:submembrane_space_calcium_concentration default 0.000000001::mM
+    input oxmeta:submembrane_space_calcium_concentration units mM 
+    optional oxmeta:dyadic_space_calcium_concentration default 0.000000001::mM
+    input oxmeta:dyadic_space_calcium_concentration units mM
+      
+    # Replace the ODE for voltage by a fixed value (the actual value used will be set when running)
+    define oxmeta:cytosolic_calcium_concentration = 0.000000001 :: mM
+    define oxmeta:submembrane_space_calcium_concentration = 0.000000001 :: mM
+    define oxmeta:dyadic_space_calcium_concentration = 0.000000001 :: mM
+}
+
+tasks {
+simulation inact_parent = nested {
+	range step_calcium units mM vector calcium_concentration
+	modifiers {
+		at each loop set oxmeta:cytosolic_calcium_concentration = step_calcium
+		at each loop set oxmeta:submembrane_space_calcium_concentration = step_calcium
+		at each loop set oxmeta:dyadic_space_calcium_concentration = step_calcium
+		}
+	nests protocol "inactivation.txt" {
+			select output min_LCC_inact
+                        select output test_potentials_inact
+                        }	
+		}
+}		
+
+
+post-processing {
+    min_LCC_inact = inact_parent:min_LCC_inact
+
+    # We normalize by the minimum current (maximum peak) across all voltages and concentrations
+    global_min = std:Min(std:Min(min_LCC_inact, 1)[1$0])[0]
+    normalised_LCC_inact = map(lambda I: -(I)/MathML:abs(global_min), min_LCC_inact)
+
+}
+
+outputs {
+    
+    # Inactivation protocol outputs
+
+    test_potentials_inact = inact_parent:test_potentials_inact   units mV    "Inactivation: Test Potentials"
+    min_LCC_inact  units uA_per_cm2    "Inactivation: Peak I_{CaL} after test potentials applied"
+    calcium_concentration units mM "Calcium Concenteration" 
+    normalised_LCC_inact  units dimensionless "Inactivation: Normalised peak I_{CaL} current"
+}
+
+plots {
+    # Inactivation protocol
+    plot "Inactivation: IV curve"            using linespoints { min_LCC_inact against test_potentials_inact key calcium_concentration}
+    plot "Inactivation: Normalized IV curve"            using linespoints { normalised_LCC_inact against test_potentials_inact key calcium_concentration}
+
+}

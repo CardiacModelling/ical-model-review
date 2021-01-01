@@ -1,0 +1,259 @@
+documentation {
+# Steady State action potential evaluation
+
+This protocol implements steady pacing for cardiac electrophysiology cell models, and produces
+the action potential at this steady state.
+
+## Parameters:
+
+The inputs for this protocol allow it to be customised to specific scenarios, for instance different pacing rates.
+
+* **pacing\_period**     The pacing period in milliseconds (1000/frequency in Hz).
+* **num\_inner\_paces**  The number of paces over which to look for steady state (defaults to 1).
+  It can be useful to set this to 2 to detect steady alternans.
+* **max\_paces**         The maximum number of paces to stimulate the system with (some models never get to steady state!).
+* **norm\_threshold**    The threshold for defining steady state as achieved,
+  compared to the p1 (a.k.a. L1) norm of the change in state variables between paces.
+* **detail\_duration**   How long to simulate for when producing a plot of the behaviour at steady state.
+  Defaults to show the number of paces defined above.
+
+This protocol requires models to provide variables with the following annotations:
+
+* **oxmeta:membrane\_stimulus\_current**
+* **oxmeta:membrane\_stimulus\_current\_amplitude**
+* **oxmeta:membrane\_stimulus\_current\_duration**
+* **oxmeta:membrane\_voltage**
+* **oxmeta:time**
+* Optionally **oxmeta:cytosolic\_calcium\_concentration**
+}
+
+# The second section that may appear in a protocol description is namespace bindings.
+# The model annotations used by this protocol to interface to models all live in the 'oxford-metadata' ontology
+# defined by the Web Lab team.  By convention we associate the full URI for this ontology with the 'oxmeta' prefix.
+# Terms from the ontology can then be accessed using the shorthand oxmeta:term syntax, as illustrated in the
+# documentation above.
+# The available terms can be seen in the model annotation tool in the Web Lab (available when viewing a model you
+# have uploaded yourself) or at https://chaste.cs.ox.ac.uk/trac/browser/trunk/python/pycml/oxford-metadata.ttl .
+# We could have omitted this section here, since it appears in the nested SinglePace.txt protocol (see also below)
+# and model variables are not referenced directly here, only via that nested protocol. The binding is included for
+# didactic clarity.
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+# Protocol inputs are the third section.  Here we define five, as detailed in the description above.
+# These may be overridden by protocols which import this one.
+
+inputs {
+    pacing_period = 1000  # ms
+    num_inner_paces = 1   # How many paces to run between comparing state variables
+    max_paces = 10000     # Give up at this point
+    norm_threshold = 1e-6 # Applied to L1 norm of state variable differences; if lower than this we have reached steady state
+
+    # Note with this final input that the default values may be expressions making use of earlier inputs.
+    # If earlier inputs are overridden when this protocol is imported, the default will be recalculated accordingly.
+    detail_duration = pacing_period * num_inner_paces # How long to simulate for a plot at steady state
+}
+
+# In the fourth section of a protocol we may import other protocols in order to reuse functionality defined elsewhere.
+# Here we see two protocols imported using the labelled form, where we bind them to a name prefix ('std' and 'cardiac'
+# respectively).  This lets us use only particular parts of these protocols explicitly, rather than merging the entire
+# protocol into this one.  This form of import is generally useful for importing libraries of functions for use in
+# post-processing.  The two libraries imported here are built-in to the Web Lab software, and may be viewed at
+# https://chaste.cs.ox.ac.uk/trac/browser/projects/FunctionalCuration/src/proto/library/BasicLibrary.txt and
+# https://chaste.cs.ox.ac.uk/trac/browser/projects/FunctionalCuration/src/proto/library/CardiacLibrary.txt respectively.
+
+import std = "BasicLibrary.txt"
+import cardiac = "CardiacLibrary.txt"
+
+# The library is the fifth section that may appear in a protocol.  It can define variables or functions for use later in
+# the protocol.  Here we use it to define a single variable for use in the tasks section below.
+
+library {
+    # This defines the maximum number of times to run the nested SinglePace.txt protocol before we give up trying to
+    # reach steady state.  Note that we can use a wide range of MathML operators in expressions; here we use the ceiling
+    # operator to ensure we run at least as many paces in total as were asked for.
+    max_inner_runs = MathML:ceiling(max_paces / num_inner_paces)
+}
+
+# The sixth potential section of a protocol defines physical units.  These definitions can then be referred to in various
+# places below, notably the model interface, simulation ranges, and output definitions.  The SI units defined by CellML
+# are built-in and always available; other units must be defined before use.
+
+units {
+    ms = milli second
+    mV = milli volt
+    mM = milli mole . litre^-1
+    mM_per_ms = mM . ms^-1 "mM/ms"   # Definitions can refer to previously defined units
+    # Note that for the last definition we also specify how to display these units to the user.  If no display is given
+    # the name of the units is used instead.
+}
+
+# The next possible section is the model interface.  In this case it is defined in the nested SinglePace protocol, so does
+# not appear here.  Instead we progress straight to the 'tasks' section, which defines the simulation tasks to perform.
+
+tasks {
+    # The first simulation gets the model to steady-state (if possible).  It is a nested simulation, looping over an
+    # inner simulation (in this case, the inner simulation executes an entire protocol at each iteration).  We give the
+    # simulation a name ('outer') to enable us to reference its results later.
+
+    simulation outer = nested {
+
+        # Every simulation needs a range specification, which names the loop variable ('paces'), gives its units
+        # ('dimensionless') and details how many times it iterates.  In this case we have a 'while' loop, which repeats
+        # as long as a condition is met; namely while the p1 norm of differences in the state variables is above the
+        # threshold and we have not yet reached the maximum number of paces.  Note that we can reference the partial
+        # simulation outputs in this condition (outer:norm_of_differences[-1]); the [-1] selects the last value, i.e.
+        # the norm on the previous run of the nested protocol.  The while loop condition is checked *after* each iteration
+        # of the loop, just after incrementing the loop variable (which is initially 0), making it impossible to have
+        # empty results.
+
+        range paces units dimensionless while outer:norm_of_differences[-1] > norm_threshold && paces < max_inner_runs
+
+        # Each time around the outer loop we run the SinglePace protocol.
+        nests protocol "SinglePace.txt" {
+
+            # We override two inputs of the nested protocol.  In this case we just reflect some of the inputs to this protocol.
+
+            num_paces = num_inner_paces
+            pacing_period = pacing_period
+
+            # We also need to specify which outputs of the nested protocol are of interest.  These will then form the
+            # output of this simulation, and can be referenced later as (e.g.) outer:norm_of_differences.  The shape of
+            # the simulation outputs depends on the shape of the nested protocol outputs, the number of nested loops here,
+            # and the number of times each loop is traversed.  In this case, norm_of_differences is a 0d array (single value)
+            # so outer:norm_of_differences is a 1d array whose length is equal to the number of times the SinglePace protocol
+            # was run.  The final_state_variables output is a 1d array, so outer:final_state_variables is two dimensional,
+            # with its first dimension being the number of SinglePace runs, and its second the number of state variables.
+
+            select output norm_of_differences
+            select output final_state_variables
+        }
+    }
+
+    # Where there are multiple simulations, they are run in order and the model state is not reset unless explicitly requested.
+    # This second simulation runs a single pace (or as many as specified by the detail_duration protocol input) with a finer
+    # sampling interval, in order to see what the behaviour looks like at steady-state.  We use a timecourse simulation, which
+    # does a straight simulation of the model, and a uniform range, which reports the model outputs at uniform intervals.
+    # (The underlying ODE solver, CVODE, will take as many internal steps as needed to achieve this.  Currently its error
+    # tolerances and maximum time step settings are hardcoded in the software, but we intend to make these configurable.)
+    # Note that both the start and end time are included, and the default step size is 1.  We start simulating just before the
+    # stimulus is applied, to make the graph look nicer.
+
+    simulation detail = timecourse {
+        range time units ms uniform -10:detail_duration-10
+    }
+}
+
+# The ninth potential section in a protocol performs post-processing of the raw simulation results.
+# Here we just have a sequence of assignments defining new variables, but assertions are also possible to sanity-check results.
+
+post-processing {
+
+    # Properties of variables, such as their type or array shape, may be accessed using the . notation.  This line defines
+    # num_nested_runs to be the first element (accessed with [0] - all indices start from 0 like in C or Python) of the shape
+    # of the outer:norm_of_differences array.
+    num_nested_runs = outer:norm_of_differences.SHAPE[0]
+
+    # Simple arithmetic is possible with the operators you'd expect.
+    num_paces = num_nested_runs * num_inner_paces
+
+    # This line uses an array comprehension to define a new array, used as the x-axis values in some plots.
+    # Comprehensions consist of an expression defining a single element of the array (in this case 'count') followed by one or
+    # more 'for <var> in <range>' constructs defining looping variables.  Note that, in contrast to uniform ranges in simulations,
+    # these ranges operate like Python and omit the end value; they thus define half-open intervals.  So the pace_count array
+    # starts at 0 and ends at num_nested_runs - 1.
+    pace_count = [count for count in 0:num_nested_runs]
+
+    # All the standard relational operators are also available.
+    found_steady_state = num_paces < max_paces
+
+    # Here we are again using the square bracket notation to access a portion of an array.  In this case we are taking the last
+    # entry on the first dimension (negative numbers index from the end) and all of any other dimensions (the default behaviour).
+    # Since outer:final_state_variables is 2d, steady_state_variables is therefore 1d.
+    steady_state_variables = outer:final_state_variables[-1]
+
+    # In these lines we call a post-processing function defined in the basic library (imported above and associated with the std:
+    # prefix) in order to transpose 2d arrays, making them more suitable for plotting (time becomes the second rather than the
+    # first dimension).
+    pace_final_state_variables = std:Transpose(outer:final_state_variables)
+    detailed_state = std:Transpose(detail:state_variable)
+
+
+    # The rest of the post-processing is dedicated to analysing the calcium transient.
+    # Note that not all models represent intracellular calcium, so these lines are expected to fail for some models.
+    # We therefore prefix assignments with the 'optional' keyword to ignore any errors if this happens; the variables will simply not exist.
+
+    # Here we use standard library functions to find the max & min values within an array.  These functions only operate along a
+    # single dimension and return an array with the same number of dimensions as the input.  In this case the input is 1d, so the
+    # result is a 1d array containing a single value, and we use [0] to extract this as a 0d array (i.e. simple number).
+    optional peak_calcium = std:Max(detail:cytosolic_calcium_concentration)[0]
+    optional min_calcium = std:Min(detail:cytosolic_calcium_concentration)[0]
+
+    # Grad is another standard library function computing change-in-y over change-in-x for array inputs.
+    optional dCai_dt = std:Grad(detail:time, detail:cytosolic_calcium_concentration)
+
+    # Finally we compute the duration of the calcium transient, using a (very complex!) post-processing function designed for
+    # calculating action potential durations.  The third argument gives the percentage repolarisation to calculate for.  The
+    # fourth says which dimension in the input arrays varies with time: the function can compute APDs for multiple traces
+    # simultaneously, useful if you have a parameter sweep over timecourses for instance.  The final argument here says how
+    # fast the calcium concentration needs to be varying to be considered as potentially the start of an AP.
+    dCai_dt_threshold = 3e-6 # mM/ms
+    optional ctd50 = cardiac:Apd(detail:cytosolic_calcium_concentration, detail:time, 50, 0, dCai_dt_threshold)
+}
+
+# The tenth potential section in a protocol defines what the outputs of a protocol are, and hence what is stored by the
+# Web Lab (or available to nesting protocols).  Each output needs to include physical units and a human-readable
+# description (given in quotes).  Where raw simulation results are output, the units can be retrieved from the model
+# and so need not be specified here.
+
+outputs {
+    # This first set of outputs are all variables defined in the post-processing section, so we specify their units
+    # as well as a description.
+    num_paces                  units dimensionless "The number of paces required to get to an approximately steady state"
+    steady_state_variables     units mixed         "The state variables at an approximately steady state"
+    found_steady_state         units boolean       "Whether we found a pseudo-steady-state, or gave up"
+    pace_final_state_variables units mixed         "State variables at the end of each pace"
+    num_inner_paces            units dimensionless "The number of paces per check of state variables"
+    pace_count                 units dimensionless "Paces"
+
+    # This output is a raw simulation result. We need to give it a non-prefixed name (with no colon) and a description,
+    # but can omit the units specification.
+    norm_of_differences = outer:norm_of_differences "Norm of the change in state variables over each `pace'"
+
+    detailed_time    = detail:time             units ms    "Time"
+    detailed_state                             units mixed "State variables over the final `pace'"
+    detailed_voltage = detail:membrane_voltage units mV    "Transmembrane potential"
+
+    # Calcium-related outputs; again these do not exist for all models, so they are specified as being optional to avoid errors
+    # on models for which they are not relevant.
+    optional detailed_calcium = detail:cytosolic_calcium_concentration units mM "Cytosolic calcium"
+    optional peak_calcium       units mM                                        "Peak cytosolic calcium"
+    optional min_calcium        units mM                                        "Minimum cytosolic calcium"
+    optional dCai_dt            units mM_per_ms                                 "Rate of change of cytosolic calcium"
+    optional ctd50              units ms                                        "Calcium transient duration at 50% relaxation"
+
+    optional detailed_calcium_ss = detail:submembrane_space_calcium_concentration units mM "submembrane calcium"
+    optional detailed_calcium_d = detail:dyadic_space_calcium_concentration units mM "dyadic calcium"
+}
+
+# The final protocol section defines what plots should be produced from the protocol outputs.  Each plot has a name given in quotes,
+# and may also specify whether it should be drawn as continuous lines, lines with markers at each point (the default), or as
+# isolated points.  What to plot is then given in curly braces.  In all these plots we just specify 'y against x' and most variables
+# involved are 1d arrays.  The exception is detailed_state which is 2d; in this case we see multiple curves plotted, one for each
+# state variable.  The last dimension of the array needs to match the x-axis data in size, and other dimensions define the
+# different curves.
+# More complex plotting is seen in other protocols (e.g. for drug block).
+
+plots {
+    plot "Final pace voltage" using lines                { detailed_voltage           against detailed_time }
+    plot "Progress towards steady state"                 { norm_of_differences        against pace_count    }
+    plot "Calcium transient over final pace" using lines { detailed_calcium           against detailed_time }
+    plot "State variables at each pace end" using lines  { pace_final_state_variables against pace_count    }
+    plot "State variables over final pace" using lines   { detailed_state             against detailed_time }
+    plot "Calcium-voltage loop" using lines              { detailed_voltage           against detailed_calcium }
+    plot "Calciumss" using lines            { detailed_calcium_ss           against detailed_time }
+    plot "Calciumd" using lines             { detailed_calcium_d           against detailed_time }
+}
+
+# Note that we did not need to specify the calcium transient plot as optional in the above: plots are only ever attempted when all
+# the relevant outputs are present, and missing outputs are flagged when processing the output specifications, not when plotting.

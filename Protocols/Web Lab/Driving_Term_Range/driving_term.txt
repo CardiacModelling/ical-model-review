@@ -1,0 +1,118 @@
+# ICaL protcol
+
+documentation {
+# ICaL Driving Term voltage range
+This protocol implements a protocol to see the behaviour of driving terms at various voltages for cardiac electrophysiology cell models.
+
+By clamping intra/extra-cellular calcium, we can throw away most of
+the equations of the models to leave just the ICaL components to study.
+
+## Parameters
+
+* **steady\_state\_time**  The amount of time to leave the current at holding potential before applying steps (ms).
+* **voltage\_range**  A list of voltages (steps) to clamp the cell to before recording ICaL (mV).
+
+It requires models to provide variables with the annotations:
+
+* **oxmeta:membrane\_voltage**
+* **oxmeta:time**
+
+Optionally:
+* **optionally oxmeta:membrane\_L\_type\_calcium\_current\_ohmic\_driving_term**
+* **optionally oxmeta:membrane\_L\_type\_calcium\_current\_GHK\_driving_term**
+* **oxmeta:extracellular\_calcium\_concentration**
+* **oxmeta:cytosolic\_calcium\_concentration**
+* **oxmeta:extracellular\_potassium\_concentration**
+* **oxmeta:cytosolic\_potassium\_concentration**
+* **oxmeta:extracellular\_sodium\_concentration**
+* **oxmeta:cytosolic\_sodium\_concentration**
+* **oxmeta:dyadic\_space\_calcium\_concentration**
+* **oxmeta:submembrane\_space\_calcium\_concentration**
+* **oxmeta:dyadic\_space\_potassium\_concentration**
+* **oxmeta:submembrane\_space\_potassium\_concentration**
+* **oxmeta:dyadic\_space\_sodium\_concentration**
+* **oxmeta:submembrane\_space\_sodium\_concentration**
+}
+
+namespace oxmeta = "https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#"
+
+inputs {
+    # The values to step the transmembrane potential to: -100 to +100 mV in 2mV steps
+    voltage_range = [ -100.01 + 2*i for i in 0:100 ]
+    # How long to hold at each step voltage
+    pulse_length = 10
+
+}
+
+# Merge common definitions
+import "common_clamp_approach2.txt"
+
+library {
+
+    # Sampling points
+    sim_time = [0.01*i for i in 0:(pulse_length*100)]
+}
+
+model interface {
+    input oxmeta:membrane_voltage units mV
+
+    # Replace the ODE for voltage by a fixed value (the actual value used will be set when running)
+    # We could also have used the form 'clamp oxmeta:membrane_voltage to 0 :: mV'
+    define oxmeta:membrane_voltage = 0 :: mV
+}
+
+tasks {
+   
+     simulation sim = nested {
+        range step_voltage units mV vector voltage_range
+        modifiers {
+            # Step to next test potential
+            at each loop set oxmeta:membrane_voltage = step_voltage
+        }
+        nests simulation timecourse {
+            range time units ms vector sim_time
+            modifiers {
+                at each loop set oxmeta:membrane_voltage = \
+                    if MathML:abs(time - pulse_length) < 1e-6 then holding_potential else oxmeta:membrane_voltage
+            }
+        }
+    }
+}
+
+post-processing {
+    # Test that expected model outputs exist
+    assert sim:time.IS_ARRAY
+    assert sim:membrane_voltage.IS_ARRAY
+
+    # Time vectors for output & plotting
+    time = sim:time[0]
+
+    # We look for the minimum (most negative) current in the after the start of each pulse
+    window_end_index = find(map(lambda t: t >= 0.001, sim:time[0]))[0][0]
+    optional recorded_DT_Ohmic = sim:membrane_L_type_calcium_current_ohmic_driving_term[1$:window_end_index]
+    optional recorded_DT_GHK = sim:membrane_L_type_calcium_current_GHK_driving_term[1$:window_end_index]
+
+    # Get the minimum tail current (this has the largest magnitude) as a 1d array
+    optional min_DT_Ohmic = std:Min(recorded_DT_Ohmic, 1)[1$0]
+    optional DT_Ohmic = [min_DT_Ohmic[i] for i in 0:100]
+
+    # Get the minimum tail current (this has the largest magnitude) as a 1d array
+    optional min_DT_GHK = std:Min(recorded_DT_GHK, 1)[1$0]
+    optional DT_GHK = [min_DT_GHK[i]/1000 for i in 0:100]
+}
+
+outputs {  
+    membrane_voltage                = sim:membrane_voltage                "Applied potential"
+    voltage_range units mV            "Test potential"
+    time            units ms            "Time"
+    optional DT_Ohmic         units mV    "Ohmic Driving Term"
+    optional DT_GHK  units mC_per_uL "GHK Driving Term"
+
+}
+
+plots {  
+    plot "Ohmic Driving Term"            using linespoints  { DT_Ohmic        against voltage_range }
+    plot "GHK Driving Term"            using linespoints  { DT_GHK        against voltage_range }
+    plot "IV: Applied voltage"            using lines { membrane_voltage                against time key voltage_range }
+
+}

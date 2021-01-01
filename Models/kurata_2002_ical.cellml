@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="generated_model">
+  <units name="A_per_F">
+    <unit units="gram" multiplier="1000"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-4"/>
+    <unit units="ampere" exponent="-1"/>
+  </units>
+  <units name="mM">
+    <unit units="metre" exponent="-3"/>
+    <unit units="mole"/>
+  </units>
+  <units name="mS_per_uF">
+    <unit units="second" exponent="-1" multiplier="1000"/>
+  </units>
+  <units name="mV">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2"/>
+    <unit units="second" exponent="-3"/>
+    <unit units="ampere" exponent="-1"/>
+  </units>
+  <units name="ms">
+    <unit units="second" multiplier="0.001"/>
+  </units>
+  <units name="pF">
+    <unit units="gram" exponent="-1" multiplier="1e-15"/>
+    <unit units="metre" exponent="-2"/>
+    <unit units="second" exponent="4"/>
+    <unit units="ampere" exponent="2"/>
+  </units>
+  <units name="per_mV_per_ms">
+    <unit units="gram" exponent="-1" multiplier="1000"/>
+    <unit units="metre" exponent="-2"/>
+    <unit units="second" exponent="2"/>
+    <unit units="ampere"/>
+  </units>
+  <component name="L_type_calcium_channel_current">
+    <variable name="E_CaL" units="mV" initial_value="45.0"/>
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="d" units="dimensionless" public_interface="in"/>
+    <variable name="driving_term_ohmic" units="mV" cmeta:id="driving_term_ohmic"/>
+    <variable name="f" units="dimensionless" public_interface="in"/>
+    <variable name="fCa" units="dimensionless" public_interface="in"/>
+    <variable name="g_CaL" units="mS_per_uF" initial_value="0.58"/>
+    <variable name="i_CaL" units="A_per_F" cmeta:id="i_CaL"/>
+    <variable name="open_prob" units="dimensionless" cmeta:id="open_prob"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>driving_term_ohmic</ci>
+        <apply>
+          <minus/>
+          <ci>V</ci>
+          <ci>E_CaL</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>i_CaL</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>g_CaL</ci>
+            <ci>driving_term_ohmic</ci>
+          </apply>
+          <ci>open_prob</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>open_prob</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>d</ci>
+            <ci>f</ci>
+          </apply>
+          <ci>fCa</ci>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="L_type_calcium_channel_current_d_gate">
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="alpha_d" units="mS_per_uF"/>
+    <variable name="beta_d" units="mS_per_uF"/>
+    <variable name="d" units="dimensionless" public_interface="out" initial_value=" 6.02055134000000001e-04"/>
+    <variable name="d_infinity" units="dimensionless"/>
+    <variable name="tau_d" units="ms"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>alpha_d</ci>
+        <apply>
+          <minus/>
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <cn cellml:units="per_mV_per_ms">0.02839</cn>
+              </apply>
+              <apply>
+                <plus/>
+                <ci>V</ci>
+                <cn cellml:units="mV">35.0</cn>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <minus/>
+                    <apply>
+                      <plus/>
+                      <ci>V</ci>
+                      <cn cellml:units="mV">35.0</cn>
+                    </apply>
+                  </apply>
+                  <cn cellml:units="mV">2.5</cn>
+                </apply>
+              </apply>
+              <cn cellml:units="dimensionless">1.0</cn>
+            </apply>
+          </apply>
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <cn cellml:units="per_mV_per_ms">0.0849</cn>
+              <ci>V</ci>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <exp/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <minus/>
+                    <ci>V</ci>
+                  </apply>
+                  <cn cellml:units="mV">4.808</cn>
+                </apply>
+              </apply>
+              <cn cellml:units="dimensionless">1.0</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>beta_d</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <cn cellml:units="per_mV_per_ms">0.01143</cn>
+            <apply>
+              <minus/>
+              <ci>V</ci>
+              <cn cellml:units="mV">5.0</cn>
+            </apply>
+          </apply>
+          <apply>
+            <minus/>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <minus/>
+                  <ci>V</ci>
+                  <cn cellml:units="mV">5.0</cn>
+                </apply>
+                <cn cellml:units="mV">2.5</cn>
+              </apply>
+            </apply>
+            <cn cellml:units="dimensionless">1.0</cn>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>d</ci>
+        </apply>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci>d_infinity</ci>
+            <ci>d</ci>
+          </apply>
+          <ci>tau_d</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>d_infinity</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <plus/>
+                    <ci>V</ci>
+                    <cn cellml:units="mV">14.1</cn>
+                  </apply>
+                </apply>
+                <cn cellml:units="mV">6.0</cn>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>tau_d</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <ci>alpha_d</ci>
+            <ci>beta_d</ci>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="L_type_calcium_channel_current_fCa_gate">
+    <variable name="Ca_sub" units="mM" public_interface="in"/>
+    <variable name="Km_fCa" units="mM" initial_value="0.00035"/>
+    <variable name="alpha_fCa" units="mS_per_uF" initial_value="0.035"/>
+    <variable name="fCa" units="dimensionless" public_interface="out" initial_value=" 5.89580408055999983e-01"/>
+    <variable name="fCa_infinity" units="dimensionless"/>
+    <variable name="tau_fCa" units="ms"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>fCa</ci>
+        </apply>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci>fCa_infinity</ci>
+            <ci>fCa</ci>
+          </apply>
+          <ci>tau_fCa</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>fCa_infinity</ci>
+        <apply>
+          <divide/>
+          <ci>Km_fCa</ci>
+          <apply>
+            <plus/>
+            <ci>Km_fCa</ci>
+            <ci>Ca_sub</ci>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>tau_fCa</ci>
+        <apply>
+          <divide/>
+          <ci>fCa_infinity</ci>
+          <ci>alpha_fCa</ci>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="L_type_calcium_channel_current_f_gate">
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="f" units="dimensionless" public_interface="out" initial_value=" 6.26999773852999986e-01"/>
+    <variable name="f_infinity" units="dimensionless"/>
+    <variable name="tau_f" units="ms"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>f</ci>
+        </apply>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci>f_infinity</ci>
+            <ci>f</ci>
+          </apply>
+          <ci>tau_f</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>f_infinity</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <plus/>
+                  <ci>V</ci>
+                  <cn cellml:units="mV">30.0</cn>
+                </apply>
+                <cn cellml:units="mV">5.0</cn>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>tau_f</ci>
+        <apply>
+          <plus/>
+          <cn cellml:units="ms">44.3</cn>
+          <apply>
+            <times/>
+            <cn cellml:units="ms">257.1</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <minus/>
+                <apply>
+                  <power/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <plus/>
+                      <ci>V</ci>
+                      <cn cellml:units="mV">32.5</cn>
+                    </apply>
+                    <cn cellml:units="mV">13.9</cn>
+                  </apply>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="environment">
+    <variable name="time" units="ms" public_interface="out" cmeta:id="time"/>
+  </component>
+  <component name="intracellular_ion_concentrations">
+    <variable name="Ca_sub" units="mM" public_interface="out" initial_value="1e-09" cmeta:id="Ca_sub"/>
+  </component>
+  <component name="membrane">
+    <variable name="Cm" units="pF" initial_value="32.0" cmeta:id="Cm"/>
+    <variable name="V" units="mV" public_interface="out" cmeta:id="V"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>V</ci>
+        <apply>
+          <minus/>
+          <cn cellml:units="dimensionless">80.0</cn>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current" component_2="L_type_calcium_channel_current_d_gate"/>
+    <map_variables variable_1="d" variable_2="d"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current" component_2="L_type_calcium_channel_current_fCa_gate"/>
+    <map_variables variable_1="fCa" variable_2="fCa"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current" component_2="L_type_calcium_channel_current_f_gate"/>
+    <map_variables variable_1="f" variable_2="f"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current_d_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current_d_gate" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current_fCa_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current_fCa_gate" component_2="intracellular_ion_concentrations"/>
+    <map_variables variable_1="Ca_sub" variable_2="Ca_sub"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current_f_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_calcium_channel_current_f_gate" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <rdf:RDF>
+    <rdf:Description rdf:about="#Ca_sub">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_calcium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Cm">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#V">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#driving_term_ohmic">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#i_CaL">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#open_prob">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#time">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+    </rdf:Description>
+  </rdf:RDF>
+</model>
