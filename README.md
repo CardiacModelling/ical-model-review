@@ -7,7 +7,7 @@ This repository contains all protocols, models, codes, figure generating files a
 		- [Kinetic Protocols](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Kinetic_Protcols)
 		- Action Potential and Calcium Transient
 			- [Action Potential Clamp](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20Clamp)
-			- [Action Potential and Calcium Transient Clamp (bulk cytosol localization)](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(bulk%20cytosol%20localization))
+			- [Action Potential and Calcium Transient Clamp (bulk cytosol localization)](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(bulk%20cytosol_localization))
 			- [Action Potential and Calcium Transient Clamp (inherent localization)](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(inherent%20localization))
 		- [Calcium-dependent Inactivation](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Calcium-dependent%20inactivation)
 		- [Driving Term Range](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Driving_Term_Range)
@@ -15,14 +15,14 @@ This repository contains all protocols, models, codes, figure generating files a
 		- [IC50](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Python)
 - [Models](https://github.com/CardiacModelling/ical-review/tree/master/Models)
 - Figures, and figure generating files
-	- [Kinetic Protocols](https://github.com/CardiacModelling/ical-review/tree/master/Data%20Analysis/Kinetic_protocols)
+	- [Kinetic Protocols](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols)
 	- Calcium Sensitivity
-		- [Comparison of inactivation levels at different concentrations](https://github.com/CardiacModelling/ical-review/tree/master/Data%20Analysis/calcium_sensitivity/CDI)
-		- [Comparison of calcium concentration to bring about 50% drop in inactivation peak](https://github.com/CardiacModelling/ical-review/tree/master/Data%20Analysis/calcium_sensitivity/ic50)
-	- [Action Potential and Calcium Transient Clamps](https://github.com/CardiacModelling/ical-review/tree/master/Data%20Analysis/AP_CaT_Clamp)
-	- [Driving Term](https://github.com/CardiacModelling/ical-review/tree/master/Data%20Analysis/Driving_term)
-	- [Calcium Transient](https://github.com/CardiacModelling/ical-review/tree/master/Data%20Analysis/calcium_transient)
-- Supplementary Information : [README file](https://github.com/CardiacModelling/ical-review/blob/master/Supplementary%20Information/README.md) gives a guide to the supporting material for this paper.
+		- [Comparison of inactivation levels at different concentrations](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/CDI)
+		- [Comparison of calcium concentration to bring about 50% drop in inactivation peak](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/ic50)
+	- [Action Potential and Calcium Transient Clamps](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp)
+	- [Driving Term](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Driving_term)
+	- [Calcium Transient](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_transient)
+- Supplementary Information : [README file](https://github.com/CardiacModelling/ical-review/blob/master/Supplementary_Information/README.md) gives a guide to the supporting material for this paper.
 
 ## About Software
 - Web Lab : Simulations were run using the Cardiac Electrophysiology Web Lab. See the resultant experiment matrix at [https://tinyurl.com/y5vdjb8h](https://tinyurl.com/y5vdjb8h). Find out more about Web Lab from [doi: 10.1016/j.bpj.2015.12.012](https://dx.doi.org/10.1016%2Fj.bpj.2015.12.012).
