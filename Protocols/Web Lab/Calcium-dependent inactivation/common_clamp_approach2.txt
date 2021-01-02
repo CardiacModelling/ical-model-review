@@ -74,9 +74,9 @@ model interface {
 	optional oxmeta:submembrane_space_potassium_concentration
 	clamp oxmeta:submembrane_space_potassium_concentration to 140 :: mM 
     
-    optional oxmeta:cytosolic_potassium_concentration
-    optional oxmeta:submembrane_space_potassium_concentration 
-    optional oxmeta:dyadic_space_potassium_concentration     
+    optional oxmeta:cytosolic_chloride_concentration
+    optional oxmeta:submembrane_space_chloride_concentration 
+    optional oxmeta:dyadic_space_chloride_concentration     
 
     clamp oxmeta:cytosolic_chloride_concentration to 24 :: mM
     clamp oxmeta:submembrane_space_chloride_concentration to 24 :: mM
