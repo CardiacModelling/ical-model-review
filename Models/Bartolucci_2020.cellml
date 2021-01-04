@@ -5231,7 +5231,7 @@ ICaK=0{microA_per_microF};-->
         <variable initial_value="1" name="halfmax" units="dimensionless"/>
         <variable initial_value="3.5e-5" name="Kt" units="per_millisecond"/>
         <variable initial_value="1.0" name="Vhalf" units="millivolt"/>
-        <variable initial_value="37.0" name="Temp" units="celsius"/>
+        <variable initial_value="310.0" name="Temp" units="kelvin"/>
         <variable initial_value="1.2" name="bGKr" units="dimensionless"/>
         <!-- Those going in and out-->
         <variable name="v" public_interface="in" units="millivolt"/>
