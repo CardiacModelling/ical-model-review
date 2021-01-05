@@ -22,7 +22,7 @@ This repository contains all protocols, models, codes, figure generating files a
 	- [Action Potential and Calcium Transient Clamps](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp)
 	- [Driving Term](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Driving_term)
 	- [Calcium Transient](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_transient)
-	- [Python scripts to calculate RMSD and NRMSD](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_transient)
+	- [Python scripts to calculate RMSD and NRMSD](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/python_scripts)
 - Supplementary Information : [README file](https://github.com/CardiacModelling/ical-review/blob/master/Supplementary_Information/README.md) gives a guide to the supporting material for this paper.
 
 ## About Software
