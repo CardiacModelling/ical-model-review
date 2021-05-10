@@ -22,30 +22,56 @@ Links to the original implementations that these files are based on are given be
 - [Decker et al. 2009](https://chaste.cs.ox.ac.uk/WebLab/entities/models/20/versions/82b79061559c63cce7ee9b4413f31f1ba580793d)
 - [Demir et al. 1999](http://models.physiomeproject.org/exposure/32c9e9739454b40b5ba2d9cabb1fd079)
 - [DiFrancesco & Noble 1985](https://chaste.cs.ox.ac.uk/WebLab/entities/models/21/versions/34fbdc5a5676c19ef11a062606ef52702e20f895)
+  - The CellML implementation for this model is based on the OXSOFT HEART source code, which corrects some of the published equations.
+  - Although the paper argues against a sodium component of ICaL, the CellML version does include it.
+  - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Dokos et al. 1996](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3)
+  - The original CellML file had units that were internally consistent but did not match the paper.
+    For example, ICaL maximum conductance was given as 400nS in the paper, but as 0.4nS in the CellML file.
+    To fix this, we changed the CellML file value to 0.4μS, and updated current and capacitance to nA and μF respectively.
+    Further unit issues were seen in the CellML file, but these did not affect our simulations.
 - Faber 2007 (ICaL): New implementation.
 - [Fox et al. 2002](http://models.physiomeproject.org/exposure/13f8cb8b26258e359da674a7bf3435ad)
 - [Grandi et al. 2010](https://chaste.cs.ox.ac.uk/WebLab/entities/models/26/versions/ebe0634280215163f94c1a247a78f44d6637dae7)
 - [Grandi et al. 2011](https://models.physiomeproject.org/e/596/view)
 - Heijman et al. 2011: New implementation.
 - [Hilgemann & Noble 1987](https://models.physiomeproject.org/exposure/49f298f54f3e916fca650c8e76d82e46)
+  - The CellML implementation for this model is based on the OXSOFT HEART source code, which corrects some of the published equations.
+  - This model contains variables representing the inactivated fraction `F` instead of the more conventional recovered fraction `f = 1 - F`.
+  - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Hinch et al. 2004 (ICaL)](https://models.physiomeproject.org/exposure/8e1a590fb82a2cab5284502b430c4a4f)
 - [Hund & Rudy 2004](https://chaste.cs.ox.ac.uk/WebLab/entities/models/72/versions/bd9b7bb2cf9d96abe1f6299a83da1ed9b1b013fb)
 - [Inada et al. 2009](https://models.physiomeproject.org/exposure/08bcead2dc05cf2709a598e7f61a6182)
 - [Iyer et al. 2004](https://chaste.cs.ox.ac.uk/WebLab/entities/models/27/versions/b374722702a941b1beedcc0822f8f1f333f09449)
+  - In the available file, `tau _yCa` is given as `1 / ( 0.00336... / (0.5 + exp(-V / 5.54...)) + 0.00790... * exp(-V / 49.5...) )`.
+    This has been changed to `1 / (0.00653 / (0.5 + exp(-V / 7.1)) + 0.00512 * exp(-V / 39.8))` in accordance with the published equations.
 - [Jafri et al. 1998](https://models.physiomeproject.org/exposure/5230da0476e9764a7d513a5d18af2a58)
+  - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
+    This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.
+  - The definition of the units `mm_per_ms` was corrected.
 - [Kurata et al. 2002 (ICaL)](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986)
+  - The original CellML file gave `alpha_fCa` as 0.021 1/ms.
+    This has been set to 0.035 1/ms in accordance with the published equations.
+    Please note that the corrected CellML file contains only the ICaL component.
 - [Li et al. 2010](https://chaste.cs.ox.ac.uk/WebLab/entities/models/29/versions/8c33fb1cc93bed4886e30c6679a4454cff6222fe)
 - Li & Rudy 2011 (ICaL): New implementation.
 - [Lindblad et al. 1996](https://models.physiomeproject.org/exposure/036dcdf013d736a376bf4d8f429bb804)
+  - The original CellML file have `ICaL` given as `gCaL * dL * fL * dp * (V - ECa)`.
+    This has been changed to `gCaL * (dL * fL + dp) * (V - ECa)` in accordance with the published equations.
 - Livshitz & Rudy 2007 HRd (ICaL): New implementation.
 - [Lovell et al. 2004 (ICaL)](https://models.physiomeproject.org/exposure/5055e8e1a4fb76cc90067d9e0997bb29)
+  - The original file gave the ODE for `A_CaL` contained a term `beta_1 * I_1` that was corrected to `beta_2 * I_1`,  in accordance with the published equations.
+  - Similarly, in the ODE for `I_1` a term `(beta_2 + alpha_3 + Cai^2)` was updated to `(beta_2 + alpha_3 * Cai^2)`.
+  - The original CellML file was described as "not functional" in its documentation, so we only used (and checked) the model's ICaL component for the central SAN cell version of the model.
 - [Luo & Rudy 1994](https://chaste.cs.ox.ac.uk/WebLab/entities/models/30/versions/fca55ec8a791cfd20cff78bb9442840786fd93ed)
 - [Mahajan et al. 2008](https://chaste.cs.ox.ac.uk/WebLab/entities/models/31/versions/f9862685af295d2875ae597451255d8a9f9eae0b)
 - [Matsuoka et al. 2003](https://chaste.cs.ox.ac.uk/WebLab/entities/models/33/versions/9f763fef8fd410495a875ed344e66d249f589224)
 - [McAllister et al. 1975](https://models.physiomeproject.org/exposure/60e23c3228a3e455699846704006a8fe)
 - [Noble et al. 1991](https://chaste.cs.ox.ac.uk/WebLab/entities/models/35/versions/daaa80c551c077849993d2d310071df88aef4670)
+  - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Noble et al. 1998](https://chaste.cs.ox.ac.uk/WebLab/entities/models/34/versions/ea4fb7f64829a16197c54a2efd15306573bb87f3)
+  - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
+  - TODO: MENTION HERE THAT THIS IS OXSOFT 3.3 Model, closest paper available
 - [Nygren et al. 1998](https://models.physiomeproject.org/exposure/ad761ce160f3b4077bbae7a004c229e3)
 - [O'Hara et al. 2011](https://chaste.cs.ox.ac.uk/WebLab/entities/models/4/versions/b6f19db6d1697e56945a9b825a7026f0799b4005)
 - [Paci et al. 2013](https://models.physiomeproject.org/e/594)
@@ -55,12 +81,45 @@ Links to the original implementations that these files are based on are given be
 - [Ramirez et al. 2000](https://models.physiomeproject.org/exposure/fc3dbf2134db2e5efc2990483b27d7ae)
 - [Shannon et al. 2004](https://scrambler.cs.ox.ac.uk/entities/models/39/versions/827a07937facdeda84fb6838c06e7676ca3c6489)
 - [Ten Tusscher et al. 2004](https://scrambler.cs.ox.ac.uk/entities/models/41/versions/84972529041015ff0e5504e615d58bb303b29ef7)
+  - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML )Model Repository.
 - [Ten Tusscher & Panfilov 2006](https://scrambler.cs.ox.ac.uk/entities/models/41/versions/84972529041015ff0e5504e615d58bb303b29ef7)
+  - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML )Model Repository.
 - [Tomek et al. 2019](https://models.physiomeproject.org/e/5f1)
 - [Trovato et al. 2020](https://models.physiomeproject.org/e/5f2)
 - [Varela et al. 2016](https://models.physiomeproject.org/e/4bc)
 - [Wang & Sobie 2008](https://models.physiomeproject.org/e/95)
 - Wilders et al. 1991 (ICaL): New implementation.
+  - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Winslow et al. 1999](https://scrambler.cs.ox.ac.uk/entities/models/43/versions/a4e21d2010a87b4e79e384ddebc84e5e0e30c506)
 - [Zhang et al. 2000](https://models.physiomeproject.org/exposure/01f6a47881da1925315d1d89d3a8d901)
+
+## TODO: Latex for model changes, not yet incorporated above
+
+\citet{livshitz2007regulation} & \href{https://models.cellml.org/exposure/dedfcd1a135ddb59e9d979ec1376a44f/livshitz_rudy_2007.cellml/view}{Physiome model repository}
+\\ \hline \multicolumn{2}{|p{0.95\textwidth}|}{%
+    This paper discusses the development of a new \ical\ model from the \citet{hund2004rate} model. However, the available file, implements these changes into the \citet{luo1994dynamic} model.
+    We have therefore created a new implementation using the published equations as the available file is not relevant to the paper.
+} \\ \hline
  
+\citet{varela2016atrial} & \href{https://models.cellml.org/e/4bc/Varela_RA_2016.cellml/view}{Physiome model repository}
+\\ \hline \multicolumn{2}{|p{0.95\textwidth}|}{%
+    In the available file, $f_{Ca\infty}$ is given by $0.29 + \frac{0.8}{1 + \textcolor{red}{\frac{Ca_i - 1.2\cdot 10^{-4}}{6\cdot 10^{-5}}}}$.
+    This has been corrected to $0.29 + \frac{0.8}{1 + \textcolor{red}{e^{\frac{Ca_i - 1.2\cdot 10^{-4}}{6\cdot 10^{-5}}}}}$ in accordance with the published manuscript and Matlab and C code.
+    Similarly the value of $g_{CaL}$ has been changed from \textcolor{red}{0.58 nS/pF} to \textcolor{red}{0.34 nS/pF} (the value for the right-atrial model variant).
+} \\ \hline
+
+\citet{bernus2002computationally} & \href{https://models.cellml.org/e/5/bernus_wilders_zemlin_verschelde_panfilov_2002.cellml/view}{Physiome model repository}
+\\ \hline \multicolumn{2}{|p{0.95\textwidth}|}{%
+    In the available, the parameter $\beta _f$ of the $f$ gate is been given as $[0.069\cdot \exp(-\textcolor{red}{11}\cdot (V+9.825)) + 0.011] / [1+\exp(-0.278\cdot (V+9.825))] + 5.75\cdot 10^{-4}$.
+    This has been corrected to be in accordance with the published equations $\frac{0.069\cdot e^{-\textcolor{red}{0.11}\cdot (V+9.825)} + 0.011}{1+e^{-0.278\cdot (V+9.825)}} + 5.75\cdot 10^{-4}$.
+    Please note that the \ical component of this model has been stripped out of the original file.
+} \\ \hline
+
+\citet{hinch2004simplified} & \href{https://models.cellml.org/exposure/8e1a590fb82a2cab5284502b430c4a4f/hinch_greenstein_tanskanen_xu_winslow_2004.cellml/view}{Physiome model repository}
+\\ \hline \multicolumn{2}{|p{0.95\textwidth}|}{%
+    In the available file, the denominator of the flux $J_{Loo}$ is given as $1+\frac{J_R}{g_D}+\frac{\frac{J_L}{g_D}\cdot FVRT_{Ca}}{1-e^{\textcolor{red}{FVRT_{Ca}}}}$.
+    This was set to $1+\frac{J_R}{g_D}+\frac{\frac{J_L}{g_D}\cdot FVRT_{Ca}}{1-e^{\textcolor{red}{-FVRT_{Ca}}}}$ in accordance with the published equations.
+    $I_{CaL}$ has in this model has been modified non-stochastically to more accurately represent current in Amperes rather than flux.
+    Current carried by RyR and SERCA have been blocked in this model for the purpose of this study.
+} \\ \hline \newpage
+
