@@ -123,3 +123,98 @@ Links to the original implementations that these files are based on are given be
     Current carried by RyR and SERCA have been blocked in this model for the purpose of this study.
 } \\ \hline \newpage
 
+
+
+## Not included cause equivalent
+- [x] Earm 1990: CellML is unchanged from Hilgemann 1987
+- [x] Luo 1991 - Beeler 1977
+- [x] Noble 1984 - DiFrancesco 1984
+- [x] Winslow 1993 - Hilgemann 1987
+- [x] Riemer 1998 - Luo 1994
+- [x] Chudin 1999 - Zeng 1995
+- [x] Clancy 1999 - Zeng 1995
+- [x] Demir 1999 - Demir 1994, g change only
+- [x] Dumaine 1999 - Luo 1994
+- [x] Viswanathan 1999 - Luo 1994
+- [x] Faber 2000 - Luo 1994
+- [x] Greenstein 2000 - Winslow 1999
+- [x] Sakmann 2000 - Oxsoft 4.8 ICaL
+- [x] Clancy 2001 - Luo 1994
+- [x] Mazhari 2001 - Winslow 1999
+- [x] Kneller 2002 - Ramirez 2000
+- [x] Puglisi 2001 - Luo 1994
+- [x] Clancy 2002 - Luo 1994
+- [x] Oehmen 2002 - Demir 1994
+- [x] Seemann 2003 - Priebe 1998
+- [x] Pandit 2003 - Pandit 2001
+- [x] Sarai 2003 - Matsuoka 2003 ("Kyoto model")
+- [x] Saucerman 2003 - Jafri 1998
+- [x] Saucerman 2004 - Luo 1994
+- [x] Coutu 2005 - Winslow 1999
+- [x] Terrenoire 2005 - Nygren 1998
+- [x] Fink 2006 - Iyer 2004
+- [x] Flaim 2006 - Greenstein 2006
+- [x] Iribe 2006 - Noble 1991
+- [x] Iyer 2007 - Iyer 2004
+- [x] Niederer 2007 - Pandit 2001
+- [x] Benson 2008 - Hund 2004
+- [x] Kuzomoto 2008 - Matsuoka 2003
+- [x] Saucerman 2008 - Shannon 2004
+- [x] Wang 2008 - Bondarenko 2004
+- [x] Ahrens-Nicklas 2009 - Faber 2007
+- [x] Christensen 2009 - Shaw 1997 / Luo 1994
+- [x] Gaur 2009 - Faber 2000
+- [x] Koivumaki 2009 - Bondarenk 2004, or full equations not given
+- [x] Maleckar 2009 - Nygren 1998
+- [x] Stewart 2009 - Ten Tusscher 2004
+- [x] Wolf 2010 - Bondarenko 2004
+- [x] Lemay 2011 - Faber 2007
+- [x] Pueyo 2011 - Faber & Ten Tusscher 2006
+- [x] Colman 2013 - Courtemanche 1998
+- [x] Voigt 2013 - Grandi 2011
+- [x] Schmidt 2015 - Grandi 2011
+- [x] Ni 2017 - Colman 2013
+
+## Not selected
+- [x] Yanagihara 1980 - SAN (mixed SI current) 
+- [x] Bristow 1982 - SAN (mixed SI current)
+- [x] Irisawa 1982 - In a book and SAN
+- [x] Kass & Sanguinetti 1982/1984 - No full model
+- [x] Standen & Stanfield 1982 : Stick insect skeletal muscle fibers
+- [x] Reiner 1985 - SAN (mixed SI current)
+- [x] Hadley & Hume 1987 - No model
+- [x] Egan 1987 - DN update in oxsoft, no eqs given
+- [x] Hagiwara 1988 - Partial model
+- [x] Rasmusson 1990a - Bullfrog
+- [x] Noble, DiFrancesco, Denyer 1989 -> in a book "Neuronal and Cellular Oscillators" (and SAN?)
+- [x] Rasmusson 1990b - Bullfrog
+- [x] Karma 1993 - Simplified model
+- [x] Endresen 1997 - SAN
+- [x] Espinosa 1998 - Unable to access
+- [x] Rice 1999 - Spatial model
+- [x] Endresen 2000 - Simplified model
+- [x] Mitchell 2003 - Simplified model
+- [?] Noble 2001 - Remodelling of calcium dynamics in guinea-pig ventricular cells UNABLE TO FIND MANUSCRIPT
+- [x] Fenton 2002 - Simplified model
+- [x] Greenstein 2002 - Spatial model
+- [x] Pandit 2003 - Diseased (and Pandit 2001)
+- [x] Garny 2003 - Simplified model
+- [x] Greenstein 2004 - Spatial model
+- [x] Tanskanen 2005 - Spatial model
+- [x] Greenstein 2006 - Spatial model
+- [x] Simitev 2006 - Simplified model
+- [x] Cherry 2007 - Simplified model
+- [ ] Grandi 2007 - Disease mopdel
+- [x] Iancu 2007 - No ICaL
+- [x] Bueno-Orovio 2008 - Simplified model
+- [x] Chiba 2008 - No ICaL
+- [x] Restrepo 2008 - Spatial model
+- [x] Xin 2008 - No ICaL
+- [x] Violin 2008 - No ICaL
+- [x] Hashambhoy 2009 - Spatial model
+- [x] Hashamboy 2010 - Spatial model
+- [x] Sampson 2010 - Iyer 2004
+- [x] Koivumaki 2011 - Complex subspaces
+- [x] Tao 2011 - Mixed Ca current
+- [x] Thul 2012 - Spatial model
+- [x] Davies 2014 - Equations not given.
