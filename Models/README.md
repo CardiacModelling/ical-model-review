@@ -95,6 +95,8 @@ Links to the original implementations that these files are based on are given be
 
 ## TODO: Latex for model changes, not yet incorporated above
 
+NOTE: If we don't include these models in the study, then find way to tell PMR that they are wrong.
+
 \citet{livshitz2007regulation} & \href{https://models.cellml.org/exposure/dedfcd1a135ddb59e9d979ec1376a44f/livshitz_rudy_2007.cellml/view}{Physiome model repository}
 \\ \hline \multicolumn{2}{|p{0.95\textwidth}|}{%
     This paper discusses the development of a new \ical\ model from the \citet{hund2004rate} model. However, the available file, implements these changes into the \citet{luo1994dynamic} model.
