@@ -1,8 +1,5 @@
-<?xml version='1.0'?>
-<model cmeta:id="demir_SAN_1999" name="demir_1999" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
-    <units name="millisecond">
-        <unit prefix="milli" units="second"/>
-    </units>
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" cmeta:id="demir_clark_giles_murphey_1994_version01" name="demir_clark_giles_murphey_1994_version01">
     <units name="per_second">
         <unit exponent="-1" units="second"/>
     </units>
@@ -19,9 +16,6 @@
     <units name="microS">
         <unit prefix="micro" units="siemens"/>
     </units>
-    <units name="picoS">
-        <unit prefix="pico" units="siemens"/>
-    </units>
     <units name="microF">
         <unit prefix="micro" units="farad"/>
     </units>
@@ -32,9 +26,16 @@
         <unit prefix="milli" units="mole"/>
         <unit exponent="-1" units="litre"/>
     </units>
-    <units name="nanomolar">
-        <unit prefix="nano" units="mole"/>
-        <unit exponent="-1" units="litre"/>
+    <units name="per_millimolar">
+        <unit exponent="-1" units="millimolar"/>
+    </units>
+    <units name="per_millimolar_second">
+        <unit exponent="-1" units="millimolar"/>
+        <unit exponent="-1" units="second"/>
+    </units>
+    <units name="millimolar_per_second">
+        <unit units="millimolar"/>
+        <unit exponent="-1" units="second"/>
     </units>
     <units name="microS_per_millimolar">
         <unit units="microS"/>
@@ -44,11 +45,7 @@
         <unit units="nanoA"/>
         <unit exponent="-1" units="millimolar"/>
     </units>
-    <units name="nanoA_per_nanomolar_4">
-        <unit units="nanoA"/>
-        <unit exponent="-4" units="nanomolar"/>
-    </units>
-    <units name="millimolar_4">
+    <units name="millimolar4">
         <unit exponent="4" units="millimolar"/>
     </units>
     <units name="joule_per_kilomole_kelvin">
@@ -64,33 +61,18 @@
         <unit prefix="micro" units="litre"/>
         <unit exponent="-1" units="second"/>
     </units>
-    <units name="mm_cubed">
+    <units name="microLitre">
         <unit prefix="micro" units="litre"/>
     </units>
-    <units name="millimolar_per_second">
-        <unit units="millimolar"/>
-        <unit exponent="-1" units="second"/>
-    </units>
-    <units name="per_millimolar_second">
-        <unit exponent="-1" units="millimolar"/>
-        <unit exponent="-1" units="second"/>
-    </units>
-    <units name="cm2_per_second">
-        <unit exponent="2" prefix="centi" units="metre"/>
-        <unit exponent="-1" units="second"/>
-    </units>
-    <units name="cm">
-        <unit prefix="centi" units="metre"/>
-    </units>
     <component name="environment">
-        <variable cmeta:id="environment_time" name="time" public_interface="out" units="second"/>
+        <variable name="time" public_interface="out" units="second" cmeta:id="environment_time"/>
     </component>
     <component name="membrane">
-        <variable cmeta:id="membrane_V" initial_value="-49.54105" name="V" public_interface="out" units="millivolt"/>
+        <variable initial_value="-49.54105" name="V" public_interface="out" units="millivolt" cmeta:id="membrane_V"/>
         <variable initial_value="8314.472" name="R" public_interface="out" units="joule_per_kilomole_kelvin"/>
         <variable initial_value="310" name="T" public_interface="out" units="kelvin"/>
         <variable initial_value="96485.3415" name="F" public_interface="out" units="coulomb_per_mole"/>
-        <variable cmeta:id="membrane_Cm" initial_value="5.5e-5" name="Cm" units="microF"/>
+        <variable initial_value="5.5e-5" name="Cm" units="microF" cmeta:id="membrane_Cm"/>
         <variable name="time" public_interface="in" units="second"/>
         <variable name="i_Na" public_interface="in" units="nanoA"/>
         <variable name="i_Ca_T" public_interface="in" units="nanoA"/>
@@ -101,7 +83,6 @@
         <variable name="i_NaK" public_interface="in" units="nanoA"/>
         <variable name="i_NaCa" public_interface="in" units="nanoA"/>
         <variable name="i_Ca_P" public_interface="in" units="nanoA"/>
-        <variable name="i_K_ACh" public_interface="in" units="nanoA"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -127,7 +108,6 @@
                             <ci>i_NaK</ci>
                             <ci>i_NaCa</ci>
                             <ci>i_Ca_P</ci>
-                            <ci>i_K_ACh</ci>
                         </apply>
                     </apply>
                     <ci>Cm</ci>
@@ -140,8 +120,6 @@
         <variable initial_value="0.00344" name="P_Na" units="mul_per_second"/>
         <variable name="E_Na" public_interface="in" units="millivolt"/>
         <variable name="Na_c" public_interface="in" units="millimolar"/>
-        <variable name="F_ACh_Na" units="dimensionless"/>
-        <variable name="ACh" public_interface="in" units="millimolar"/>
         <variable name="R" public_interface="in" units="joule_per_kilomole_kelvin"/>
         <variable name="F" public_interface="in" units="coulomb_per_mole"/>
         <variable name="T" public_interface="in" units="kelvin"/>
@@ -153,23 +131,6 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>F_ACh_Na</ci>
-                <apply>
-                    <minus/>
-                    <cn cellml:units="dimensionless">1</cn>
-                    <apply>
-                        <divide/>
-                        <ci>ACh</ci>
-                        <apply>
-                            <plus/>
-                            <ci>ACh</ci>
-                            <cn cellml:units="millimolar" type="e-notation">1<sep/>-3</cn>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
                 <ci>i_Na</ci>
                 <apply>
                     <divide/>
@@ -179,7 +140,6 @@
                             <divide/>
                             <apply>
                                 <times/>
-                                <ci>F_ACh_Na</ci>
                                 <ci>P_Na</ci>
                                 <apply>
                                     <power/>
@@ -519,11 +479,8 @@
         </math>
     </component>
     <component name="L_type_Ca_channel">
-        <variable cmeta:id="L_type_Ca_channel_i_Ca_L" name="i_Ca_L" public_interface="out" units="nanoA"/>
-        <variable name="g_Ca_L" units="microS"/>
-        <variable initial_value="0.02115" name="g_Ca_L_cont" units="microS"/>
-        <variable name="F_cAMP_CaL" units="dimensionless"/>
-        <variable name="cAMP" public_interface="in" units="millimolar"/>
+        <variable name="i_Ca_L" public_interface="out" units="nanoA" cmeta:id="L_type_Ca_channel_i_Ca_L"/>
+        <variable initial_value="0.02115" name="g_Ca_L" units="microS"/>
         <variable initial_value="46.4" name="E_Ca_L" units="millivolt"/>
         <variable name="time" private_interface="out" public_interface="in" units="second"/>
         <variable name="V" private_interface="out" public_interface="in" units="millivolt"/>
@@ -535,40 +492,28 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>F_cAMP_CaL</ci>
-                <apply>
-                    <plus/>
-                    <apply>
-                        <times/>
-                        <cn cellml:units="dimensionless">0.4</cn>
-                        <apply>
-                            <plus/>
-                            <cn cellml:units="dimensionless">1</cn>
-                            <apply>
-                                <divide/>
-                                <apply>
-                                    <times/>
-                                    <cn cellml:units="dimensionless">4.5</cn>
-                                    <ci>cAMP</ci>
-                                </apply>
-                                <apply>
-                                    <plus/>
-                                    <ci>cAMP</ci>
-                                    <cn cellml:units="millimolar" type="e-notation">6.5<sep/>-3</cn>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
-                    <cn cellml:units="dimensionless">0.03157</cn>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>g_Ca_L</ci>
+                <ci>i_Ca_L</ci>
                 <apply>
                     <times/>
-                    <ci>g_Ca_L_cont</ci>
-                    <ci>F_cAMP_CaL</ci>
+                    <ci>g_Ca_L</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>f_L</ci>
+                            <ci>d_L</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <cn cellml:units="dimensionless">0.095</cn>
+                            <ci>d_L_infinity</ci>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <minus/>
+                        <ci>V</ci>
+                        <ci>E_Ca_L</ci>
+                    </apply>
                 </apply>
             </apply>
             <apply>
@@ -595,16 +540,6 @@
                     <minus/>
                     <ci>V</ci>
                     <ci>E_Ca_L</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>i_Ca_L</ci>
-                <apply>
-                    <times/>
-                    <ci>g_Ca_L</ci>
-                    <ci>Open_Prob</ci>
-                    <ci>Driving_term_ohmic</ci>
                 </apply>
             </apply>
         </math>
@@ -1156,8 +1091,6 @@
     <component name="delayed_rectifying_potassium_current">
         <variable name="i_K" public_interface="out" units="nanoA"/>
         <variable name="g_K" units="microS"/>
-        <variable name="F_cAMP_K" units="dimensionless"/>
-        <variable name="cAMP" public_interface="in" units="millimolar"/>
         <variable name="E_K" public_interface="in" units="millivolt"/>
         <variable name="time" private_interface="out" public_interface="in" units="second"/>
         <variable name="V" private_interface="out" public_interface="in" units="millivolt"/>
@@ -1167,39 +1100,9 @@
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>F_cAMP_K</ci>
-                <apply>
-                    <minus/>
-                    <apply>
-                        <times/>
-                        <cn cellml:units="dimensionless">0.62</cn>
-                        <apply>
-                            <plus/>
-                            <cn cellml:units="dimensionless">1</cn>
-                            <apply>
-                                <divide/>
-                                <apply>
-                                    <times/>
-                                    <cn cellml:units="dimensionless">2.6129</cn>
-                                    <ci>cAMP</ci>
-                                </apply>
-                                <apply>
-                                    <plus/>
-                                    <ci>cAMP</ci>
-                                    <cn cellml:units="millimolar" type="e-notation">9<sep/>-3</cn>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
-                    <cn cellml:units="dimensionless">0.025</cn>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
                 <ci>g_K</ci>
                 <apply>
                     <times/>
-                    <ci>F_cAMP_K</ci>
                     <cn cellml:units="microS">0.00693</cn>
                     <apply>
                         <power/>
@@ -1268,12 +1171,12 @@
                 <ci>tau_P_a</ci>
                 <apply>
                     <divide/>
-                    <cn cellml:units="dimensionless">1</cn>
+                    <cn cellml:units="second">1</cn>
                     <apply>
                         <plus/>
                         <apply>
                             <times/>
-                            <cn cellml:units="per_second">17</cn>
+                            <cn cellml:units="dimensionless">17</cn>
                             <apply>
                                 <exp/>
                                 <apply>
@@ -1285,7 +1188,7 @@
                         </apply>
                         <apply>
                             <times/>
-                            <cn cellml:units="per_second">2.11</cn>
+                            <cn cellml:units="dimensionless">2.11</cn>
                             <apply>
                                 <exp/>
                                 <apply>
@@ -1404,34 +1307,14 @@
         <variable name="E_Na" public_interface="in" units="millivolt"/>
         <variable name="E_Ca" public_interface="in" units="millivolt"/>
         <variable name="E_K" public_interface="in" units="millivolt"/>
-        <variable name="F_ACh_bNa" units="dimensionless"/>
-        <variable name="ACh" public_interface="in" units="millimolar"/>
         <variable name="time" public_interface="in" units="second"/>
         <variable name="V" public_interface="in" units="millivolt"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>F_ACh_bNa</ci>
-                <apply>
-                    <minus/>
-                    <cn cellml:units="dimensionless">1</cn>
-                    <apply>
-                        <divide/>
-                        <ci>ACh</ci>
-                        <apply>
-                            <plus/>
-                            <ci>ACh</ci>
-                            <cn cellml:units="millimolar" type="e-notation">5<sep/>-1</cn>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
                 <ci>i_B_Na</ci>
                 <apply>
                     <times/>
-                    <ci>F_ACh_bNa</ci>
                     <ci>g_B_Na</ci>
                     <apply>
                         <minus/>
@@ -1486,7 +1369,6 @@
         <variable initial_value="0.0128821" name="g_f_K" units="microS"/>
         <variable name="time" private_interface="out" public_interface="in" units="second"/>
         <variable name="V" private_interface="out" public_interface="in" units="millivolt"/>
-        <variable name="cAMP" private_interface="out" public_interface="in" units="millimolar"/>
         <variable name="y" private_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -1539,43 +1421,10 @@
     <component name="hyperpolarisation_activated_current_y_gate">
         <variable initial_value="0.09227776" name="y" public_interface="out" units="dimensionless"/>
         <variable name="y_infinity" units="dimensionless"/>
-        <variable name="V_half" units="millivolt"/>
-        <variable name="cAMP" public_interface="in" units="millimolar"/>
         <variable name="tau_y" units="second"/>
         <variable name="V" public_interface="in" units="millivolt"/>
         <variable name="time" public_interface="in" units="second"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-                <eq/>
-                <ci>V_half</ci>
-                <apply>
-                    <minus/>
-                    <apply>
-                        <divide/>
-                        <cn cellml:units="millivolt">20.5</cn>
-                        <apply>
-                            <plus/>
-                            <cn cellml:units="dimensionless">1</cn>
-                            <apply>
-                                <exp/>
-                                <apply>
-                                    <divide/>
-                                    <apply>
-                                        <minus/>
-                                        <ci>cAMP</ci>
-                                        <cn cellml:units="millimolar" type="e-notation">3.4<sep/>-3</cn>
-                                    </apply>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="millimolar" type="e-notation">5<sep/>-4</cn>
-                                    </apply>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
-                    <cn cellml:units="millivolt">78.56</cn>
-                </apply>
-            </apply>
             <apply>
                 <eq/>
                 <ci>y_infinity</ci>
@@ -1590,9 +1439,9 @@
                             <apply>
                                 <divide/>
                                 <apply>
-                                    <minus/>
+                                    <plus/>
                                     <ci>V</ci>
-                                    <ci>V_half</ci>
+                                    <cn cellml:units="millivolt">72.2</cn>
                                 </apply>
                                 <cn cellml:units="millivolt">9</cn>
                             </apply>
@@ -1679,171 +1528,67 @@
         <variable initial_value="5.46" name="K_m_Na" units="millimolar"/>
         <variable initial_value="0.621" name="K_m_K" units="millimolar"/>
         <variable initial_value="0.2192" name="i_NaK_max" units="nanoA"/>
-        <variable name="F_cAMP_NaK" units="dimensionless"/>
-        <variable name="cAMP" public_interface="in" units="millimolar"/>
         <variable name="Na_i" public_interface="in" units="millimolar"/>
         <variable name="K_c" public_interface="in" units="millimolar"/>
-        <variable name="Ca_i" public_interface="in" units="millimolar"/>
         <variable name="V" public_interface="in" units="millivolt"/>
         <variable name="time" public_interface="in" units="second"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>F_cAMP_NaK</ci>
+                <ci>i_NaK</ci>
                 <apply>
-                    <plus/>
+                    <divide/>
                     <apply>
-                        <divide/>
-                        <cn cellml:units="dimensionless">1.6</cn>
+                        <times/>
+                        <ci>i_NaK_max</ci>
                         <apply>
-                            <plus/>
-                            <cn cellml:units="dimensionless">1</cn>
+                            <power/>
                             <apply>
-                                <exp/>
+                                <divide/>
+                                <ci>Na_i</ci>
                                 <apply>
-                                    <divide/>
-                                    <apply>
-                                        <minus/>
-                                        <ci>cAMP</ci>
-                                        <cn cellml:units="millimolar" type="e-notation">3.75<sep/>-3</cn>
-                                    </apply>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="millimolar" type="e-notation">1.5<sep/>-4</cn>
-                                    </apply>
+                                    <plus/>
+                                    <ci>K_m_Na</ci>
+                                    <ci>Na_i</ci>
+                                </apply>
+                            </apply>
+                            <cn cellml:units="dimensionless">3</cn>
+                        </apply>
+                        <apply>
+                            <power/>
+                            <apply>
+                                <divide/>
+                                <ci>K_c</ci>
+                                <apply>
+                                    <plus/>
+                                    <ci>K_m_K</ci>
+                                    <ci>K_c</ci>
+                                </apply>
+                            </apply>
+                            <cn cellml:units="dimensionless">2</cn>
+                        </apply>
+                        <cn cellml:units="dimensionless">1.6</cn>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <cn cellml:units="dimensionless">1.5</cn>
+                        <apply>
+                            <exp/>
+                            <apply>
+                                <divide/>
+                                <apply>
+                                    <plus/>
+                                    <ci>V</ci>
+                                    <cn cellml:units="millivolt">60</cn>
+                                </apply>
+                                <apply>
+                                    <minus/>
+                                    <cn cellml:units="millivolt">40</cn>
                                 </apply>
                             </apply>
                         </apply>
                     </apply>
-                    <cn cellml:units="dimensionless">0.99</cn>
                 </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>i_NaK</ci>
-                <piecewise>
-                    <piece>
-                        <apply>
-                            <divide/>
-                            <apply>
-                                <times/>
-                                <apply>
-                                    <minus/>
-                                    <cn cellml:units="dimensionless">2</cn>
-                                    <ci>F_cAMP_NaK</ci>
-                                </apply>
-                                <ci>i_NaK_max</ci>
-                                <apply>
-                                    <power/>
-                                    <apply>
-                                        <divide/>
-                                        <ci>Na_i</ci>
-                                        <apply>
-                                            <plus/>
-                                            <ci>K_m_Na</ci>
-                                            <ci>Na_i</ci>
-                                        </apply>
-                                    </apply>
-                                    <cn cellml:units="dimensionless">3</cn>
-                                </apply>
-                                <apply>
-                                    <power/>
-                                    <apply>
-                                        <divide/>
-                                        <ci>K_c</ci>
-                                        <apply>
-                                            <plus/>
-                                            <ci>K_m_K</ci>
-                                            <ci>K_c</ci>
-                                        </apply>
-                                    </apply>
-                                    <cn cellml:units="dimensionless">2</cn>
-                                </apply>
-                                <cn cellml:units="dimensionless">1.6</cn>
-                            </apply>
-                            <apply>
-                                <plus/>
-                                <cn cellml:units="dimensionless">1.5</cn>
-                                <apply>
-                                    <exp/>
-                                    <apply>
-                                        <divide/>
-                                        <apply>
-                                            <plus/>
-                                            <ci>V</ci>
-                                            <cn cellml:units="millivolt">60</cn>
-                                        </apply>
-                                        <apply>
-                                            <minus/>
-                                            <cn cellml:units="millivolt">40</cn>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <lt/>
-                            <ci>Ca_i</ci>
-                            <cn cellml:units="millimolar">0.00015</cn>
-                        </apply>
-                    </piece>
-                    <otherwise>
-                        <apply>
-                            <divide/>
-                            <apply>
-                                <times/>
-                                <ci>F_cAMP_NaK</ci>
-                                <ci>i_NaK_max</ci>
-                                <apply>
-                                    <power/>
-                                    <apply>
-                                        <divide/>
-                                        <ci>Na_i</ci>
-                                        <apply>
-                                            <plus/>
-                                            <ci>K_m_Na</ci>
-                                            <ci>Na_i</ci>
-                                        </apply>
-                                    </apply>
-                                    <cn cellml:units="dimensionless">3</cn>
-                                </apply>
-                                <apply>
-                                    <power/>
-                                    <apply>
-                                        <divide/>
-                                        <ci>K_c</ci>
-                                        <apply>
-                                            <plus/>
-                                            <ci>K_m_K</ci>
-                                            <ci>K_c</ci>
-                                        </apply>
-                                    </apply>
-                                    <cn cellml:units="dimensionless">2</cn>
-                                </apply>
-                                <cn cellml:units="dimensionless">1.6</cn>
-                            </apply>
-                            <apply>
-                                <plus/>
-                                <cn cellml:units="dimensionless">1.5</cn>
-                                <apply>
-                                    <exp/>
-                                    <apply>
-                                        <divide/>
-                                        <apply>
-                                            <plus/>
-                                            <ci>V</ci>
-                                            <cn cellml:units="millivolt">60</cn>
-                                        </apply>
-                                        <apply>
-                                            <minus/>
-                                            <cn cellml:units="millivolt">40</cn>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </otherwise>
-                </piecewise>
             </apply>
         </math>
     </component>
@@ -1938,7 +1683,7 @@
                     </apply>
                     <apply>
                         <plus/>
-                        <cn cellml:units="millimolar_4">1</cn>
+                        <cn cellml:units="millimolar4">1</cn>
                         <apply>
                             <times/>
                             <ci>d_NaCa</ci>
@@ -1969,175 +1714,12 @@
             </apply>
         </math>
     </component>
-    <component name="muscarinic_potassium_current">
-        <variable name="i_K_ACh" public_interface="out" units="nanoA"/>
-        <variable name="I_K_ACh" units="nanoA"/>
-        <variable name="ACh" public_interface="in" units="millimolar"/>
-        <variable name="g_K_ACh" units="microS"/>
-        <variable initial_value="7.833e-3" name="g_K_ACh_base" units="microS"/>
-        <variable name="V" public_interface="in" units="millivolt"/>
-        <variable name="E_K" public_interface="in" units="millivolt"/>
-        <variable name="P_M2_KACh" units="dimensionless"/>
-        <variable initial_value="0" name="a" units="dimensionless"/>
-        <variable name="alpha_a" units="per_second"/>
-        <variable name="beta_a" units="per_second"/>
-        <variable name="f_Vagal" public_interface="in" units="per_second"/>
-        <variable name="time" public_interface="in" units="second"/>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-                <eq/>
-                <ci>i_K_ACh</ci>
-                <apply>
-                    <times/>
-                    <ci>a</ci>
-                    <ci>I_K_ACh</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <apply>
-                    <diff/>
-                    <bvar>
-                        <ci>time</ci>
-                    </bvar>
-                    <ci>a</ci>
-                </apply>
-                <apply>
-                    <minus/>
-                    <apply>
-                        <times/>
-                        <ci>beta_a</ci>
-                        <apply>
-                            <minus/>
-                            <cn cellml:units="dimensionless">1</cn>
-                            <ci>a</ci>
-                        </apply>
-                    </apply>
-                    <apply>
-                        <times/>
-                        <ci>alpha_a</ci>
-                        <ci>a</ci>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>beta_a</ci>
-                <apply>
-                    <divide/>
-                    <cn cellml:units="per_second">12.32</cn>
-                    <apply>
-                        <plus/>
-                        <cn cellml:units="dimensionless">1</cn>
-                        <apply>
-                            <divide/>
-                            <cn cellml:units="millimolar">0.0042</cn>
-                            <ci>ACh</ci>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>alpha_a</ci>
-                <apply>
-                    <times/>
-                    <cn cellml:units="per_second">17</cn>
-                    <apply>
-                        <exp/>
-                        <apply>
-                            <times/>
-                            <cn cellml:units="per_millivolt">0.0133</cn>
-                            <apply>
-                                <plus/>
-                                <ci>V</ci>
-                                <cn cellml:units="millivolt">40</cn>
-                            </apply>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>I_K_ACh</ci>
-                <apply>
-                    <times/>
-                    <ci>g_K_ACh</ci>
-                    <apply>
-                        <minus/>
-                        <ci>V</ci>
-                        <ci>E_K</ci>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>g_K_ACh</ci>
-                <apply>
-                    <times/>
-                    <ci>P_M2_KACh</ci>
-                    <ci>g_K_ACh_base</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>P_M2_KACh</ci>
-                <piecewise>
-                    <piece>
-                        <apply>
-                            <minus/>
-                            <apply>
-                                <divide/>
-                                <cn cellml:units="dimensionless">1.026</cn>
-                                <apply>
-                                    <plus/>
-                                    <cn cellml:units="dimensionless">1</cn>
-                                    <apply>
-                                        <exp/>
-                                        <apply>
-                                            <divide/>
-                                            <apply>
-                                                <plus/>
-                                                <ci>f_Vagal</ci>
-                                                <cn cellml:units="per_second">11.05</cn>
-                                            </apply>
-                                            <apply>
-                                                <minus/>
-                                                <cn cellml:units="per_second">7.5095</cn>
-                                            </apply>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                            </apply>
-                            <cn cellml:units="dimensionless">0.99</cn>
-                        </apply>
-                        <apply>
-                            <and/>
-                            <apply>
-                                <lt/>
-                                <ci>f_Vagal</ci>
-                                <cn cellml:units="per_second">100</cn>
-                            </apply>
-                            <apply>
-                                <gt/>
-                                <ci>f_Vagal</ci>
-                                <cn cellml:units="per_second">25</cn>
-                            </apply>
-                        </apply>
-                    </piece>
-                    <otherwise>
-                        <cn cellml:units="dimensionless">0.0006</cn>
-                    </otherwise>
-                </piecewise>
-            </apply>
-        </math>
-    </component>
     <component name="intracellular_concentrations_and_buffer_equations">
-        <variable cmeta:id="intracellular_concentrations_and_buffer_equations_Na_i" initial_value="9.701621" name="Na_i" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="intracellular_concentrations_and_buffer_equations_Ca_i" initial_value="3.787018e-4" name="Ca_i" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="intracellular_concentrations_and_buffer_equations_K_i" initial_value="1.407347e2" name="K_i" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="intracellular_concentrations_and_buffer_equations_Ca_Calmod" initial_value="0.1411678" name="Ca_Calmod" units="dimensionless"/>
-        <variable cmeta:id="intracellular_concentrations_and_buffer_equations_Ca_Trop" initial_value="0.07331396" name="Ca_Trop" units="dimensionless"/>
+        <variable initial_value="9.701621" name="Na_i" public_interface="out" units="millimolar"/>
+        <variable initial_value="3.787018e-4" name="Ca_i" public_interface="out" units="millimolar"/>
+        <variable initial_value="1.407347e2" name="K_i" public_interface="out" units="millimolar"/>
+        <variable initial_value="0.1411678" name="Ca_Calmod" units="dimensionless"/>
+        <variable initial_value="0.07331396" name="Ca_Trop" units="dimensionless"/>
         <variable initial_value="0.7618549" name="Ca_Mg_Trop" units="dimensionless"/>
         <variable initial_value="0.2097049" name="Mg_Mg_Trop" units="dimensionless"/>
         <variable name="phi_C" units="per_second"/>
@@ -2149,8 +1731,8 @@
         <variable name="F_C" units="millimolar_per_second"/>
         <variable name="F_TC" units="millimolar_per_second"/>
         <variable name="F_TMgC" units="millimolar_per_second"/>
-        <variable name="Vol" public_interface="in" units="mm_cubed"/>
-        <variable name="V_i" public_interface="out" units="mm_cubed"/>
+        <variable name="Vol" public_interface="in" units="microLitre"/>
+        <variable name="V_i" public_interface="out" units="microLitre"/>
         <variable name="i_NaK" public_interface="in" units="nanoA"/>
         <variable name="i_NaCa" public_interface="in" units="nanoA"/>
         <variable name="i_B_Na" public_interface="in" units="nanoA"/>
@@ -2469,14 +2051,14 @@
         </math>
     </component>
     <component name="cleft_space_equations">
-        <variable cmeta:id="cleft_space_equations_Na_c" initial_value="139.9988" name="Na_c" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="cleft_space_equations_Ca_c" initial_value="2.00474" name="Ca_c" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="cleft_space_equations_K_c" initial_value="5.389014" name="K_c" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="cleft_space_equations_K_b" initial_value="5.4" name="K_b" public_interface="out" units="millimolar"/>
-        <variable cmeta:id="cleft_space_equations_Na_b" initial_value="140" name="Na_b" units="millimolar"/>
-        <variable cmeta:id="cleft_space_equations_Ca_b" initial_value="2" name="Ca_b" units="millimolar"/>
-        <variable initial_value="3.497e-6" name="Vol" public_interface="out" units="mm_cubed"/>
-        <variable name="V_c" units="mm_cubed"/>
+        <variable initial_value="139.9988" name="Na_c" public_interface="out" units="millimolar"/>
+        <variable initial_value="2.00474" name="Ca_c" public_interface="out" units="millimolar"/>
+        <variable initial_value="5.389014" name="K_c" public_interface="out" units="millimolar"/>
+        <variable initial_value="5.4" name="K_b" public_interface="out" units="millimolar"/>
+        <variable initial_value="140" name="Na_b" units="millimolar"/>
+        <variable initial_value="2" name="Ca_b" units="millimolar"/>
+        <variable initial_value="3.497e-6" name="Vol" public_interface="out" units="microLitre"/>
+        <variable name="V_c" units="microLitre"/>
         <variable initial_value="0.01" name="tau_p" units="second"/>
         <variable name="i_NaK" public_interface="in" units="nanoA"/>
         <variable name="i_NaCa" public_interface="in" units="nanoA"/>
@@ -2641,14 +2223,15 @@
         </math>
     </component>
     <component name="SR_Ca_uptake_and_release">
-        <variable cmeta:id="SR_Ca_uptake_and_release_i_rel" name="i_rel" public_interface="out" units="nanoA"/>
-        <variable cmeta:id="SR_Ca_uptake_and_release_i_up" name="i_up" public_interface="out" units="nanoA"/>
+        <variable name="i_rel" public_interface="out" units="nanoA"/>
+        <variable name="i_up" public_interface="out" units="nanoA"/>
+        <variable name="i_tr" units="nanoA"/>
         <variable initial_value="16.95311" name="Ca_up" units="millimolar"/>
+        <variable initial_value="16.85024" name="Ca_rel" units="millimolar"/>
+        <variable name="Ca_i" public_interface="in" units="millimolar"/>
         <variable initial_value="0.08" name="alpha_up" units="nanoA"/>
         <variable initial_value="0.072" name="beta_up" units="nanoA"/>
-        <variable initial_value="16.85024" name="Ca_rel" units="millimolar"/>
         <variable initial_value="0.5" name="alpha_rel" units="nanoA_per_millimolar"/>
-        <variable cmeta:id="SR_Ca_uptake_and_release_i_tr" name="i_tr" units="nanoA"/>
         <variable name="K1" units="dimensionless"/>
         <variable name="K2" units="millimolar"/>
         <variable initial_value="0.00005" name="k_cyca" units="millimolar"/>
@@ -2662,10 +2245,9 @@
         <variable initial_value="0.1133251" name="F1" units="dimensionless"/>
         <variable initial_value="0.0007594214" name="F2" units="dimensionless"/>
         <variable initial_value="0.8859153" name="F3" units="dimensionless"/>
-        <variable name="V_i" public_interface="in" units="mm_cubed"/>
-        <variable name="V_up" units="mm_cubed"/>
-        <variable name="V_rel" units="mm_cubed"/>
-        <variable name="Ca_i" public_interface="in" units="millimolar"/>
+        <variable name="V_i" public_interface="in" units="microLitre"/>
+        <variable name="V_up" units="microLitre"/>
+        <variable name="V_rel" units="microLitre"/>
         <variable name="F" public_interface="in" units="coulomb_per_mole"/>
         <variable name="V" public_interface="in" units="millivolt"/>
         <variable name="time" public_interface="in" units="second"/>
@@ -2686,38 +2268,6 @@
                     <times/>
                     <cn cellml:units="dimensionless">0.001296</cn>
                     <ci>V_i</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>K1</ci>
-                <apply>
-                    <divide/>
-                    <apply>
-                        <times/>
-                        <ci>k_cyca</ci>
-                        <ci>k_xcs</ci>
-                    </apply>
-                    <ci>k_SRCa</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>K2</ci>
-                <apply>
-                    <plus/>
-                    <ci>Ca_i</ci>
-                    <apply>
-                        <times/>
-                        <ci>Ca_up</ci>
-                        <ci>K1</ci>
-                    </apply>
-                    <apply>
-                        <times/>
-                        <ci>k_cyca</ci>
-                        <ci>k_xcs</ci>
-                    </apply>
-                    <ci>k_cyca</ci>
                 </apply>
             </apply>
             <apply>
@@ -2889,6 +2439,60 @@
             </apply>
             <apply>
                 <eq/>
+                <ci>K1</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <times/>
+                        <ci>k_cyca</ci>
+                        <ci>k_xcs</ci>
+                    </apply>
+                    <ci>k_SRCa</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>K2</ci>
+                <apply>
+                    <plus/>
+                    <ci>Ca_i</ci>
+                    <apply>
+                        <times/>
+                        <ci>Ca_up</ci>
+                        <ci>K1</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <ci>k_cyca</ci>
+                        <ci>k_xcs</ci>
+                    </apply>
+                    <ci>k_cyca</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>i_up</ci>
+                <apply>
+                    <divide/>
+                    <apply>
+                        <minus/>
+                        <apply>
+                            <times/>
+                            <ci>alpha_up</ci>
+                            <ci>Ca_i</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>beta_up</ci>
+                            <ci>Ca_up</ci>
+                            <ci>K1</ci>
+                        </apply>
+                    </apply>
+                    <ci>K2</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
                 <ci>i_rel</ci>
                 <apply>
                     <times/>
@@ -2926,28 +2530,6 @@
                         <ci>V_up</ci>
                     </apply>
                     <cn cellml:units="second">0.06418</cn>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>i_up</ci>
-                <apply>
-                    <divide/>
-                    <apply>
-                        <minus/>
-                        <apply>
-                            <times/>
-                            <ci>alpha_up</ci>
-                            <ci>Ca_i</ci>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>beta_up</ci>
-                            <ci>Ca_up</ci>
-                            <ci>K1</ci>
-                        </apply>
-                    </apply>
-                    <ci>K2</ci>
                 </apply>
             </apply>
             <apply>
@@ -3098,94 +2680,6 @@
             </apply>
         </math>
     </component>
-    <component name="cAMP_balance">
-        <variable initial_value="3e-3" name="cAMP" public_interface="out" units="millimolar"/>
-        <variable initial_value="2e-3" name="cGMP" units="millimolar"/>
-        <variable initial_value="0" name="Iso" units="millimolar"/>
-        <variable initial_value="0" name="ACh" public_interface="out" units="millimolar"/>
-        <variable initial_value="0.14e-3" name="Km_Iso" units="millimolar"/>
-        <variable initial_value="0.14e-3" name="Km_ACh" units="millimolar"/>
-        <variable initial_value="6" name="K_PDE" units="dimensionless"/>
-        <variable initial_value="8e-3" name="K_ADC" units="millimolar_per_second"/>
-        <variable initial_value="20" name="V_PDE" units="per_second"/>
-        <variable initial_value="0.02" name="P_M2_ADC" units="dimensionless"/>
-        <variable name="time" public_interface="in" units="second"/>
-        <variable initial_value="200" name="f_Vagal" public_interface="out" units="per_second"/>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-                <eq/>
-                <apply>
-                    <diff/>
-                    <bvar>
-                        <ci>time</ci>
-                    </bvar>
-                    <ci>cAMP</ci>
-                </apply>
-                <apply>
-                    <times/>
-                    <cn cellml:units="dimensionless">1</cn>
-                    <apply>
-                        <minus/>
-                        <apply>
-                            <times/>
-                            <ci>K_ADC</ci>
-                            <apply>
-                                <minus/>
-                                <apply>
-                                    <plus/>
-                                    <cn cellml:units="dimensionless">1</cn>
-                                    <apply>
-                                        <divide/>
-                                        <ci>Iso</ci>
-                                        <apply>
-                                            <plus/>
-                                            <ci>Iso</ci>
-                                            <ci>Km_Iso</ci>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <divide/>
-                                    <apply>
-                                        <times/>
-                                        <ci>P_M2_ADC</ci>
-                                        <ci>ACh</ci>
-                                    </apply>
-                                    <apply>
-                                        <plus/>
-                                        <apply>
-                                            <times/>
-                                            <ci>P_M2_ADC</ci>
-                                            <ci>ACh</ci>
-                                        </apply>
-                                        <ci>Km_ACh</ci>
-                                    </apply>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <divide/>
-                            <apply>
-                                <times/>
-                                <ci>V_PDE</ci>
-                                <ci>cGMP</ci>
-                                <ci>cAMP</ci>
-                            </apply>
-                            <apply>
-                                <plus/>
-                                <ci>cAMP</ci>
-                                <apply>
-                                    <times/>
-                                    <ci>K_PDE</ci>
-                                    <ci>cGMP</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-        </math>
-    </component>
     <group>
         <relationship_ref relationship="containment"/>
         <component_ref component="membrane">
@@ -3212,12 +2706,10 @@
             <component_ref component="sodium_potassium_pump"/>
             <component_ref component="calcium_pump_current"/>
             <component_ref component="sodium_calcium_pump"/>
-            <component_ref component="muscarinic_potassium_current"/>
             <component_ref component="intracellular_concentrations_and_buffer_equations"/>
             <component_ref component="cleft_space_equations"/>
             <component_ref component="SR_Ca_uptake_and_release"/>
             <component_ref component="reversal_potentials"/>
-            <component_ref component="cAMP_balance"/>
         </component_ref>
     </group>
     <group>
@@ -3283,10 +2775,6 @@
         <map_variables variable_1="time" variable_2="time"/>
     </connection>
     <connection>
-        <map_components component_1="muscarinic_potassium_current" component_2="environment"/>
-        <map_variables variable_1="time" variable_2="time"/>
-    </connection>
-    <connection>
         <map_components component_1="intracellular_concentrations_and_buffer_equations" component_2="environment"/>
         <map_variables variable_1="time" variable_2="time"/>
     </connection>
@@ -3300,10 +2788,6 @@
     </connection>
     <connection>
         <map_components component_1="reversal_potentials" component_2="environment"/>
-        <map_variables variable_1="time" variable_2="time"/>
-    </connection>
-    <connection>
-        <map_components component_1="cAMP_balance" component_2="environment"/>
         <map_variables variable_1="time" variable_2="time"/>
     </connection>
     <connection>
@@ -3352,11 +2836,6 @@
         <map_components component_1="membrane" component_2="sodium_calcium_pump"/>
         <map_variables variable_1="i_NaCa" variable_2="i_NaCa"/>
         <map_variables variable_1="V" variable_2="V"/>
-    </connection>
-    <connection>
-        <map_components component_1="muscarinic_potassium_current" component_2="membrane"/>
-        <map_variables variable_1="V" variable_2="V"/>
-        <map_variables variable_1="i_K_ACh" variable_2="i_K_ACh"/>
     </connection>
     <connection>
         <map_components component_1="membrane" component_2="intracellular_concentrations_and_buffer_equations"/>
@@ -3426,10 +2905,6 @@
         <map_variables variable_1="E_K" variable_2="E_K"/>
     </connection>
     <connection>
-        <map_components component_1="muscarinic_potassium_current" component_2="reversal_potentials"/>
-        <map_variables variable_1="E_K" variable_2="E_K"/>
-    </connection>
-    <connection>
         <map_components component_1="cleft_space_equations" component_2="linear_background_current"/>
         <map_variables variable_1="i_B_Na" variable_2="i_B_Na"/>
         <map_variables variable_1="i_B_Ca" variable_2="i_B_Ca"/>
@@ -3454,7 +2929,6 @@
     <connection>
         <map_components component_1="sodium_potassium_pump" component_2="intracellular_concentrations_and_buffer_equations"/>
         <map_variables variable_1="Na_i" variable_2="Na_i"/>
-        <map_variables variable_1="Ca_i" variable_2="Ca_i"/>
         <map_variables variable_1="i_NaK" variable_2="i_NaK"/>
     </connection>
     <connection>
@@ -3561,66 +3035,36 @@
         <map_variables variable_1="y" variable_2="y"/>
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="V" variable_2="V"/>
-        <map_variables variable_1="cAMP" variable_2="cAMP"/>
-    </connection>
-    <connection>
-        <map_components component_1="L_type_Ca_channel" component_2="cAMP_balance"/>
-        <map_variables variable_1="cAMP" variable_2="cAMP"/>
-    </connection>
-    <connection>
-        <map_components component_1="delayed_rectifying_potassium_current" component_2="cAMP_balance"/>
-        <map_variables variable_1="cAMP" variable_2="cAMP"/>
-    </connection>
-    <connection>
-        <map_components component_1="hyperpolarisation_activated_current" component_2="cAMP_balance"/>
-        <map_variables variable_1="cAMP" variable_2="cAMP"/>
-    </connection>
-    <connection>
-        <map_components component_1="sodium_potassium_pump" component_2="cAMP_balance"/>
-        <map_variables variable_1="cAMP" variable_2="cAMP"/>
-    </connection>
-    <connection>
-        <map_components component_1="muscarinic_potassium_current" component_2="cAMP_balance"/>
-        <map_variables variable_1="ACh" variable_2="ACh"/>
-        <map_variables variable_1="f_Vagal" variable_2="f_Vagal"/>
-    </connection>
-    <connection>
-        <map_components component_1="sodium_current" component_2="cAMP_balance"/>
-        <map_variables variable_1="ACh" variable_2="ACh"/>
-    </connection>
-    <connection>
-        <map_components component_1="linear_background_current" component_2="cAMP_balance"/>
-        <map_variables variable_1="ACh" variable_2="ACh"/>
     </connection>
     <documentation xmlns="http://cellml.org/tmp-documentation">
         <article xmlns="http://cellml.org/tmp-documentation">
             <articleinfo xmlns="http://cellml.org/tmp-documentation">
-                <title xmlns="http://cellml.org/tmp-documentation">A Model Of Parasympathetic Modulation Of Pacemaker Rate, 1999</title>
+                <title xmlns="http://cellml.org/tmp-documentation">A Mathematical Model Of A Rabbit Sinoatrial Node Cell, 1994</title>
                 <author xmlns="http://cellml.org/tmp-documentation">
-                    <firstname xmlns="http://cellml.org/tmp-documentation">Penny</firstname>
-                    <surname xmlns="http://cellml.org/tmp-documentation">Noble</surname>
+                    <firstname xmlns="http://cellml.org/tmp-documentation">Catherine</firstname>
+                    <surname xmlns="http://cellml.org/tmp-documentation">Lloyd</surname>
                     <affiliation xmlns="http://cellml.org/tmp-documentation">
-                        <shortaffil xmlns="http://cellml.org/tmp-documentation">Oxford University</shortaffil>
+                        <shortaffil xmlns="http://cellml.org/tmp-documentation">Bioengineering Institute, University of Auckland</shortaffil>
                     </affiliation>
                 </author>
             </articleinfo>
             <section xmlns="http://cellml.org/tmp-documentation" id="sec_status">
                 <title xmlns="http://cellml.org/tmp-documentation">Model Status</title>
                 <para xmlns="http://cellml.org/tmp-documentation">
-            This model has been validated by Penny Noble of Oxford University and is known to run in COR and OpenCell to reproduce the published results. The units have been checked and are balanced.
-          </para>
+      This version of the model has been curated by Penny Noble and is known to run in COR and PCEnv to replicate the published results.  Units have been checked and they are balanced.
+</para>
             </section>
             <sect1 xmlns="http://cellml.org/tmp-documentation" id="sec_structure">
                 <title xmlns="http://cellml.org/tmp-documentation">Model Structure</title>
                 <para xmlns="http://cellml.org/tmp-documentation">
-ABSTRACT: We have extended our compartmental model [Am. J. Physiol. 266 (Cell Physiol. 35): C832-C852, 1994] of the single rabbit sinoatrial node (SAN) cell so that it can simulate cellular responses to bath applications of ACh and isoprenaline as well as the effects of neuronally released ACh. The model employs three different types of muscarinic receptors to explain the variety of responses observed in mammalian cardiac pacemaking cells subjected to vagal stimulation. The response of greatest interest is the ACh-sensitive change in cycle length that is not accompanied by a change in action potential duration or repolarization or hyperpolarization of the maximum diastolic potential. In this case, an ACh-sensitive K+ current is not involved. Membrane hyperpolarization occurs in response to much higher levels of vagal stimulation, and this response is also mimicked by the model. Here, an ACh-sensitive K+ current is involved. The well-known phase-resetting response of the SAN cell to single and periodically applied vagal bursts of impulses is also simulated in the presence and absence of the beta-agonist isoprenaline. Finally, the responses of the SAN cell to longer continuous trains of periodic vagal stimulation are simulated, and this can result in the complete cessation of pacemaking. Therefore, this model is 1) applicable over the full range of intensity and pattern of vagal input and 2) can offer biophysically based explanations for many of the phenomena associated with the autonomic control of cardiac pacemaking.
+ABSTRACT: A mathematical model for the electrophysiological responses of a rabbit sinoatrial node cell that is based on whole cell recordings from enzymatically isolated single pacemaker cells at 37 degrees C has been developed. The ion channels, Na(+)-K+ and Ca2+ pumps, and Na(+)-Ca2+ exchanger in the surface membrane (sarcolemma) are described using equations for these known currents in mammalian pacemaker cells. The extracellular environment is treated as a diffusion-limited space, and the myoplasm contains Ca(2+)-binding proteins (calmodulin and troponin). Original features of this model include 1) new equations for the hyperpolarization-activated inward current, 2) assessment of the role of the transient-type Ca2+ current during pacemaker depolarization, 3) inclusion of an Na+ current based on recent experimental data, and 4) demonstration of the possible influence of pump and exchanger currents and background currents on the pacemaker rate. This model provides acceptable fits to voltage-clamp and action potential data and can be used to seek biophysically based explanations of the electrophysiological activity in the rabbit sinoatrial node cell.
 </para>
                 <para xmlns="http://cellml.org/tmp-documentation">
 The original paper reference is cited below:
 </para>
                 <para xmlns="http://cellml.org/tmp-documentation">
-Parasympathetic modulation of sinoatrial node pacemaker activity in rabbit heart: a unifying model, Semahat S. Demir, John W. Clark and Wayne R. Giles, 1999, 
-            <emphasis xmlns="http://cellml.org/tmp-documentation">American Journal of Physiology</emphasis>, 276, H2221-H2244.  <ulink xmlns="http://cellml.org/tmp-documentation" url="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=10362707&amp;dopt=Abstract">PubMed ID: 10362707</ulink>
+A mathematical model of a rabbit sinoatrial node cell, S.S. Demir, J.W. Clark, C.R. Murphey and W.R. Giles, 1994,
+            <emphasis xmlns="http://cellml.org/tmp-documentation">American Journal of Physiology</emphasis>, 266, C832-C852.  <ulink xmlns="http://cellml.org/tmp-documentation" url="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=8166247&amp;dopt=Abstract">PubMed ID: 8166247</ulink>
                 </para>
                 <informalfigure xmlns="http://cellml.org/tmp-documentation" float="0" id="fig_cell_diagram">
                     <mediaobject xmlns="http://cellml.org/tmp-documentation">
@@ -3628,381 +3072,142 @@ Parasympathetic modulation of sinoatrial node pacemaker activity in rabbit heart
                             <objectinfo xmlns="http://cellml.org/tmp-documentation">
                                 <title xmlns="http://cellml.org/tmp-documentation">cell diagram of the Demir et al SAN model showing ionic currents, pumps and exchangers within the sarcolemma</title>
                             </objectinfo>
-                            <imagedata xmlns="http://cellml.org/tmp-documentation" fileref="demir_1999.png"/>
+                            <imagedata xmlns="http://cellml.org/tmp-documentation" fileref="demir_1994.png"/>
                         </imageobject>
                     </mediaobject>
-                    <caption xmlns="http://cellml.org/tmp-documentation">A schematic diagram describing the current flows across the cell membrane that are captured in the Demir <emphasis xmlns="http://cellml.org/tmp-documentation">et al</emphasis> 1999 model of the electrophysiological activity in a SAN cell.</caption>
+                    <caption xmlns="http://cellml.org/tmp-documentation">A schematic diagram describing the current flows across the cell membrane that are captured in the Demir <emphasis xmlns="http://cellml.org/tmp-documentation">et al</emphasis> 1994 model of the electrophysiological activity in a SA node cell.</caption>
                 </informalfigure>
             </sect1>
         </article>
     </documentation>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <rdf:Bag xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#d19e13e7-c8dd-4c28-bcc3-06380bf8f491">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">cardiac
+    
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:Seq rdf:about="rdf:#citationAuthorsSeq">
+<rdf:_1 rdf:resource="rdf:#author1Vcard"/>
+<rdf:_2 rdf:resource="rdf:#author2Vcard"/>
+<rdf:_3 rdf:resource="rdf:#author3Vcard"/>
+<rdf:_4 rdf:resource="rdf:#author4Vcard"/>
+</rdf:Seq>
+<rdf:Description rdf:about="rdf:#be39a29b-0829-4d71-8ca3-5cb8e71d6220"><undefined:JournalArticle xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#ccca7b13-1d58-4de0-880b-bb8e5b3a0e84"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#1f7e39e4-c589-424e-b1e1-087042a2918e"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Peter</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Villiger</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#author4Vcard"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#author4VcardN"/></undefined:Person>
+<rdf:Description rdf:about="rdf:#a047a17c-984a-42c7-92b8-b1fce8634695"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#1f7e39e4-c589-424e-b1e1-087042a2918e"/>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#author1Vcard"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#author1VcardN"/></undefined:Person>
+<rdf:Description rdf:about="rdf:#ff75bcdc-f5c1-470d-83a6-6e441fd6628c"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about=""><cmeta:modification rdf:resource="rdf:#fff5b863-1b9a-4086-97e4-2706cd17995b"/><undefined:created xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#44b0544d-7a05-4a72-8615-0a3569d6b566"/><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#e5a3ad1c-9241-4f04-93fc-23e48f5cdc9d"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#author3VcardN"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Giles</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#author2VcardN"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Clark</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Other>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#author2Vcard"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#author2VcardN"/></undefined:Person>
+<rdf:Description rdf:about="rdf:#b859390d-732f-4fc4-bf64-c23b19a7e169"><undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Oxford University</undefined:Orgname><undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Orgunit>
+</rdf:Description><undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#81a6687f-782b-4061-879d-088b6ffd132e">
+<rdf:value>penny.noble@physiol.ox.ac.uk
+</rdf:value></undefined:internet>
+<rdf:Description rdf:about="rdf:#ccca7b13-1d58-4de0-880b-bb8e5b3a0e84"><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#citationAuthorsSeq"/><undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">A Mathematical Model of a Rabbit Sinoatrial Node Cell</undefined:title><undefined:volume xmlns:undefined="http://www.cellml.org/bqs/1.0#">266</undefined:volume><undefined:first_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">C832</undefined:first_page><undefined:Journal xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#44eae6fb-5245-45f2-96ae-2582f6506a4b"/><undefined:issued xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#618443dc-d57f-4b90-931c-dd75f55f6ff5"/><undefined:last_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">C852</undefined:last_page>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#18f15d86-eb6b-44d5-966b-0204df5e20a1"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2006-03-31</undefined:W3CDTF>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#618443dc-d57f-4b90-931c-dd75f55f6ff5"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">1994-01-01</undefined:W3CDTF>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#44b0544d-7a05-4a72-8615-0a3569d6b566"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2002-01-30</undefined:W3CDTF>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#author3Vcard"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#author3VcardN"/></undefined:Person>
+<rdf:Description rdf:about="#demir_clark_giles_murphey_1994_version01"><undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#be39a29b-0829-4d71-8ca3-5cb8e71d6220"/><undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:nodeID="b317"/>
+</rdf:Description>
+<rdf:Description rdf:nodeID="b318"><undefined:subject_type xmlns:undefined="http://www.cellml.org/bqs/1.0#">keyword</undefined:subject_type>
+<rdf:value rdf:nodeID="b319"/>
+</rdf:Description>
+<rdf:Bag rdf:nodeID="b319">
+<rdf:_1>electrophysiology
 </rdf:_1>
-            <rdf:_2 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">signal transduction
+<rdf:_2>sinoatrial node
 </rdf:_2>
-            <rdf:_3 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">sinoatrial node
+<rdf:_3>rabbit
 </rdf:_3>
-            <rdf:_4 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology
-</rdf:_4>
-        </rdf:Bag>
-        <rdf:Seq xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#445bd029-2aaa-4801-a87d-5870b1bdfc79">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#c2473eba-e624-4238-b498-a712b4cc6fc7"/>
-            <rdf:_2 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#b77ca23e-cadf-4f3c-892b-a1740c6a20b3"/>
-            <rdf:_3 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#9427044e-01b8-4ddf-8a6f-2a37d2ae2bc3"/>
-        </rdf:Seq>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="">
-            <undefined:publisher xmlns:undefined="http://purl.org/dc/elements/1.1/">The University of Auckland, Bioengineering Institute</undefined:publisher>
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#c54bd8a5-a410-4c49-82c9-76908b85ff94" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:created xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#fdf68c0f-d228-40d3-8762-71e56453220c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#ca3985aa-b574-4adf-8b57-052b2b5d1681" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#22d10804-1ba9-422e-8f07-4c03f8bfe667" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#24c3b393-788b-462a-8335-95962aaaa850" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#3097fab8-5ca4-4890-a794-57665ef91cee" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#35c72023-32e1-4137-82db-21b4556c8c10" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#4ac262c5-fb67-4f03-8863-8430c0142c0c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#57c9b06f-baa7-4fea-83e7-eae0545c1ece" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#b8d25898-a93d-4213-9cd6-43f8b45d9588" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#ec204f10-1965-4299-8ae6-07715447e289" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#4e0b98cb-0847-49d5-aed6-6aa6d19bfc14">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Autumn</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Cuellar</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">A</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#ACh_sensitive_K_current">
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#f52f0c0a-5613-4337-a4c5-1c9592ec92d7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#24c3b393-788b-462a-8335-95962aaaa850">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#6da77758-e06f-47be-9a78-ed6199f8dcd1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">added cmeta:id's for some variables to allow referencing by PCEnv session
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#7b7a912a-79d5-4aaa-9a7c-df3f50fc8bad" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#13ed244b-610e-4717-b7d8-d5092bdb3c99">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Peter</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Villiger</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#bf02be6e-6f3c-44c2-85cf-5ebbed9f38b6">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#4e0b98cb-0847-49d5-aed6-6aa6d19bfc14" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#$5yM4i3">
-            <rdf:rest xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            <rdf:first xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#$6yM4i3"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#e8543daf-bc07-480a-ad68-2c1ae176c5e3">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2002-07-18</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#1d7aa982-886d-4a5b-8412-7c099b7e5c2e">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#3a3a01c8-5628-43ec-a2dc-1fd18701bb30" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#24d9a681-3baf-4508-9533-c2239be1c593">
-            <undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">The University of Auckland</undefined:Orgname>
-            <undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">The Bioengineering Institute</undefined:Orgunit>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#57c9b06f-baa7-4fea-83e7-eae0545c1ece">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#e0ecc64f-e5e0-4928-b6e6-ba161efed972" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">This model has been validated by Penny Noble of Oxford University.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#1c348d0d-7e41-4e88-9672-2952caf0697c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#a1facdbc-b851-4a8e-aa0d-d8e2ae379e17">
-            <undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine Lloyd</undefined:FN>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#9fe02731-09df-4e93-ada0-32981171c291">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#8595a970-b19b-492e-8acb-840dedb4f9c5" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#7b7a912a-79d5-4aaa-9a7c-df3f50fc8bad">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#2668baf5-777a-4154-aed4-98ec9f3f8cf1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#c2473eba-e624-4238-b498-a712b4cc6fc7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#9d35de97-b0e8-4b67-bd1c-cbce96ab70c3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#ec204f10-1965-4299-8ae6-07715447e289">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#bbb0a67d-98c6-48dc-a28b-c7bd992b62f4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Corrected several equations.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#9d92c8c9-2ae8-4669-9bf0-889b0bfec98a" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#4c84c820-8495-42b7-97e6-e3570cc58a74">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">The effects of ACh and Iso on i_Ca_L and i_K are produced indirectly             via the cAMP-dependent modulation of L-type Ca2+ and K+ channel 
-            conductance (g_Ca_L and g_K) respectively.
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#667e6f48-f54f-4120-aee1-945d7eab48d9">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">May</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#b2ead0e0-589d-492a-8a9b-bf395dcf69c4">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2002-07-18</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#22d10804-1ba9-422e-8f07-4c03f8bfe667">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#6713501e-5de1-47b7-b5d0-91f87b5a430f" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Corrected some units.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#1d7aa982-886d-4a5b-8412-7c099b7e5c2e" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#sodium_potassium_pump">
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#61e6be0d-4bfd-490b-af36-69a701824ac0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#4b555643-8880-4858-ba44-d5306efb1f56">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">May</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#sodium_current">
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#a148579a-13ad-4ce5-ab34-c5796d608ad7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#$4yM4i3">
-            <undefined:boundIntervals xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#" rdf:resource="rdf:#$5yM4i3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#35c72023-32e1-4137-82db-21b4556c8c10">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#b2ead0e0-589d-492a-8a9b-bf395dcf69c4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Added more metadata.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#9fe02731-09df-4e93-ada0-32981171c291" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#6713501e-5de1-47b7-b5d0-91f87b5a430f">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2002-02-28</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#6da77758-e06f-47be-9a78-ed6199f8dcd1">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2007-12-19T13:48:43+13:00</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#ccea4e26-cdc2-49e2-b9ea-15245fefb912">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#a1facdbc-b851-4a8e-aa0d-d8e2ae379e17" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Below is a CellML description of Demir et al's 1999 mathematical model of parasympathetic modulation of sinoatrial node (SAN) pacemaker activity in a rabbit heart. Based on experimental data, this model is a development of their earlier model of the single rabbit SAN cell (1994). Modifications have been made enabling it to mimic the important effects of the second-messenger cAMP and to simulate the response of SAN cells to the neurotransmitter acetylcholine (ACh) and isoprenaline (Iso).
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#fdddd685-7dad-464c-960d-b9869185c19c">
-            <undefined:subject_type xmlns:undefined="http://www.cellml.org/bqs/1.0#">keyword</undefined:subject_type>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#d19e13e7-c8dd-4c28-bcc3-06380bf8f491"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#1c348d0d-7e41-4e88-9672-2952caf0697c">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#c424feac-20a9-42a4-b803-b3650242e85b" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#4b82cb56-55dc-4d6a-a414-4934078d22b1">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">John</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Clark</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#9d35de97-b0e8-4b67-bd1c-cbce96ab70c3">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Semahat</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Demir</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">S</undefined:Other>
-        </rdf:Description>
-        <undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#cbb64d35-321e-4a06-9083-a2ce5bee5a76" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">c.lloyd@auckland.ac.nz
-</rdf:value>
-        </undefined:internet>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#a7d225a0-b87b-4275-a28f-e2e2393acfa3">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2005-04-25</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#d2719631-8fd3-4cc7-8124-48eb39dc8215">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">i_f is modulated via a direct effect of cAMP on the 
-             voltage-dependence of its steady-state activation variable y.
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#$6yM4i3">
-            <undefined:endingValue xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">2</undefined:endingValue>
-            <undefined:nonstandard-pointDensity xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">100000</undefined:nonstandard-pointDensity>
-            <undefined:maximumStepSize xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">0.1</undefined:maximumStepSize>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#5dd9a12d-084e-4b4d-946e-0d1603bf6586">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">May</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#4ac262c5-fb67-4f03-8863-8430c0142c0c">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#a7d225a0-b87b-4275-a28f-e2e2393acfa3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Changed equivalent to eq in apply id line.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#9dd209e8-3623-4e12-af33-e9c9e72ef204" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#f52f0c0a-5613-4337-a4c5-1c9592ec92d7">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">ACh has a direct stimulatory affect on the ACh-sensitive potassium 
-             channel.  The G-protein-mediated, direct affect of ACh on i_K_ACh 
-             occurs via the extrajunctional M2/K_ACh muscarinic receptor.  This 
-             channel has a single gating variable a.
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#74e107aa-e69e-4b03-8323-63a8dd374f64">
-            <undefined:subject xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#fdddd685-7dad-464c-960d-b9869185c19c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#9d92c8c9-2ae8-4669-9bf0-889b0bfec98a">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#4b555643-8880-4858-ba44-d5306efb1f56" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#T_type_Ca_channel">
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#f530ff7d-c7ba-4b1b-83c3-c51de5c7a062" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#ca3985aa-b574-4adf-8b57-052b2b5d1681">
-            <undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#24d9a681-3baf-4508-9533-c2239be1c593" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#cbb64d35-321e-4a06-9083-a2ce5bee5a76" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#667e6f48-f54f-4120-aee1-945d7eab48d9" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#417ffd9b-808c-4862-a98c-d373d6b1cda6">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2003-04-05</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#aa958ea1-adc6-474a-a037-df3c2ddbc52d">
-            <undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</undefined:FN>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#c54bd8a5-a410-4c49-82c9-76908b85ff94">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#aa958ea1-adc6-474a-a037-df3c2ddbc52d" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">This model has been validated by Penny Noble of Oxford University and is known to run in COR and PCEnv. A PCEnv session file is also associated with this version. Model curated by Penny Noble using Demir 1994 Oxsoft Heart model code and Demir 1999 paper.
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel">
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#4c84c820-8495-42b7-97e6-e3570cc58a74" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#70cc5358-26a2-4176-a99b-07c1a84dc764">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">1999-06-01</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#8595a970-b19b-492e-8acb-840dedb4f9c5">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">May</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#f530ff7d-c7ba-4b1b-83c3-c51de5c7a062">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">The T-type calcium channel has two gates, an activation gate d_T and an inactivation gate f_T.
-</rdf:value>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#b77ca23e-cadf-4f3c-892b-a1740c6a20b3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#4b82cb56-55dc-4d6a-a414-4934078d22b1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#61e6be0d-4bfd-490b-af36-69a701824ac0">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">The effects of Iso on i_NaK may be species dependent as it has been observed that Iso directly stimulates Na+-K+-ATPase activity in rabbit ventricular myocytes (Desilets and Baumgarten, 1986), but indirectly stimulates i_NaK in guinea pig ventricular myocytes via a PKA phosphorylation step (Gao et al. 1992, 1994).  In the absence of any quantitative evidence, in this model Demir et al. have assumed that cAMP directly stimulates i_NaK in the rabbit SAN cell and that this cAMP dependency may be modelled by the equations below.
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#fd9c4d2c-b624-4de1-9203-73e936aea096">
-            <undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">American Journal of Physiology</undefined:title>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#9dd209e8-3623-4e12-af33-e9c9e72ef204">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#13ed244b-610e-4717-b7d8-d5092bdb3c99" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#9427044e-01b8-4ddf-8a6f-2a37d2ae2bc3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#336d44ff-22e5-433f-a34f-4450ec682f5c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#336d44ff-22e5-433f-a34f-4450ec682f5c">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Wayne</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Giles</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#b8d25898-a93d-4213-9cd6-43f8b45d9588">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#e8543daf-bc07-480a-ad68-2c1ae176c5e3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Changed sign of i_rel in dCai-dt equation.  Changed the name of sodium-calcium pump to an exchanger.  Changed U_calculation from an equals sign to an equivalent sign.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#bc64dff4-7530-4d25-8a74-731bfa077326" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#3097fab8-5ca4-4890-a794-57665ef91cee">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#417ffd9b-808c-4862-a98c-d373d6b1cda6" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">Changed the model name so the model loads in the database easier.
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#bf02be6e-6f3c-44c2-85cf-5ebbed9f38b6" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#ea462339-329a-4a75-b85e-fe8f216b5ac9">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#445bd029-2aaa-4801-a87d-5870b1bdfc79" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">Parasympathetic modulation of sinoatrial node pacemaker activity in rabbit heart: a unifying model</undefined:title>
-            <undefined:volume xmlns:undefined="http://www.cellml.org/bqs/1.0#">276</undefined:volume>
-            <undefined:first_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">H2221</undefined:first_page>
-            <undefined:Journal xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#fd9c4d2c-b624-4de1-9203-73e936aea096" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:issued xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#70cc5358-26a2-4176-a99b-07c1a84dc764" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:last_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">H2244</undefined:last_page>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#bbb0a67d-98c6-48dc-a28b-c7bd992b62f4">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2002-02-25</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#demir_SAN_1999">
-            <cmeta:bio_entity xmlns:cmeta="http://www.cellml.org/metadata/1.0#">Sinoatrial Node Cell</cmeta:bio_entity>
-            <undefined:simulation xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#" rdf:resource="rdf:#$4yM4i3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">Demir et al's 1999 mathematical model of a rabbit sinoatrial node cell</undefined:title>
-            <cmeta:species xmlns:cmeta="http://www.cellml.org/metadata/1.0#">Rabbit</cmeta:species>
-            <undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#1b92a7f0-389f-4f9e-8b62-36b5e7f37bf0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#74e107aa-e69e-4b03-8323-63a8dd374f64" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#ccea4e26-cdc2-49e2-b9ea-15245fefb912" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#fdf68c0f-d228-40d3-8762-71e56453220c">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2002-02-06T00:00:00+00:00</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#1b92a7f0-389f-4f9e-8b62-36b5e7f37bf0">
-            <undefined:Pubmed_id xmlns:undefined="http://www.cellml.org/bqs/1.0#">10362707</undefined:Pubmed_id>
-            <undefined:JournalArticle xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#ea462339-329a-4a75-b85e-fe8f216b5ac9" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#2668baf5-777a-4154-aed4-98ec9f3f8cf1">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">James</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lawson</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Richard</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#hyperpolarisation_activated_current">
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#d2719631-8fd3-4cc7-8124-48eb39dc8215" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#e0ecc64f-e5e0-4928-b6e6-ba161efed972">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2007-06-19T15:32:11+12:00</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#3a3a01c8-5628-43ec-a2dc-1fd18701bb30">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Catherine</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lloyd</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">May</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#bc64dff4-7530-4d25-8a74-731bfa077326">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#5dd9a12d-084e-4b4d-946e-0d1603bf6586" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#c424feac-20a9-42a4-b803-b3650242e85b">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#environment_time">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_V">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_i_Ca_L">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_Cm">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#intracellular_concentrations_and_buffer_equations_Na_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#intracellular_concentrations_and_buffer_equations_K_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#intracellular_concentrations_and_buffer_equations_Ca_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_equations_Ca_b">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_equations_K_b">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_equations_Na_b">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#SR_Ca_uptake_and_release_i_rel">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#SR_Ca_uptake_and_release_i_up">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_equations_Ca_c">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_equations_K_c">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_equations_Na_c">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_Open_Prob">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_Driving_term_ohmic">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-    </rdf:RDF>
-</model>
+</rdf:Bag>
+<rdf:Description rdf:nodeID="b317"><undefined:subject xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:nodeID="b318"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#author1VcardN"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">S</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Demir</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">S</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#fff5b863-1b9a-4086-97e4-2706cd17995b"><undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#18f15d86-eb6b-44d5-966b-0204df5e20a1"/>
+<rdf:value>
+          added metadata
+        
+</rdf:value><cmeta:modifier rdf:resource="rdf:#a047a17c-984a-42c7-92b8-b1fce8634695"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#e5a3ad1c-9241-4f04-93fc-23e48f5cdc9d"><undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#b859390d-732f-4fc4-bf64-c23b19a7e169"/><undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#81a6687f-782b-4061-879d-088b6ffd132e"/><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#ff75bcdc-f5c1-470d-83a6-6e441fd6628c"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#author4VcardN"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">C</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Murphey</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#44eae6fb-5245-45f2-96ae-2582f6506a4b"><undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">American Journal of Physiology</undefined:title>
+</rdf:Description><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_on">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#delta_max">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_d">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_time">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_voltage">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cass">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cad">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cai">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#conductance_scale_factor">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#holding">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmax">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmin">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:temp-names#membrane_total_sodium_current">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation>
+<rdf:Description rdf:about="#environment_time">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_i_Ca_L">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_Cm">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_V">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_Driving_term_ohmic">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_Open_Prob">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+</rdf:Description>
+</rdf:RDF></model>
