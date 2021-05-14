@@ -50,6 +50,7 @@ Links to the original implementations that these files are based on are given be
   - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
     This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.
   - The definition of the units `mm_per_ms` was corrected.
+- Kernik et al. 2019: New implementation. 
 - [Kurata et al. 2002 (ICaL)](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986)
   - The original CellML file gave `alpha_fCa` as 0.021 1/ms.
     This has been set to 0.035 1/ms in accordance with the published equations.
@@ -168,6 +169,7 @@ NOTE: If we don't include these models in the study, then find way to tell PMR t
 - [x] Flaim 2006 - Greenstein 2006
 - [x] Iribe 2006 - Noble 1991
 - [x] Iyer 2007 - Iyer 2004
+- [x] Livshitz 2007 (Guinea Pig) - Luo 1994
 - [x] Niederer 2007 - Pandit 2001
 - [x] Benson 2008 - Hund 2004
 - [x] Kuzomoto 2008 - Matsuoka 2003
