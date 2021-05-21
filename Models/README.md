@@ -55,6 +55,7 @@ Links to the original implementations that these files are based on are given be
   - The original CellML file gave `alpha_fCa` as 0.021 1/ms.
     This has been set to 0.035 1/ms in accordance with the published equations.
     Please note that the corrected CellML file contains only the ICaL component.
+- [Koivumaki et al. 2011](https://models.physiomeproject.org/e/631/koivumaki-2011-pmr.cellml/)
 - [Li et al. 2010](https://chaste.cs.ox.ac.uk/WebLab/entities/models/29/versions/8c33fb1cc93bed4886e30c6679a4454cff6222fe)
 - Li & Rudy 2011 (ICaL): New implementation.
 - [Lindblad et al. 1996](https://models.physiomeproject.org/exposure/036dcdf013d736a376bf4d8f429bb804)
@@ -135,6 +136,7 @@ NOTE: If we don't include these models in the study, then find way to tell PMR t
 ## Some models included only for qualitative analysis
 - Bassingthwaighte 1972 : Accurate equations not found
 - Liu 1993: Driving term increases exponentially!
+- Greenstein 2006: 40-state model to be implemnted for whole-cell current
 
 
 ## Not included cause equivalent
@@ -211,25 +213,20 @@ NOTE: If we don't include these models in the study, then find way to tell PMR t
 - [x] Mitchell 2003 - Simplified model
 - [?] Noble 2001 - Remodelling of calcium dynamics in guinea-pig ventricular cells UNABLE TO FIND MANUSCRIPT
 - [x] Fenton 2002 - Simplified model
-- [x] Greenstein 2002 - Spatial model
+- [x] Greenstein 2002 - Stochastic calculation of whole-cell current
+	- Greenstein 2004, Tanskanen 2005 are equivalent
+	- Hashambhoy 2009, Hashambhoy 2010 have the have only two rate constants changed
 - [x] Pandit 2003 - Diseased (and Pandit 2001)
 - [x] Garny 2003 - Simplified model
-- [x] Greenstein 2004 - Spatial model
-- [x] Tanskanen 2005 - Spatial model
-- [x] Greenstein 2006 - Spatial model
 - [x] Simitev 2006 - Simplified model
 - [x] Cherry 2007 - Simplified model
 - [ ] Grandi 2007 - Disease mopdel
 - [x] Iancu 2007 - No ICaL
 - [x] Bueno-Orovio 2008 - Simplified model
 - [x] Chiba 2008 - No ICaL
-- [x] Restrepo 2008 - Spatial model
+- [x] Restrepo 2008 - Stochastic calculation of whole-cell current
 - [x] Xin 2008 - No ICaL
 - [x] Violin 2008 - No ICaL
-- [x] Hashambhoy 2009 - Spatial model
-- [x] Hashamboy 2010 - Spatial model
 - [x] Sampson 2010 - Iyer 2004
-- [x] Koivumaki 2011 - Complex subspaces
 - [x] Tao 2011 - Mixed Ca current
-- [x] Thul 2012 - Spatial model
 - [x] Davies 2014 - Equations not given.
