@@ -26,15 +26,6 @@
             "time_publication": "1977"
         }
     ],
-    "2020_Bernus_2002": [
-        {
-            "species": "human",
-            "cell": "ventricle",
-            "gating": "F",
-            "localisation": "2",
-            "time_publication": "2002"
-        }
-    ],
     "2020_Bondarenko_2004": [
         {
             "species": "mouse",
@@ -395,15 +386,6 @@
             "time_publication": "2016"
         }
     ],
-    "2020_Wang_2008": [
-        {
-            "species": "rat",
-            "cell": "ventricle",
-            "gating": "N",
-            "localisation": "5",
-            "time_publication": "2008"
-        }
-    ],
     "2020_Wilders_1991": [
         {
             "species": "rabbit",
@@ -474,6 +456,78 @@
             "gating": "C",
             "localisation": "12",
             "time_publication": "2011"
+        }
+    ],
+    "Fink_2008": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "8",
+            "time_publication": "2008"
+        }
+    ],
+    "Kernik_2019": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "6",
+            "time_publication": "2019"
+        }
+    ],
+    "Koivumaki_2011": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "5",
+            "time_publication": "2011"
+        }
+    ],
+    "Michailova_2005": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "5",
+            "time_publication": "2005"
+        }
+    ],
+    "Nordin_1993": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "F",
+            "localisation": "7",
+            "time_publication": "1993"
+        }
+    ],
+    "Pasek_2006": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "5",
+            "time_publication": "2006"
+        }
+    ],
+    "Sato_2006": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "7",
+            "time_publication": "2006"
+        }
+    ],
+    "Zeng_1995": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "6",
+            "time_publication": "1995"
         }
     ]
 }
