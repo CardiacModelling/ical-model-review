@@ -529,5 +529,14 @@
             "localisation": "6",
             "time_publication": "1995"
         }
+    ],
+    "hund_2008": [
+        {
+            "species": "",
+            "cell": "",
+            "gating": "",
+            "localisation": "6",
+            "time_publication": "2008"
+        }
     ]
 }
