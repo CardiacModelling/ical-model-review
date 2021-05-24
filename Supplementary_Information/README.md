@@ -39,9 +39,8 @@ The open probabilities of the models in Figure [Kinetic_Protocols_outliers(open_
 However, the driving force of all these models do not reverse or approach reversal potential within the physiological range of voltage. 
 This might be the reason for the prolonged high activation peaks ICaL in Figure [Kinetic_Protocols_outliers(ICaL)](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols/Kinetic_Protocols_outliers(ICaL).pdf). </br>
 
-- [Priebe & Beuckelmann](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d) and 
-[Bernus et al. 2002 (ICaL)](https://models.physiomeproject.org/e/5)  also have similar driving forces like the models discussed before. 
-However, the maximum open probability of these models is different from other models and approaches zero at higher test voltages of the activation protocol.
+- [Priebe & Beuckelmann](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d) also has similar driving forces like the models discussed before. 
+However, the maximum open probability of this model is different from other models and approaches zero at higher test voltages of the activation protocol.
 Thus, the inconsistent driving force and open probability seem to compensate for each other to give a consistent ICaL. </br>
 
 - [Hinch et al. 2004 (ICaL)](https://models.physiomeproject.org/exposure/8e1a590fb82a2cab5284502b430c4a4f) is a coupled Ryadonine Receptor and ICaL model.
@@ -54,7 +53,7 @@ This model is localised in the dyadic space, however the mathematical model calc
 
 Some of the simulated currents under the three AP-CaT-clamp experiments are positive.
 Figure [AP_CaT_Clamp_driving_term_outlier](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Driving_term_outlier/I_CaL_AP_CaT_Clamp_driving_Term_outlier.pdf) shows the simulated driving force of the dual AP-CaT-clamp with inherent localisation experiment which reverses its sign for a small duration of the AP clamp.
-[Demir et al. 1999](http://models.physiomeproject.org/exposure/32c9e9739454b40b5ba2d9cabb1fd079), 
+[Demir et al. 1994](https://models.physiomeproject.org/exposure/15dc665c02ca9955b8e79fbace81a9e5), 
 [Zhang et al. 2000](https://models.physiomeproject.org/exposure/01f6a47881da1925315d1d89d3a8d901) and 
 [Kurata et al. 2002](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986) 
 have an Ohmic driving force and the reversal potential of these models is less than the highest voltage of the AP clamp that we use in this review.

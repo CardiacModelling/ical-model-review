@@ -34,8 +34,8 @@ class open_prob():
         self.categories = ['species', 'cell', 'gating', 'localisation', 'time_publication']
         self.species_list = ['mammalian', 'guinea_pig', 'human', 'rat', 'mouse', 'rabbit', 'canine', 'ipsc-cm']
         self.cell_list = ['atrial', 'ventricle', 'san', 'purkinje', 'avn']
-        self.gating_list = list(string.ascii_uppercase)[:21]
-        self.gating_list.remove('Q') #Removing Q because Hinch does not have a distinct open_prob
+        self.gating_list = list(string.ascii_uppercase)[:15]
+        #self.gating_list.remove('Q') #Removing Q because Hinch does not have a distinct open_prob
         
         self.data = pd.read_csv('../AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/Open_prob_all.csv')
         self.data = self.data.dropna()

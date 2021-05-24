@@ -3,7 +3,7 @@
         {
             "species": "rabbit",
             "cell": "atrial",
-            "gating": "A",
+            "gating": "B",
             "localisation": "1",
             "time_publication": "2009"
         }
@@ -12,7 +12,7 @@
         {
             "species": "canine",
             "cell": "purkinje",
-            "gating": "S",
+            "gating": "M",
             "localisation": "8",
             "time_publication": "2009"
         }
@@ -21,7 +21,7 @@
         {
             "species": "mammalian",
             "cell": "ventricle",
-            "gating": "B",
+            "gating": "A",
             "localisation": "2",
             "time_publication": "1977"
         }
@@ -30,7 +30,7 @@
         {
             "species": "mouse",
             "cell": "ventricle",
-            "gating": "N",
+            "gating": "I",
             "localisation": "5",
             "time_publication": "2004"
         }
@@ -39,7 +39,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "E",
+            "gating": "C",
             "localisation": "6",
             "time_publication": "2003"
         }
@@ -57,7 +57,7 @@
         {
             "species": "rat",
             "cell": "ventricle",
-            "gating": "G",
+            "gating": "E",
             "localisation": "5",
             "time_publication": "2006"
         }
@@ -75,7 +75,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "P",
+            "gating": "O",
             "localisation": "8",
             "time_publication": "2009"
         }
@@ -84,9 +84,9 @@
         {
             "species": "rabbit",
             "cell": "san",
-            "gating": "A",
+            "gating": "B",
             "localisation": "1",
-            "time_publication": "1999"
+            "time_publication": "1994"
         }
     ],
     "2020_DiFrancesco_1985": [
@@ -111,7 +111,7 @@
         {
             "species": "guinea_pig",
             "cell": "ventricle",
-            "gating": "L",
+            "gating": "J",
             "localisation": "8",
             "time_publication": "2007"
         }
@@ -138,7 +138,7 @@
         {
             "species": "rabbit",
             "cell": "atrial",
-            "gating": "D",
+            "gating": "C",
             "localisation": "6",
             "time_publication": "1987"
         }
@@ -147,7 +147,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "S",
+            "gating": "M",
             "localisation": "8",
             "time_publication": "2004"
         }
@@ -156,7 +156,7 @@
         {
             "species": "rabbit",
             "cell": "avn",
-            "gating": "O",
+            "gating": "L",
             "localisation": "1",
             "time_publication": "2009"
         }
@@ -165,7 +165,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "G",
+            "gating": "E",
             "localisation": "5",
             "time_publication": "2004"
         }
@@ -174,7 +174,7 @@
         {
             "species": "guinea_pig",
             "cell": "ventricle",
-            "gating": "G",
+            "gating": "E",
             "localisation": "5",
             "time_publication": "1998"
         }
@@ -192,7 +192,7 @@
         {
             "species": "mouse",
             "cell": "ventricle",
-            "gating": "R",
+            "gating": "E",
             "localisation": "8",
             "time_publication": "2010"
         }
@@ -201,7 +201,7 @@
         {
             "species": "canine",
             "cell": "purkinje",
-            "gating": "S",
+            "gating": "M",
             "localisation": "8",
             "time_publication": "2011"
         }
@@ -210,7 +210,7 @@
         {
             "species": "rabbit",
             "cell": "atrial",
-            "gating": "A",
+            "gating": "B",
             "localisation": "1",
             "time_publication": "1996"
         }
@@ -219,7 +219,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "S",
+            "gating": "M",
             "localisation": "8",
             "time_publication": "2007"
         }
@@ -228,7 +228,7 @@
         {
             "species": "rabbit",
             "cell": "san",
-            "gating": "K",
+            "gating": "H",
             "localisation": "3",
             "time_publication": "2004"
         }
@@ -237,7 +237,7 @@
         {
             "species": "guinea_pig",
             "cell": "ventricle",
-            "gating": "E",
+            "gating": "C",
             "localisation": "6",
             "time_publication": "1994"
         }
@@ -246,7 +246,7 @@
         {
             "species": "rabbit",
             "cell": "ventricle",
-            "gating": "M",
+            "gating": "K",
             "localisation": "10",
             "time_publication": "2008"
         }
@@ -255,7 +255,7 @@
         {
             "species": "guinea_pig",
             "cell": "ventricle",
-            "gating": "J",
+            "gating": "G",
             "localisation": "6",
             "time_publication": "2003"
         }
@@ -264,7 +264,7 @@
         {
             "species": "mammalian",
             "cell": "purkinje",
-            "gating": "A",
+            "gating": "B",
             "localisation": "1",
             "time_publication": "1975"
         }
@@ -273,7 +273,7 @@
         {
             "species": "guinea_pig",
             "cell": "ventricle",
-            "gating": "B",
+            "gating": "A",
             "localisation": "2",
             "time_publication": "1991"
         }
@@ -291,7 +291,7 @@
         {
             "species": "human",
             "cell": "atrial",
-            "gating": "H",
+            "gating": "F",
             "localisation": "5",
             "time_publication": "1998"
         }
@@ -300,7 +300,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "U",
+            "gating": "O",
             "localisation": "8",
             "time_publication": "2011"
         }
@@ -309,7 +309,7 @@
         {
             "species": "ipsc-cm",
             "cell": "atrial",
-            "gating": "T",
+            "gating": "N",
             "localisation": "6",
             "time_publication": "2013"
         }
@@ -318,7 +318,7 @@
         {
             "species": "rat",
             "cell": "ventricle",
-            "gating": "I",
+            "gating": "F",
             "localisation": "5",
             "time_publication": "2001"
         }
@@ -327,7 +327,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "E",
+            "gating": "C",
             "localisation": "6",
             "time_publication": "1998"
         }
@@ -363,7 +363,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "T",
+            "gating": "N",
             "localisation": "8",
             "time_publication": "2006"
         }
@@ -372,7 +372,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "U",
+            "gating": "O",
             "localisation": "11",
             "time_publication": "2019"
         }
@@ -390,7 +390,7 @@
         {
             "species": "rabbit",
             "cell": "san",
-            "gating": "B",
+            "gating": "A",
             "localisation": "2",
             "time_publication": "1991"
         }
@@ -399,7 +399,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "G",
+            "gating": "E",
             "localisation": "5",
             "time_publication": "1999"
         }
@@ -408,7 +408,7 @@
         {
             "species": "rabbit",
             "cell": "san",
-            "gating": "A",
+            "gating": "B",
             "localisation": "1",
             "time_publication": "2000"
         }
@@ -417,7 +417,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "P",
+            "gating": "O",
             "localisation": "8",
             "time_publication": "2020"
         }
@@ -426,7 +426,7 @@
         {
             "species": "human",
             "cell": "san",
-            "gating": "I",
+            "gating": "F",
             "localisation": "6",
             "time_publication": "2016"
         }
@@ -435,7 +435,7 @@
         {
             "species": "human",
             "cell": "purkinje",
-            "gating": "U",
+            "gating": "O",
             "localisation": "8",
             "time_publication": "2020"
         }
@@ -444,7 +444,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "P",
+            "gating": "O",
             "localisation": "8",
             "time_publication": "2011"
         }
@@ -460,81 +460,81 @@
     ],
     "Fink_2008": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "human",
+            "cell": "ventricle",
+            "gating": "N",
             "localisation": "8",
             "time_publication": "2008"
         }
     ],
     "Kernik_2019": [
         {
-            "species": "",
+            "species": "ipsc-cm",
             "cell": "",
-            "gating": "",
+            "gating": "C",
             "localisation": "6",
             "time_publication": "2019"
         }
     ],
     "Koivumaki_2011": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "human",
+            "cell": "atrial",
+            "gating": "N",
             "localisation": "5",
             "time_publication": "2011"
         }
     ],
     "Michailova_2005": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "canine",
+            "cell": "ventricle",
+            "gating": "E",
             "localisation": "5",
             "time_publication": "2005"
         }
     ],
     "Nordin_1993": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "F",
+            "species": "guinea_pig",
+            "cell": "ventricle",
+            "gating": "D",
             "localisation": "7",
             "time_publication": "1993"
         }
     ],
     "Pasek_2006": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "rat",
+            "cell": "ventricle",
+            "gating": "F",
             "localisation": "5",
             "time_publication": "2006"
         }
     ],
     "Sato_2006": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "canine",
+            "cell": "ventricle",
+            "gating": "C",
             "localisation": "7",
             "time_publication": "2006"
         }
     ],
     "Zeng_1995": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "guinea_pig",
+            "cell": "ventricle",
+            "gating": "C",
             "localisation": "6",
             "time_publication": "1995"
         }
     ],
     "hund_2008": [
         {
-            "species": "",
-            "cell": "",
-            "gating": "",
+            "species": "canine",
+            "cell": "ventricle",
+            "gating": "M",
             "localisation": "6",
             "time_publication": "2008"
         }

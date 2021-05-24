@@ -145,9 +145,9 @@ class calculate_kinetic_paramters():
         return popt
 
 
-filename = 'Kinetic_protocols/data/recovery.csv'
+filename = 'Kinetic_protocols/data/activation.csv'
 y = calculate_kinetic_paramters(filename)
-answer = y.recovery()
+answer = y.activation()
 print(answer)    
 
 #filename_main = '../activation.csv'
