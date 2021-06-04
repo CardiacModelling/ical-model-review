@@ -4,6 +4,7 @@ This directory contains the CellML files used for all simulations in this study.
 
 Models were obtained from the [Physiome (CellML) model repository](https://models.physiomeproject.org) (PMR) or the [Web Lab](chaste.cs.ox.ac.uk/WebLab).
 The origin of our model files is given by the links below.
+A list of data sources cited by the model publications is given in [data.md](./data.md).
 
 All models were annotated with terms from the [oxmeta ontology](https://github.com/ModellingWebLab/ontologies/), to allow simulations with the Web Lab.
 Occasionally, this involved involved separating parts of equations out into separate variables.
@@ -216,4 +217,5 @@ The index in the gating type table (which is also used as a general index for ea
 - [x] Sampson 2010 - Iyer 2004
 - [x] Tao 2011 - Mixed Ca current
 - [x] Davies 2014 - Equations not given.
+
 
