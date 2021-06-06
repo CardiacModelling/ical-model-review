@@ -20,8 +20,6 @@ The index in the gating type table (which is also used as a general index for ea
 - [Aslanidi et al. 2009a Atrial](https://chaste.cs.ox.ac.uk/WebLab/entities/models/11/versions/7318d0a67f7077494165b4c981703c121aafb3a4) (10)
 - [Aslanidi et al. 2009 Purkinje](https://chaste.cs.ox.ac.uk/WebLab/entities/models/12/versions/2f737b824b45ed115155a0e5991aba4df74b1582) (52)
 - [Bartolucci et al. 2020](https://models.physiomeproject.org/workspace/5fd) (61)
-- Bassingthwaighte & Reuter 1972 (1)
-  - No implementation could be found, or created from the equations in the book (which did not match the figures)
 - [Beeler & Reuter 1977](https://chaste.cs.ox.ac.uk/WebLab/entities/models/1/versions/4680f3e8395da43250412aa3a16013090da62570) (2)
 - [Bondarenko et al. 2004](https://chaste.cs.ox.ac.uk/WebLab/entities/models/15/versions/141530c77eadc8bafe865083a5a5ccf2dc0c2ca6) (46)
 - Cabo & Boyden 2003 (ICaL only): New implementation. (14)
@@ -48,7 +46,6 @@ The index in the gating type table (which is also used as a general index for ea
    - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
      This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.
    - The definition of the units `mm_per_ms` was corrected.
-- **Greenstein 2006** (36)
 - [Grandi et al. 2010](https://chaste.cs.ox.ac.uk/WebLab/entities/models/26/versions/ebe0634280215163f94c1a247a78f44d6637dae7) (18)
 - [Grandi et al. 2011](https://models.physiomeproject.org/e/596/view) (19)
 - Heijman et al. 2011: New implementation. (60)
@@ -77,7 +74,7 @@ The index in the gating type table (which is also used as a general index for ea
 - [Lindblad et al. 1996](https://models.physiomeproject.org/exposure/036dcdf013d736a376bf4d8f429bb804) (8)
   - The original CellML file has `ICaL` given as `gCaL * dL * fL * dp * (V - ECa)`.
     This has been changed to `gCaL * (dL * fL + dp) * (V - ECa)` in accordance with the published equations.
-- **Liu et al. 1993 (5)**
+- Liu et al. 1993 (ICaL only): New implementation. (5)
 - Livshitz & Rudy 2007 HRd (ICaL only): New implementation. (51)
   - This study describes modifications of the Hund et al. 2004 and Luo & Rudy 1994 models.
     Only the Hund modification includes an updated ICaL, for which we created a new (ICaL only) implementation.
@@ -90,7 +87,7 @@ The index in the gating type table (which is also used as a general index for ea
 - [Mahajan et al. 2008](https://chaste.cs.ox.ac.uk/WebLab/entities/models/31/versions/f9862685af295d2875ae597451255d8a9f9eae0b) (48)
 - [Matsuoka et al. 2003](https://chaste.cs.ox.ac.uk/WebLab/entities/models/33/versions/9f763fef8fd410495a875ed344e66d249f589224) (44)
 - [McAllister et al. 1975](https://models.physiomeproject.org/exposure/60e23c3228a3e455699846704006a8fe) (6)
-- **michailova_2005** (37)
+- [Michailova et al. 2005](https://models.physiomeproject.org/exposure/720f5c67a03d513abfd43fd0027c9e41)(37)
 - [Noble et al. 1991](https://chaste.cs.ox.ac.uk/WebLab/entities/models/35/versions/daaa80c551c077849993d2d310071df88aef4670) (3)
   - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Noble et al. 1998](https://chaste.cs.ox.ac.uk/WebLab/entities/models/34/versions/ea4fb7f64829a16197c54a2efd15306573bb87f3) (21)
@@ -124,6 +121,15 @@ The index in the gating type table (which is also used as a general index for ea
   - In the available file, `f_Ca_inf` is given as `0.29 + 0.8 / (1 + (Ca_i - 1.2e-4) / 6e-5)`, this was changed to `0.29 + 0.8 / (1 + exp((Ca_i - 1.2e-4) / 6e-5))` in accordance with the published equations and Matlab and C code.
   - Similarly, the value of `g_CaL` was changed from `0.58 nS/pF` to `0.34 nS/pF` (the value for the right-atrial model variant).
 
+## Models selected for the study but only included qualitatively
+
+- Bassingthwaithe and Reuter 1972 (1)
+  - No implementation could be found
+  - The equations of this model could only be found in a [book](https://www.sciencedirect.com/book/9780122089503/electrical-phenomena-in-the-heart). The equations found here and probably inaccurate because they are unable to reproduce the published plots of steady states and time constants of activation and inactivation gate.
+  - This is the oldest reference we could find to an ICaL like model, so it has been included in this study qualitatively. 
+- Greenstein et al. 2006 (36)
+  - There was no available CellML file for this model and it was difficult to implement because of the 40 state model.  
+ 
 ## Studies using an equivalent ICaL model (not included)
 
 - [x] Earm 1990: CellML is unchanged from Hilgemann 1987
@@ -202,7 +208,7 @@ The index in the gating type table (which is also used as a general index for ea
 - [x] Fenton 2002 - Simplified model
 - [x] Greenstein 2002 - Stochastic calculation of whole-cell current
 	- Greenstein 2004, Tanskanen 2005 are equivalent
-	- Hashambhoy 2009, Hashambhoy 2010 have the have only two rate constants changed
+	- Hashambhoy 2009, Hashambhoy 2010 have only two rate constants changed
 - [x] Pandit 2003 - Diseased (and Pandit 2001)
 - [x] Garny 2003 - Simplified model
 - [x] Simitev 2006 - Simplified model
