@@ -39,6 +39,8 @@ The open probabilities of the models in Figure [Kinetic_Protocols_outliers(open_
 However, the driving force of all these models do not reverse or approach reversal potential within the physiological range of voltage. 
 This might be the reason for the prolonged high activation peaks ICaL in Figure [Kinetic_Protocols_outliers(ICaL)](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols/Kinetic_Protocols_outliers(ICaL).pdf). </br>
 
+- [Liu et al. 1993](https://scrambler.cs.ox.ac.uk/entities/models/565/versions/640e7d71267fb9c2e7bd842f8a3ff14d801c847a) this model has an exponentially increasing driving term because of which the the I-V curve for the acyivation protocol attains very high positive values. This can be seen in [this figure](https://scrambler.cs.ox.ac.uk/experiments/29364/versions/29910/outputs_Ohmic_Driving_Term_gnuplot_data.csv/displayPlotFlot).
+
 - [Priebe & Beuckelmann](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d) also has similar driving forces like the models discussed before. 
 However, the maximum open probability of this model is different from other models and approaches zero at higher test voltages of the activation protocol.
 Thus, the inconsistent driving force and open probability seem to compensate for each other to give a consistent ICaL. </br>
@@ -57,6 +59,7 @@ Figure [AP_CaT_Clamp_driving_term_outlier](https://github.com/CardiacModelling/i
 [Zhang et al. 2000](https://models.physiomeproject.org/exposure/01f6a47881da1925315d1d89d3a8d901) and 
 [Kurata et al. 2002](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986) 
 have an Ohmic driving force and the reversal potential of these models is less than the highest voltage of the AP clamp that we use in this review.
+Similarly, Liu 1993 also has a positive driving force for some of the voltage potentials used in the AP Clamp becuase of its exponentially increasing driving force discussed above. 
 [Kurata et al. 2002 (ICaL)](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986) and 
 Wilders et al. 1991 have a GHK driving force and these models have a very high contribution of the ICaL carried by potassium ions, which makes the total current positive for high voltages during the AP clamp.
 
