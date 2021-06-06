@@ -99,8 +99,8 @@ simulation inact_parent = nested {
 post-processing {
     min_LCC_inact = inact_parent:min_LCC_inact
 
-    # We normalize by the minimum current (maximum peak) across all voltages and concentrations
-    global_min = std:Min(std:Min(min_LCC_inact, 1)[1$0])[0]
+    # We normalize by the minimum current (maximum peak) across all voltages and concentrations (except last two)
+    global_min = std:Min(std:Min(min_LCC_inact, 1)[1$0][0:-2])[0]
     normalised_LCC_inact = map(lambda I: -(I)/MathML:abs(global_min), min_LCC_inact)
 
 }
