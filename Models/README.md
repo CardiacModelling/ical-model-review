@@ -196,7 +196,7 @@ The models below were all inspected but then omitted as their equations and (non
 
 The studies listed below were inspected but did not meet our inclusion criteria.
 
-- Yanagihara 1980 - SAN (mixed SI current) 
+- **Yanagihara 1980 - SAN (mixed SI current)** - shown in provenance figure 
 - Bristow 1982 - SAN (mixed SI current)
 - Irisawa 1982 - In a book and SAN
 - Kass & Sanguinetti 1982/1984 - No full model
@@ -204,11 +204,11 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Reiner 1985 - SAN (mixed SI current)
 - Egan 1987 - DN update in oxsoft, equations not given
 - Hagiwara 1988 - Partial model
-- Rasmusson 1990a - Bullfrog
+- **Rasmusson 1990a - Bullfrog** - shown in provenance figure
 - Noble 1989 - Unable to access (in book)
 - Rasmusson 1990b - Bullfrog
 - Karma 1993 - Simplified model
-- Shirokov 1993 - Unable to find full equations
+- **Shirokov 1993 - Unable to find full equations** - shown in provenance figure
 - Endresen 1997 - SAN
 - Espinosa 1998 - Unable to access
 - Rice 1999 - Stochastic model
@@ -217,7 +217,7 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Mitchell 2003 - Simplified model
 - Noble 2001 - Unable to locate manuscript
 - Fenton 2002 - Simplified model
-- Greenstein 2002 - Stochastic simulation
+- **Greenstein 2002 - Stochastic simulation** - shown in provenance figure
 - Sobie 2002 - Stochastic simulation
 - Garny 2003 - Simplified model
 - Shiferaw 2003 - Stochastic simulation
@@ -225,7 +225,7 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Tanskanen 2005 - Stochastic simulation
 - Simitev 2006 - Simplified model
 - Cherry 2007 - Simplified model
-- Grandi 2007 - Disease mopdel
+- Grandi 2007 - Disease model
 - Bueno-Orovio 2008 - Simplified model
 - Restrepo 2008 - Stochastic simulation
 - Rovetti 2010 - Stochastic simulation
