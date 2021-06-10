@@ -214,12 +214,13 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Rice 1999 - Stochastic model
 - Stern 1999 - Stochastic model
 - Endresen 2000 - Simplified model
-- Mitchell 2003 - Simplified model
+- Sun 2000 - Unable to reproduce from given equations
 - Noble 2001 - Unable to locate manuscript
 - Fenton 2002 - Simplified model
 - **Greenstein 2002 - Stochastic simulation** - shown in provenance figure
 - Sobie 2002 - Stochastic simulation
 - Garny 2003 - Simplified model
+- Mitchell 2003 - Simplified model
 - Shiferaw 2003 - Stochastic simulation
 - Greenstein 2004 - Stochastic simulation
 - Tanskanen 2005 - Stochastic simulation
