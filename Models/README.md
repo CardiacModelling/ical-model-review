@@ -229,6 +229,8 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Grandi 2007 - Disease model
 - Bueno-Orovio 2008 - Simplified model
 - Restrepo 2008 - Stochastic simulation
+- Hashambhoy 2009 - Stochastic simulation
+- Hashambhoy 2010 - Stochastic simulation
 - Rovetti 2010 - Stochastic simulation
 - Tao 2011 - Mixed Ca current
 - Nivala 2012 - Stochastic simulation
