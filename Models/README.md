@@ -121,109 +121,115 @@ The index in the gating type table (which is also used as a general index for ea
   - In the available file, `f_Ca_inf` is given as `0.29 + 0.8 / (1 + (Ca_i - 1.2e-4) / 6e-5)`, this was changed to `0.29 + 0.8 / (1 + exp((Ca_i - 1.2e-4) / 6e-5))` in accordance with the published equations and Matlab and C code.
   - Similarly, the value of `g_CaL` was changed from `0.58 nS/pF` to `0.34 nS/pF` (the value for the right-atrial model variant).
 
-## Models selected for the study but only included qualitatively
+## Models included qualitatively
+
+The oldest ICaL (or ICaL-like) model we could find equations for was by Bassingthwaithe and Reuter, and is presented in the 1972 book [Electrical phenomena of the heart](https://www.sciencedirect.com/book/9780122089503/electrical-phenomena-in-the-heart).
+No implementation of the model equations could be found online, and the equations given in the book don't match the shown figures exactly, so that we could only include this model qualitatively.
+
+A small number of studies used a model in which L-type calcium channels (LCC) and ryanodine receptors (RyR) functioned as a single coupled unit.
+These, similarly, could only be included qualitatively.
+
+Full list:
 
 - Bassingthwaithe and Reuter 1972 (1)
-  - No implementation could be found
-  - The equations of this model could only be found in a [book](https://www.sciencedirect.com/book/9780122089503/electrical-phenomena-in-the-heart). The equations found here and probably inaccurate because they are unable to reproduce the published plots of steady states and time constants of activation and inactivation gate.
-  - This is the oldest reference we could find to an ICaL like model, so it has been included in this study qualitatively. 
 - Greenstein et al. 2006 (36)
-  - There was no available CellML file for this model and it was difficult to implement because of the 40 state model. 
+- **Asakura et al. 2014** (??)
 - Himeno et al. 2015 (45)
-  - There was no available CellML file for this model and it was difficult to implement because of the coupled RyR-LCC model.  
- 
-## Studies using an equivalent ICaL model (not included)
 
-- [x] Earm 1990: CellML is unchanged from Hilgemann 1987
-- [x] Luo 1991 - Beeler 1977
-- [x] Noble 1984 - DiFrancesco 1984
-- [x] Winslow 1993 - Hilgemann 1987
-- [x] Riemer 1998 - Luo 1994
-- [x] Chudin 1999 - Zeng 1995
-- [x] Clancy 1999 - Zeng 1995
-- [x] Demir 1999 - Demir 1994, g change only
-- [x] Dumaine 1999 - Luo 1994
-- [x] Viswanathan 1999 - Luo 1994
-- [x] Faber 2000 - Luo 1994
-- [x] Greenstein 2000 - Winslow 1999
-- [x] Sakmann 2000 - Oxsoft 4.8 ICaL
-- [x] Clancy 2001 - Luo 1994
-- [x] Mazhari 2001 - Winslow 1999
-- [x] Kneller 2002 - Ramirez 2000
-- [x] Puglisi 2001 - Luo 1994
-- [ ] Bernus 2002 - Priebe 1998 (simplified model)
-- [x] Clancy 2002 - Luo 1994
-- [x] Oehmen 2002 - Demir 1994
-- [x] Seemann 2003 - Priebe 1998
-- [x] Pandit 2003 - Pandit 2001
-- [x] Sarai 2003 - Matsuoka 2003 ("Kyoto model")
-- [x] Saucerman 2003 - Jafri 1998
-- [x] Saucerman 2004 - Luo 1994
-- [x] Coutu 2005 - Winslow 1999
-- [x] Terrenoire 2005 - Nygren 1998
-- [x] Fink 2006 - Iyer 2004
-- [x] Flaim 2006 - Greenstein 2006
-- [x] Iribe 2006 - Noble 1991
-- [x] Iyer 2007 - Iyer 2004
-- [x] Livshitz 2007 (Guinea Pig) - Luo 1994
-- [x] Niederer 2007 - Pandit 2001
-- [x] Benson 2008 - Hund 2004
-- [x] Kuzomoto 2008 - Matsuoka 2003
-- [x] Saucerman 2008 - Shannon 2004
-- [x] Wang 2008 - Bondarenko 2004
-- [x] Ahrens-Nicklas 2009 - Faber 2007
-- [x] Christensen 2009 - Shaw 1997 / Luo 1994
-- [x] Gaur 2009 - Faber 2000
-- [x] Koivumaki 2009 - Bondarenk 2004, or full equations not given
-- [x] Maleckar 2009 - Nygren 1998
-- [x] Stewart 2009 - Ten Tusscher 2004
-- [x] Wolf 2010 - Bondarenko 2004
-- [x] Lemay 2011 - Faber 2007
-- [x] Pueyo 2011 - Faber & Ten Tusscher 2006
-- [x] Colman 2013 - Courtemanche 1998
-- [x] Voigt 2013 - Grandi 2011
-- [x] Schmidt 2015 - Grandi 2011
-- [x] Ni 2017 - Colman 2013
+## Unchanged ICaL
 
-## Studies not selected
+The models below were all inspected but then omitted as their equations and (non-conductance) parameters were found to be equivalent to a previous model.
 
-- [x] Yanagihara 1980 - SAN (mixed SI current) 
-- [x] Bristow 1982 - SAN (mixed SI current)
-- [x] Irisawa 1982 - In a book and SAN
-- [x] Kass & Sanguinetti 1982/1984 - No full model
-- [x] Standen & Stanfield 1982 : Stick insect skeletal muscle fibers
-- [x] Reiner 1985 - SAN (mixed SI current)
-- [x] Hadley & Hume 1987 - No model
-- [x] Egan 1987 - DN update in oxsoft, no eqs given
-- [x] Hagiwara 1988 - Partial model
-- [x] Rasmusson 1990a - Bullfrog
-- [x] Noble, DiFrancesco, Denyer 1989 -> in a book "Neuronal and Cellular Oscillators" (and SAN?)
-- [x] Rasmusson 1990b - Bullfrog
-- [x] Karma 1993 - Simplified model
-- [x] Shirokov (1993) Unable to find full equations
-- [x] Endresen 1997 - SAN
-- [x] Espinosa 1998 - Unable to access
-- [x] Rice 1999 - Spatial model
-- [x] Endresen 2000 - Simplified model
-- [x] Mitchell 2003 - Simplified model
-- [?] Noble 2001 - Remodelling of calcium dynamics in guinea-pig ventricular cells UNABLE TO FIND MANUSCRIPT
-- [x] Fenton 2002 - Simplified model
-- [x] Greenstein 2002 - Stochastic calculation of whole-cell current
-	- Greenstein 2004, Tanskanen 2005 are equivalent
-	- Hashambhoy 2009, Hashambhoy 2010 have only two rate constants changed
-- [x] Pandit 2003 - Diseased (and Pandit 2001)
-- [x] Garny 2003 - Simplified model
-- [x] Simitev 2006 - Simplified model
-- [x] Cherry 2007 - Simplified model
-- [ ] Grandi 2007 - Disease mopdel
-- [x] Iancu 2007 - No ICaL
-- [x] Bueno-Orovio 2008 - Simplified model
-- [x] Chiba 2008 - No ICaL
-- [x] Restrepo 2008 - Stochastic calculation of whole-cell current
-- [x] Xin 2008 - No ICaL
-- [x] Violin 2008 - No ICaL
-- [x] Sampson 2010 - Iyer 2004
-- [x] Tao 2011 - Mixed Ca current
-- [x] Davies 2014 - Equations not given.
+- Earm 1990 - CellML is unchanged from Hilgemann 1987
+- Luo 1991 - Beeler 1977
+- Noble 1984 - DiFrancesco 1984
+- Winslow 1993 - Hilgemann 1987
+- Riemer 1998 - Luo 1994
+- Chudin 1999 - Zeng 1995
+- Clancy 1999 - Zeng 1995
+- Demir 1999 - Demir 1994, g change only
+- Dumaine 1999 - Luo 1994
+- Viswanathan 1999 - Luo 1994
+- Faber 2000 - Luo 1994
+- Greenstein 2000 - Winslow 1999
+- Sakmann 2000 - Oxsoft 4.8 ICaL
+- Clancy 2001 - Luo 1994
+- Mazhari 2001 - Winslow 1999
+- Kneller 2002 - Ramirez 2000
+- Puglisi 2001 - Luo 1994
+- Bernus 2002 - Priebe 1998 (simplified model)
+- Clancy 2002 - Luo 1994
+- Oehmen 2002 - Demir 1994
+- Seemann 2003 - Priebe 1998
+- Pandit 2003 - Pandit 2001
+- Sarai 2003 - Matsuoka 2003 ("Kyoto model")
+- Saucerman 2003 - Jafri 1998
+- Saucerman 2004 - Luo 1994
+- Coutu 2005 - Winslow 1999
+- Terrenoire 2005 - Nygren 1998
+- Fink 2006 - Iyer 2004
+- Flaim 2006 - Greenstein 2006
+- Iribe 2006 - Noble 1991
+- Iyer 2007 - Iyer 2004
+- Livshitz 2007 (Guinea Pig) - Luo 1994
+- Niederer 2007 - Pandit 2001
+- Benson 2008 - Hund 2004
+- Kuzomoto 2008 - Matsuoka 2003
+- Saucerman 2008 - Shannon 2004
+- Wang 2008 - Bondarenko 2004
+- Ahrens-Nicklas 2009 - Faber 2007
+- Christensen 2009 - Shaw 1997 / Luo 1994
+- Gaur 2009 - Faber 2000
+- Koivumaki 2009 - Bondarenko 2004, or full equations not given
+- Maleckar 2009 - Nygren 1998
+- Stewart 2009 - Ten Tusscher 2004
+- Sampson 2010 - Iyer 2004
+- Wolf 2010 - Bondarenko 2004
+- Lemay 2011 - Faber 2007
+- Pueyo 2011 - Faber & Ten Tusscher 2006
+- Colman 2013 - Courtemanche 1998
+- Voigt 2013 - Grandi 2011
+- Schmidt 2015 - Grandi 2011
+- Ni 2017 - Colman 2013
 
+## Not included
+
+The studies listed below were inspected but did not meet our inclusion criteria.
+
+- Yanagihara 1980 - SAN (mixed SI current) 
+- Bristow 1982 - SAN (mixed SI current)
+- Irisawa 1982 - In a book and SAN
+- Kass & Sanguinetti 1982/1984 - No full model
+- Standen & Stanfield 1982 - Stick insect skeletal muscle fibers
+- Reiner 1985 - SAN (mixed SI current)
+- Egan 1987 - DN update in oxsoft, equations not given
+- Hagiwara 1988 - Partial model
+- Rasmusson 1990a - Bullfrog
+- Noble 1989 - Unable to access (in book)
+- Rasmusson 1990b - Bullfrog
+- Karma 1993 - Simplified model
+- Shirokov 1993 - Unable to find full equations
+- Endresen 1997 - SAN
+- Espinosa 1998 - Unable to access
+- Rice 1999 - Stochastic model
+- Stern 1999 - Stochastic model
+- Endresen 2000 - Simplified model
+- Mitchell 2003 - Simplified model
+- Noble 2001 - Unable to locate manuscript
+- Fenton 2002 - Simplified model
+- Greenstein 2002 - Stochastic simulation
+- Sobie 2002 - Stochastic simulation
+- Garny 2003 - Simplified model
+- Shiferaw 2003 - Stochastic simulation
+- Greenstein 2004 - Stochastic simulation
+- Tanskanen 2005 - Stochastic simulation
+- Simitev 2006 - Simplified model
+- Cherry 2007 - Simplified model
+- Grandi 2007 - Disease mopdel
+- Bueno-Orovio 2008 - Simplified model
+- Restrepo 2008 - Stochastic simulation
+- Rovetti 2010 - Stochastic simulation
+- Tao 2011 - Mixed Ca current
+- Nivala 2012 - Stochastic simulation
+- Davies 2014 - Equations not given
 
