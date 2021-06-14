@@ -53,10 +53,6 @@ The index in the gating type table (which is also used as a general index for ea
    - The CellML implementation for this model is based on the OXSOFT HEART source code, which corrects some of the published equations.
    - This model contains variables representing the inactivated fraction `F` instead of the more conventional recovered fraction `f = 1 - F`.
    - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
-- [Hinch et al. 2004](https://models.physiomeproject.org/exposure/8e1a590fb82a2cab5284502b430c4a4f) (38)
-  - In the available file, the denominator of the flux `J_Loo` is given as `1 + J_R / g_D + (FVRT_Ca * J_L / g_D) / (1 - exp(FVRT_Ca))`.
-  - This has been changed to `1 + J_R / g_D + (FVRT_Ca * J_L / g_D) / (1 - exp^(-FVRT_Ca))` in accordance with the published equations.
-  - For the purposes of this study, we further modified `I_CaL` to represent current in Amperes rather than flux, and blocked the RyR and SERCA currents.
 - [Hund & Rudy 2004](https://chaste.cs.ox.ac.uk/WebLab/entities/models/72/versions/bd9b7bb2cf9d96abe1f6299a83da1ed9b1b013fb) (51)
 - Hund et al. 2008 (ICaL only): New implementation. (55)
 - [Inada et al. 2009](https://models.physiomeproject.org/exposure/08bcead2dc05cf2709a598e7f61a6182) (50)
@@ -126,16 +122,24 @@ The index in the gating type table (which is also used as a general index for ea
 The oldest ICaL (or ICaL-like) model we could find equations for was by Bassingthwaithe and Reuter, and is presented in the 1972 book [Electrical phenomena of the heart](https://www.sciencedirect.com/book/9780122089503/electrical-phenomena-in-the-heart).
 No implementation of the model equations could be found online, and the equations given in the book don't match the shown figures exactly, so that we could only include this model qualitatively.
 
-A small number of studies used a model in which L-type calcium channels (LCC) and ryanodine receptors (RyR) functioned as a single coupled unit.
+A small number of studies used a model in which L-type calcium channels (LCC) and ryanodine receptors (RyR) functioned as a single coupled calcium release unit (CRU).
 These, similarly, could only be included qualitatively.
 
 Full list:
 
-- Bassingthwaithe and Reuter 1972 (1)
-- Greenstein et al. 2006 (36)
-- **Asakura et al. 2014** (??)
-- Himeno et al. 2015 (45)
-
+- Bassingthwaithe and Reuter 1972 - Equations do not reproduce the published figures 
+- [Rice et al. 1999](https://models.physiomeproject.org/exposure/0aaab0a02a6ad97c8a37b2fe4a345e7c) - The file is missing initial values
+  - Initial values not published
+- Greenstein 2002 - Stochastic simulation
+- [Hinch et al. 2004](https://models.physiomeproject.org/exposure/8e1a590fb82a2cab5284502b430c4a4f) - CRU
+  - In the available file, the denominator of the flux `J_Loo` is given as `1 + J_R / g_D + (FVRT_Ca * J_L / g_D) / (1 - exp(FVRT_Ca))`.
+  - This should be corrected to `1 + J_R / g_D + (FVRT_Ca * J_L / g_D) / (1 - exp^(-FVRT_Ca))` in accordance with the published equations.
+- Greenstein et al. 2006 - CRU
+- Restrepo et al. 2008 - Stochastic simulation
+- Hashambhoy et al. 2009 - Stochastic simulation
+- Nivala et al. 2012 - Stochastic simulation
+- Asakura et al. 2014 - CRU
+- Himeno et al. 2015 - CRU
 ## Unchanged ICaL
 
 The models below were all inspected but then omitted as their equations and (non-conductance) parameters were found to be equivalent to a previous model.
@@ -164,8 +168,10 @@ The models below were all inspected but then omitted as their equations and (non
 - Pandit 2003 - Pandit 2001
 - Sarai 2003 - Matsuoka 2003 ("Kyoto model")
 - Saucerman 2003 - Jafri 1998
+- Greenstein 2004 - Greenstein 2002 
 - Saucerman 2004 - Luo 1994
 - Coutu 2005 - Winslow 1999
+- Tanskanen 2005 - Greenstein 2002
 - Terrenoire 2005 - Nygren 1998
 - Fink 2006 - Iyer 2004
 - Flaim 2006 - Greenstein 2006
@@ -183,6 +189,7 @@ The models below were all inspected but then omitted as their equations and (non
 - Koivumaki 2009 - Bondarenko 2004, or full equations not given
 - Maleckar 2009 - Nygren 1998
 - Stewart 2009 - Ten Tusscher 2004
+- Rovetti 2010 - Hinch 2004
 - Sampson 2010 - Iyer 2004
 - Wolf 2010 - Bondarenko 2004
 - Lemay 2011 - Faber 2007
@@ -211,28 +218,19 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - **Shirokov 1993 - Unable to find full equations** - shown in provenance figure
 - Endresen 1997 - SAN
 - Espinosa 1998 - Unable to access
-- Rice 1999 - Stochastic model
-- Stern 1999 - Stochastic model
+- Stern 1999 - Full equations not available
 - Endresen 2000 - Simplified model
 - Sun 2000 - Unable to reproduce from given equations
 - Noble 2001 - Unable to locate manuscript
 - Fenton 2002 - Simplified model
-- **Greenstein 2002 - Stochastic simulation** - shown in provenance figure
-- Sobie 2002 - Stochastic simulation
+- Sobie 2002 - Full equations not available
 - Garny 2003 - Simplified model
 - Mitchell 2003 - Simplified model
-- Shiferaw 2003 - Stochastic simulation
-- Greenstein 2004 - Stochastic simulation
-- Tanskanen 2005 - Stochastic simulation
+- Shiferaw et al. 2008 - Simplified model
 - Simitev 2006 - Simplified model
 - Cherry 2007 - Simplified model
 - Grandi 2007 - Disease model
 - Bueno-Orovio 2008 - Simplified model
-- Restrepo 2008 - Stochastic simulation
-- Hashambhoy 2009 - Stochastic simulation
-- Hashambhoy 2010 - Stochastic simulation
-- Rovetti 2010 - Stochastic simulation
 - Tao 2011 - Mixed Ca current
-- Nivala 2012 - Stochastic simulation
 - Davies 2014 - Equations not given
 
