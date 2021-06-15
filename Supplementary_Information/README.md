@@ -20,7 +20,7 @@ The [Kinetic_Protocols_outliers(open_prob)](https://github.com/CardiacModelling/
 <em>Right</em>: The normalised open probability from the inactivation protocol </br>
 The normalisation was performed to accommodate for those models that do not fully open or those that have an open probability greater than one.
 This normalisation was performed by dividing the peak open probability with the maximum peak.
-**Note** : [Hinch et al. 2004 (ICaL)](https://models.physiomeproject.org/exposure/8e1a590fb82a2cab5284502b430c4a4f) is not included in this figure because it does not have a distinct open probability. </br>
+</br>
 Highlighted models have characteristics that are different from the standard behaviour of the models and are discussed in the text. **URL to WL Experiment here** </br>
 </br>
 
@@ -44,12 +44,6 @@ This might be the reason for the prolonged high activation peaks ICaL in Figure 
 - [Priebe & Beuckelmann](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d) also has similar driving forces like the models discussed before. 
 However, the maximum open probability of this model is different from other models and approaches zero at higher test voltages of the activation protocol.
 Thus, the inconsistent driving force and open probability seem to compensate for each other to give a consistent ICaL. </br>
-
-- [Hinch et al. 2004 (ICaL)](https://models.physiomeproject.org/exposure/8e1a590fb82a2cab5284502b430c4a4f) is a coupled Ryadonine Receptor and ICaL model.
-This model does not inactivate for our experimental conditions as shown in Figure [Kinetic_Protocols_outliers(ICaL)](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols/Kinetic_Protocols_outliers(ICaL).pdf).
-However this model inactivates at calcium concentrations of 0.1\,$\mu$M and higher.
-This model is localised in the dyadic space, however the mathematical model calculates this concentration using the cytosolic and sarcoplasmic reticulum (SR) calcium concentrations.
-
 
 ## Action Potential Clamp Protocol
 
