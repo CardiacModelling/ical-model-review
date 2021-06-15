@@ -225,6 +225,7 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Fenton 2002 - Simplified model
 - Sobie 2002 - Full equations not available
 - Garny 2003 - Simplified model
+- Hirano 2003 - Unable to find full equations
 - Mitchell 2003 - Simplified model
 - Shiferaw et al. 2008 - Simplified model
 - Simitev 2006 - Simplified model
