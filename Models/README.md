@@ -191,6 +191,7 @@ The models below were all inspected but then omitted as their equations and (non
 - Stewart 2009 - Ten Tusscher 2004
 - Rovetti 2010 - Hinch 2004
 - Sampson 2010 - Iyer 2004
+- Soltis 2010 - Mahajan 2008
 - Wolf 2010 - Bondarenko 2004
 - Lemay 2011 - Faber 2007
 - Pueyo 2011 - Faber & Ten Tusscher 2006
@@ -217,6 +218,7 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Karma 1993 - Simplified model
 - **Shirokov 1993 - Unable to find full equations** - shown in provenance figure
 - Endresen 1997 - SAN
+- Ferreira 1997 - No full model
 - Espinosa 1998 - Unable to access
 - Stern 1999 - Full equations not available
 - Endresen 2000 - Simplified model
@@ -227,6 +229,7 @@ The studies listed below were inspected but did not meet our inclusion criteria.
 - Garny 2003 - Simplified model
 - Hirano 2003 - Unable to find full equations
 - Mitchell 2003 - Simplified model
+- Miyoshi 2003 - Unable to find full equations
 - Shiferaw et al. 2008 - Simplified model
 - Simitev 2006 - Simplified model
 - Cherry 2007 - Simplified model

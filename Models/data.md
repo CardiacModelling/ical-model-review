@@ -11,6 +11,7 @@
 - Noma, Shibasaki (1985) Membrane current through adenosine-triphosphate–regulated potassium channels in guinea-pig ventricular cells
 - Cavalie, Pelzer, Trautwein (1986) Fast and slow gating behaviour of single calcium channels in cardiac cells; Relation to activation and inactivation of calcium-channel current
 - McDonald, Cavalie, Trautwein, Pelzer (1986) Voltage-dependent properties of macroscopic and elementary calcium channel currents in guinea pig ventricular myocytes
+- Tseng (1988) Calcium current restitution in mammalian ventricular myocytes is modulated by intracellular calcium
 - Hadley, Lederer (1991) Ca and voltage inactivate Ca channels in guinea‐pig ventricular myocytes through independent mechanisms
 - Hadley, Lederer (1991) Properties of L-type calcium channel gating current in isolated guinea pig ventricular myocytes
 - Rose, Balke, Wier, Marban (1992) Macroscopic and unitary properties of physiological ion flux through L-type Ca channels in guinea-pig heart cells
@@ -51,9 +52,11 @@
 - Magyar, Iost et al., Nanasi (2000) Effects of endothelin-1 on calcium and potassium currents in undiseased human ventricular myocytes
 - Magyar, Szentandrassy et al., Nanasi (2002) Effects of thymol on calcium and potassium currents in canine and human ventricular myocytes
 - Fulop, Banyasz et al., (2004) Reopening of L-type calcium channels in human ventricular myocytes during applied epicardial action potentials
+- O'Hara, Virag, Varro, Rudy (2011) Simulation of the Undiseased Human Cardiac Ventricular Action Potential; Model Formulation and Experimental Validation
 
 ## Dog
 - Tseng, Robinson, Hoffman (1987) Passive properties and membrane currents of canine ventricular myocytes
+- Tseng (1988) Calcium current restitution in mammalian ventricular myocytes is modulated by intracellular calcium
 - Hirano, Fozzard, January (1989) Characteristics of L- and T-type Ca currents in canine cardiac Purkinje cells
 - Aggarwal, Boyden (1995) Diminished Ca and Ba currents in myocytes surviving in the epicardial border zone of the 5-day infracted canine heart
 - Aggarwal, Boyden (1996) Altered pharmacologic responsiveness of reduced L-type calcium currents in myocytes surviving in the infarcted heart
@@ -78,4 +81,5 @@
 - Nawrath, Wegener (1997) Kinetics and state-dependent effects of verapamil on cardiac L-type calcium channels
 - Katsube, Yokoshiki et al., Sperelakis (1998) L-type Ca currents in ventricular myocytes from neonatal and adult rats
 - Sun, Fan, Clark, Palade (2000) A model of the L‐type Ca channel in rat ventricular myocytes; ion selectivity and inactivation mechanisms
+- Zahradnikova, Kubalova et al., Zahradnik (2004) Activation of calcium release assessed by calcium release-induced inactivation of calcium current in rat cardiac myocytes
 
