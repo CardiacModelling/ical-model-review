@@ -18,7 +18,7 @@ This repository contains all protocols, models, codes, figure generating files a
 - [Figure 12](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/chronology_panel.pdf) and [Figure 13](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/calcium_localization.pdf)
 	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(inherent%20localization)).
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp).
-- [Figure 14](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/ICal_All/I_CaL_AP_CaT_Clamp_normalize.pdf)
+- [Figure 14](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/ic50_histogram.pdf)
 	- Protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Python).
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/ic50).
 
