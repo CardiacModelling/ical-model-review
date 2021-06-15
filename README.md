@@ -6,27 +6,21 @@ This repository contains all protocols, models, codes, figure generating files a
 - [Figure 5](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Driving_term/Driving_Term_Voltage_dependence.pdf)
 	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Driving_Term_Range).
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Driving_term).
-- Protocols
-	- Web Lab
-		- [Kinetic Protocols](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Kinetic_Protcols)
-		- Action Potential and Calcium Transient
-			- [Action Potential Clamp](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20Clamp)
-			- [Action Potential and Calcium Transient Clamp (bulk cytosol localization)](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(bulk%20cytosol_localization))
-			- [Action Potential and Calcium Transient Clamp (inherent localization)](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(inherent%20localization))
-		- [Calcium-dependent Inactivation](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Calcium-dependent%20inactivation)
-		- [Driving Term Range](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Driving_Term_Range)
-	- Python
-		- [IC50](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Python)
-- Figures, and figure generating files
-	- [Kinetic Protocols](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols)
-	- Calcium Sensitivity
-		- [Comparison of inactivation levels at different concentrations](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/CDI)
-		- [Comparison of calcium concentration to bring about 50% drop in inactivation peak](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/ic50)
-	- [Action Potential and Calcium Transient Clamps](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp)
-	- [Driving Term](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Driving_term)
-	- [Calcium Transient](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_transient)
-	- [Python scripts to calculate RMSD and NRMSD](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/python_scripts)
-- [Further supplementary materials](https://github.com/CardiacModelling/ical-review/blob/master/Supplementary_Information/README.md)
+- [Figure 6](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Kinetic_protocols/activation_panel.pdf), [Figure 7](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Kinetic_protocols/inactivation_panel.pdf), and [Figure 9](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Kinetic_protocols/recovery_panel.pdf)
+	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Kinetic_Protcols).
+	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols).
+- [Figure 8](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/CDI/calcium_sensitivity.pdf)
+	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Calcium-dependent%20inactivation).
+	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/CDI).
+- [Figure 11](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/ICal_All/I_CaL_AP_CaT_Clamp_normalize.pdf)
+	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps).
+	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp/ICal_All).
+- [Figure 12](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/chronology_panel.pdf) and [Figure 13](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/calcium_localization.pdf)
+	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Action_Potential_Clamps/AP%20CaT%20Clamp%20(inherent%20localization)).
+	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp).
+- [Figure 14](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/ICal_All/I_CaL_AP_CaT_Clamp_normalize.pdf)
+	- Protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Python).
+	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/ic50).
 
 ## Software
 - **Web Lab** Simulations were run using the Cardiac Electrophysiology Web Lab.
