@@ -1,0 +1,552 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="sato_2006">
+  <units name="A_per_F">
+    <unit units="gram" multiplier="1000"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-4.0"/>
+    <unit units="ampere" exponent="-1.0"/>
+  </units>
+  <units name="C_per_mmol">
+    <unit units="second" multiplier="1000"/>
+    <unit units="ampere"/>
+    <unit units="mole" exponent="-1.0"/>
+  </units>
+  <units name="J_per_mol_per_K">
+    <unit units="gram" multiplier="1000"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-2.0"/>
+    <unit units="kelvin" exponent="-1.0"/>
+    <unit units="mole" exponent="-1.0"/>
+  </units>
+  <units name="mM">
+    <unit units="metre" exponent="-3.0"/>
+    <unit units="mole"/>
+  </units>
+  <units name="mV">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-3.0"/>
+    <unit units="ampere" exponent="-1.0"/>
+  </units>
+  <units name="mol_per_m3_per_s">
+    <unit units="metre" exponent="-3.0"/>
+    <unit units="second" exponent="-1.0"/>
+    <unit units="mole"/>
+  </units>
+  <units name="mol_per_s2_per_A_times_1e_minus_3">
+    <unit units="second" exponent="-2.0" multiplier="0.001"/>
+    <unit units="ampere" exponent="-1.0"/>
+    <unit units="mole"/>
+  </units>
+  <units name="ms">
+    <unit units="second" multiplier="0.001"/>
+  </units>
+  <units name="s_A_per_m3_times_1e3">
+    <unit units="metre" exponent="-3.0" multiplier="1000"/>
+    <unit units="second"/>
+    <unit units="ampere"/>
+  </units>
+  <units name="uF">
+    <unit units="gram" exponent="-1.0" multiplier="1e-09"/>
+    <unit units="metre" exponent="-2.0"/>
+    <unit units="second" exponent="4.0"/>
+    <unit units="ampere" exponent="2.0"/>
+  </units>
+  <units name="uF_per_cm2">
+    <unit units="gram" exponent="-1.0" multiplier="1e-05"/>
+    <unit units="metre" exponent="-4.0"/>
+    <unit units="second" exponent="4.0"/>
+    <unit units="ampere" exponent="2.0"/>
+  </units>
+  <units name="uL">
+    <unit units="metre" exponent="3.0" multiplier="1e-09"/>
+  </units>
+  <component name="L_type_Ca_current">
+    <variable name="C_sc" units="uF_per_cm2" initial_value="1.0"/>
+    <variable name="Ca_o" units="mM" public_interface="in"/>
+    <variable name="Ca_s" units="mM" public_interface="in"/>
+    <variable name="Cm" units="uF" public_interface="in"/>
+    <variable name="F" units="C_per_mmol" public_interface="in"/>
+    <variable name="ICa" units="A_per_F" cmeta:id="L_type_Ca_current_ICa"/>
+    <variable name="JCa" units="mol_per_m3_per_s"/>
+    <variable name="Open_prob" units="dimensionless" cmeta:id="Open_prob"/>
+    <variable name="R" units="J_per_mol_per_K" public_interface="in"/>
+    <variable name="T" units="kelvin" public_interface="in"/>
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="Vi" units="uL" initial_value="2.58e-05"/>
+    <variable name="d" units="dimensionless" public_interface="in"/>
+    <variable name="driving_term_ghk" units="s_A_per_m3_times_1e3" cmeta:id="driving_term_ghk"/>
+    <variable name="f" units="dimensionless" public_interface="in"/>
+    <variable name="f_Ca" units="dimensionless" public_interface="in"/>
+    <variable name="gCa" units="mol_per_s2_per_A_times_1e_minus_3" initial_value="0.00146"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>ICa</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <cn cellml:units="dimensionless">2.0</cn>
+            </apply>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci>F</ci>
+                <ci>Vi</ci>
+              </apply>
+              <ci>Cm</ci>
+            </apply>
+          </apply>
+          <ci>JCa</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>JCa</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <apply>
+              <minus/>
+              <ci>gCa</ci>
+            </apply>
+            <ci>Open_prob</ci>
+          </apply>
+          <ci>driving_term_ghk</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>Open_prob</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>f</ci>
+            <ci>d</ci>
+          </apply>
+          <ci>f_Ca</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>driving_term_ghk</ci>
+        <apply>
+          <divide/>
+          <apply>
+            <times/>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <cn cellml:units="dimensionless">4.0</cn>
+                  <ci>V</ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci>F</ci>
+                  <cn cellml:units="dimensionless">2.0</cn>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci>R</ci>
+                <ci>T</ci>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci>Ca_s</ci>
+                <apply>
+                  <exp/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <times/>
+                        <cn cellml:units="dimensionless">2.0</cn>
+                        <ci>V</ci>
+                      </apply>
+                      <ci>F</ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci>R</ci>
+                      <ci>T</ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <cn cellml:units="dimensionless">0.341</cn>
+                <ci>Ca_o</ci>
+              </apply>
+            </apply>
+          </apply>
+          <apply>
+            <minus/>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <times/>
+                    <cn cellml:units="dimensionless">2.0</cn>
+                    <ci>V</ci>
+                  </apply>
+                  <ci>F</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>R</ci>
+                  <ci>T</ci>
+                </apply>
+              </apply>
+            </apply>
+            <cn cellml:units="dimensionless">1.0</cn>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="L_type_Ca_current_d_gate">
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="d" units="dimensionless" public_interface="out" initial_value="0.0001"/>
+    <variable name="d_infinity" units="dimensionless"/>
+    <variable name="tau_d" units="ms" initial_value="5.0"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>d</ci>
+        </apply>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci>d_infinity</ci>
+            <ci>d</ci>
+          </apply>
+          <ci>tau_d</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>d_infinity</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <plus/>
+                  <ci>V</ci>
+                  <cn cellml:units="mV">5.0</cn>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn cellml:units="mV">6.24</cn>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="L_type_Ca_current_f_Ca_gate">
+    <variable name="Ca_s" units="mM" public_interface="in"/>
+    <variable name="K_mfCa" units="mM" initial_value="0.001"/>
+    <variable name="f_Ca" units="dimensionless" public_interface="out" initial_value="0.942"/>
+    <variable name="f_Ca_infinity" units="dimensionless"/>
+    <variable name="tau_f_Ca" units="ms" initial_value="20.0"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>f_Ca</ci>
+        </apply>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci>f_Ca_infinity</ci>
+            <ci>f_Ca</ci>
+          </apply>
+          <ci>tau_f_Ca</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>f_Ca_infinity</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <power/>
+              <apply>
+                <divide/>
+                <ci>Ca_s</ci>
+                <ci>K_mfCa</ci>
+              </apply>
+              <cn cellml:units="dimensionless">0.7</cn>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="L_type_Ca_current_f_gate">
+    <variable name="V" units="mV" public_interface="in"/>
+    <variable name="f" units="dimensionless" public_interface="out" initial_value="0.983"/>
+    <variable name="f_infinity" units="dimensionless"/>
+    <variable name="tau_f" units="ms" initial_value="55.0"/>
+    <variable name="time" units="ms" public_interface="in"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>f</ci>
+        </apply>
+        <apply>
+          <divide/>
+          <apply>
+            <minus/>
+            <ci>f_infinity</ci>
+            <ci>f</ci>
+          </apply>
+          <ci>tau_f</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>f_infinity</ci>
+        <apply>
+          <divide/>
+          <cn cellml:units="dimensionless">1.0</cn>
+          <apply>
+            <plus/>
+            <cn cellml:units="dimensionless">1.0</cn>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <plus/>
+                  <ci>V</ci>
+                  <cn cellml:units="mV">35.0</cn>
+                </apply>
+                <cn cellml:units="mV">8.6</cn>
+              </apply>
+            </apply>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="calcium_dynamics">
+    <variable name="Ca_s" units="mM" public_interface="out" initial_value="0.0" cmeta:id="calcium_dynamics_Ca_s"/>
+  </component>
+  <component name="environment">
+    <variable name="time" units="ms" public_interface="out" cmeta:id="time"/>
+  </component>
+  <component name="membrane">
+    <variable name="Cm" units="uF" public_interface="out" initial_value="0.000166" cmeta:id="membrane_Cm"/>
+    <variable name="F" units="C_per_mmol" public_interface="out" initial_value="96.5"/>
+    <variable name="R" units="J_per_mol_per_K" public_interface="out" initial_value="8.314"/>
+    <variable name="T" units="kelvin" public_interface="out" initial_value="310.0"/>
+    <variable name="V" units="mV" public_interface="out" cmeta:id="V"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>V</ci>
+        <apply>
+          <minus/>
+          <cn cellml:units="dimensionless">90.0</cn>
+        </apply>
+      </apply>
+    </math>
+  </component>
+  <component name="standard_ionic_concentrations">
+    <variable name="Ca_o" units="mM" public_interface="out" initial_value="2.0" cmeta:id="Ca_o"/>
+    <variable name="K_i" units="mM" initial_value="149.4" cmeta:id="K_i"/>
+    <variable name="K_o" units="mM" initial_value="4.0" cmeta:id="K_o"/>
+    <variable name="Na_i" units="mM" initial_value="10.0" cmeta:id="Na_i"/>
+    <variable name="Na_o" units="mM" initial_value="138.0" cmeta:id="Na_o"/>
+  </component>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="L_type_Ca_current_d_gate"/>
+    <map_variables variable_1="d" variable_2="d"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="L_type_Ca_current_f_Ca_gate"/>
+    <map_variables variable_1="f_Ca" variable_2="f_Ca"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="L_type_Ca_current_f_gate"/>
+    <map_variables variable_1="f" variable_2="f"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="calcium_dynamics"/>
+    <map_variables variable_1="Ca_s" variable_2="Ca_s"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="membrane"/>
+    <map_variables variable_1="Cm" variable_2="Cm"/>
+    <map_variables variable_1="F" variable_2="F"/>
+    <map_variables variable_1="R" variable_2="R"/>
+    <map_variables variable_1="T" variable_2="T"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current" component_2="standard_ionic_concentrations"/>
+    <map_variables variable_1="Ca_o" variable_2="Ca_o"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current_d_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current_d_gate" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current_f_Ca_gate" component_2="calcium_dynamics"/>
+    <map_variables variable_1="Ca_s" variable_2="Ca_s"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current_f_Ca_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current_f_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="L_type_Ca_current_f_gate" component_2="membrane"/>
+    <map_variables variable_1="V" variable_2="V"/>
+  </connection>
+  
+
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:Description rdf:about="#Ca_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#K_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#K_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Na_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Na_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Open_prob">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+</rdf:Description>
+<rdf:Description rdf:about="#V">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+</rdf:Description>
+<rdf:Description rdf:about="#driving_term_ghk">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
+</rdf:Description>
+<rdf:Description rdf:about="#time">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+</rdf:Description><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_on">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#delta_max">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_d">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_time">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_voltage">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cass">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cad">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cai">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#conductance_scale_factor">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#holding">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmax">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmin">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:temp-names#membrane_total_sodium_current">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation>
+<rdf:Description rdf:about="#L_type_Ca_current_ICa">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_Cm">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_dynamics_Ca_s">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration"/>
+</rdf:Description>
+</rdf:RDF></model>
