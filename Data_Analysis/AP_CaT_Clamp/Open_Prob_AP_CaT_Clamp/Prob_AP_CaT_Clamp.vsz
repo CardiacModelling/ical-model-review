@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-06-06T17:58:30.960808
+# Saved at 2021-06-21T17:34:04.446893
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\AP_CaT_Clamp\\Open_Prob_AP_CaT_Clamp')
 ImportFileCSV(u'outputs_Open_Probability_gnuplot_data.csv', linked=True, numericlocale=u'en_IN')
@@ -7349,7 +7349,7 @@ Set('TickLabels/color', u'transparent')
 To('..')
 Add('label', name=u'label', autoadd=False)
 To(u'label')
-Set('label', u'Type M')
+Set('label', u'Type L')
 Set('xPos', [0.33])
 Set('yPos', [1.05])
 Set('Text/font', u'Arial')

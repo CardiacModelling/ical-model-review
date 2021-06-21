@@ -75,7 +75,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "O",
+            "gating": "N",
             "localisation": "8",
             "time_publication": "2009"
         }
@@ -147,7 +147,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "M",
+            "gating": "L",
             "localisation": "8",
             "time_publication": "2004"
         }
@@ -156,7 +156,7 @@
         {
             "species": "rabbit",
             "cell": "avn",
-            "gating": "L",
+            "gating": "F",
             "localisation": "1",
             "time_publication": "2009"
         }
@@ -201,7 +201,7 @@
         {
             "species": "canine",
             "cell": "purkinje",
-            "gating": "M",
+            "gating": "L",
             "localisation": "8",
             "time_publication": "2011"
         }
@@ -219,7 +219,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "M",
+            "gating": "L",
             "localisation": "8",
             "time_publication": "2007"
         }
@@ -309,7 +309,7 @@
         {
             "species": "ipsc-cm",
             "cell": "atrial",
-            "gating": "N",
+            "gating": "M",
             "localisation": "6",
             "time_publication": "2013"
         }
@@ -363,7 +363,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "N",
+            "gating": "M",
             "localisation": "8",
             "time_publication": "2006"
         }
@@ -444,7 +444,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "O",
+            "gating": "N",
             "localisation": "8",
             "time_publication": "2011"
         }
@@ -462,7 +462,7 @@
         {
             "species": "human",
             "cell": "ventricle",
-            "gating": "N",
+            "gating": "M",
             "localisation": "8",
             "time_publication": "2008"
         }
@@ -480,7 +480,7 @@
         {
             "species": "human",
             "cell": "atrial",
-            "gating": "N",
+            "gating": "M",
             "localisation": "5",
             "time_publication": "2011"
         }
@@ -534,7 +534,7 @@
         {
             "species": "canine",
             "cell": "ventricle",
-            "gating": "M",
+            "gating": "L",
             "localisation": "6",
             "time_publication": "2008"
         }
