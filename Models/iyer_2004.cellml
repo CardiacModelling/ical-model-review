@@ -4632,7 +4632,6 @@
                 <ci>VFsq_over_RT</ci>
                 <apply>
                     <times/>
-                    <cn cellml:units="dimensionless">1000</cn>
                     <ci>Faraday</ci>
                     <ci>VF_over_RT</ci>
                 </apply>

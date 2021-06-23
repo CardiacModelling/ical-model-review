@@ -69,7 +69,7 @@ model interface {
     optional oxmeta:cytosolic_potassium_concentration
     clamp oxmeta:cytosolic_potassium_concentration to 140 :: mM
     optional oxmeta:cytosolic_calcium_concentration
-    clamp oxmeta:cytosolic_calcium_concentration to 0.000000001 :: mM 
+    clamp oxmeta:cytosolic_calcium_concentration to 0.0001 :: mM 
 
 	optional oxmeta:dyadic_space_sodium_concentration  
 	clamp oxmeta:dyadic_space_sodium_concentration to 10 :: mM 
@@ -78,7 +78,7 @@ model interface {
 	clamp oxmeta:dyadic_space_potassium_concentration to 140 :: mM 
 	
 	optional oxmeta:dyadic_space_calcium_concentration  
-	clamp oxmeta:dyadic_space_calcium_concentration to 0.000000001 :: mM 
+	clamp oxmeta:dyadic_space_calcium_concentration to 0.0001 :: mM 
 	
 	optional oxmeta:submembrane_space_sodium_concentration
 	clamp oxmeta:submembrane_space_sodium_concentration to 10 :: mM 
@@ -87,7 +87,7 @@ model interface {
 	clamp oxmeta:submembrane_space_potassium_concentration to 140 :: mM 
 	
 	optional oxmeta:submembrane_space_calcium_concentration  
-	clamp oxmeta:submembrane_space_calcium_concentration to 0.000000001 :: mM 
+	clamp oxmeta:submembrane_space_calcium_concentration to 0.0001 :: mM 
     
     optional oxmeta:cytosolic_chloride_concentration
     optional oxmeta:submembrane_space_chloride_concentration 
