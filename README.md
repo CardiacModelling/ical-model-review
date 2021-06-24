@@ -30,7 +30,7 @@ This repository contains all protocols, models, codes, figure generating files a
   PINTS can be installed using the instructions on [https://github.com/pints-team/pints](https://github.com/pints-team/pints).
   The other dependencies can be installed with `pip`, e.g. `pip install myokit` (or `pip3 install myokit` for some python 3 environments).
 - **CellML** All model files are available in the CellML format.
-  You can find out more about CellML from [doi: 10.3389/fphys.2015.00026](https://www.frontiersin.org/articles/10.3389/fphys.2015.00026/full).
+  You can find out more about CellML from [cellml.org](https://www.cellml.org/).
 - **Veusz** We have used this scientific plotting and graphing program to generate the figures for this work.
   This can be download from [https://veusz.github.io/](https://veusz.github.io/download/).
 
