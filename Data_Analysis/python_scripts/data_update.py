@@ -57,7 +57,7 @@ class calculate_kinetic_paramters():
         screened_columns = [x for x in range(1, no_of_columns, 2)]
         screened_data = data.iloc[:,screened_columns]
         
-        self.averaged_data = 2 * screened_data.sum(axis = 1)/ no_of_columns # no of columns includes the voltage/ time columns as well
+        self.averaged_data = screened_data.median(axis = 1) # no of columns includes the voltage/ time columns as well
         self.xaxis = data.iloc[:,0]
 
     def activation(self):
@@ -145,13 +145,7 @@ class calculate_kinetic_paramters():
         return popt
 
 
-filename = 'Kinetic_protocols/data/activation.csv'
+filename = 'Kinetic_protocols/data/recovery.csv'
 y = calculate_kinetic_paramters(filename)
-answer = y.activation()
+answer = y.recovery()
 print(answer)    
-
-#filename_main = '../activation.csv'
-#filename_new = '../file.csv'
-
-#Update = update_csv(filename_main, filename_new)
-#Update.update_model_output()
