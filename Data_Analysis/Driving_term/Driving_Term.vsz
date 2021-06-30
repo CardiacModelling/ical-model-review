@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-06-23T09:16:02.392971
+# Saved at 2021-06-29T19:46:24.010091
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\Driving_term')
 ImportFileCSV(u'outputs_GHK_Driving_Term_gnuplot_data.csv', linked=True, numericlocale=u'en_IN')
@@ -401,7 +401,7 @@ Set('markerSize', u'0.5pt')
 Set('color', u'transparent')
 Set('xData', u'\ufeffTest potential (mV)')
 Set('yData', u'2020_ten_Tusscher_2006')
-Set('key', u'ten Tusscher_2006')
+Set('key', u'Ten Tusscher_2006')
 Set('scalePoints', u'ten_tusscher_2006')
 Set('PlotLine/color', u'theme11')
 Set('PlotLine/width', u'1pt')
