@@ -32,6 +32,8 @@ This might be the reason for the prolonged high activation peaks ICaL in Figure 
 
 - [Liu et al. 1993](https://scrambler.cs.ox.ac.uk/entities/models/565/versions/640e7d71267fb9c2e7bd842f8a3ff14d801c847a) this model has an exponentially increasing driving term because of which the the I-V curve for the acyivation protocol attains very high positive values. This can be seen in [this figure](https://scrambler.cs.ox.ac.uk/experiments/29364/versions/29910/outputs_Ohmic_Driving_Term_gnuplot_data.csv/displayPlotFlot).
 
-- [Priebe & Beuckelmann](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d) also has similar driving forces like the models discussed before. 
+- [Priebe & Beuckelmann 1998](https://models.physiomeproject.org/exposure/f813f823fbdf93629f84d1b85c231444/priebe_beuckelmann_1998.cellml) also has similar driving forces like the models discussed before. 
 However, the maximum open probability of this model is different from other models and approaches zero at higher test voltages of the activation protocol.
 Thus, the inconsistent driving force and open probability seem to compensate for each other to give a consistent ICaL. </br>
+
+- [Bondarenko et al. 2004](https://models.physiomeproject.org/e/41/bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml) this model predicts an unusual open probability in response to the inactivation protocol, even though the ICaL prediction is not.
