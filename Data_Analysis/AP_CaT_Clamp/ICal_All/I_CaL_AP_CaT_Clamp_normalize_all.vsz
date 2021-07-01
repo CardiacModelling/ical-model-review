@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-06-30T14:28:33.108200
+# Saved at 2021-07-01T19:16:38.077545
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\AP_CaT_Clamp\\ICal_All')
 ImportFileCSV(u'data/AP_CaT_Clamp_(inherent_localization).csv', linked=True, numericlocale=u'en_IN')
@@ -574,7 +574,7 @@ To(u'bartolucci')
 Set('marker', u'none')
 Set('color', u'background')
 Set('xData', u'Time (millisecond)_bartolucciAP_Clamp.csv')
-Set('yData', u'Bartolucci 2020 (epi)AP_Clamp.csv')
+Set('yData', u'BartolucciAP_Clamp.csv')
 Set('key', u'')
 Set('scalePoints', u'Garny_2003')
 Set('PlotLine/color', u'theme8')

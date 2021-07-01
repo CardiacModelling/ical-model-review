@@ -23,8 +23,8 @@ The first slope is higher than all other probabilities as shown in the figure [K
 This might be the reason for the peak current at a low voltage in simulated ICaL. </br>
 
 - [Beeler & Reuter 1977](https://chaste.cs.ox.ac.uk/WebLab/entities/models/1/versions/4680f3e8395da43250412aa3a16013090da62570),
-[Dokos et al. 1996](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3),
-[Corrias et al. 2011](https://github.com/Chaste/cellml/blob/master/cellml/corrias_purkinje_2011.cellml) and Pohl et al. 2016 
+[Dokos et al. 1996](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3), and
+[Corrias et al. 2011](https://github.com/Chaste/cellml/blob/master/cellml/corrias_purkinje_2011.cellml) 
 do not inactivate at higher voltages of the activation protocol.
 The open probabilities of the models in Figure [Kinetic_Protocols_outliers(open_prob)](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Kinetic_protocols/Kinetic_Protocols_outliers(open_prob).pdf) are consistent with other models.
 However, the driving force of all these models do not reverse or approach reversal potential within the physiological range of voltage. 

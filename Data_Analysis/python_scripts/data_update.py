@@ -54,7 +54,7 @@ class calculate_kinetic_paramters():
                 data = data.drop([no_of_rows - 1])
                 break
         
-        screened_columns = [x for x in range(1, no_of_columns, 2)]
+        screened_columns = [x for x in range(1, no_of_columns-1, 2)] #Last column is median
         screened_data = data.iloc[:,screened_columns]
         
         self.averaged_data = screened_data.median(axis = 1) # no of columns includes the voltage/ time columns as well

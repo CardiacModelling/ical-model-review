@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-06-30T15:50:29.817206
+# Saved at 2021-07-01T21:21:28.844304
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\calcium_sensitivity\\ic50')
 ImportFileCSV(u'ic50_csv.csv', linked=True, numericlocale=u'en_IN')
@@ -1357,9 +1357,9 @@ To('..')
 Add('fit', name=u'fit2', autoadd=False)
 To(u'fit2')
 Set('function', u'exp(a + b*log(x))')
-Set('values', {u'a': 0.5092, u'b': -0.4109})
+Set('values', {u'a': 0.573, u'b': -0.4018})
 Set('outLabel', u'')
-Set('key', u'R^{2} = 0.181')
+Set('key', u'R^{2} = 0.192')
 Set('Line/color', u'red')
 To('..')
 Add('xy', name=u'cyt_label', autoadd=False)

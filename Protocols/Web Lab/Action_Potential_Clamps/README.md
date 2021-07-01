@@ -11,7 +11,8 @@ have an Ohmic driving force and the reversal potential of these models is less t
 Similarly, Liu 1993 also has a positive driving force for some of the voltage potentials used in the AP Clamp becuase of its exponentially increasing driving force discussed above. 
 [Kurata et al. 2002 (ICaL)](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986) and 
 Wilders et al. 1991 have a GHK driving force and these models have a very high contribution of the ICaL carried by potassium ions, which makes the total current positive for high voltages during the AP clamp.
-
+[Iyer et al. 2004](https://models.physiomeproject.org/exposure/e0922113f8ca0258441cc9f3d53dcc08/iyer_mazhari_winslow_2004.cellml) also has a GHK driving term abd the direction of the flux reverses for very high potentials.
+URL to WL Experiment here!!!
 ### Grouping by various factors
 We have grouped the open probability from the dual AP-CaT-clamp under the inherent localisation experiment according to various factors including species, cell type, gating and localisation of channel.
 We first attempted to find similarities among the models according to their species and cell type, however failed to see a strong agreement within the models grouped on the basis of these categories (Figure [species_panel](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/species_panel.pdf) and [cell_panel](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/cell_panel.pdf)).

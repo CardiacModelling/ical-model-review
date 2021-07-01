@@ -95,7 +95,6 @@ The index in the gating type table (which is also used as a general index for ea
 - [Paci et al. 2013](https://models.physiomeproject.org/e/594)
 - [Pandit et al. 2001](https://models.physiomeproject.org/exposure/ea62c9c8a502afe364350d353ebf4dd5)
 - [Pasek et al. 2006](https://models.physiomeproject.org/exposure/e794e94916178875bc8ea12767f78c90)
-- Pohl et al. 2016 (ICaL only): New implementation.
 - [Priebe & Beuckelmann 1998](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d)
 - [Ramirez et al. 2000](https://models.physiomeproject.org/exposure/fc3dbf2134db2e5efc2990483b27d7ae)
 - Sato et al. 2006 (ICaL only): New implementation
@@ -140,6 +139,9 @@ Full list:
 - Nivala et al. 2012 - Stochastic simulation
 - Asakura et al. 2014 - CRU
 - Himeno et al. 2015 - CRU
+- Pohl et al. 2016 
+  - Initial values of ACh equation not published
+  - Incompatible units of gCa
 ## Unchanged ICaL
 
 The models below were all inspected but then omitted as their equations and (non-conductance) parameters were found to be equivalent to a previous model.

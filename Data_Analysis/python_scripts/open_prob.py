@@ -157,26 +157,27 @@ class open_prob():
         """
         This function calls the specific categories of interest for this paper to calculate nrmse
         """
+        tot_nrmse = self.calculate_nrmse()
 
         for species in self.species_list:
             nrmse = self.calculate_nrmse(self.categories[0], species)
-            print('Species: ' + species + ", NRMSE = " + str(nrmse))
+            print('Species: ' + species + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for cell in self.cell_list:
             nrmse = self.calculate_nrmse(self.categories[1], cell)
-            print('Cell: ' + cell + ", NRMSE = " + str(nrmse))
+            print('Cell: ' + cell + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for gating in self.gating_list:
             nrmse = self.calculate_nrmse(self.categories[2], gating)
-            print('Gating: ' + gating + ", NRMSE = " + str(nrmse))
+            print('Gating: ' + gating + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for localisation in range(1, 13):
             nrmse = self.calculate_nrmse(self.categories[3], str(localisation))
-            print('Localisation: ' + str(localisation) + ", NRMSE = " + str(nrmse))
+            print('Localisation: ' + str(localisation) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for publication_year_category in range(1, 5):
             nrmse = self.calculate_nrmse(self.categories[4], publication_year_category)
-            print('Publication year category : ' + str(publication_year_category) + ", NRMSE = " + str(nrmse))
+            print('Publication year category : ' + str(publication_year_category) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
     def clustering_by_output(self):
             
@@ -235,5 +236,3 @@ class open_prob():
 
 open_prob = open_prob()
 open_prob.attributes_of_interest_nrmse()
-#nrmse = calculate_rmse('time_publication', 4)
-#print(nrmse)
