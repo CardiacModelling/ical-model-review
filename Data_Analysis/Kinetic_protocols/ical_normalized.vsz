@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-07-01T01:25:01.900559
+# Saved at 2021-07-01T11:06:03.904852
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\Kinetic_protocols')
 ImportFileCSV(u'data/inactivation.csv', linked=True, numericlocale=u'en_IN', dssuffix=u'inactivation.csv')
@@ -5312,6 +5312,7 @@ To('..')
 Add('axis', name=u'y', autoadd=False)
 To(u'y')
 Set('label', u'Peak Current (normalized)')
+Set('min', -1.1)
 Set('max', 2.0)
 Set('direction', u'vertical')
 Set('Label/font', u'Arial')
@@ -5995,6 +5996,7 @@ To('..')
 Add('axis', name=u'y', autoadd=False)
 To(u'y')
 Set('label', u'Peak Current (normalized)')
+Set('min', -0.04)
 Set('max', 1.05)
 Set('direction', u'vertical')
 Set('Label/font', u'Arial')

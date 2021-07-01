@@ -66,7 +66,7 @@ library {
 model interface {
     # Model inputs
     input local:initial_voltage units mV = 0.0
-    input local:initial_time units ms = 0.0
+    input local:initial_time units ms = -10.0
     input local:initial_calcium_cass units mM = 0.0
     input local:initial_calcium_cad units mM = 0.0
     input local:initial_calcium_cai units mM = 0.0
@@ -87,6 +87,7 @@ model interface {
     define oxmeta:submembrane_space_calcium_concentration = if oxmeta:time < local:initial_time then local:initial_calcium_cass else clamp_cass
     define oxmeta:dyadic_space_calcium_concentration = if oxmeta:time < local:initial_time then local:initial_calcium_cad else clamp_cad
     define oxmeta:cytosolic_calcium_concentration = if oxmeta:time < local:initial_time then local:initial_calcium_cai else clamp_cai
+
 
     # Standard model outputs
     output oxmeta:membrane_L_type_calcium_current units uA_per_cm2
@@ -134,7 +135,7 @@ post-processing {
     #normalised_LCC = map(lambda I: (I - global_max)/MathML:abs(global_min - global_max), sim:membrane_L_type_calcium_current)
 
     # Normalize the result by total charge
-    total_charge = std:Sum(sim:membrane_L_type_calcium_current)[0]
+    total_charge = std:Sum(sim:membrane_L_type_calcium_current)[0] * sampling_interval
     normalised_LCC = map(lambda I: I/MathML:abs(total_charge), sim:membrane_L_type_calcium_current)
 }
 

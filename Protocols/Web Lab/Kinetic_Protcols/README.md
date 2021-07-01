@@ -36,4 +36,4 @@ This might be the reason for the prolonged high activation peaks ICaL in Figure 
 However, the maximum open probability of this model is different from other models and approaches zero at higher test voltages of the activation protocol.
 Thus, the inconsistent driving force and open probability seem to compensate for each other to give a consistent ICaL. </br>
 
-- [Bondarenko et al. 2004](https://models.physiomeproject.org/e/41/bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml) this model predicts an unusual open probability in response to the inactivation protocol, even though the ICaL prediction is not.
+- [Bondarenko et al. 2004](https://models.physiomeproject.org/e/41/bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml) this model predicts an unusual open probability and ICaL in response to the inactivation protocol.

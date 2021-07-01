@@ -1,7 +1,7 @@
 # Veusz saved document (version 3.1)
-# Saved at 2020-12-07T19:34:05.521958
+# Saved at 2021-07-01T12:25:11.160929
 
-AddImportPath(u'C:\\Users\\Aditi\\Documents\\GitHub\\ical-review\\Data Analysis\\AP_CaT_Clamp\\Driving_term_outlier')
+AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\AP_CaT_Clamp\\Driving_term_outlier')
 ImportFileCSV(u'driving_term_outlier.csv', linked=True, numericlocale=u'en_IN')
 Set('colorTheme', u'default-latest')
 Set('StyleSheet/axis-function/autoRange', u'next-tick')
@@ -116,8 +116,8 @@ To('..')
 Add('axis', name=u'y', autoadd=False)
 To(u'y')
 Set('label', u' Driving Term: GHK (mC/{\\mu}L)')
-Set('min', -0.5)
-Set('max', 0.5)
+Set('min', -0.01)
+Set('max', u'Auto')
 Set('direction', u'vertical')
 Set('otherPosition', 0.0)
 Set('Label/font', u'Arial')

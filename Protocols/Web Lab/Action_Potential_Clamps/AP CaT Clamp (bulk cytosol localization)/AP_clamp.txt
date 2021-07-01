@@ -1,7 +1,7 @@
 documentation {
 This protocol implements a time dependent voltage and calcium clamp protocol which interpolates a sequence of voltages and calcium
 provided in an input CSV file, and records the resulting L-type calcium current. Optionally, open probability and driving term are also recorded.
-All calcium are clamped to the same transient, irrespective of the biological subspace(dyadic space, submembrane space, bulk cytosol) 
+All calcium are clamped to the transient dependent on their channel localization (dyadic space, submembrane space, bulk cytosol).
 
 Some extra- and intra-cellular concentrations are clamped, and later versions will add calcium buffering.
 
@@ -38,8 +38,8 @@ inputs {
     clamp_calcium_cad = load("APClampSet_calcium_cai.csv")
     clamp_calcium_cai = load("APClampSet_calcium_cai.csv")
     initial_voltage = clamp_data[1][0]
-    initial_calcium_cass = clamp_calcium_cass[1][0]
-    initial_calcium_cad = clamp_calcium_cad[1][0]
+    initial_calcium_cass = clamp_calcium_cai[1][0]
+    initial_calcium_cad = clamp_calcium_cai[1][0]
     initial_calcium_cai = clamp_calcium_cai[1][0]
     initial_time = clamp_data[0][0]
     final_time = clamp_data[0][-1]
@@ -50,26 +50,23 @@ inputs {
 import "common.txt"
 
 library {
-    # Check the voltage and calcium clamp data looks like we expect
+    # Check the voltage clamp data looks like we expect
     assert clamp_data.IS_ARRAY
     assert clamp_data.NUM_DIMS == 2
     assert clamp_data.SHAPE[0] == 2
-    assert clamp_calcium_cai.IS_ARRAY
-    assert clamp_calcium_cai.NUM_DIMS == 2
-    assert clamp_calcium_cai.SHAPE[0] == 2
-    assert clamp_calcium_cass.IS_ARRAY
-    assert clamp_calcium_cass.NUM_DIMS == 2
-    assert clamp_calcium_cass.SHAPE[0] == 2
-    assert clamp_calcium_cad.IS_ARRAY
-    assert clamp_calcium_cad.NUM_DIMS == 2
-    assert clamp_calcium_cad.SHAPE[0] == 2
+    #assert clamp_calcium_cass.IS_ARRAY
+    #assert clamp_calcium_cass.NUM_DIMS == 2
+    #assert clamp_calcium_cass.SHAPE[0] == 2
+    #assert clamp_calcium_cad.IS_ARRAY
+    #assert clamp_calcium_cad.NUM_DIMS == 2
+    #assert clamp_calcium_cad.SHAPE[0] == 2
 }
 
 # List inputs and outputs of model with units
 model interface {
     # Model inputs
     input local:initial_voltage units mV = 0.0
-    input local:initial_time units ms = 0.0
+    input local:initial_time units ms = -10.0
     input local:initial_calcium_cass units mM = 0.0
     input local:initial_calcium_cad units mM = 0.0
     input local:initial_calcium_cai units mM = 0.0
@@ -90,7 +87,7 @@ model interface {
     define oxmeta:submembrane_space_calcium_concentration = if oxmeta:time < local:initial_time then local:initial_calcium_cass else clamp_cass
     define oxmeta:dyadic_space_calcium_concentration = if oxmeta:time < local:initial_time then local:initial_calcium_cad else clamp_cad
     define oxmeta:cytosolic_calcium_concentration = if oxmeta:time < local:initial_time then local:initial_calcium_cai else clamp_cai
-
+    
     # Standard model outputs
     output oxmeta:membrane_L_type_calcium_current units uA_per_cm2
     output oxmeta:membrane_L_type_calcium_current_open_probability units dimensionless
@@ -135,9 +132,9 @@ post-processing {
     #inter_max = std:Max(sim:membrane_L_type_calcium_current)[0]
     #global_max = if inter_max > 0 then 0 else inter_max 
     #normalised_LCC = map(lambda I: (I - global_max)/MathML:abs(global_min - global_max), sim:membrane_L_type_calcium_current)
-    
+
     # Normalize the result by total charge
-    total_charge = std:Sum(sim:membrane_L_type_calcium_current)[0]
+    total_charge = std:Sum(sim:membrane_L_type_calcium_current)[0] * sampling_interval
     normalised_LCC = map(lambda I: I/MathML:abs(total_charge), sim:membrane_L_type_calcium_current)
 }
 

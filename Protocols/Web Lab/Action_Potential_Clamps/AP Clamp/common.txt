@@ -63,10 +63,11 @@ model interface {
     clamp oxmeta:cytosolic_potassium_concentration to 140 :: mM
     clamp oxmeta:submembrane_space_potassium_concentration to 140 :: mM
     clamp oxmeta:dyadic_space_potassium_concentration to 140 :: mM
-    
+
     clamp oxmeta:cytosolic_chloride_concentration to 24 :: mM
     clamp oxmeta:submembrane_space_chloride_concentration to 24 :: mM
-    clamp oxmeta:dyadic_space_chloride_concentration to 24 :: mM    
+    clamp oxmeta:dyadic_space_chloride_concentration to 24 :: mM      
+    
 
     # Units conversion rules
     var chaste_membrane_capacitance units uF_per_cm2 = 1 # Used by units conversion rules
