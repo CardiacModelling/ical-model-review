@@ -108,7 +108,7 @@ The index in the gating type table (which is also used as a general index for ea
 - Wilders et al. 1991 (ICaL only): New implementation. 
   - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Winslow et al. 1999](https://scrambler.cs.ox.ac.uk/entities/models/43/versions/a4e21d2010a87b4e79e384ddebc84e5e0e30c506)
-- [Zeng et al. 1995](https://models.physiomeproject.org/exposure/15dc665c02ca9955b8e79fbace81a9e5) 
+- [Zeng et al. 1995 (ICaL only)](https://models.physiomeproject.org/exposure/15dc665c02ca9955b8e79fbace81a9e5) 
   - The `fCa` gate is raised incorrectly to a power, this has been corrected
   - All state variables in this file are missing an intitial value, we corrected the model for ICaL only.
 - [Zhang et al. 2000](https://models.physiomeproject.org/exposure/01f6a47881da1925315d1d89d3a8d901)
