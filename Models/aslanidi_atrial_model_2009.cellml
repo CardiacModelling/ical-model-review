@@ -4027,7 +4027,7 @@
     <documentation xmlns="http://cellml.org/tmp-documentation">
         <article xmlns="http://cellml.org/tmp-documentation">
             <articleinfo xmlns="http://cellml.org/tmp-documentation">
-                <title xmlns="http://cellml.org/tmp-documentation">Optimal velocity and safety of discontinuous conduction through the heterogeneous Purkinje-ventricular junction
+                <title xmlns="http://cellml.org/tmp-documentation">Mechanisms of transition from normal to reentrant electrical activity in a model of rabbit atrial tissue: interaction of tissue heterogeneity and anisotropy
 </title>
                 <author xmlns="http://cellml.org/tmp-documentation">
                     <firstname xmlns="http://cellml.org/tmp-documentation">Penny</firstname>
@@ -4200,9 +4200,9 @@ Mechanisms of transition from normal to reentrant electrical activity in a model
         <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="n16">
             <bqbiol:creator xmlns:bqbiol="http://purl.org/dc/elements/1.1/" rdf:nodeID="n3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
             <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xml:lang="en" xmlns:xml="http://www.w3.org/XML/1998/namespace">
-          This is the CellML description of Aslanidi et al.'s mathematical    
+          This is the CellML description of Aslanidi et al.'s mathematical
           model of membrane action potentials in rabbit atrial cells
-        
+
 </rdf:value>
         </rdf:Description>
         <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="n14">
