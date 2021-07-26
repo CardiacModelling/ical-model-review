@@ -24,7 +24,7 @@ The index in the gating type table (which is also used as a general index for ea
 - [Bondarenko et al. 2004](https://chaste.cs.ox.ac.uk/WebLab/entities/models/15/versions/141530c77eadc8bafe865083a5a5ccf2dc0c2ca6) 
 - Cabo & Boyden 2003 (ICaL only): New implementation. 
 - [Corrias et al. 2011](https://github.com/Chaste/cellml/blob/master/cellml/corrias_purkinje_2011.cellml) 
-  - The available CellML file has different paramaeter values for `tau_y_Ltype` and `tau_yCa` than the published paper.
+  - The available CellML file has different parameter values for `tau_y_Ltype` and `tau_yCa` than the published paper.
   - However, after contacting the original authors it was confirmed that this was a typesetting error and that the CellML file was correct.
 - Cortassa et al. 2006 (ICaL only): New implementation. 
 - [Courtemanche et al. 1998](https://chaste.cs.ox.ac.uk/WebLab/entities/models/19/versions/30d0616f05d88d875cf594db2950052879aae204) 
@@ -109,7 +109,7 @@ The index in the gating type table (which is also used as a general index for ea
   - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - [Winslow et al. 1999](https://scrambler.cs.ox.ac.uk/entities/models/43/versions/a4e21d2010a87b4e79e384ddebc84e5e0e30c506)
 - [Zeng et al. 1995 (ICaL only)](https://models.physiomeproject.org/exposure/15dc665c02ca9955b8e79fbace81a9e5) 
-  - The `fCa` gate is raised incorrectly to a power, this has been corrected
+  - The `fCa` gate is incorrectly raised to a power, this has been corrected
   - All state variables in this file are missing an intitial value, we corrected the model for ICaL only.
 - [Zhang et al. 2000](https://models.physiomeproject.org/exposure/01f6a47881da1925315d1d89d3a8d901)
 - [Varela et al. 2016](https://models.physiomeproject.org/e/4bc)
