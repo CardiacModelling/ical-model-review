@@ -54,23 +54,47 @@ class calculate_kinetic_paramters():
                 data = data.drop([no_of_rows - 1])
                 break
         
-        screened_columns = [x for x in range(1, no_of_columns-1, 2)] #Last column is median
-        screened_data = data.iloc[:,screened_columns]
+        # no of columns includes the voltage/ time columns as well
+        screened_columns = [x for x in range(1, no_of_columns, 2)] 
+        self.n_cols = len(screened_columns)
+        self.screened_data = data.iloc[:,screened_columns]
         
-        self.averaged_data = screened_data.median(axis = 1) # no of columns includes the voltage/ time columns as well
+        self.averaged_data = self.screened_data.median(axis = 1) 
         self.xaxis = data.iloc[:,0]
 
     def activation(self):
         """
         Ouputs the half-voltage activation parameter
         """
-
         def boltzmann(voltage, vhalf, k):
-
             voltage = list(map(lambda x: float(x), voltage))
             exponent = np.exp(-np.divide(np.subtract(voltage, vhalf), k))
             return (-1/ (exponent + 1))
-        
+
+        def find_v_half(current, voltage):
+            """
+            current: array of normalized IV curve
+            voltage: array of the test potentials
+            """
+            for i in range(len(voltage)):
+                if current.iloc[i] > -0.5:
+                    continue
+                elif current.iloc[i] == -0.5:
+                    return voltage.iloc[i]
+                else:
+                    volt1 = float(voltage.iloc[i-1])
+                    volt2 = float(voltage.iloc[i])
+                    curr1 = float(current.iloc[i-1])
+                    curr2 = float(current.iloc[i])
+                    V_half = volt1 + (volt1 - volt2)*(-0.5 - curr1)/(curr1 - curr2)
+                    return V_half
+
+        v_half = []
+        for i in range(self.n_cols):
+            current = self.screened_data.iloc[:,i]
+            #print(current)
+            v_half.append(find_v_half(current, self.xaxis))
+        return np.median(v_half)
         # We only fit to the first half of the activation curve
         no_of_data_points = len(self.averaged_data)
         for i in range(no_of_data_points):
@@ -103,8 +127,32 @@ class calculate_kinetic_paramters():
             voltage = list(map(lambda x: float(x), voltage))
             exponent = np.exp(np.divide(np.subtract(voltage, vhalf), k))
             return (1/ (exponent + 1))
-        
-        
+
+        def find_v_half(current, voltage):
+            """
+            current: array of normalized IV curve
+            voltage: array of the test potentials
+            """
+            for i in range(len(voltage)):
+                if current.iloc[i] < 0.5:
+                    continue
+                elif current.iloc[i] == 0.5:
+                    return voltage.iloc[i]
+                else:
+                    volt1 = float(voltage.iloc[i-1])
+                    volt2 = float(voltage.iloc[i])
+                    curr1 = float(current.iloc[i-1])
+                    curr2 = float(current.iloc[i])
+                    V_half = volt1 + (volt1 - volt2)*(0.5 - curr1)/(curr1 - curr2)
+                    return V_half
+
+        v_half = []
+        for i in range(self.n_cols):
+            current = self.screened_data.iloc[:,i]
+            #print(current)
+            v_half.append(find_v_half(current, self.xaxis))
+        return np.median(v_half)
+
         initial_guess = [-42, 7]
         popt, pcov = curve_fit(boltzmann, self.xaxis, self.averaged_data, p0= initial_guess)
         plt.plot(self.xaxis, self.averaged_data, label = 'Average of all models')
@@ -117,8 +165,6 @@ class calculate_kinetic_paramters():
         plt.savefig('inactivation_boltzmann_fit.png')
         return popt[0]
         
-
-
     def recovery(self):
         """
         Ouputs the time constant of recovery from inactivation
@@ -132,7 +178,16 @@ class calculate_kinetic_paramters():
         
         
         initial_guess = [55]
-        popt = curve_fit(exponential, self.xaxis, self.averaged_data, p0 = initial_guess)
+                
+        tau = []
+        for i in range(self.n_cols):
+            current = self.screened_data.iloc[:,i]
+            popt = curve_fit(exponential, self.xaxis, current, p0 = initial_guess)
+            tau.append(popt[0][0])
+
+        print(tau)
+        return np.median(tau)
+
         plt.plot(self.xaxis, self.averaged_data, label = 'Average of all models')
         plt.plot(exponential(self.xaxis, *initial_guess), label = 'Initial Guess')
         for i in range(len(popt)):
