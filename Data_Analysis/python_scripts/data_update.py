@@ -6,6 +6,7 @@ import numpy as np
 import warnings
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
+import os
 
 class update_csv():
     """
@@ -185,7 +186,6 @@ class calculate_kinetic_paramters():
             popt = curve_fit(exponential, self.xaxis, current, p0 = initial_guess)
             tau.append(popt[0][0])
 
-        print(tau)
         return np.median(tau)
 
         plt.plot(self.xaxis, self.averaged_data, label = 'Average of all models')
@@ -200,7 +200,51 @@ class calculate_kinetic_paramters():
         return popt
 
 
-filename = 'Kinetic_protocols/data/recovery.csv'
-y = calculate_kinetic_paramters(filename)
-answer = y.recovery()
-print(answer)    
+# filename = 'Kinetic_protocols/data/recovery.csv'
+# y = calculate_kinetic_paramters(filename)
+# answer = y.recovery()
+# print(answer)    
+
+def calculate_rmsd():
+
+    def rmsd(arr1, arr2):
+        diff = arr1 - arr2
+        return np.sqrt(diff.pow(2).sum()/len(arr1))
+
+    path = 'calcium_sensitivity/CDI/data'
+    files = os.listdir(path)
+
+    insensenitive = []
+    mild = []
+    strong = []
+
+    for file in files:
+        data = pd.read_csv(path + '/' + file)
+        no_of_rows = len(data.index)
+        no_of_columns = len(data.columns)
+
+        for i in range(no_of_columns):
+            if data.iloc[-1, i][0] == '#':
+                data = data.drop([no_of_rows - 1])
+                break
+        
+        col1 = data.iloc[:,1]
+        col2 = data.iloc[:,-1]
+        rmsd_a = rmsd(col1, col2)
+        #print(file[:-4], ': RMSD: ', rmsd_a)
+
+        if rmsd_a < 0.1:
+            insensenitive.append(file[:-4])
+        elif rmsd_a > 0.5:
+            strong.append(file[:-4])
+        else:
+            mild.append(file[:-4])
+
+    print('Insensitive: ', len(insensenitive))
+    print(insensenitive)
+    print('Mild: ', len(mild))
+    print(mild)
+    print('Strong: ', len(strong))
+    print(strong)
+
+calculate_rmsd()
