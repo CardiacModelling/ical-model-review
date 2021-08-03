@@ -1,5 +1,5 @@
-<?xml version='1.0'?>
-<model cmeta:id="grandi_2011_atrial" name="grandi_2011_atrial" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" cmeta:id="grandi_2011_atrial" name="grandi_2011_atrial">
     <units name="mM">
         <unit exponent="-3" units="metre"/>
         <unit exponent="1" units="mole"/>
@@ -6861,332 +6861,235 @@
             <title xmlns="http://cellml.org/tmp-documentation">Grandi et al. 2011 atrial action potential and Ca2+ model.</title>
         </article>
     </documentation>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#dyadic_buffer" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#K_on" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#cyto_buffer" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#cyto_buffer_flux" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#submembrane_buffer" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#delta_max" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#submembrane_buffer_flux" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#dyadic_buffer_flux" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:local#K_d" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:fc:local#initial_time" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:fc:local#initial_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:fc:local#initial_calcium_cass" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:fc:local#initial_calcium_cad" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:fc:local#initial_calcium_cai" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:fc:local#conductance_scale_factor" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#holding" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c5" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#tx2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#tx1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#vmax" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c8" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v6" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v8" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c6" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t5" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t8" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t6" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#c1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#vmin" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#t7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="dummy:name#v5" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <oxmeta:Annotation xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" rdf:about="urn:temp-names#membrane_total_sodium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:type xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/>
-        </oxmeta:Annotation>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#C">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Ca_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Ca_o">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Cl_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_chloride_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Cl_o">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_chloride_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#ECl">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#chloride_reversal_potential" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#EK">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#potassium_reversal_potential" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#ICaB">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#ICaL">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IClB">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_chloride_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IK1">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IKp">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_plateau_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IKr">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IKs">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IKur">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_ultrarapid_delayed_rectifier_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#INa">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#INaB">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#INaCa">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#INaK">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#INaL">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_persistent_sodium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#I_stim">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IbarNCX_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IbarNaK">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current_permeability" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#IpCa">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Ito">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#J_SR_leak">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#J_SR_leak_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current_max" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#K_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#K_o">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Na_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Na_o">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Q10SLCaP">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#V">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#amplitude">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#f_conducting">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gCaB">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gClB">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_chloride_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gK1_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gKp">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_plateau_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gKr_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gKs_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gKur_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_ultrarapid_delayed_rectifier_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gNaB">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gNaL_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_persistent_sodium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gNa_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#gto_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#stim_duration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#stim_offset">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_offset" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#stim_period">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#time">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b37c">
-            <bqbiol:subject_type xmlns:bqbiol="http://www.cellml.org/bqs/1.0#">keyword</bqbiol:subject_type>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b37d"/>
-        </rdf:Description>
-        <rdf:Bag xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b37d">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology
+    
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_on">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#delta_max">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer_flux">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_d">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_time">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_voltage">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cass">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cad">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cai">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#conductance_scale_factor">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#holding">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmax">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t8">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v3">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t6">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c2">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t4">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c1">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmin">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v0">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t7">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v5">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:temp-names#membrane_total_sodium_current">
+<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation>
+<rdf:Description rdf:about="#C">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Ca_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Ca_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Cl_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_chloride_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Cl_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_chloride_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#ECl">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#chloride_reversal_potential"/>
+</rdf:Description>
+<rdf:Description rdf:about="#EK">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#potassium_reversal_potential"/>
+</rdf:Description>
+<rdf:Description rdf:about="#ICaB">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#ICaL">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IClB">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_chloride_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IK1">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IKp">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_plateau_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IKr">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IKs">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IKur">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_ultrarapid_delayed_rectifier_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#INa">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#INaB">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#INaCa">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#INaK">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#INaL">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_persistent_sodium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#I_stim">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IbarNCX_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IbarNaK">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current_permeability"/>
+</rdf:Description>
+<rdf:Description rdf:about="#IpCa">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Ito">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#J_SR_leak">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#J_SR_leak_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current_max"/>
+</rdf:Description>
+<rdf:Description rdf:about="#K_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#K_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Na_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Na_o">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Q10SLCaP">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#V">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+</rdf:Description>
+<rdf:Description rdf:about="#amplitude">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gCaB">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gClB">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_chloride_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gK1_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gKp">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_plateau_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gKr_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gKs_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gKur_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_ultrarapid_delayed_rectifier_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gNaB">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gNaL_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_persistent_sodium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gNa_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#gto_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#stim_duration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#stim_offset">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_offset"/>
+</rdf:Description>
+<rdf:Description rdf:about="#stim_period">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period"/>
+</rdf:Description>
+<rdf:Description rdf:about="#time">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+</rdf:Description>
+<rdf:Description rdf:nodeID="b37c">
+<bqbiol:subject_type xmlns:bqbiol="http://www.cellml.org/bqs/1.0#">keyword</bqbiol:subject_type>
+<rdf:value rdf:nodeID="b37d"/>
+</rdf:Description>
+<rdf:Bag rdf:nodeID="b37d">
+<rdf:_1>electrophysiology
+
 </rdf:_1>
-        </rdf:Bag>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b37b">
-            <bqbiol:subject xmlns:bqbiol="http://purl.org/dc/elements/1.1/" rdf:nodeID="b37c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#grandi_2011_atrial">
-            <bqbiol:reference xmlns:bqbiol="http://www.cellml.org/bqs/1.0#" rdf:nodeID="b37b" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_Ca_jn">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#sodium_Na_jn">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#sodium_Na_sl">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_Ca_sl">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#ical_open_prob">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#ical_driving_term_ghk">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-    </rdf:RDF>
-</model>
+</rdf:Bag>
+<rdf:Description rdf:nodeID="b37b">
+<bqbiol:subject xmlns:bqbiol="http://purl.org/dc/elements/1.1/" rdf:nodeID="b37c"/>
+</rdf:Description>
+<rdf:Description rdf:about="#grandi_2011_atrial">
+<bqbiol:reference xmlns:bqbiol="http://www.cellml.org/bqs/1.0#" rdf:nodeID="b37b"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_Ca_jn">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#sodium_Na_jn">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#sodium_Na_sl">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_Ca_sl">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#submembrane_space_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#ical_open_prob">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+</rdf:Description>
+<rdf:Description rdf:about="#ical_driving_term_ghk">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
+</rdf:Description>
+</rdf:RDF></model>

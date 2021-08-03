@@ -65,14 +65,14 @@
         <unit prefix="micro" units="litre"/>
     </units>
     <component name="environment">
-        <variable name="time" public_interface="out" units="second" cmeta:id="environment_time"/>
+        <variable cmeta:id="environment_time" name="time" public_interface="out" units="second"/>
     </component>
     <component name="membrane">
-        <variable initial_value="-49.54105" name="V" public_interface="out" units="millivolt" cmeta:id="membrane_V"/>
+        <variable cmeta:id="membrane_V" initial_value="-49.54105" name="V" public_interface="out" units="millivolt"/>
         <variable initial_value="8314.472" name="R" public_interface="out" units="joule_per_kilomole_kelvin"/>
         <variable initial_value="310" name="T" public_interface="out" units="kelvin"/>
         <variable initial_value="96485.3415" name="F" public_interface="out" units="coulomb_per_mole"/>
-        <variable initial_value="5.5e-5" name="Cm" units="microF" cmeta:id="membrane_Cm"/>
+        <variable cmeta:id="membrane_Cm" initial_value="5.5e-5" name="Cm" units="microF"/>
         <variable name="time" public_interface="in" units="second"/>
         <variable name="i_Na" public_interface="in" units="nanoA"/>
         <variable name="i_Ca_T" public_interface="in" units="nanoA"/>
@@ -479,7 +479,7 @@
         </math>
     </component>
     <component name="L_type_Ca_channel">
-        <variable name="i_Ca_L" public_interface="out" units="nanoA" cmeta:id="L_type_Ca_channel_i_Ca_L"/>
+        <variable cmeta:id="L_type_Ca_channel_i_Ca_L" name="i_Ca_L" public_interface="out" units="nanoA"/>
         <variable initial_value="0.02115" name="g_Ca_L" units="microS"/>
         <variable initial_value="46.4" name="E_Ca_L" units="millivolt"/>
         <variable name="time" private_interface="out" public_interface="in" units="second"/>
@@ -496,24 +496,8 @@
                 <apply>
                     <times/>
                     <ci>g_Ca_L</ci>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <ci>f_L</ci>
-                            <ci>d_L</ci>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <cn cellml:units="dimensionless">0.095</cn>
-                            <ci>d_L_infinity</ci>
-                        </apply>
-                    </apply>
-                    <apply>
-                        <minus/>
-                        <ci>V</ci>
-                        <ci>E_Ca_L</ci>
-                    </apply>
+                    <ci>Open_Prob</ci>
+                    <ci>Driving_term_ohmic</ci>
                 </apply>
             </apply>
             <apply>
@@ -1715,9 +1699,9 @@
         </math>
     </component>
     <component name="intracellular_concentrations_and_buffer_equations">
-        <variable initial_value="9.701621" name="Na_i" public_interface="out" units="millimolar"/>
-        <variable initial_value="3.787018e-4" name="Ca_i" public_interface="out" units="millimolar"/>
-        <variable initial_value="1.407347e2" name="K_i" public_interface="out" units="millimolar"/>
+        <variable initial_value="9.701621" name="Na_i" public_interface="out" units="millimolar" cmeta:id="intracellular_concentrations_and_buffer_equations_Na_i"/>
+        <variable initial_value="3.787018e-4" name="Ca_i" public_interface="out" units="millimolar" cmeta:id="intracellular_concentrations_and_buffer_equations_Ca_i"/>
+        <variable initial_value="1.407347e2" name="K_i" public_interface="out" units="millimolar" cmeta:id="intracellular_concentrations_and_buffer_equations_K_i"/>
         <variable initial_value="0.1411678" name="Ca_Calmod" units="dimensionless"/>
         <variable initial_value="0.07331396" name="Ca_Trop" units="dimensionless"/>
         <variable initial_value="0.7618549" name="Ca_Mg_Trop" units="dimensionless"/>
@@ -2051,12 +2035,12 @@
         </math>
     </component>
     <component name="cleft_space_equations">
-        <variable initial_value="139.9988" name="Na_c" public_interface="out" units="millimolar"/>
-        <variable initial_value="2.00474" name="Ca_c" public_interface="out" units="millimolar"/>
-        <variable initial_value="5.389014" name="K_c" public_interface="out" units="millimolar"/>
-        <variable initial_value="5.4" name="K_b" public_interface="out" units="millimolar"/>
-        <variable initial_value="140" name="Na_b" units="millimolar"/>
-        <variable initial_value="2" name="Ca_b" units="millimolar"/>
+        <variable initial_value="139.9988" name="Na_c" public_interface="out" units="millimolar" cmeta:id="cleft_space_equations_Na_c"/>
+        <variable initial_value="2.00474" name="Ca_c" public_interface="out" units="millimolar" cmeta:id="cleft_space_equations_Ca_c"/>
+        <variable initial_value="5.389014" name="K_c" public_interface="out" units="millimolar" cmeta:id="cleft_space_equations_K_c"/>
+        <variable initial_value="5.4" name="K_b" public_interface="out" units="millimolar" cmeta:id="cleft_space_equations_K_b"/>
+        <variable initial_value="140" name="Na_b" units="millimolar" cmeta:id="cleft_space_equations_Na_b"/>
+        <variable initial_value="2" name="Ca_b" units="millimolar" cmeta:id="cleft_space_equations_Ca_b"/>
         <variable initial_value="3.497e-6" name="Vol" public_interface="out" units="microLitre"/>
         <variable name="V_c" units="microLitre"/>
         <variable initial_value="0.01" name="tau_p" units="second"/>
@@ -3106,6 +3090,7 @@ A mathematical model of a rabbit sinoatrial node cell, S.S. Demir, J.W. Clark, C
 <rdf:Description rdf:about="rdf:#b859390d-732f-4fc4-bf64-c23b19a7e169"><undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Oxford University</undefined:Orgname><undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Orgunit>
 </rdf:Description><undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#81a6687f-782b-4061-879d-088b6ffd132e">
 <rdf:value>penny.noble@physiol.ox.ac.uk
+
 </rdf:value></undefined:internet>
 <rdf:Description rdf:about="rdf:#ccca7b13-1d58-4de0-880b-bb8e5b3a0e84"><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#citationAuthorsSeq"/><undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">A Mathematical Model of a Rabbit Sinoatrial Node Cell</undefined:title><undefined:volume xmlns:undefined="http://www.cellml.org/bqs/1.0#">266</undefined:volume><undefined:first_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">C832</undefined:first_page><undefined:Journal xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#44eae6fb-5245-45f2-96ae-2582f6506a4b"/><undefined:issued xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#618443dc-d57f-4b90-931c-dd75f55f6ff5"/><undefined:last_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">C852</undefined:last_page>
 </rdf:Description>
@@ -3122,10 +3107,13 @@ A mathematical model of a rabbit sinoatrial node cell, S.S. Demir, J.W. Clark, C
 </rdf:Description>
 <rdf:Bag rdf:nodeID="b319">
 <rdf:_1>electrophysiology
+
 </rdf:_1>
 <rdf:_2>sinoatrial node
+
 </rdf:_2>
 <rdf:_3>rabbit
+
 </rdf:_3>
 </rdf:Bag>
 <rdf:Description rdf:nodeID="b317"><undefined:subject xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:nodeID="b318"/>
@@ -3136,6 +3124,7 @@ A mathematical model of a rabbit sinoatrial node cell, S.S. Demir, J.W. Clark, C
 <rdf:value>
           added metadata
         
+
 </rdf:value><cmeta:modifier rdf:resource="rdf:#a047a17c-984a-42c7-92b8-b1fce8634695"/>
 </rdf:Description>
 <rdf:Description rdf:about="rdf:#e5a3ad1c-9241-4f04-93fc-23e48f5cdc9d"><undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#b859390d-732f-4fc4-bf64-c23b19a7e169"/><undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#81a6687f-782b-4061-879d-088b6ffd132e"/><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#ff75bcdc-f5c1-470d-83a6-6e441fd6628c"/>
@@ -3209,5 +3198,32 @@ A mathematical model of a rabbit sinoatrial node cell, S.S. Demir, J.W. Clark, C
 </rdf:Description>
 <rdf:Description rdf:about="#L_type_Ca_channel_Open_Prob">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_concentrations_and_buffer_equations_Ca_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_concentrations_and_buffer_equations_Na_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_concentrations_and_buffer_equations_K_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_equations_Ca_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_equations_K_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_equations_Na_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_equations_Ca_b">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_bath_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_equations_K_b">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_bath_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_equations_Na_b">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_bath_sodium_concentration"/>
 </rdf:Description>
 </rdf:RDF></model>
