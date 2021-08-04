@@ -638,10 +638,10 @@
     <variable name="R" units="mJ_per_mol_per_K" public_interface="in"/>
     <variable name="T" units="kelvin" public_interface="in"/>
     <variable name="Vms_Vms" units="mV" public_interface="in"/>
-    <variable name="driving_term_ghk" units="s_A_per_m3" cmeta:id="driving_term_ghk"/>
+    <variable name="driving_term_ghk" units="s_A_per_m3" cmeta:id="i_Cas_driving_term_ghk"/>
     <variable name="gCas" units="cm3_per_s" public_interface="in"/>
-    <variable name="i_Cas" units="uA" public_interface="out" cmeta:id="i_Cas_i_Cas"/>
-    <variable name="open_prob" units="dimensionless" cmeta:id="open_prob"/>
+    <variable name="i_Cas" units="uA" public_interface="out"/>
+    <variable name="open_prob" units="dimensionless" cmeta:id="i_Cas_open_prob"/>
     <variable name="tauC1" units="second"/>
     <variable name="tauC2" units="second"/>
     <variable name="tauCcast" units="second" initial_value="0.009"/>
@@ -1190,8 +1190,10 @@
     <variable name="R" units="mJ_per_mol_per_K" public_interface="in"/>
     <variable name="T" units="kelvin" public_interface="in"/>
     <variable name="Vmt_Vmt" units="mV" public_interface="in"/>
+    <variable name="driving_term_ghk" units="s_A_per_m3"/>
     <variable name="gCat" units="cm3_per_s" public_interface="in"/>
     <variable name="i_Cat" units="uA" public_interface="out"/>
+    <variable name="open_prob" units="dimensionless"/>
     <variable name="tauC1" units="second"/>
     <variable name="tauC2" units="second"/>
     <variable name="tauCcast" units="second" initial_value="0.009"/>
@@ -1377,9 +1379,9 @@
       </apply>
       <apply>
         <eq/>
-        <ci>i_Cat</ci>
+        <ci>driving_term_ghk</ci>
         <apply>
-          <times/>
+          <divide/>
           <apply>
             <times/>
             <apply>
@@ -1387,65 +1389,27 @@
               <apply>
                 <times/>
                 <apply>
-                  <divide/>
-                  <apply>
-                    <times/>
-                    <apply>
-                      <times/>
-                      <apply>
-                        <times/>
-                        <ci>gCat</ci>
-                        <cn cellml:units="dimensionless">4.0</cn>
-                      </apply>
-                      <ci>Vmt_Vmt</ci>
-                    </apply>
-                    <apply>
-                      <power/>
-                      <ci>F</ci>
-                      <cn cellml:units="dimensionless">2.0</cn>
-                    </apply>
-                  </apply>
-                  <apply>
-                    <times/>
-                    <ci>R</ci>
-                    <ci>T</ci>
-                  </apply>
+                  <times/>
+                  <cn cellml:units="dimensionless">4.0</cn>
+                  <ci>Vmt_Vmt</ci>
                 </apply>
                 <apply>
-                  <minus/>
-                  <apply>
-                    <times/>
-                    <ci>Cass</ci>
-                    <apply>
-                      <exp/>
-                      <apply>
-                        <divide/>
-                        <apply>
-                          <times/>
-                          <apply>
-                            <times/>
-                            <cn cellml:units="dimensionless">2.0</cn>
-                            <ci>Vmt_Vmt</ci>
-                          </apply>
-                          <ci>F</ci>
-                        </apply>
-                        <apply>
-                          <times/>
-                          <ci>R</ci>
-                          <ci>T</ci>
-                        </apply>
-                      </apply>
-                    </apply>
-                  </apply>
-                  <apply>
-                    <times/>
-                    <cn cellml:units="dimensionless">0.341</cn>
-                    <ci>Cat</ci>
-                  </apply>
+                  <power/>
+                  <ci>F</ci>
+                  <cn cellml:units="dimensionless">2.0</cn>
                 </apply>
               </apply>
               <apply>
-                <minus/>
+                <times/>
+                <ci>R</ci>
+                <ci>T</ci>
+              </apply>
+            </apply>
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci>Cass</ci>
                 <apply>
                   <exp/>
                   <apply>
@@ -1466,11 +1430,59 @@
                     </apply>
                   </apply>
                 </apply>
-                <cn cellml:units="dimensionless">1.0</cn>
+              </apply>
+              <apply>
+                <times/>
+                <cn cellml:units="dimensionless">0.341</cn>
+                <ci>Cat</ci>
               </apply>
             </apply>
-            <ci>Co</ci>
           </apply>
+          <apply>
+            <minus/>
+            <apply>
+              <exp/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <apply>
+                    <times/>
+                    <cn cellml:units="dimensionless">2.0</cn>
+                    <ci>Vmt_Vmt</ci>
+                  </apply>
+                  <ci>F</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>R</ci>
+                  <ci>T</ci>
+                </apply>
+              </apply>
+            </apply>
+            <cn cellml:units="dimensionless">1.0</cn>
+          </apply>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>i_Cat</ci>
+        <apply>
+          <times/>
+          <apply>
+            <times/>
+            <ci>gCat</ci>
+            <ci>driving_term_ghk</ci>
+          </apply>
+          <ci>open_prob</ci>
+        </apply>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>open_prob</ci>
+        <apply>
+          <times/>
+          <ci>Co</ci>
           <apply>
             <plus/>
             <apply>
@@ -4488,6 +4500,22 @@
       </apply>
     </math>
   </component>
+  <component name="ical_tot">
+    <variable name="i_Cas_i_Cas" units="uA" public_interface="in"/>
+    <variable name="i_Cat_i_Cat" units="uA" public_interface="in"/>
+    <variable name="ica_tot" units="uA" cmeta:id="ica_tot"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>ica_tot</ci>
+        <apply>
+          <plus/>
+          <ci>i_Cat_i_Cat</ci>
+          <ci>i_Cas_i_Cas</ci>
+        </apply>
+      </apply>
+    </math>
+  </component>
   <component name="ion_concentrations">
     <variable name="BTRH" units="mM" initial_value="9.91214609999999996e-01"/>
     <variable name="BTRL" units="mM" initial_value="1.99257689999999994e-02"/>
@@ -6224,6 +6252,10 @@
     <map_variables variable_1="gCabt" variable_2="gCabt"/>
   </connection>
   <connection>
+    <map_components component_1="i_Cas" component_2="ical_tot"/>
+    <map_variables variable_1="i_Cas" variable_2="i_Cas_i_Cas"/>
+  </connection>
+  <connection>
     <map_components component_1="i_Cas" component_2="ion_concentrations"/>
     <map_variables variable_1="Cai" variable_2="Cai"/>
     <map_variables variable_1="Cass" variable_2="Cass"/>
@@ -6239,6 +6271,10 @@
     <map_variables variable_1="F" variable_2="F"/>
     <map_variables variable_1="R" variable_2="R"/>
     <map_variables variable_1="T" variable_2="T"/>
+  </connection>
+  <connection>
+    <map_components component_1="i_Cat" component_2="ical_tot"/>
+    <map_variables variable_1="i_Cat" variable_2="i_Cat_i_Cat"/>
   </connection>
   <connection>
     <map_components component_1="i_Cat" component_2="ion_concentrations"/>
@@ -6674,20 +6710,20 @@
     <rdf:Description rdf:about="#Vms_Vms">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
     </rdf:Description>
-    <rdf:Description rdf:about="#driving_term_ghk">
-      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
-    </rdf:Description>
     <rdf:Description rdf:about="#duration">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration"/>
     </rdf:Description>
-    <rdf:Description rdf:about="#i_Cas_i_Cas">
+    <rdf:Description rdf:about="#i_Cas_driving_term_ghk">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#i_Cas_open_prob">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#ica_tot">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
     </rdf:Description>
     <rdf:Description rdf:about="#offset">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_offset"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="#open_prob">
-      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
     </rdf:Description>
     <rdf:Description rdf:about="#period">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period"/>
