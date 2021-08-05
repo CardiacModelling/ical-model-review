@@ -1922,10 +1922,13 @@
                 <eq/>
                 <ci>i_Ca_L</ci>
                 <apply>
-                    <times/>
-                    <ci>P_Ca_L</ci>
-                    <ci>open_prob</ci>
-                    <ci>driving_term_ghk</ci>
+                    <plus/>
+                    <ci>i_Ca_L_Ca_cyt</ci>
+                    <ci>i_Ca_L_K_cyt</ci>
+                    <ci>i_Ca_L_Na_cyt</ci>
+                    <ci>i_Ca_L_Ca_ds</ci>
+                    <ci>i_Ca_L_K_ds</ci>
+                    <ci>i_Ca_L_Na_ds</ci>
                 </apply>
             </apply>
         </math>

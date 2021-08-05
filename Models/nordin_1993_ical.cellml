@@ -50,8 +50,6 @@
     <variable name="Ca_myo_sup" units="mM" public_interface="in"/>
     <variable name="Cao" units="mM" public_interface="in"/>
     <variable name="F" units="C_per_mmol" public_interface="in"/>
-    <variable name="I_CaCa" units="nA"/>
-    <variable name="I_CaK" units="nA"/>
     <variable name="P_Ca" units="m3_per_s_times_1e_minus_12" initial_value="0.0071" cmeta:id="P_Ca"/>
     <variable name="P_K" units="m3_per_s_times_1e_minus_12" initial_value="3.58e-05" cmeta:id="P_K"/>
     <variable name="R" units="J_per_mol_per_K" public_interface="in"/>
@@ -62,30 +60,10 @@
     <variable name="driving_term_ghk_Ca" units="s_A_per_m3_times_1e3"/>
     <variable name="driving_term_ghk_K" units="s_A_per_m3_times_1e3"/>
     <variable name="f" units="dimensionless" public_interface="in"/>
-    <variable name="f2" units="second" public_interface="in"/>
-    <variable name="i_CaCa" units="nA"/>
-    <variable name="i_CaK" units="nA" cmeta:id="i_CaK"/>
+    <variable name="f2" units="dimensionless" public_interface="in"/>
     <variable name="i_Ca_L" units="nA" cmeta:id="i_Ca_L"/>
     <variable name="open_prob" units="dimensionless" cmeta:id="open_prob"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-        <eq/>
-        <ci>I_CaCa</ci>
-        <apply>
-          <times/>
-          <ci>P_Ca</ci>
-          <ci>driving_term_ghk_Ca</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
-        <ci>I_CaK</ci>
-        <apply>
-          <times/>
-          <ci>P_K</ci>
-          <ci>driving_term_ghk_K</ci>
-        </apply>
-      </apply>
       <apply>
         <eq/>
         <ci>driving_term_ghk</ci>
@@ -93,8 +71,16 @@
           <divide/>
           <apply>
             <plus/>
-            <ci>I_CaCa</ci>
-            <ci>I_CaK</ci>
+            <apply>
+              <times/>
+              <ci>P_Ca</ci>
+              <ci>driving_term_ghk_Ca</ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci>P_K</ci>
+              <ci>driving_term_ghk_K</ci>
+            </apply>
           </apply>
           <ci>P_Ca</ci>
         </apply>
@@ -357,24 +343,6 @@
       </apply>
       <apply>
         <eq/>
-        <ci>i_CaCa</ci>
-        <apply>
-          <times/>
-          <ci>open_prob</ci>
-          <ci>I_CaCa</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
-        <ci>i_CaK</ci>
-        <apply>
-          <times/>
-          <ci>open_prob</ci>
-          <ci>I_CaK</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
         <ci>i_Ca_L</ci>
         <apply>
           <times/>
@@ -503,7 +471,7 @@
     <variable name="Ca_myo_sup" units="mM" public_interface="in"/>
     <variable name="Km_f2" units="mM" initial_value="0.0012"/>
     <variable name="alpha_f2" units="hertz" initial_value="5.0"/>
-    <variable name="f2" units="second" public_interface="out" initial_value="1.0"/>
+    <variable name="f2" units="dimensionless" public_interface="out" initial_value="1.0"/>
     <variable name="f2_bar" units="dimensionless"/>
     <variable name="tau_f2" units="second"/>
     <variable name="time" units="second" public_interface="in"/>
@@ -751,9 +719,6 @@
     </rdf:Description>
     <rdf:Description rdf:about="#driving_term_ghk">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="#i_CaK">
-      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_potassium_current"/>
     </rdf:Description>
     <rdf:Description rdf:about="#i_Ca_L">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>

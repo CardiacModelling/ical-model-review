@@ -1,5 +1,5 @@
-<?xml version='1.0'?>
-<model cmeta:id="lindblad_1996" name="lindblad_1996" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" cmeta:id="lindblad_1996" name="lindblad_1996">
     <units name="per_second">
         <unit exponent="-1" units="second"/>
     </units>
@@ -2497,7 +2497,7 @@
         <variable cmeta:id="intracellular_ion_concentrations_Na_i" initial_value="8.4" name="Na_i" public_interface="out" units="millimolar"/>
         <variable cmeta:id="intracellular_ion_concentrations_Ca_i" initial_value="7.305e-5" name="Ca_i" public_interface="out" units="millimolar"/>
         <variable cmeta:id="intracellular_ion_concentrations_K_i" initial_value="100" name="K_i" public_interface="out" units="millimolar"/>
-        <variable initial_value="30" name="Cl_i" public_interface="out" units="millimolar"/>
+        <variable initial_value="30" name="Cl_i" public_interface="out" units="millimolar" cmeta:id="intracellular_ion_concentrations_Cl_i"/>
         <variable initial_value="1.26e-5" name="Vol_i" public_interface="out" units="nanolitre"/>
         <variable initial_value="5.884e-6" name="Vol_Ca" units="nanolitre"/>
         <variable name="time" public_interface="in" units="second"/>
@@ -2813,7 +2813,7 @@
         <variable cmeta:id="cleft_space_ion_concentrations_Na_c" initial_value="140" name="Na_c" public_interface="out" units="millimolar"/>
         <variable cmeta:id="cleft_space_ion_concentrations_Ca_c" initial_value="2.5" name="Ca_c" public_interface="out" units="millimolar"/>
         <variable cmeta:id="cleft_space_ion_concentrations_K_c" initial_value="5" name="K_c" public_interface="out" units="millimolar"/>
-        <variable initial_value="132" name="Cl_c" public_interface="out" units="millimolar"/>
+        <variable initial_value="132" name="Cl_c" public_interface="out" units="millimolar" cmeta:id="cleft_space_ion_concentrations_Cl_c"/>
     </component>
     <component name="Ca_handling_by_the_SR">
         <variable cmeta:id="Ca_handling_by_the_SR_i_rel" name="i_rel" public_interface="out" units="picoA"/>
@@ -3589,230 +3589,158 @@ A model of the action potential and underlying membrane currents in a rabbit atr
             </sect1>
         </article>
     </documentation>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <rdf:Seq xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#citationAuthorsSeq"/>
-        <rdf:Seq xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#8c313b68-95e3-47ec-8704-c1b6b3f8e9ff">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#2d551cd8-8d29-4d74-8860-9ab4bdd6e8d3"/>
-            <rdf:_2 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#8d095470-3665-4251-9b8c-1a1146e69fd4"/>
-            <rdf:_3 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#ddac4f6f-9960-40cb-b8bf-c3fee769bd68"/>
-            <rdf:_4 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#5efe6074-dc8e-403c-b4b0-c940f441013a"/>
-        </rdf:Seq>
-        <undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#5e65bb03-3465-4041-bd1d-ee9b636eb610" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">unknown
+    
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:Seq rdf:about="rdf:#citationAuthorsSeq"/>
+<rdf:Seq rdf:about="rdf:#8c313b68-95e3-47ec-8704-c1b6b3f8e9ff">
+<rdf:_1 rdf:resource="rdf:#2d551cd8-8d29-4d74-8860-9ab4bdd6e8d3"/>
+<rdf:_2 rdf:resource="rdf:#8d095470-3665-4251-9b8c-1a1146e69fd4"/>
+<rdf:_3 rdf:resource="rdf:#ddac4f6f-9960-40cb-b8bf-c3fee769bd68"/>
+<rdf:_4 rdf:resource="rdf:#5efe6074-dc8e-403c-b4b0-c940f441013a"/>
+</rdf:Seq><undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#5e65bb03-3465-4041-bd1d-ee9b636eb610">
+<rdf:value>unknown
+
+</rdf:value></undefined:internet>
+<rdf:Description rdf:about="rdf:#2e3786a8-a2ba-4eb6-8358-6485661fea65"><undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">American Journal of Physiology</undefined:title>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#bbff3a05-9129-4892-8974-c67a5903590a"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">C</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Murphey</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
+</rdf:Description><undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#1552a5ab-a9ac-43c7-85a0-114c6c1d2fc4">
+<rdf:value>penny.noble@dpag.ox.ac.uk
+
+</rdf:value></undefined:internet>
+<rdf:Description rdf:about="rdf:#42c65c0c-cabb-46bd-89f3-9baf59071c24"><undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:nodeID="b318"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#f00d2e32-8768-4306-bdc4-9d20e27e5494"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Giles</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#15a9663f-a1e3-4674-89ac-1c4bb1cc089c"><undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#cd2c5913-1d69-4e06-b50a-51319461d271"/><undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#5e65bb03-3465-4041-bd1d-ee9b636eb610"/><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#4b14e487-c868-41bc-88f2-f2452444dc82"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#9952af81-1f97-4a96-b887-0a34abfad08f"><undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</undefined:FN>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#69a70a91-387e-4f2f-9e3b-c9c182f31950"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Clark</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Other>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#ddac4f6f-9960-40cb-b8bf-c3fee769bd68"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#69a70a91-387e-4f2f-9e3b-c9c182f31950"/></undefined:Person>
+<rdf:Description rdf:about=""><undefined:publisher xmlns:undefined="http://purl.org/dc/elements/1.1/">Department of Physiology, Anatomy &amp; Genetics, University of Oxford</undefined:publisher><cmeta:comment rdf:resource="rdf:#80d157f2-f97a-44b7-92dd-f7eab132b86e"/><undefined:created xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#c33216ec-594b-45c3-bd32-3f390f5e7aac"/><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#a82705b3-bee1-4524-bff5-c5a66688607c"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#80d157f2-f97a-44b7-92dd-f7eab132b86e"><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#9952af81-1f97-4a96-b887-0a34abfad08f"/>
+<rdf:value>This model has been curated and unit checked and is known to run in PCEnv and COR and is able to reproduce the results published in the paper on which it is based.
+
 </rdf:value>
-        </undefined:internet>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#2e3786a8-a2ba-4eb6-8358-6485661fea65">
-            <undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">American Journal of Physiology</undefined:title>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#bbff3a05-9129-4892-8974-c67a5903590a">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">C</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Murphey</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
-        </rdf:Description>
-        <undefined:internet xmlns:undefined="http://imc.org/vCard/3.0#" rdf:about="rdf:#1552a5ab-a9ac-43c7-85a0-114c6c1d2fc4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">penny.noble@dpag.ox.ac.uk
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#ef132277-a9b2-4c10-9933-b5dfba25ed91"><undefined:Pubmed_id xmlns:undefined="http://www.cellml.org/bqs/1.0#">8897964</undefined:Pubmed_id><undefined:JournalArticle xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#b0e74085-ff38-4e92-9f23-e8968ea5c9f1"/>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#2d551cd8-8d29-4d74-8860-9ab4bdd6e8d3"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#e370b80b-6177-41ba-aa66-1cb55ab08db0"/></undefined:Person>
+<rdf:Description rdf:about="rdf:#8e45dda8-d9a3-4ef1-a3a9-85b1af0317e1"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">1996-10-01 00:00</undefined:W3CDTF>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#d02c2448-0a83-4b92-8f61-ced57f52e582"><undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Oxford University</undefined:Orgname><undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Department of Physiology, Anatomy &amp; Genetics</undefined:Orgunit>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#$JEhxh3">
+<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+<rdf:first rdf:resource="rdf:#$KEhxh3"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#$IEhxh3"><undefined:boundIntervals xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#" rdf:resource="rdf:#$JEhxh3"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#$KEhxh3"><undefined:endingValue xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">10</undefined:endingValue><undefined:nonstandard-pointDensity xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">100000</undefined:nonstandard-pointDensity><undefined:maximumStepSize xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">0.0001</undefined:maximumStepSize>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#0b808565-3161-4938-9872-8736a4186890"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Peter</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Villiger</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#d5c3c343-a2f3-4bf9-9201-cc0cb0bba7fd"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#0b808565-3161-4938-9872-8736a4186890"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#747ef0e9-52de-4b95-bbff-1f3b568bbdb0"><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#71e62653-47ce-47a1-a8a0-c1d4884476b1"/>
+<rdf:value>This is a CellML description of Lindblad et al.'s 1996 paper "A Model of the Action Potential and Underlying Membrane Currents in a Rabbit Atrial Cell" 
+
 </rdf:value>
-        </undefined:internet>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#42c65c0c-cabb-46bd-89f3-9baf59071c24">
-            <undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:nodeID="b318" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#f00d2e32-8768-4306-bdc4-9d20e27e5494">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Giles</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">R</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#15a9663f-a1e3-4674-89ac-1c4bb1cc089c">
-            <undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#cd2c5913-1d69-4e06-b50a-51319461d271" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#5e65bb03-3465-4041-bd1d-ee9b636eb610" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#4b14e487-c868-41bc-88f2-f2452444dc82" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#9952af81-1f97-4a96-b887-0a34abfad08f">
-            <undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</undefined:FN>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#69a70a91-387e-4f2f-9e3b-c9c182f31950">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Clark</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">W</undefined:Other>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#ddac4f6f-9960-40cb-b8bf-c3fee769bd68" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#69a70a91-387e-4f2f-9e3b-c9c182f31950" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="">
-            <undefined:publisher xmlns:undefined="http://purl.org/dc/elements/1.1/">Department of Physiology, Anatomy &amp; Genetics, University of Oxford</undefined:publisher>
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#80d157f2-f97a-44b7-92dd-f7eab132b86e" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:created xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#c33216ec-594b-45c3-bd32-3f390f5e7aac" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#a82705b3-bee1-4524-bff5-c5a66688607c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#80d157f2-f97a-44b7-92dd-f7eab132b86e">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#9952af81-1f97-4a96-b887-0a34abfad08f" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">This model has been curated and unit checked and is known to run in PCEnv and COR and is able to reproduce the results published in the paper on which it is based.
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#ef132277-a9b2-4c10-9933-b5dfba25ed91">
-            <undefined:Pubmed_id xmlns:undefined="http://www.cellml.org/bqs/1.0#">8897964</undefined:Pubmed_id>
-            <undefined:JournalArticle xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#b0e74085-ff38-4e92-9f23-e8968ea5c9f1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#2d551cd8-8d29-4d74-8860-9ab4bdd6e8d3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#e370b80b-6177-41ba-aa66-1cb55ab08db0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#8e45dda8-d9a3-4ef1-a3a9-85b1af0317e1">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">1996-10-01 00:00</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#d02c2448-0a83-4b92-8f61-ced57f52e582">
-            <undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Oxford University</undefined:Orgname>
-            <undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Department of Physiology, Anatomy &amp; Genetics</undefined:Orgunit>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#$JEhxh3">
-            <rdf:rest xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            <rdf:first xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:resource="rdf:#$KEhxh3"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#$IEhxh3">
-            <undefined:boundIntervals xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#" rdf:resource="rdf:#$JEhxh3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#$KEhxh3">
-            <undefined:endingValue xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">10</undefined:endingValue>
-            <undefined:nonstandard-pointDensity xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">100000</undefined:nonstandard-pointDensity>
-            <undefined:maximumStepSize xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#">0.0001</undefined:maximumStepSize>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#0b808565-3161-4938-9872-8736a4186890">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Peter</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Villiger</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#d5c3c343-a2f3-4bf9-9201-cc0cb0bba7fd">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#0b808565-3161-4938-9872-8736a4186890" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#747ef0e9-52de-4b95-bbff-1f3b568bbdb0">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#71e62653-47ce-47a1-a8a0-c1d4884476b1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">This is a CellML description of Lindblad et al.'s 1996 paper "A Model of the Action Potential and Underlying Membrane Currents in a Rabbit Atrial Cell" 
-</rdf:value>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#lindblad_1996">
-            <undefined:simulation xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#" rdf:resource="rdf:#$IEhxh3" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#ef132277-a9b2-4c10-9933-b5dfba25ed91" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:nodeID="b319" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:comment xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#747ef0e9-52de-4b95-bbff-1f3b568bbdb0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <cmeta:modification xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#0b3629aa-2abd-465c-9a85-74dee492674e" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:created xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#7885c3b8-994d-46af-95ac-4cadbf6c87e7" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#15a9663f-a1e3-4674-89ac-1c4bb1cc089c" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b31a">
-            <undefined:subject_type xmlns:undefined="http://www.cellml.org/bqs/1.0#">keyword</undefined:subject_type>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b31b"/>
-        </rdf:Description>
-        <rdf:Bag xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b31b">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology
+</rdf:Description>
+<rdf:Description rdf:about="#lindblad_1996"><undefined:simulation xmlns:undefined="http://www.cellml.org/metadata/simulation/1.0#" rdf:resource="rdf:#$IEhxh3"/><undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#ef132277-a9b2-4c10-9933-b5dfba25ed91"/><undefined:reference xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:nodeID="b319"/><cmeta:comment rdf:resource="rdf:#747ef0e9-52de-4b95-bbff-1f3b568bbdb0"/><cmeta:modification rdf:resource="rdf:#0b3629aa-2abd-465c-9a85-74dee492674e"/><undefined:created xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#7885c3b8-994d-46af-95ac-4cadbf6c87e7"/><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#15a9663f-a1e3-4674-89ac-1c4bb1cc089c"/>
+</rdf:Description>
+<rdf:Description rdf:nodeID="b31a"><undefined:subject_type xmlns:undefined="http://www.cellml.org/bqs/1.0#">keyword</undefined:subject_type>
+<rdf:value rdf:nodeID="b31b"/>
+</rdf:Description>
+<rdf:Bag rdf:nodeID="b31b">
+<rdf:_1>electrophysiology
+
 </rdf:_1>
-            <rdf:_2 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">atrial myocyte
+<rdf:_2>atrial myocyte
+
 </rdf:_2>
-            <rdf:_3 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">rabbit
+<rdf:_3>rabbit
+
 </rdf:_3>
-        </rdf:Bag>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b319">
-            <undefined:subject xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:nodeID="b31a" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#07d6b4d3-9171-4fee-8b66-1714419e1b2d">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#71e62653-47ce-47a1-a8a0-c1d4884476b1">
-            <undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</undefined:FN>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#0b3629aa-2abd-465c-9a85-74dee492674e">
-            <undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#7cd7abe4-f80e-48dc-a0a7-5d6786de7790" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">added metadata
-</rdf:value>
-            <cmeta:modifier xmlns:cmeta="http://www.cellml.org/metadata/1.0#" rdf:resource="rdf:#d5c3c343-a2f3-4bf9-9201-cc0cb0bba7fd" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#e370b80b-6177-41ba-aa66-1cb55ab08db0">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">D</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lindblad</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">S</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#a82705b3-bee1-4524-bff5-c5a66688607c">
-            <undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#d02c2448-0a83-4b92-8f61-ced57f52e582" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#1552a5ab-a9ac-43c7-85a0-114c6c1d2fc4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#07d6b4d3-9171-4fee-8b66-1714419e1b2d" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#4b14e487-c868-41bc-88f2-f2452444dc82">
-            <undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Given>
-            <undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Family>
-            <undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Other>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#c33216ec-594b-45c3-bd32-3f390f5e7aac">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2008-01-22T00:00:00+13:00</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#cd2c5913-1d69-4e06-b50a-51319461d271">
-            <undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Orgname>
-            <undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Orgunit>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#5efe6074-dc8e-403c-b4b0-c940f441013a" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#f00d2e32-8768-4306-bdc4-9d20e27e5494" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#01e4c006-b93d-44ba-b20d-7612eb5aaab8">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#42c65c0c-cabb-46bd-89f3-9baf59071c24" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b31d"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#7885c3b8-994d-46af-95ac-4cadbf6c87e7">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2007-03-22</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#b0e74085-ff38-4e92-9f23-e8968ea5c9f1">
-            <undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#8c313b68-95e3-47ec-8704-c1b6b3f8e9ff" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">A Model of the Action Potential and Underlying Membrane Currents in a Rabbit Atrial Cell</undefined:title>
-            <undefined:volume xmlns:undefined="http://www.cellml.org/bqs/1.0#">271(4pt2)</undefined:volume>
-            <undefined:first_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">H1666</undefined:first_page>
-            <undefined:Journal xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#2e3786a8-a2ba-4eb6-8358-6485661fea65" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:issued xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#8e45dda8-d9a3-4ef1-a3a9-85b1af0317e1" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            <undefined:last_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">H1696</undefined:last_page>
-        </rdf:Description>
-        <undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#8d095470-3665-4251-9b8c-1a1146e69fd4" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#bbff3a05-9129-4892-8974-c67a5903590a" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </undefined:Person>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="rdf:#7cd7abe4-f80e-48dc-a0a7-5d6786de7790">
-            <undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2006-03-31</undefined:W3CDTF>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#environment_time">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_V">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_Cm">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_i_Ca_L">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#intracellular_ion_concentrations_Ca_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#intracellular_ion_concentrations_K_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#intracellular_ion_concentrations_Na_i">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_ion_concentrations_Na_c">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_ion_concentrations_K_c">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cleft_space_ion_concentrations_Ca_c">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Ca_handling_by_the_SR_i_rel">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Ca_handling_by_the_SR_i_up">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_open_prob">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_driving_term_ohmic">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-    </rdf:RDF>
-</model>
+</rdf:Bag>
+<rdf:Description rdf:nodeID="b319"><undefined:subject xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:nodeID="b31a"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#07d6b4d3-9171-4fee-8b66-1714419e1b2d"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Penny</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Noble</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">J</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#71e62653-47ce-47a1-a8a0-c1d4884476b1"><undefined:FN xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">James Lawson</undefined:FN>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#0b3629aa-2abd-465c-9a85-74dee492674e"><undefined:modified xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#7cd7abe4-f80e-48dc-a0a7-5d6786de7790"/>
+<rdf:value>added metadata
+
+</rdf:value><cmeta:modifier rdf:resource="rdf:#d5c3c343-a2f3-4bf9-9201-cc0cb0bba7fd"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#e370b80b-6177-41ba-aa66-1cb55ab08db0"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">D</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">Lindblad</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">S</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#a82705b3-bee1-4524-bff5-c5a66688607c"><undefined:ORG xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#d02c2448-0a83-4b92-8f61-ced57f52e582"/><undefined:EMAIL xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#1552a5ab-a9ac-43c7-85a0-114c6c1d2fc4"/><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#07d6b4d3-9171-4fee-8b66-1714419e1b2d"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#4b14e487-c868-41bc-88f2-f2452444dc82"><undefined:Given xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Given><undefined:Family xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Family><undefined:Other xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Other>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#c33216ec-594b-45c3-bd32-3f390f5e7aac"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2008-01-22T00:00:00+13:00</undefined:W3CDTF>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#cd2c5913-1d69-4e06-b50a-51319461d271"><undefined:Orgname xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Orgname><undefined:Orgunit xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#">unknown</undefined:Orgunit>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#5efe6074-dc8e-403c-b4b0-c940f441013a"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#f00d2e32-8768-4306-bdc4-9d20e27e5494"/></undefined:Person>
+<rdf:Description rdf:about="rdf:#01e4c006-b93d-44ba-b20d-7612eb5aaab8"><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#42c65c0c-cabb-46bd-89f3-9baf59071c24"/>
+<rdf:value rdf:nodeID="b31d"/>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#7885c3b8-994d-46af-95ac-4cadbf6c87e7"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2007-03-22</undefined:W3CDTF>
+</rdf:Description>
+<rdf:Description rdf:about="rdf:#b0e74085-ff38-4e92-9f23-e8968ea5c9f1"><undefined:creator xmlns:undefined="http://purl.org/dc/elements/1.1/" rdf:resource="rdf:#8c313b68-95e3-47ec-8704-c1b6b3f8e9ff"/><undefined:title xmlns:undefined="http://purl.org/dc/elements/1.1/">A Model of the Action Potential and Underlying Membrane Currents in a Rabbit Atrial Cell</undefined:title><undefined:volume xmlns:undefined="http://www.cellml.org/bqs/1.0#">271(4pt2)</undefined:volume><undefined:first_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">H1666</undefined:first_page><undefined:Journal xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:resource="rdf:#2e3786a8-a2ba-4eb6-8358-6485661fea65"/><undefined:issued xmlns:undefined="http://purl.org/dc/terms/" rdf:resource="rdf:#8e45dda8-d9a3-4ef1-a3a9-85b1af0317e1"/><undefined:last_page xmlns:undefined="http://www.cellml.org/bqs/1.0#">H1696</undefined:last_page>
+</rdf:Description><undefined:Person xmlns:undefined="http://www.cellml.org/bqs/1.0#" rdf:about="rdf:#8d095470-3665-4251-9b8c-1a1146e69fd4"><undefined:N xmlns:undefined="http://www.w3.org/2001/vcard-rdf/3.0#" rdf:resource="rdf:#bbff3a05-9129-4892-8974-c67a5903590a"/></undefined:Person>
+<rdf:Description rdf:about="rdf:#7cd7abe4-f80e-48dc-a0a7-5d6786de7790"><undefined:W3CDTF xmlns:undefined="http://purl.org/dc/terms/">2006-03-31</undefined:W3CDTF>
+</rdf:Description>
+<rdf:Description rdf:about="#environment_time">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_V">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_Cm">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_i_Ca_L">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_ion_concentrations_Ca_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_ion_concentrations_K_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_ion_concentrations_Na_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Ca_handling_by_the_SR_i_rel">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Ca_handling_by_the_SR_i_up">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_open_prob">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_driving_term_ohmic">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_ion_concentrations_Ca_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_ion_concentrations_K_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_ion_concentrations_Cl_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_chloride_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cleft_space_ion_concentrations_Na_c">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#intracellular_ion_concentrations_Cl_i">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_chloride_concentration"/>
+</rdf:Description>
+</rdf:RDF></model>

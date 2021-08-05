@@ -1,5 +1,5 @@
-<?xml version='1.0'?>
-<model cmeta:id="luo_rudy_1994" name="luo_rudy_1994" xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#">
+<?xml version='1.0' encoding='UTF-8'?>
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" cmeta:id="luo_rudy_1994" name="luo_rudy_1994">
     <units name="ms">
         <unit prefix="milli" units="second"/>
     </units>
@@ -665,9 +665,9 @@
         <variable initial_value="0.75" name="gamma_Nao" public_interface="out" units="dimensionless"/>
         <variable initial_value="0.75" name="gamma_Ki" public_interface="out" units="dimensionless"/>
         <variable initial_value="0.75" name="gamma_Ko" public_interface="out" units="dimensionless"/>
-        <variable name="I_CaCa" units="uA_per_mm2"/>
-        <variable name="I_CaK" units="uA_per_mm2"/>
-        <variable name="I_CaNa" units="uA_per_mm2"/>
+        <!--var I_CaCa: uA_per_mm2;
+var I_CaK: uA_per_mm2;
+var I_CaNa: uA_per_mm2;-->
         <variable cmeta:id="L_type_Ca_channel_P_Ca" initial_value="5.4e-6" name="P_Ca" units="mm_per_ms"/>
         <variable cmeta:id="L_type_Ca_channel_P_Na" initial_value="6.75e-9" name="P_Na" units="mm_per_ms"/>
         <variable cmeta:id="L_type_Ca_channel_P_K" initial_value="1.93e-9" name="P_K" units="mm_per_ms"/>
@@ -699,7 +699,8 @@
                 <apply>
                     <times/>
                     <ci>open_prob</ci>
-                    <ci>I_CaCa</ci>
+                    <ci>P_Ca</ci>
+                    <ci>driving_term_ghk_Ca</ci>
                 </apply>
             </apply>
             <apply id="i_CaNa_calculation">
@@ -708,7 +709,8 @@
                 <apply>
                     <times/>
                     <ci>open_prob</ci>
-                    <ci>I_CaNa</ci>
+                    <ci>P_Na</ci>
+                    <ci>driving_term_ghk_Na</ci>
                 </apply>
             </apply>
             <apply id="i_CaK_calculation">
@@ -717,36 +719,13 @@
                 <apply>
                     <times/>
                     <ci>open_prob</ci>
-                    <ci>I_CaK</ci>
-                </apply>
-            </apply>
-            <apply id="I_CaCa_calculation">
-                <eq/>
-                <ci>I_CaCa</ci>
-                <apply>
-                    <times/>
-                    <ci>P_Ca</ci>
-                    <ci>driving_term_ghk_Ca</ci>
-                </apply>
-            </apply>
-            <apply id="I_CaNa_calculation">
-                <eq/>
-                <ci>I_CaNa</ci>
-                <apply>
-                    <times/>
-                    <ci>P_Na</ci>
-                    <ci>driving_term_ghk_Na</ci>
-                </apply>
-            </apply>
-            <apply id="I_CaK_calculation">
-                <eq/>
-                <ci>I_CaK</ci>
-                <apply>
-                    <times/>
                     <ci>P_K</ci>
                     <ci>driving_term_ghk_K</ci>
                 </apply>
             </apply>
+            <!--I_CaCa ={I_CaCa_calculation} P_Ca*driving_term_ghk_Ca;
+I_CaNa ={I_CaNa_calculation} P_Na*driving_term_ghk_Na;
+I_CaK ={I_CaK_calculation} P_K*driving_term_ghk_K;-->
             <apply id="i_Ca_L_calculation">
                 <eq/>
                 <ci>i_Ca_L</ci>
@@ -774,9 +753,21 @@
                     <divide/>
                     <apply>
                         <plus/>
-                        <ci>I_CaCa</ci>
-                        <ci>I_CaK</ci>
-                        <ci>I_CaNa</ci>
+                        <apply>
+                            <times/>
+                            <ci>P_Ca</ci>
+                            <ci>driving_term_ghk_Ca</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>P_K</ci>
+                            <ci>driving_term_ghk_K</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>P_Na</ci>
+                            <ci>driving_term_ghk_Na</ci>
+                        </apply>
                     </apply>
                     <ci>P_Ca</ci>
                 </apply>
@@ -3221,18 +3212,18 @@
             </articleinfo>
             <section xmlns="http://cellml.org/tmp-documentation" id="sec_status">
                 <title xmlns="http://cellml.org/tmp-documentation">Model Status</title>
-                <para xmlns="http://cellml.org/tmp-documentation">&#xd;
-        This CellML model has been written to be compatible with CMISS. Alone it cannot be run and a new version will have to be created.&#xd;
+                <para xmlns="http://cellml.org/tmp-documentation">
+        This CellML model has been written to be compatible with CMISS. Alone it cannot be run and a new version will have to be created.
           </para>
             </section>
             <sect1 xmlns="http://cellml.org/tmp-documentation" id="sec_structure">
                 <title xmlns="http://cellml.org/tmp-documentation">Model Structure</title>
-                <para xmlns="http://cellml.org/tmp-documentation">&#xd;
+                <para xmlns="http://cellml.org/tmp-documentation">
 ABSTRACT: A mathematical model of the cardiac ventricular action potential is presented. In our previous work, the membrane Na+ current and K+ currents were formulated. The present article focuses on processes that regulate intracellular Ca2+ and depend on its concentration. The model presented here for the mammalian ventricular action potential is based mostly on the guinea pig ventricular cell. However, it provides the framework for modeling other types of ventricular cells with appropriate modifications made to account for species differences. The following processes are formulated: Ca2+ current through the L-type channel (ICa), the Na(+)-Ca2+ exchanger, Ca2+ release and uptake by the sarcoplasmic reticulum (SR), buffering of Ca2+ in the SR and in the myoplasm, a Ca2+ pump in the sarcolemma, the Na(+)-K+ pump, and a nonspecific Ca(2+)-activated membrane current. Activation of ICa is an order of magnitude faster than in previous models. Inactivation of ICa depends on both the membrane voltage and [Ca2+]i. SR is divided into two subcompartments, a network SR (NSR) and a junctional SR (JSR). Functionally, Ca2+ enters the NSR and translocates to the JSR following a monoexponential function. Release of Ca2+ occurs at JSR and can be triggered by two different mechanisms, Ca(2+)-induced Ca2+ release and spontaneous release. The model provides the basis for the study of arrhythmogenic activity of the single myocyte including afterdepolarizations and triggered activity. It can simulate cellular responses under different degrees of Ca2+ overload. Such simulations are presented in our accompanying article in this issue of Circulation Research.</para>
-                <para xmlns="http://cellml.org/tmp-documentation">&#xd;
-The original paper reference is cited below:&#xd;
+                <para xmlns="http://cellml.org/tmp-documentation">
+The original paper reference is cited below:
 </para>
-                <para xmlns="http://cellml.org/tmp-documentation">&#xd;
+                <para xmlns="http://cellml.org/tmp-documentation">
 A dynamic model of the cardiac ventricular action potential. I. Simulations of ionic currents and concentration changes, Ching-hsing Luo and Yoram Rudy, 1994, <emphasis xmlns="http://cellml.org/tmp-documentation">Circulation Research</emphasis>, 74, 1071-1097.  <ulink xmlns="http://cellml.org/tmp-documentation" url="http://www.ncbi.nlm.nih.gov/pubmed/7514509">PubMed ID: 7514509</ulink>
                 </para>
                 <informalfigure xmlns="http://cellml.org/tmp-documentation" float="0" id="fig_cell_diagram">
@@ -3249,129 +3240,130 @@ A dynamic model of the cardiac ventricular action potential. I. Simulations of i
             </sect1>
         </article>
     </documentation>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#environment_time">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_V">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_capacitance">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_stimulus_current">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_stimulus_current_period">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_stimulus_current_duration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_stimulus_current_amplitude">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_fast_sodium_current">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_fast_sodium_current_conductance">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_inward_rectifier_potassium_current">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_inward_rectifier_potassium_current_conductance">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cytosolic_sodium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#extracellular_sodium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cytosolic_calcium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#extracellular_calcium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#cytosolic_potassium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#extracellular_potassium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#JSR_calcium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#JSR_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#NSR_calcium_concentration">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#NSR_calcium_concentration" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_i_Ca_L">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_i_CaK">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_potassium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_i_CaNa">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_sodium_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_P_K">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_potassium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_P_Na">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_sodium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_P_Ca">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#Na_Ca_exchanger_K_NaCa">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current_conductance" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_fluxes_in_the_SR_G_rel_max">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current_max" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_T">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#temperature" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#fast_sodium_current_E_Na">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#sodium_reversal_potential" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_R">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#gas_constant" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_F">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#faraday_constant" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_fluxes_in_the_SR_i_up">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_fluxes_in_the_SR_I_up">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current_max" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_fluxes_in_the_SR_i_rel">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_fluxes_in_the_SR_i_leak">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_leak_current" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#calcium_fluxes_in_the_SR_K_leak">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_leak_current_max" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#fast_sodium_current_m_gate_m">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_m_gate" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#fast_sodium_current_h_gate_h">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_h_gate" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#fast_sodium_current_j_gate_j">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_j_gate" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_open_prob">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#L_type_Ca_channel_driving_term_ghk">
-            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-        </rdf:Description>
-    </rdf:RDF>
-</model>
+    
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdf:Description rdf:about="#environment_time">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_V">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_capacitance">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_stimulus_current">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_stimulus_current_period">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_stimulus_current_duration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_stimulus_current_amplitude">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_fast_sodium_current">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_fast_sodium_current_conductance">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_inward_rectifier_potassium_current">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_inward_rectifier_potassium_current_conductance">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cytosolic_sodium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#extracellular_sodium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cytosolic_calcium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#extracellular_calcium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#cytosolic_potassium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#extracellular_potassium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#JSR_calcium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#JSR_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#NSR_calcium_concentration">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#NSR_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_i_Ca_L">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_i_CaK">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_potassium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_i_CaNa">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_sodium_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_P_K">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_potassium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_P_Na">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_channel_sodium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_P_Ca">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Na_Ca_exchanger_K_NaCa">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current_conductance"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_fluxes_in_the_SR_G_rel_max">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current_max"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_T">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#temperature"/>
+</rdf:Description>
+<rdf:Description rdf:about="#fast_sodium_current_E_Na">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#sodium_reversal_potential"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_R">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#gas_constant"/>
+</rdf:Description>
+<rdf:Description rdf:about="#membrane_F">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#faraday_constant"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_fluxes_in_the_SR_i_up">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_fluxes_in_the_SR_I_up">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_uptake_current_max"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_fluxes_in_the_SR_i_rel">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_release_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_fluxes_in_the_SR_i_leak">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_leak_current"/>
+</rdf:Description>
+<rdf:Description rdf:about="#calcium_fluxes_in_the_SR_K_leak">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#SR_leak_current_max"/>
+</rdf:Description>
+<rdf:Description rdf:about="#fast_sodium_current_m_gate_m">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_m_gate"/>
+</rdf:Description>
+<rdf:Description rdf:about="#fast_sodium_current_h_gate_h">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_h_gate"/>
+</rdf:Description>
+<rdf:Description rdf:about="#fast_sodium_current_j_gate_j">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current_j_gate"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_open_prob">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+</rdf:Description>
+<rdf:Description rdf:about="#L_type_Ca_channel_driving_term_ghk">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
+</rdf:Description>
+</rdf:RDF></model>

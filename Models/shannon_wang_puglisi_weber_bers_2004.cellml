@@ -2900,9 +2900,14 @@
         <variable name="f" private_interface="in" units="dimensionless"/>
         <variable name="fCa_SL" private_interface="in" units="dimensionless"/>
         <variable name="fCa_jct" private_interface="in" units="dimensionless"/>
-        <variable name="temp" units="coulomb_per_mole"/>
+        <variable name="temp" units="dimensionless"/>
         <variable cmeta:id="ICaL_open_prob" name="open_prob" units="dimensionless"/>
         <variable cmeta:id="ICaL_driving_term_ghk" name="driving_term_ghk" units="coulomb_per_m3"/>
+        <variable name="driving_term_ghk_ca_jct" units="coulomb_per_m3"/>
+        <variable name="driving_term_ghk_na_jct" units="coulomb_per_m3"/>
+        <variable name="driving_term_ghk_k" units="coulomb_per_m3"/>
+        <variable name="driving_term_ghk_ca_SL" units="coulomb_per_m3"/>
+        <variable name="driving_term_ghk_na_SL" units="coulomb_per_m3"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -2930,46 +2935,50 @@
                 <eq/>
                 <ci>driving_term_ghk</ci>
                 <apply>
-                    <plus/>
+                    <divide/>
                     <apply>
-                        <divide/>
+                        <plus/>
                         <apply>
-                            <plus/>
-                            <ci>i_CaL_Ca_jct</ci>
-                            <ci>i_CaL_Na_jct</ci>
+                            <times/>
+                            <ci>Fx_ICaL_jct</ci>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <ci>PCa</ci>
+                                    <ci>driving_term_ghk_ca_jct</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <ci>PNa</ci>
+                                    <ci>driving_term_ghk_na_jct</ci>
+                                </apply>
+                            </apply>
                         </apply>
                         <apply>
                             <times/>
-                            <ci>PCa</ci>
-                            <ci>d</ci>
-                            <ci>f</ci>
-                            <ci>fCa_jct</ci>
+                            <ci>Fx_ICaL_SL</ci>
+                            <apply>
+                                <plus/>
+                                <apply>
+                                    <times/>
+                                    <ci>PCa</ci>
+                                    <ci>driving_term_ghk_ca_SL</ci>
+                                </apply>
+                                <apply>
+                                    <times/>
+                                    <ci>PNa</ci>
+                                    <ci>driving_term_ghk_na_SL</ci>
+                                </apply>
+                            </apply>
                         </apply>
-                    </apply>
-                    <apply>
-                        <divide/>
-                        <apply>
-                            <plus/>
-                            <ci>i_CaL_Ca_SL</ci>
-                            <ci>i_CaL_Na_SL</ci>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>PCa</ci>
-                            <ci>d</ci>
-                            <ci>f</ci>
-                            <ci>fCa_SL</ci>
-                        </apply>
-                    </apply>
-                    <apply>
-                        <divide/>
-                        <ci>i_CaL_K</ci>
                         <apply>
                             <times/>
-                            <ci>open_prob</ci>
-                            <ci>PCa</ci>
+                            <ci>PK</ci>
+                            <ci>driving_term_ghk_k</ci>
                         </apply>
                     </apply>
+                    <ci>PCa</ci>
                 </apply>
             </apply>
             <apply>
@@ -2993,38 +3002,37 @@
                 <eq/>
                 <ci>temp</ci>
                 <apply>
-                    <divide/>
-                    <apply>
-                        <times/>
-                        <cn cellml:units="dimensionless">0.45</cn>
-                        <ci>d</ci>
-                        <ci>f</ci>
-                        <ci>Q_CaL</ci>
-                        <ci>V</ci>
-                        <apply>
-                            <power/>
-                            <ci>F</ci>
-                            <cn cellml:units="dimensionless">2</cn>
-                        </apply>
-                    </apply>
-                    <apply>
-                        <times/>
-                        <ci>R</ci>
-                        <ci>T</ci>
-                    </apply>
+                    <times/>
+                    <cn cellml:units="dimensionless">0.45</cn>
+                    <ci>d</ci>
+                    <ci>f</ci>
+                    <ci>Q_CaL</ci>
                 </apply>
             </apply>
             <apply>
                 <eq/>
-                <ci>i_CaL_Ca_jct</ci>
+                <ci>driving_term_ghk_ca_jct</ci>
                 <apply>
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>temp</ci>
-                        <ci>fCa_jct</ci>
-                        <ci>Fx_ICaL_jct</ci>
-                        <ci>PCa</ci>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>V</ci>
+                                <apply>
+                                    <power/>
+                                    <ci>F</ci>
+                                    <cn cellml:units="dimensionless">2</cn>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>R</ci>
+                                <ci>T</ci>
+                            </apply>
+                        </apply>
                         <cn cellml:units="dimensionless">4</cn>
                         <apply>
                             <minus/>
@@ -3082,15 +3090,28 @@
             </apply>
             <apply>
                 <eq/>
-                <ci>i_CaL_Na_jct</ci>
+                <ci>driving_term_ghk_na_jct</ci>
                 <apply>
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>temp</ci>
-                        <ci>fCa_jct</ci>
-                        <ci>Fx_ICaL_jct</ci>
-                        <ci>PNa</ci>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>V</ci>
+                                <apply>
+                                    <power/>
+                                    <ci>F</ci>
+                                    <cn cellml:units="dimensionless">2</cn>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>R</ci>
+                                <ci>T</ci>
+                            </apply>
+                        </apply>
                         <apply>
                             <minus/>
                             <apply>
@@ -3145,15 +3166,28 @@
             </apply>
             <apply>
                 <eq/>
-                <ci>i_CaL_Ca_SL</ci>
+                <ci>driving_term_ghk_ca_SL</ci>
                 <apply>
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>temp</ci>
-                        <ci>fCa_SL</ci>
-                        <ci>Fx_ICaL_SL</ci>
-                        <ci>PCa</ci>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>V</ci>
+                                <apply>
+                                    <power/>
+                                    <ci>F</ci>
+                                    <cn cellml:units="dimensionless">2</cn>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>R</ci>
+                                <ci>T</ci>
+                            </apply>
+                        </apply>
                         <cn cellml:units="dimensionless">4</cn>
                         <apply>
                             <minus/>
@@ -3211,15 +3245,28 @@
             </apply>
             <apply>
                 <eq/>
-                <ci>i_CaL_Na_SL</ci>
+                <ci>driving_term_ghk_na_SL</ci>
                 <apply>
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>temp</ci>
-                        <ci>fCa_SL</ci>
-                        <ci>Fx_ICaL_SL</ci>
-                        <ci>PNa</ci>
+                        <apply>
+                            <divide/>
+                            <apply>
+                                <times/>
+                                <ci>V</ci>
+                                <apply>
+                                    <power/>
+                                    <ci>F</ci>
+                                    <cn cellml:units="dimensionless">2</cn>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>R</ci>
+                                <ci>T</ci>
+                            </apply>
+                        </apply>
                         <apply>
                             <minus/>
                             <apply>
@@ -3274,26 +3321,28 @@
             </apply>
             <apply>
                 <eq/>
-                <ci>i_CaL_K</ci>
+                <ci>driving_term_ghk_k</ci>
                 <apply>
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>temp</ci>
                         <apply>
-                            <plus/>
+                            <divide/>
                             <apply>
                                 <times/>
-                                <ci>fCa_SL</ci>
-                                <ci>Fx_ICaL_SL</ci>
+                                <ci>V</ci>
+                                <apply>
+                                    <power/>
+                                    <ci>F</ci>
+                                    <cn cellml:units="dimensionless">2</cn>
+                                </apply>
                             </apply>
                             <apply>
                                 <times/>
-                                <ci>fCa_jct</ci>
-                                <ci>Fx_ICaL_jct</ci>
+                                <ci>R</ci>
+                                <ci>T</ci>
                             </apply>
                         </apply>
-                        <ci>PK</ci>
                         <apply>
                             <minus/>
                             <apply>
@@ -3344,6 +3393,77 @@
                         </apply>
                         <cn cellml:units="dimensionless">1</cn>
                     </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>i_CaL_Ca_jct</ci>
+                <apply>
+                    <times/>
+                    <ci>PCa</ci>
+                    <ci>temp</ci>
+                    <ci>fCa_jct</ci>
+                    <ci>Fx_ICaL_jct</ci>
+                    <ci>driving_term_ghk_ca_jct</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>i_CaL_Na_jct</ci>
+                <apply>
+                    <times/>
+                    <ci>PNa</ci>
+                    <ci>temp</ci>
+                    <ci>fCa_jct</ci>
+                    <ci>Fx_ICaL_jct</ci>
+                    <ci>driving_term_ghk_na_jct</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>i_CaL_Ca_SL</ci>
+                <apply>
+                    <times/>
+                    <ci>PCa</ci>
+                    <ci>temp</ci>
+                    <ci>fCa_SL</ci>
+                    <ci>Fx_ICaL_SL</ci>
+                    <ci>driving_term_ghk_ca_SL</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>i_CaL_Na_SL</ci>
+                <apply>
+                    <times/>
+                    <ci>PNa</ci>
+                    <ci>temp</ci>
+                    <ci>fCa_SL</ci>
+                    <ci>Fx_ICaL_SL</ci>
+                    <ci>driving_term_ghk_na_SL</ci>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>i_CaL_K</ci>
+                <apply>
+                    <times/>
+                    <ci>PK</ci>
+                    <ci>temp</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>fCa_SL</ci>
+                            <ci>Fx_ICaL_SL</ci>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>fCa_jct</ci>
+                            <ci>Fx_ICaL_jct</ci>
+                        </apply>
+                    </apply>
+                    <ci>driving_term_ghk_k</ci>
                 </apply>
             </apply>
             <apply>
