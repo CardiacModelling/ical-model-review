@@ -209,6 +209,9 @@ def calculate_rmsd():
 
     def rmsd(arr1, arr2):
         diff = arr1 - arr2
+        for i in range(len(diff)): #Remove outlier e.g., hund at last P1
+            if abs(diff.loc[i]) > 2:
+                diff = diff.drop([i])
         return np.sqrt(diff.pow(2).sum()/len(arr1))
 
     path = 'calcium_sensitivity/CDI/data'
@@ -235,7 +238,7 @@ def calculate_rmsd():
 
         if rmsd_a < 0.1:
             insensenitive.append(file[:-4])
-        elif rmsd_a > 0.5:
+        elif rmsd_a > 0.51:
             strong.append(file[:-4])
         else:
             mild.append(file[:-4])
