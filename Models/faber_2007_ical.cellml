@@ -3,49 +3,49 @@
   <units name="C_per_mol">
     <unit units="second"/>
     <unit units="ampere"/>
-    <unit units="mole" exponent="-1"/>
+    <unit units="mole" exponent="-1.0"/>
   </units>
   <units name="cm_per_s">
     <unit units="metre" multiplier="0.01"/>
-    <unit units="second" exponent="-1"/>
+    <unit units="second" exponent="-1.0"/>
   </units>
   <units name="mJ_per_mol_per_K">
     <unit units="gram"/>
-    <unit units="metre" exponent="2"/>
-    <unit units="second" exponent="-2"/>
-    <unit units="kelvin" exponent="-1"/>
-    <unit units="mole" exponent="-1"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-2.0"/>
+    <unit units="kelvin" exponent="-1.0"/>
+    <unit units="mole" exponent="-1.0"/>
   </units>
   <units name="mM">
-    <unit units="metre" exponent="-3"/>
+    <unit units="metre" exponent="-3.0"/>
     <unit units="mole"/>
   </units>
   <units name="mS_per_uF">
-    <unit units="second" exponent="-1" multiplier="1000"/>
+    <unit units="second" exponent="-1.0" multiplier="1000"/>
   </units>
   <units name="mV">
     <unit units="gram"/>
-    <unit units="metre" exponent="2"/>
-    <unit units="second" exponent="-3"/>
-    <unit units="ampere" exponent="-1"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-3.0"/>
+    <unit units="ampere" exponent="-1.0"/>
   </units>
   <units name="ms">
     <unit units="second" multiplier="0.001"/>
   </units>
   <units name="s_A_per_m3">
-    <unit units="metre" exponent="-3"/>
+    <unit units="metre" exponent="-3.0"/>
     <unit units="second"/>
     <unit units="ampere"/>
   </units>
   <units name="uA_per_cm2">
-    <unit units="metre" exponent="-2" multiplier="0.01"/>
+    <unit units="metre" exponent="-2.0" multiplier="0.01"/>
     <unit units="ampere"/>
   </units>
   <units name="uF">
-    <unit units="gram" exponent="-1" multiplier="1e-09"/>
-    <unit units="metre" exponent="-2"/>
-    <unit units="second" exponent="4"/>
-    <unit units="ampere" exponent="2"/>
+    <unit units="gram" exponent="-1.0" multiplier="1e-09"/>
+    <unit units="metre" exponent="-2.0"/>
+    <unit units="second" exponent="4.0"/>
+    <unit units="ampere" exponent="2.0"/>
   </units>
   <component name="L_type_Ca_current">
     <variable name="C_0" units="dimensionless" initial_value="0.923"/>
@@ -60,9 +60,6 @@
     <variable name="Cao" units="mM" public_interface="in"/>
     <variable name="F" units="C_per_mol" public_interface="in"/>
     <variable name="I_Ca" units="dimensionless" initial_value="0.0"/>
-    <variable name="I_maxCa" units="uA_per_cm2"/>
-    <variable name="I_maxK" units="uA_per_cm2"/>
-    <variable name="I_maxNa" units="uA_per_cm2"/>
     <variable name="I_vf" units="dimensionless" initial_value="0.0"/>
     <variable name="I_vfCa" units="dimensionless" initial_value="0.0"/>
     <variable name="I_vs" units="dimensionless" initial_value="0.0"/>
@@ -574,33 +571,6 @@
       </apply>
       <apply>
         <eq/>
-        <ci>I_maxCa</ci>
-        <apply>
-          <times/>
-          <ci>P_Ca</ci>
-          <ci>driving_term_ghk_Ca</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
-        <ci>I_maxK</ci>
-        <apply>
-          <times/>
-          <ci>P_K</ci>
-          <ci>driving_term_ghk_K</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
-        <ci>I_maxNa</ci>
-        <apply>
-          <times/>
-          <ci>P_Na</ci>
-          <ci>driving_term_ghk_Na</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
         <apply>
           <diff/>
           <bvar>
@@ -1027,10 +997,22 @@
             <plus/>
             <apply>
               <plus/>
-              <ci>I_maxCa</ci>
-              <ci>I_maxK</ci>
+              <apply>
+                <times/>
+                <ci>P_Ca</ci>
+                <ci>driving_term_ghk_Ca</ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci>P_K</ci>
+                <ci>driving_term_ghk_K</ci>
+              </apply>
             </apply>
-            <ci>I_maxNa</ci>
+            <apply>
+              <times/>
+              <ci>P_Na</ci>
+              <ci>driving_term_ghk_Na</ci>
+            </apply>
           </apply>
           <ci>P_Ca</ci>
         </apply>
@@ -1498,7 +1480,7 @@
   </component>
   <component name="membrane">
     <variable name="C" units="uF" initial_value="1.0" cmeta:id="C"/>
-    <variable name="F" units="C_per_mol" public_interface="out" initial_value=" 9.64853415000000095e+04"/>
+    <variable name="F" units="C_per_mol" public_interface="out" initial_value="9.64853415000000095e+04"/>
     <variable name="R" units="mJ_per_mol_per_K" public_interface="out" initial_value="8314.472"/>
     <variable name="T" units="kelvin" public_interface="out" initial_value="310.0"/>
     <variable name="V" units="mV" public_interface="out" cmeta:id="V"/>
