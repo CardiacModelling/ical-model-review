@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-08-05T10:41:15.120585
+# Saved at 2021-08-05T13:03:13.098518
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\calcium_sensitivity\\CDI')
 ImportFileCSV(u'data/Aslanidi_atrial.csv', linked=True, numericlocale=u'en_IN', dssuffix=u'Aslanidi_atrial.csv')
@@ -18838,7 +18838,7 @@ Add('axis', name=u'y', autoadd=False)
 To(u'y')
 Set('label', u'Peak Current (normalized)')
 Set('min', -0.02)
-Set('max', 0.5)
+Set('max', 0.32)
 Set('direction', u'vertical')
 Set('lowerPosition', -0.0)
 Set('Label/font', u'Arial')

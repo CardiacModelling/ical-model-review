@@ -238,7 +238,7 @@ def calculate_rmsd():
 
         if rmsd_a < 0.1:
             insensenitive.append(file[:-4])
-        elif rmsd_a > 0.51:
+        elif rmsd_a > 0.50:
             strong.append(file[:-4])
         else:
             mild.append(file[:-4])

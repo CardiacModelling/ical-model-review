@@ -1,93 +1,68 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="cabo_2003_ical">
-  <units name="A_per_F">
-    <unit units="gram" multiplier="1000"/>
-    <unit units="metre" exponent="2"/>
-    <unit units="second" exponent="-4"/>
-    <unit units="ampere" exponent="-1"/>
-  </units>
-  <units name="C_per_mmol">
-    <unit units="second" multiplier="1000"/>
+  <units name="C_per_mol">
+    <unit units="second"/>
     <unit units="ampere"/>
-    <unit units="mole" exponent="-1"/>
-  </units>
-  <units name="J_per_mol_per_K">
-    <unit units="gram" multiplier="1000"/>
-    <unit units="metre" exponent="2"/>
-    <unit units="second" exponent="-2"/>
-    <unit units="kelvin" exponent="-1"/>
-    <unit units="mole" exponent="-1"/>
-  </units>
-  <units name="cm2">
-    <unit units="metre" exponent="2" multiplier="0.0001"/>
+    <unit units="mole" exponent="-1.0"/>
   </units>
   <units name="cm_per_s">
     <unit units="metre" multiplier="0.01"/>
-    <unit units="second" exponent="-1"/>
+    <unit units="second" exponent="-1.0"/>
   </units>
-  <units name="mF">
-    <unit units="gram" exponent="-1" multiplier="1e-06"/>
-    <unit units="metre" exponent="-2"/>
-    <unit units="second" exponent="4"/>
-    <unit units="ampere" exponent="2"/>
+  <units name="mJ_per_mol_per_K">
+    <unit units="gram"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-2.0"/>
+    <unit units="kelvin" exponent="-1.0"/>
+    <unit units="mole" exponent="-1.0"/>
   </units>
   <units name="mM">
-    <unit units="metre" exponent="-3"/>
+    <unit units="metre" exponent="-3.0"/>
     <unit units="mole"/>
   </units>
   <units name="mS_per_uF">
-    <unit units="second" exponent="-1" multiplier="1000"/>
+    <unit units="second" exponent="-1.0" multiplier="1000"/>
   </units>
   <units name="mV">
     <unit units="gram"/>
-    <unit units="metre" exponent="2"/>
-    <unit units="second" exponent="-3"/>
-    <unit units="ampere" exponent="-1"/>
+    <unit units="metre" exponent="2.0"/>
+    <unit units="second" exponent="-3.0"/>
+    <unit units="ampere" exponent="-1.0"/>
   </units>
   <units name="ms">
     <unit units="second" multiplier="0.001"/>
   </units>
   <units name="pF">
-    <unit units="gram" exponent="-1" multiplier="1e-15"/>
-    <unit units="metre" exponent="-2"/>
-    <unit units="second" exponent="4"/>
-    <unit units="ampere" exponent="2"/>
+    <unit units="gram" exponent="-1.0" multiplier="1e-15"/>
+    <unit units="metre" exponent="-2.0"/>
+    <unit units="second" exponent="4.0"/>
+    <unit units="ampere" exponent="2.0"/>
   </units>
   <units name="per_mV">
-    <unit units="gram" exponent="-1"/>
-    <unit units="metre" exponent="-2"/>
-    <unit units="second" exponent="3"/>
+    <unit units="gram" exponent="-1.0"/>
+    <unit units="metre" exponent="-2.0"/>
+    <unit units="second" exponent="3.0"/>
     <unit units="ampere"/>
   </units>
   <units name="per_mV_per_ms">
-    <unit units="gram" exponent="-1" multiplier="1000"/>
-    <unit units="metre" exponent="-2"/>
-    <unit units="second" exponent="2"/>
+    <unit units="gram" exponent="-1.0" multiplier="1000"/>
+    <unit units="metre" exponent="-2.0"/>
+    <unit units="second" exponent="2.0"/>
     <unit units="ampere"/>
   </units>
   <units name="s_A_per_m3">
-    <unit units="metre" exponent="-3"/>
+    <unit units="metre" exponent="-3.0"/>
     <unit units="second"/>
     <unit units="ampere"/>
   </units>
-  <units name="s_A_per_m3_times_1e3">
-    <unit units="metre" exponent="-3" multiplier="1000"/>
-    <unit units="second"/>
+  <units name="uA_per_cm2">
+    <unit units="metre" exponent="-2.0" multiplier="0.01"/>
     <unit units="ampere"/>
-  </units>
-  <units name="uF">
-    <unit units="gram" exponent="-1" multiplier="1e-09"/>
-    <unit units="metre" exponent="-2"/>
-    <unit units="second" exponent="4"/>
-    <unit units="ampere" exponent="2"/>
   </units>
   <component name="ICa">
     <variable name="Cai" units="mM" public_interface="in"/>
     <variable name="Cao" units="mM" public_interface="in"/>
-    <variable name="F" units="C_per_mmol" public_interface="in"/>
-    <variable name="I_CaCa" units="A_per_F"/>
-    <variable name="I_CaK" units="A_per_F"/>
-    <variable name="I_CaNa" units="A_per_F"/>
+    <variable name="F" units="C_per_mol" public_interface="in"/>
     <variable name="Ki" units="mM" public_interface="in"/>
     <variable name="Ko" units="mM" public_interface="in"/>
     <variable name="Nai" units="mM" public_interface="in"/>
@@ -96,14 +71,14 @@
     <variable name="P_Ca" units="cm_per_s" initial_value="0.0003"/>
     <variable name="P_K" units="cm_per_s" initial_value="1.93e-07"/>
     <variable name="P_Na" units="cm_per_s" initial_value="6.75e-07"/>
-    <variable name="R" units="J_per_mol_per_K" public_interface="in"/>
+    <variable name="R" units="mJ_per_mol_per_K" public_interface="in"/>
     <variable name="T" units="kelvin" public_interface="in"/>
     <variable name="V" units="mV" public_interface="in"/>
     <variable name="d" units="dimensionless" public_interface="in"/>
     <variable name="driving_term_ghk" units="s_A_per_m3" cmeta:id="driving_term_ghk"/>
-    <variable name="driving_term_ghk_Ca" units="s_A_per_m3_times_1e3"/>
-    <variable name="driving_term_ghk_K" units="s_A_per_m3_times_1e3"/>
-    <variable name="driving_term_ghk_Na" units="s_A_per_m3_times_1e3"/>
+    <variable name="driving_term_ghk_Ca" units="s_A_per_m3"/>
+    <variable name="driving_term_ghk_K" units="s_A_per_m3"/>
+    <variable name="driving_term_ghk_Na" units="s_A_per_m3"/>
     <variable name="f" units="dimensionless" public_interface="in"/>
     <variable name="f_Ca" units="dimensionless" public_interface="in"/>
     <variable name="gamma_Cai" units="dimensionless" initial_value="1.0"/>
@@ -112,59 +87,8 @@
     <variable name="gamma_Ko" units="dimensionless" initial_value="0.75"/>
     <variable name="gamma_Nai" units="dimensionless" initial_value="0.75"/>
     <variable name="gamma_Nao" units="dimensionless" initial_value="0.75"/>
-    <variable name="i_Ca" units="A_per_F" cmeta:id="i_Ca"/>
+    <variable name="i_Ca" units="uA_per_cm2" cmeta:id="i_Ca"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-        <eq/>
-        <ci>I_CaCa</ci>
-        <apply>
-          <times/>
-          <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci>P_Ca</ci>
-              <cn cellml:units="cm2">1000.0</cn>
-            </apply>
-            <cn cellml:units="mF">1.0</cn>
-          </apply>
-          <ci>driving_term_ghk_Ca</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
-        <ci>I_CaK</ci>
-        <apply>
-          <times/>
-          <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci>P_K</ci>
-              <cn cellml:units="cm2">1000.0</cn>
-            </apply>
-            <cn cellml:units="mF">1.0</cn>
-          </apply>
-          <ci>driving_term_ghk_K</ci>
-        </apply>
-      </apply>
-      <apply>
-        <eq/>
-        <ci>I_CaNa</ci>
-        <apply>
-          <times/>
-          <apply>
-            <divide/>
-            <apply>
-              <times/>
-              <ci>P_Na</ci>
-              <cn cellml:units="cm2">1000.0</cn>
-            </apply>
-            <cn cellml:units="mF">1.0</cn>
-          </apply>
-          <ci>driving_term_ghk_Na</ci>
-        </apply>
-      </apply>
       <apply>
         <eq/>
         <ci>Open_Prob</ci>
@@ -184,20 +108,24 @@
         <apply>
           <divide/>
           <apply>
-            <times/>
-            <apply>
-              <divide/>
-              <cn cellml:units="uF">1.0</cn>
-              <cn cellml:units="cm2">1.0</cn>
-            </apply>
+            <plus/>
             <apply>
               <plus/>
               <apply>
-                <plus/>
-                <ci>I_CaCa</ci>
-                <ci>I_CaK</ci>
+                <times/>
+                <ci>P_Ca</ci>
+                <ci>driving_term_ghk_Ca</ci>
               </apply>
-              <ci>I_CaNa</ci>
+              <apply>
+                <times/>
+                <ci>P_K</ci>
+                <ci>driving_term_ghk_K</ci>
+              </apply>
+            </apply>
+            <apply>
+              <times/>
+              <ci>P_Na</ci>
+              <ci>driving_term_ghk_Na</ci>
             </apply>
           </apply>
           <ci>P_Ca</ci>
@@ -495,15 +423,7 @@
           <times/>
           <apply>
             <times/>
-            <apply>
-              <times/>
-              <apply>
-                <divide/>
-                <cn cellml:units="cm2">1.0</cn>
-                <cn cellml:units="uF">1.0</cn>
-              </apply>
-              <ci>P_Ca</ci>
-            </apply>
+            <ci>P_Ca</ci>
             <ci>Open_Prob</ci>
           </apply>
           <ci>driving_term_ghk</ci>
@@ -515,7 +435,7 @@
     <variable name="V" units="mV" public_interface="in"/>
     <variable name="alpha_d" units="mS_per_uF"/>
     <variable name="beta_d" units="mS_per_uF"/>
-    <variable name="d" units="dimensionless" public_interface="out" initial_value=" 2.50653215966786014e-10"/>
+    <variable name="d" units="dimensionless" public_interface="out" initial_value="2.50653215966786014e-10"/>
     <variable name="d_infinity" units="dimensionless"/>
     <variable name="tau_d" units="ms"/>
     <variable name="time" units="ms" public_interface="in"/>
@@ -661,7 +581,7 @@
     <variable name="V" units="mV" public_interface="in"/>
     <variable name="alpha_f" units="mS_per_uF"/>
     <variable name="beta_f" units="mS_per_uF"/>
-    <variable name="f" units="dimensionless" public_interface="out" initial_value=" 9.21303768505480014e-01"/>
+    <variable name="f" units="dimensionless" public_interface="out" initial_value="9.21303768505480014e-01"/>
     <variable name="f_infinity" units="dimensionless"/>
     <variable name="tau_f" units="ms"/>
     <variable name="time" units="ms" public_interface="in"/>
@@ -790,11 +710,15 @@
   </component>
   <component name="cell">
     <variable name="Cm" units="pF" initial_value="153.4" cmeta:id="Cm"/>
-    <variable name="F" units="C_per_mmol" public_interface="out" initial_value="96.4867"/>
+    <variable name="F" units="C_per_mol" public_interface="out" initial_value="96487.0"/>
     <variable name="FonRT" units="per_mV"/>
-    <variable name="R" units="J_per_mol_per_K" public_interface="out" initial_value="8.3143"/>
+    <variable name="R" units="mJ_per_mol_per_K" public_interface="out" initial_value="8314.3"/>
     <variable name="T" units="kelvin" public_interface="out" initial_value="310.15"/>
     <variable name="V" units="mV" public_interface="out" cmeta:id="V"/>
+    <variable name="duration" units="ms" initial_value="0.5"/>
+    <variable name="offset" units="ms" initial_value="100.0"/>
+    <variable name="period" units="ms" initial_value="1000.0"/>
+    <variable name="time" units="ms" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
@@ -812,10 +736,42 @@
       <apply>
         <eq/>
         <ci>V</ci>
-        <apply>
-          <minus/>
-          <cn cellml:units="dimensionless">80.0</cn>
-        </apply>
+        <piecewise>
+          <piece>
+            <cn cellml:units="mV">1.0</cn>
+            <apply>
+              <lt/>
+              <apply>
+                <minus/>
+                <apply>
+                  <minus/>
+                  <ci>time</ci>
+                  <ci>offset</ci>
+                </apply>
+                <apply>
+                  <times/>
+                  <ci>period</ci>
+                  <apply>
+                    <floor/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <minus/>
+                        <ci>time</ci>
+                        <ci>offset</ci>
+                      </apply>
+                      <ci>period</ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <ci>duration</ci>
+            </apply>
+          </piece>
+          <otherwise>
+            <cn cellml:units="mV">0.0</cn>
+          </otherwise>
+        </piecewise>
       </apply>
     </math>
   </component>
@@ -868,6 +824,10 @@
   </connection>
   <connection>
     <map_components component_1="ICa_f_gate" component_2="environment"/>
+    <map_variables variable_1="time" variable_2="time"/>
+  </connection>
+  <connection>
+    <map_components component_1="cell" component_2="environment"/>
     <map_variables variable_1="time" variable_2="time"/>
   </connection>
   <rdf:RDF>
