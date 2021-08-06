@@ -638,10 +638,10 @@
     <variable name="R" units="mJ_per_mol_per_K" public_interface="in"/>
     <variable name="T" units="kelvin" public_interface="in"/>
     <variable name="Vms_Vms" units="mV" public_interface="in"/>
-    <variable name="driving_term_ghk" units="s_A_per_m3" cmeta:id="i_Cas_driving_term_ghk"/>
+    <variable name="driving_term_ghk" units="s_A_per_m3" public_interface="out" cmeta:id="i_Cas_driving_term_ghk"/>
     <variable name="gCas" units="cm3_per_s" public_interface="in"/>
     <variable name="i_Cas" units="uA" public_interface="out"/>
-    <variable name="open_prob" units="dimensionless" cmeta:id="i_Cas_open_prob"/>
+    <variable name="open_prob" units="dimensionless" public_interface="out" cmeta:id="i_Cas_open_prob"/>
     <variable name="tauC1" units="second"/>
     <variable name="tauC2" units="second"/>
     <variable name="tauCcast" units="second" initial_value="0.009"/>
@@ -4501,17 +4501,27 @@
     </math>
   </component>
   <component name="ical_tot">
-    <variable name="i_Cas_i_Cas" units="uA" public_interface="in"/>
-    <variable name="i_Cat_i_Cat" units="uA" public_interface="in"/>
+    <variable name="gCas" units="cm3_per_s" public_interface="in"/>
+    <variable name="gCat" units="cm3_per_s" public_interface="in"/>
+    <variable name="i_Cas_driving_term_ghk" units="s_A_per_m3" public_interface="in"/>
+    <variable name="i_Cas_open_prob" units="dimensionless" public_interface="in"/>
     <variable name="ica_tot" units="uA" cmeta:id="ica_tot"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
         <ci>ica_tot</ci>
         <apply>
-          <plus/>
-          <ci>i_Cat_i_Cat</ci>
-          <ci>i_Cas_i_Cas</ci>
+          <times/>
+          <apply>
+            <times/>
+            <apply>
+              <plus/>
+              <ci>gCas</ci>
+              <ci>gCat</ci>
+            </apply>
+            <ci>i_Cas_driving_term_ghk</ci>
+          </apply>
+          <ci>i_Cas_open_prob</ci>
         </apply>
       </apply>
     </math>
@@ -6253,7 +6263,8 @@
   </connection>
   <connection>
     <map_components component_1="i_Cas" component_2="ical_tot"/>
-    <map_variables variable_1="i_Cas" variable_2="i_Cas_i_Cas"/>
+    <map_variables variable_1="driving_term_ghk" variable_2="i_Cas_driving_term_ghk"/>
+    <map_variables variable_1="open_prob" variable_2="i_Cas_open_prob"/>
   </connection>
   <connection>
     <map_components component_1="i_Cas" component_2="ion_concentrations"/>
@@ -6271,10 +6282,6 @@
     <map_variables variable_1="F" variable_2="F"/>
     <map_variables variable_1="R" variable_2="R"/>
     <map_variables variable_1="T" variable_2="T"/>
-  </connection>
-  <connection>
-    <map_components component_1="i_Cat" component_2="ical_tot"/>
-    <map_variables variable_1="i_Cat" variable_2="i_Cat_i_Cat"/>
   </connection>
   <connection>
     <map_components component_1="i_Cat" component_2="ion_concentrations"/>
@@ -6653,6 +6660,11 @@
   <connection>
     <map_components component_1="i_pCat" component_2="membrane_permeabilities"/>
     <map_variables variable_1="i_pCa_maxt" variable_2="i_pCa_maxt"/>
+  </connection>
+  <connection>
+    <map_components component_1="ical_tot" component_2="membrane_permeabilities"/>
+    <map_variables variable_1="gCas" variable_2="gCas"/>
+    <map_variables variable_1="gCat" variable_2="gCat"/>
   </connection>
   <connection>
     <map_components component_1="ion_concentrations" component_2="model_parameters"/>

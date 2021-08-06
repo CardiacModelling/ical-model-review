@@ -2951,6 +2951,8 @@
         <variable initial_value="0.8" name="ICaL_fractionSS" units="dimensionless"/>
         <variable cmeta:id="ICaL_open_prob" name="open_prob" units="dimensionless"/>
         <variable cmeta:id="ICaL_driving_term_ghk" name="driving_term_ghk" units="coulomb_per_m3"/>
+        <variable name="open_prob_i" units="dimensionless"/>
+        <variable name="open_prob_s" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -4158,42 +4160,133 @@
                 <apply>
                     <times/>
                     <ci>ICaL_fractionSS</ci>
+                    <ci>PhiCaL_ss</ci>
+                    <ci>PCa</ci>
+                    <ci>open_prob_s</ci>
+                </apply>
+            </apply>
+            <!--open_prob = (1{dimensionless}-fICaLp)*d*(f*(1{dimensionless}-nca_ss)+jca*fca*nca_ss);-->
+            <apply>
+                <eq/>
+                <ci>open_prob</ci>
+                <apply>
+                    <plus/>
                     <apply>
-                        <plus/>
+                        <times/>
+                        <ci>ICaL_fractionSS</ci>
+                        <ci>open_prob_s</ci>
+                    </apply>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <ci>ICaL_fractionSS</ci>
+                        </apply>
+                        <ci>open_prob_i</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>open_prob_i</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <ci>fICaLp</ci>
+                        </apply>
+                        <ci>d</ci>
+                        <apply>
+                            <plus/>
+                            <apply>
+                                <times/>
+                                <ci>f</ci>
+                                <apply>
+                                    <minus/>
+                                    <cn cellml:units="dimensionless">1</cn>
+                                    <ci>nca_i</ci>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>jca</ci>
+                                <ci>fca</ci>
+                                <ci>nca_i</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
                         <apply>
                             <times/>
-                            <apply>
-                                <minus/>
-                                <cn cellml:units="dimensionless">1</cn>
-                                <ci>fICaLp</ci>
-                            </apply>
-                            <ci>PCa</ci>
-                            <ci>PhiCaL_ss</ci>
+                            <ci>fICaLp</ci>
+                            <ci>PCap</ci>
                             <ci>d</ci>
                             <apply>
                                 <plus/>
                                 <apply>
                                     <times/>
-                                    <ci>f</ci>
+                                    <ci>fp</ci>
                                     <apply>
                                         <minus/>
                                         <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_ss</ci>
+                                        <ci>nca_i</ci>
                                     </apply>
                                 </apply>
                                 <apply>
                                     <times/>
                                     <ci>jca</ci>
-                                    <ci>fca</ci>
-                                    <ci>nca_ss</ci>
+                                    <ci>fcap</ci>
+                                    <ci>nca_i</ci>
                                 </apply>
                             </apply>
                         </apply>
+                        <ci>PCa</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>open_prob_s</ci>
+                <apply>
+                    <plus/>
+                    <apply>
+                        <times/>
+                        <apply>
+                            <minus/>
+                            <cn cellml:units="dimensionless">1</cn>
+                            <ci>fICaLp</ci>
+                        </apply>
+                        <ci>d</ci>
+                        <apply>
+                            <plus/>
+                            <apply>
+                                <times/>
+                                <ci>f</ci>
+                                <apply>
+                                    <minus/>
+                                    <cn cellml:units="dimensionless">1</cn>
+                                    <ci>nca_ss</ci>
+                                </apply>
+                            </apply>
+                            <apply>
+                                <times/>
+                                <ci>jca</ci>
+                                <ci>fca</ci>
+                                <ci>nca_ss</ci>
+                            </apply>
+                        </apply>
+                    </apply>
+                    <apply>
+                        <divide/>
                         <apply>
                             <times/>
                             <ci>fICaLp</ci>
                             <ci>PCap</ci>
-                            <ci>PhiCaL_ss</ci>
                             <ci>d</ci>
                             <apply>
                                 <plus/>
@@ -4214,29 +4307,8 @@
                                 </apply>
                             </apply>
                         </apply>
+                        <ci>PCa</ci>
                     </apply>
-                </apply>
-            </apply>
-            <!--open_prob = (1{dimensionless}-fICaLp)*d*(f*(1{dimensionless}-nca_ss)+jca*fca*nca_ss);-->
-            <apply>
-                <eq/>
-                <ci>open_prob</ci>
-                <apply>
-                    <divide/>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <divide/>
-                            <ci>ICaL_ss</ci>
-                            <ci>PhiCaL_ss</ci>
-                        </apply>
-                        <apply>
-                            <divide/>
-                            <ci>ICaL_i</ci>
-                            <ci>PhiCaL_i</ci>
-                        </apply>
-                    </apply>
-                    <ci>PCa</ci>
                 </apply>
             </apply>
             <!--driving_term_ghk = ICaL_fractionSS*4{dimensionless}*vffrt*(gamma_cass*cass*exp(2{dimensionless}*vfrt)-gamma_cao*cao)/(exp(2{dimensionless}*vfrt)-1{dimensionless});-->
@@ -4309,63 +4381,9 @@
                 <apply>
                     <times/>
                     <ci>ICaL_fractionSS</ci>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <apply>
-                                <minus/>
-                                <cn cellml:units="dimensionless">1</cn>
-                                <ci>fICaLp</ci>
-                            </apply>
-                            <ci>PCaNa</ci>
-                            <ci>PhiCaNa_ss</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>f</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_ss</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fca</ci>
-                                    <ci>nca_ss</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>fICaLp</ci>
-                            <ci>PCaNap</ci>
-                            <ci>PhiCaNa_ss</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>fp</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_ss</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fcap</ci>
-                                    <ci>nca_ss</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
+                    <ci>PhiCaNa_ss</ci>
+                    <ci>PCaNa</ci>
+                    <ci>open_prob_s</ci>
                 </apply>
             </apply>
             <apply>
@@ -4374,63 +4392,9 @@
                 <apply>
                     <times/>
                     <ci>ICaL_fractionSS</ci>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <apply>
-                                <minus/>
-                                <cn cellml:units="dimensionless">1</cn>
-                                <ci>fICaLp</ci>
-                            </apply>
-                            <ci>PCaK</ci>
-                            <ci>PhiCaK_ss</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>f</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_ss</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fca</ci>
-                                    <ci>nca_ss</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>fICaLp</ci>
-                            <ci>PCaKp</ci>
-                            <ci>PhiCaK_ss</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>fp</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_ss</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fcap</ci>
-                                    <ci>nca_ss</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
+                    <ci>PhiCaK_ss</ci>
+                    <ci>PCaK</ci>
+                    <ci>open_prob_s</ci>
                 </apply>
             </apply>
             <apply>
@@ -4767,63 +4731,9 @@
                         <cn cellml:units="dimensionless">1</cn>
                         <ci>ICaL_fractionSS</ci>
                     </apply>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <apply>
-                                <minus/>
-                                <cn cellml:units="dimensionless">1</cn>
-                                <ci>fICaLp</ci>
-                            </apply>
-                            <ci>PCa</ci>
-                            <ci>PhiCaL_i</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>f</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_i</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fca</ci>
-                                    <ci>nca_i</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>fICaLp</ci>
-                            <ci>PCap</ci>
-                            <ci>PhiCaL_i</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>fp</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_i</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fcap</ci>
-                                    <ci>nca_i</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
+                    <ci>PhiCaL_i</ci>
+                    <ci>open_prob_i</ci>
+                    <ci>PCa</ci>
                 </apply>
             </apply>
             <apply>
@@ -4836,63 +4746,9 @@
                         <cn cellml:units="dimensionless">1</cn>
                         <ci>ICaL_fractionSS</ci>
                     </apply>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <apply>
-                                <minus/>
-                                <cn cellml:units="dimensionless">1</cn>
-                                <ci>fICaLp</ci>
-                            </apply>
-                            <ci>PCaNa</ci>
-                            <ci>PhiCaNa_i</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>f</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_i</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fca</ci>
-                                    <ci>nca_i</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>fICaLp</ci>
-                            <ci>PCaNap</ci>
-                            <ci>PhiCaNa_i</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>fp</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_i</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fcap</ci>
-                                    <ci>nca_i</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
+                    <ci>PhiCaNa_i</ci>
+                    <ci>open_prob_i</ci>
+                    <ci>PCaNa</ci>
                 </apply>
             </apply>
             <apply>
@@ -4905,63 +4761,9 @@
                         <cn cellml:units="dimensionless">1</cn>
                         <ci>ICaL_fractionSS</ci>
                     </apply>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <apply>
-                                <minus/>
-                                <cn cellml:units="dimensionless">1</cn>
-                                <ci>fICaLp</ci>
-                            </apply>
-                            <ci>PCaK</ci>
-                            <ci>PhiCaK_i</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>f</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_i</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fca</ci>
-                                    <ci>nca_i</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <ci>fICaLp</ci>
-                            <ci>PCaKp</ci>
-                            <ci>PhiCaK_i</ci>
-                            <ci>d</ci>
-                            <apply>
-                                <plus/>
-                                <apply>
-                                    <times/>
-                                    <ci>fp</ci>
-                                    <apply>
-                                        <minus/>
-                                        <cn cellml:units="dimensionless">1</cn>
-                                        <ci>nca_i</ci>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <times/>
-                                    <ci>jca</ci>
-                                    <ci>fcap</ci>
-                                    <ci>nca_i</ci>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
+                    <ci>PhiCaK_i</ci>
+                    <ci>open_prob_i</ci>
+                    <ci>PCaK</ci>
                 </apply>
             </apply>
             <apply>

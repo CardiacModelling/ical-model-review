@@ -2443,6 +2443,8 @@
         <variable name="PhiCaK" units="coulomb_per_metre_3"/>
         <variable cmeta:id="ICaL_driving_term_ghk" name="driving_term_ghk" units="coulomb_per_metre_3"/>
         <variable cmeta:id="ICaL_open_prob" name="open_prob" units="dimensionless"/>
+        <variable name="open_prob_np" units="dimensionless"/>
+        <variable name="open_prob" units="dimensionless"/>
         <variable initial_value="7.7677e-5" name="PCa" units="dimensionless"/>
         <variable name="PCap" units="dimensionless"/>
         <variable name="PCaNa" units="dimensionless"/>
@@ -3387,47 +3389,63 @@
                             <cn cellml:units="dimensionless">1</cn>
                             <ci>fICaLp</ci>
                         </apply>
-                        <ci>d</ci>
-                        <apply>
-                            <plus/>
-                            <apply>
-                                <times/>
-                                <ci>f</ci>
-                                <apply>
-                                    <minus/>
-                                    <cn cellml:units="dimensionless">1</cn>
-                                    <ci>nca</ci>
-                                </apply>
-                            </apply>
-                            <apply>
-                                <times/>
-                                <ci>jca</ci>
-                                <ci>fca</ci>
-                                <ci>nca</ci>
-                            </apply>
-                        </apply>
+                        <ci>open_prob_np</ci>
                     </apply>
                     <apply>
                         <times/>
                         <ci>fICaLp</ci>
-                        <ci>d</ci>
+                        <ci>open_prob_p</ci>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>open_prob_p</ci>
+                <apply>
+                    <times/>
+                    <ci>d</ci>
+                    <apply>
+                        <plus/>
                         <apply>
-                            <plus/>
+                            <times/>
+                            <ci>fp</ci>
                             <apply>
-                                <times/>
-                                <ci>fp</ci>
-                                <apply>
-                                    <minus/>
-                                    <cn cellml:units="dimensionless">1</cn>
-                                    <ci>nca</ci>
-                                </apply>
-                            </apply>
-                            <apply>
-                                <times/>
-                                <ci>jca</ci>
-                                <ci>fcap</ci>
+                                <minus/>
+                                <cn cellml:units="dimensionless">1</cn>
                                 <ci>nca</ci>
                             </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>jca</ci>
+                            <ci>fcap</ci>
+                            <ci>nca</ci>
+                        </apply>
+                    </apply>
+                </apply>
+            </apply>
+            <apply>
+                <eq/>
+                <ci>open_prob_np</ci>
+                <apply>
+                    <times/>
+                    <ci>d</ci>
+                    <apply>
+                        <plus/>
+                        <apply>
+                            <times/>
+                            <ci>f</ci>
+                            <apply>
+                                <minus/>
+                                <cn cellml:units="dimensionless">1</cn>
+                                <ci>nca</ci>
+                            </apply>
+                        </apply>
+                        <apply>
+                            <times/>
+                            <ci>jca</ci>
+                            <ci>fca</ci>
+                            <ci>nca</ci>
                         </apply>
                     </apply>
                 </apply>
@@ -7967,8 +7985,8 @@
             <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b94"/>
         </rdf:Description>
         <rdf:Bag xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b94">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology
-
+            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology&#xd;
+&#xd;
 </rdf:_1>
         </rdf:Bag>
         <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b92">
