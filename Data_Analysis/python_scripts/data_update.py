@@ -95,7 +95,10 @@ class calculate_kinetic_paramters():
             current = self.screened_data.iloc[:,i]
             #print(current)
             v_half.append(find_v_half(current, self.xaxis))
-        return np.median(v_half)
+        print('Median: ', np.median(v_half))
+        print('Min: ', np.min(v_half))
+        print('Max: ', np.max(v_half))
+        return 0
         # We only fit to the first half of the activation curve
         no_of_data_points = len(self.averaged_data)
         for i in range(no_of_data_points):
@@ -152,7 +155,10 @@ class calculate_kinetic_paramters():
             current = self.screened_data.iloc[:,i]
             #print(current)
             v_half.append(find_v_half(current, self.xaxis))
-        return np.median(v_half)
+        print('Median: ', np.median(v_half))
+        print('Min: ', np.min(v_half))
+        print('Max: ', np.max(v_half))
+        return 0
 
         initial_guess = [-42, 7]
         popt, pcov = curve_fit(boltzmann, self.xaxis, self.averaged_data, p0= initial_guess)
@@ -186,7 +192,10 @@ class calculate_kinetic_paramters():
             popt = curve_fit(exponential, self.xaxis, current, p0 = initial_guess)
             tau.append(popt[0][0])
 
-        return np.median(tau)
+        print('Median: ', np.median(tau))
+        print('Min: ', np.min(tau))
+        print('Max: ', np.max(tau))
+        return 0
 
         plt.plot(self.xaxis, self.averaged_data, label = 'Average of all models')
         plt.plot(exponential(self.xaxis, *initial_guess), label = 'Initial Guess')
@@ -200,10 +209,9 @@ class calculate_kinetic_paramters():
         return popt
 
 
-# filename = 'Kinetic_protocols/data/recovery.csv'
-# y = calculate_kinetic_paramters(filename)
-# answer = y.recovery()
-# print(answer)    
+filename = 'Kinetic_protocols/data/recovery.csv'
+y = calculate_kinetic_paramters(filename)
+y.recovery()    
 
 def calculate_rmsd():
 
@@ -250,4 +258,4 @@ def calculate_rmsd():
     print('Strong: ', len(strong))
     print(strong)
 
-calculate_rmsd()
+# calculate_rmsd()

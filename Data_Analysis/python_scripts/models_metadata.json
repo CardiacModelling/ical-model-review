@@ -130,7 +130,7 @@
             "species": "human",
             "cell": "ventricle",
             "gating": "C",
-            "localisation": "12",
+            "localisation": "10",
             "time_publication": "2010"
         }
     ],
@@ -247,7 +247,7 @@
             "species": "rabbit",
             "cell": "ventricle",
             "gating": "K",
-            "localisation": "10",
+            "localisation": "12",
             "time_publication": "2008"
         }
     ],
@@ -283,7 +283,7 @@
             "species": "guinea_pig",
             "cell": "ventricle",
             "gating": "C",
-            "localisation": "9",
+            "localisation": "11",
             "time_publication": "1998"
         }
     ],
@@ -346,7 +346,7 @@
             "species": "rabbit",
             "cell": "ventricle",
             "gating": "C",
-            "localisation": "12",
+            "localisation": "10",
             "time_publication": "2004"
         }
     ],
@@ -373,7 +373,7 @@
             "species": "human",
             "cell": "ventricle",
             "gating": "O",
-            "localisation": "11",
+            "localisation": "9",
             "time_publication": "2019"
         }
     ],
@@ -445,7 +445,7 @@
             "species": "human",
             "cell": "atrial",
             "gating": "C",
-            "localisation": "12",
+            "localisation": "10",
             "time_publication": "2011"
         }
     ],

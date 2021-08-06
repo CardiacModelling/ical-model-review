@@ -35,6 +35,7 @@ class open_prob():
         self.species_list = ['mammalian', 'guinea_pig', 'human', 'rat', 'mouse', 'rabbit', 'canine', 'ipsc-cm']
         self.cell_list = ['atrial', 'ventricle', 'san', 'purkinje', 'avn']
         self.gating_list = list(string.ascii_uppercase)[:15]
+        self.localisation = ['no_ca', 'cai', 'cas', 'cad', 'cai_cad', 'cas_cad']
         #self.gating_list.remove('Q') #Removing Q because Hinch does not have a distinct open_prob
         
         self.data = pd.read_csv('../AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/Open_prob_all.csv')
@@ -121,6 +122,31 @@ class open_prob():
         """
         if category == 0:
             model_list = self.model_names
+        elif category == self.categories[-2]:
+            if category_attribute == self.localisation[0]:
+                model_list1 = self.create_category(category, str(1))
+                model_list2 =  self.create_category(category, str(2))
+                model_list = model_list1 + model_list2
+            elif category_attribute == self.localisation[1]:
+                model_list1 = self.create_category(category, str(3))
+                model_list2 =  self.create_category(category, str(6))
+                model_list = model_list1 + model_list2
+            elif category_attribute == self.localisation[2]:
+                model_list1 = self.create_category(category, str(4))
+                model_list2 =  self.create_category(category, str(7))
+                model_list = model_list1 + model_list2
+            elif category_attribute == self.localisation[3]:
+                model_list1 = self.create_category(category, str(5))
+                model_list2 =  self.create_category(category, str(8))
+                model_list3 = self.create_category(category, str(11))
+                model_list4 =  self.create_category(category, str(12))
+                model_list = model_list1 + model_list2 + model_list3 + model_list4
+                #print(model_list)
+                #exit()
+            elif category_attribute == self.localisation[4]:
+                model_list = self.create_category(category, str(9))
+            else:
+                model_list = self.create_category(category, str(10))
         else:
             model_list = self.create_category(category, category_attribute)
 
@@ -151,33 +177,33 @@ class open_prob():
         average_error = diff_of_models/len(model_list)
         nrmse = pow(average_error.mean(), 0.5)
         
-        return nrmse
+        return nrmse, len(model_list)
 
     def attributes_of_interest_nrmse(self):
         """
         This function calls the specific categories of interest for this paper to calculate nrmse
         """
-        tot_nrmse = self.calculate_nrmse()
+        tot_nrmse, _ = self.calculate_nrmse()
 
         for species in self.species_list:
-            nrmse = self.calculate_nrmse(self.categories[0], species)
-            print('Species: ' + species + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
+            nrmse, n = self.calculate_nrmse(self.categories[0], species)
+            print('Species: ' + species + " , n= " + str(n) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for cell in self.cell_list:
-            nrmse = self.calculate_nrmse(self.categories[1], cell)
-            print('Cell: ' + cell + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
+            nrmse, n = self.calculate_nrmse(self.categories[1], cell)
+            print('Cell: ' + cell + " , n= " + str(n) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for gating in self.gating_list:
-            nrmse = self.calculate_nrmse(self.categories[2], gating)
-            print('Gating: ' + gating + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
+            nrmse, n = self.calculate_nrmse(self.categories[2], gating)
+            print('Gating: ' + gating + " , n= " + str(n) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
-        for localisation in range(1, 13):
-            nrmse = self.calculate_nrmse(self.categories[3], str(localisation))
-            print('Localisation: ' + str(localisation) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
+        for localisation in self.localisation:
+            nrmse, n = self.calculate_nrmse(self.categories[3], str(localisation))
+            print('Localisation: ' + str(localisation) + " , n= " + str(n) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
         for publication_year_category in range(1, 5):
-            nrmse = self.calculate_nrmse(self.categories[4], publication_year_category)
-            print('Publication year category : ' + str(publication_year_category) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
+            nrmse, n = self.calculate_nrmse(self.categories[4], publication_year_category)
+            print('Publication year category : ' + str(publication_year_category) + " , n= " + str(n) + ", Rel NRMSE = " + str(nrmse/tot_nrmse))
 
     def clustering_by_output(self):
             
