@@ -84,7 +84,7 @@ The index in the gating type table (which is also used as a general index for ea
 - [Matsuoka et al. 2003](https://chaste.cs.ox.ac.uk/WebLab/entities/models/33/versions/9f763fef8fd410495a875ed344e66d249f589224) 
 - [McAllister et al. 1975](https://models.physiomeproject.org/exposure/60e23c3228a3e455699846704006a8fe)
 - [Michailova et al. 2005](https://models.physiomeproject.org/exposure/720f5c67a03d513abfd43fd0027c9e41)
-  - In the available CellML file, the driving term of calcium is missing the valene (2), this has been corrected.
+  - In the available CellML file, the driving term of calcium is missing the valence (2), this has been corrected.
   - The available CellML file (and the published equations), the Potassium component of ICaL is missing the GHK flux, this has been included in the corrected CellML file.
 - [Noble et al. 1991](https://chaste.cs.ox.ac.uk/WebLab/entities/models/35/versions/daaa80c551c077849993d2d310071df88aef4670)
   - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
