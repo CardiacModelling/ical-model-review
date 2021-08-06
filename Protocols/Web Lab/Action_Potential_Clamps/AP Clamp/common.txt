@@ -35,6 +35,24 @@ model interface {
     clamp oxmeta:extracellular_calcium_concentration to 2 :: mM
     clamp oxmeta:extracellular_chloride_concentration to 150 :: mM
 
+    optional oxmeta:extracellular_cleft_sodium_concentration
+    clamp oxmeta:extracellular_cleft_sodium_concentration to 140 :: mM
+    optional oxmeta:extracellular_cleft_potassium_concentration
+    clamp oxmeta:extracellular_cleft_potassium_concentration to 5 :: mM
+    optional oxmeta:extracellular_cleft_calcium_concentration 
+    clamp oxmeta:extracellular_cleft_calcium_concentration to 2 :: mM
+    optional oxmeta:extracellular_cleft_chloride_concentration
+    clamp oxmeta:extracellular_cleft_chloride_concentration to 150 :: mM
+
+    optional oxmeta:extracellular_bath_sodium_concentration
+    clamp oxmeta:extracellular_bath_sodium_concentration to 140 :: mM
+    optional oxmeta:extracellular_bath_potassium_concentration
+    clamp oxmeta:extracellular_bath_potassium_concentration to 5 :: mM
+    optional oxmeta:extracellular_bath_calcium_concentration 
+    clamp oxmeta:extracellular_bath_calcium_concentration to 2 :: mM
+    optional oxmeta:extracellular_bath_chloride_concentration
+    clamp oxmeta:extracellular_bath_chloride_concentration to 150 :: mM
+
     # Turn off RyR realease
     optional oxmeta:SR_release_current
     clamp oxmeta:SR_release_current to 0 :: units_of(oxmeta:SR_release_current)

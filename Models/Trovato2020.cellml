@@ -2444,7 +2444,7 @@
         <variable cmeta:id="ICaL_driving_term_ghk" name="driving_term_ghk" units="coulomb_per_metre_3"/>
         <variable cmeta:id="ICaL_open_prob" name="open_prob" units="dimensionless"/>
         <variable name="open_prob_np" units="dimensionless"/>
-        <variable name="open_prob" units="dimensionless"/>
+        <variable name="open_prob_p" units="dimensionless"/>
         <variable initial_value="7.7677e-5" name="PCa" units="dimensionless"/>
         <variable name="PCap" units="dimensionless"/>
         <variable name="PCaNa" units="dimensionless"/>

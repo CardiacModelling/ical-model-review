@@ -69,6 +69,23 @@ model interface {
     optional oxmeta:extracellular_potassium_concentration
     optional oxmeta:extracellular_calcium_concentration
 
+    optional oxmeta:extracellular_cleft_sodium_concentration
+    clamp oxmeta:extracellular_cleft_sodium_concentration to 140 :: mM
+    optional oxmeta:extracellular_cleft_potassium_concentration
+    clamp oxmeta:extracellular_cleft_potassium_concentration to 5 :: mM
+    optional oxmeta:extracellular_cleft_calcium_concentration 
+    clamp oxmeta:extracellular_cleft_calcium_concentration to 2 :: mM
+    optional oxmeta:extracellular_cleft_chloride_concentration
+    clamp oxmeta:extracellular_cleft_chloride_concentration to 150 :: mM
+
+    optional oxmeta:extracellular_bath_sodium_concentration
+    clamp oxmeta:extracellular_bath_sodium_concentration to 140 :: mM
+    optional oxmeta:extracellular_bath_potassium_concentration
+    clamp oxmeta:extracellular_bath_potassium_concentration to 5 :: mM
+    optional oxmeta:extracellular_bath_calcium_concentration 
+    clamp oxmeta:extracellular_bath_calcium_concentration to 2 :: mM
+    optional oxmeta:extracellular_bath_chloride_concentration
+    clamp oxmeta:extracellular_bath_chloride_concentration to 150 :: mM
     clamp oxmeta:extracellular_sodium_concentration to 140 :: mM
     clamp oxmeta:extracellular_potassium_concentration to 5 :: mM
     clamp oxmeta:extracellular_calcium_concentration to 2 :: mM
