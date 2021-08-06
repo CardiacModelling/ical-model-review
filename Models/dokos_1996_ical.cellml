@@ -515,15 +515,10 @@
   </connection>
   
 
+
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
 <rdf:Description rdf:about="#C">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
-</rdf:Description>
-<rdf:Description rdf:about="#Cai">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
-</rdf:Description>
-<rdf:Description rdf:about="#Cao">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
 </rdf:Description>
 <rdf:Description rdf:about="#E">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
@@ -531,14 +526,8 @@
 <rdf:Description rdf:about="#Ki">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
 </rdf:Description>
-<rdf:Description rdf:about="#Ko">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
-</rdf:Description>
 <rdf:Description rdf:about="#Nai">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
-</rdf:Description>
-<rdf:Description rdf:about="#Nao">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
 </rdf:Description>
 <rdf:Description rdf:about="#driving_term_ohmic">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
@@ -563,5 +552,17 @@
 </rdf:Description>
 <rdf:Description rdf:about="#ion_concentrations_Nab">
 <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_bath_sodium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Cai">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Cao">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_calcium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Ko">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_potassium_concentration"/>
+</rdf:Description>
+<rdf:Description rdf:about="#Nao">
+<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_cleft_sodium_concentration"/>
 </rdf:Description>
 </rdf:RDF></model>
