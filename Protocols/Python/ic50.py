@@ -18,7 +18,7 @@ import myokit
 import numpy as np
 
 #Load model (can change the model directory as desired)
-m = myokit.load_model('E:/Oxford/DPhil/cell_models_ical_mmt/pandit_2001.mmt')
+m = myokit.load_model('../pandit_2001.mmt')
 
 #Clamp the voltage
 clamp_voltage = m.get('membrane.V')

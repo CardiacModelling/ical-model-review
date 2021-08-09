@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-08-05T13:03:13.098518
+# Saved at 2021-08-09T15:24:27.775906
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\calcium_sensitivity\\CDI')
 ImportFileCSV(u'data/Aslanidi_atrial.csv', linked=True, numericlocale=u'en_IN', dssuffix=u'Aslanidi_atrial.csv')
