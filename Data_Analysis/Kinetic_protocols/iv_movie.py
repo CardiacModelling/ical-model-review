@@ -119,9 +119,11 @@ def activation():
         else:
             ind = np.argmin(d['I_Ca.I_Catot'])
        
+        time = curr_time/1000
         for j in range(len(d['environment.time'])):
+            time += 1/1000
             if d['environment.time'][j] < 0:
-                time = round((20000*(i+1) + j)/1000,3)
+                #round((20000*(i+1) + j)/1000,3)
                 yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, \
                     hold_v, 0, time
             else:
@@ -162,8 +164,9 @@ def inactivation():
         
         ind = np.argmin(d['I_Ca.I_Catot'][ind_p2:])
 
+        time = curr_time/1000
         for j in range(len(d['environment.time'])):
-            time = round((20000*(i+1) + j)/1000,3)
+            time += 1/1000#round((20000*(i+1) + j)/1000,3)
             if d['environment.time'][j] < 0:
                 yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, time
             elif d['environment.time'][j] < pcond_dur:
@@ -211,8 +214,9 @@ def recovery():
         
         ind = np.argmin(d['I_Ca.I_Catot'][ind_pc:])
        
+        time = curr_time/1000
         for j in range(len(d['environment.time'])):
-            time = round((10000*(i+1) + j)/1000,3)
+            time += 1/1000#curr_time + j#round((10000*(i+1) + j)/1000,3)
             if d['environment.time'][j] < 0:
                 yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, time
             elif d['environment.time'][j] < pcond_dur:
