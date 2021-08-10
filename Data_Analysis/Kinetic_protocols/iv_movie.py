@@ -120,19 +120,18 @@ def activation():
             ind = np.argmin(d['I_Ca.I_Catot'])
        
         time = curr_time/1000
-        for j in range(len(d['environment.time'])):
-            time += 1/1000
+        for j in range(len(d['environment.time'])):    
             if d['environment.time'][j] < 0:
-                #round((20000*(i+1) + j)/1000,3)
                 yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, \
-                    hold_v, 0, time
+                    hold_v, 0, round(time, 3)
             else:
                 if j == ind:
                     yield d['environment.time'][j], d['I_Ca.I_Catot'][j], True, \
-                        ptest[i], ptest[i], time
+                        ptest[i], ptest[i], round(time, 3)
                 else:
                     yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False,\
-                         ptest[i], 0, time
+                         ptest[i], 0, round(time, 3)
+            time += 1/1000
 
 def inactivation():
     ptest_dur = 120 #ms
@@ -166,19 +165,19 @@ def inactivation():
 
         time = curr_time/1000
         for j in range(len(d['environment.time'])):
-            time += 1/1000#round((20000*(i+1) + j)/1000,3)
             if d['environment.time'][j] < 0:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, time
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, round(time, 3)
             elif d['environment.time'][j] < pcond_dur:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, ptest[i], 0, time 
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, ptest[i], 0, round(time, 3) 
             elif j == ind + ind_p2:
                 if ind == 0:
                     ind_max = np.argmax(d['I_Ca.I_Catot'][ind_p2:])
-                    yield d['environment.time'][j], d['I_Ca.I_Catot'][ind_p2 + ind_max], True, -0.01, ptest[i], time    
+                    yield d['environment.time'][j], d['I_Ca.I_Catot'][ind_p2 + ind_max], True, -0.01, ptest[i], round(time, 3)    
                 else:
-                    yield d['environment.time'][j], d['I_Ca.I_Catot'][j], True, -0.01, ptest[i], time
+                    yield d['environment.time'][j], d['I_Ca.I_Catot'][j], True, -0.01, ptest[i], round(time, 3)
             else:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, -0.01, 0, time
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, -0.01, 0, round(time, 3)
+            time += 1/1000
 
 def recovery():
     ptest_dur = 120 #ms
@@ -216,18 +215,20 @@ def recovery():
        
         time = curr_time/1000
         for j in range(len(d['environment.time'])):
-            time += 1/1000#curr_time + j#round((10000*(i+1) + j)/1000,3)
             if d['environment.time'][j] < 0:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, time
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, round(time, 3)
             elif d['environment.time'][j] < pcond_dur:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, -0.01, 0, time 
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, -0.01, 0, round(time, 3)
             elif j < ind_pc :
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, time
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, hold_v, 0, round(time, 3)
             elif j == ind + ind_pc:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], True, -0.01, ptest[i], time
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], True, -0.01, ptest[i], round(time, 3)
             else:
-                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, -0.01, 0, time
+                yield d['environment.time'][j], d['I_Ca.I_Catot'][j], False, -0.01, 0, round(time, 3)
+            time += 1/1000
 
+    yield None, None, None, None, None, None
+    
 # initialize the data arrays 
 xdata, y1data, peak_v, peak_t, peak_c, volt = [], [], [], [], [], []
 
@@ -293,5 +294,5 @@ else:
 ani = animation.FuncAnimation(fig, run, data_gen, blit=True, interval=5,
     repeat=False, save_count = frames) #If frames given higher, then ani.save will loop
 plt.tight_layout()
-#plt.show()
-ani.save(inp + '.mp4', writer='ffmpeg')
+plt.show()
+#ani.save(inp + '.mp4', writer='ffmpeg')
