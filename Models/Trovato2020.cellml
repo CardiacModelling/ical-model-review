@@ -7985,9 +7985,7 @@
             <rdf:value xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b94"/>
         </rdf:Description>
         <rdf:Bag xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b94">
-            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology&#xd;
-&#xd;
-</rdf:_1>
+            <rdf:_1 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">electrophysiology</rdf:_1>
         </rdf:Bag>
         <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:nodeID="b92">
             <oxmeta:subject xmlns:oxmeta="http://purl.org/dc/elements/1.1/" rdf:nodeID="b93" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
