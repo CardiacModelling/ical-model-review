@@ -341,7 +341,7 @@ else:
     data_gen = recovery
 
 ani = animation.FuncAnimation(fig, run, data_gen, blit=True, interval=5,
-    repeat=False, save_count=sys.maxsize) #If frames given higher, then ani.save will loop
+    repeat=False, save_count=sys.maxsize) 
 plt.tight_layout()
 #plt.show()
 ani.save(inp + '.mp4', writer='ffmpeg', fps= fps)
