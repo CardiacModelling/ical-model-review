@@ -97,7 +97,7 @@
     <variable name="Cai2" units="mM" public_interface="out" initial_value="1.38142100000000014e-04"/>
     <variable name="Cai3" units="mM" public_interface="out" initial_value="1.44208699999999994e-04"/>
     <variable name="Cai4" units="mM" initial_value="1.56184399999999995e-04"/>
-    <variable name="Cass" units="mM" public_interface="out" initial_value="1.61937700000000013e-04" cmeta:id="calcium_Cass"/>
+    <variable name="Cass" units="mM" public_interface="out" initial_value="1.61937700000000013e-04"/>
     <variable name="DCa" units="m2_per_s_times_1e_minus_12" initial_value="780.0"/>
     <variable name="DCaBm" units="m2_per_s_times_1e_minus_12" initial_value="25.0"/>
     <variable name="DCaSR" units="m2_per_s_times_1e_minus_12" initial_value="44.0"/>
@@ -1576,7 +1576,7 @@
   </component>
   <component name="cell">
     <variable name="Aj_nj" units="um2" public_interface="out"/>
-    <variable name="Cm" units="nF" public_interface="out" initial_value="0.05" cmeta:id="cell_Cm"/>
+    <variable name="Cm" units="nF" public_interface="out" initial_value="0.05" cmeta:id="Cm"/>
     <variable name="VSR1" units="nL" public_interface="out"/>
     <variable name="VSR2" units="nL" public_interface="out"/>
     <variable name="VSR3" units="nL" public_interface="out"/>
@@ -1911,18 +1911,18 @@
     </math>
   </component>
   <component name="engine">
-    <variable name="time" units="second" public_interface="out" cmeta:id="engine_time"/>
+    <variable name="time" units="second" public_interface="out" cmeta:id="time"/>
   </component>
   <component name="extra">
-    <variable name="Cao" units="mM" public_interface="out" initial_value="1.8"/>
-    <variable name="Ko" units="mM" public_interface="out" initial_value="5.4"/>
-    <variable name="Nao" units="mM" public_interface="out" initial_value="130.0"/>
+    <variable name="Cao" units="mM" public_interface="out" initial_value="1.8" cmeta:id="Cao"/>
+    <variable name="Ko" units="mM" public_interface="out" initial_value="5.4" cmeta:id="Ko"/>
+    <variable name="Nao" units="mM" public_interface="out" initial_value="130.0" cmeta:id="Nao"/>
   </component>
   <component name="icab">
     <variable name="ECa" units="mV" public_interface="in"/>
-    <variable name="ICab" units="pA" public_interface="out"/>
+    <variable name="ICab" units="pA" public_interface="out" cmeta:id="ICab"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gCab" units="nS" initial_value="0.0952"/>
+    <variable name="gCab" units="nS" initial_value="0.0952" cmeta:id="gCab"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
@@ -1942,15 +1942,15 @@
   <component name="ical">
     <variable name="Cass" units="mM" public_interface="in"/>
     <variable name="ECa_app" units="mV" initial_value="60.0"/>
-    <variable name="ICaL" units="pA" public_interface="out" cmeta:id="ical_ICaL"/>
+    <variable name="ICaL" units="pA" public_interface="out" cmeta:id="ICaL"/>
     <variable name="V" units="mV" public_interface="in"/>
     <variable name="d" units="dimensionless" initial_value="1.06091699999999996e-05"/>
-    <variable name="driving_term_ohmic" units="mV" cmeta:id="ical_driving_term_ohmic"/>
+    <variable name="driving_term_ohmic" units="mV" cmeta:id="driving_term_ohmic"/>
     <variable name="f1" units="dimensionless" initial_value="0.9988566"/>
     <variable name="f2" units="dimensionless" initial_value="0.9988624"/>
     <variable name="f_inf" units="dimensionless"/>
     <variable name="fca" units="dimensionless" initial_value="0.9744374"/>
-    <variable name="gCaL" units="nS" initial_value="25.3125"/>
+    <variable name="gCaL" units="nS" initial_value="25.3125" cmeta:id="gCaL"/>
     <variable name="ical_d_inf" units="dimensionless"/>
     <variable name="ical_d_tau" units="second"/>
     <variable name="ical_f1_tau" units="second"/>
@@ -1959,7 +1959,7 @@
     <variable name="ical_fca_tau" units="second" initial_value="0.002"/>
     <variable name="kCa" units="mM" initial_value="0.001"/>
     <variable name="kCan" units="dimensionless" initial_value="2.0"/>
-    <variable name="open_prob" units="dimensionless" cmeta:id="ical_open_prob"/>
+    <variable name="open_prob" units="dimensionless" cmeta:id="open_prob"/>
     <variable name="time" units="second" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
@@ -2299,7 +2299,7 @@
   </component>
   <component name="icap">
     <variable name="Cass" units="mM" public_interface="in"/>
-    <variable name="ICaP" units="pA" public_interface="out"/>
+    <variable name="ICaP" units="pA" public_interface="out" cmeta:id="ICaP"/>
     <variable name="ICaPmax" units="pA" initial_value="2.0"/>
     <variable name="kCaP" units="mM" initial_value="0.0005"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2325,15 +2325,15 @@
   <component name="if">
     <variable name="EK" units="mV" public_interface="in"/>
     <variable name="ENa" units="mV" public_interface="in"/>
-    <variable name="If" units="pA" public_interface="out"/>
-    <variable name="IfK" units="pA" public_interface="out"/>
-    <variable name="IfNa" units="pA" public_interface="out"/>
+    <variable name="If" units="pA" public_interface="out" cmeta:id="If"/>
+    <variable name="IfK" units="pA" public_interface="out" cmeta:id="IfK"/>
+    <variable name="IfNa" units="pA" public_interface="out" cmeta:id="IfNa"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gIf" units="nS" initial_value="1.0"/>
+    <variable name="gIf" units="nS" initial_value="2.5"/>
     <variable name="if_y_inf" units="dimensionless"/>
     <variable name="if_y_tau" units="second"/>
     <variable name="time" units="second" public_interface="in"/>
-    <variable name="y" units="hertz" initial_value="5.62066499999999969e-02"/>
+    <variable name="y" units="dimensionless" initial_value="5.62066499999999969e-02"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
@@ -2406,9 +2406,9 @@
                 <apply>
                   <plus/>
                   <ci>V</ci>
-                  <cn cellml:units="mV">97.82874</cn>
+                  <cn cellml:units="mV">84.94</cn>
                 </apply>
-                <cn cellml:units="mV">12.48025</cn>
+                <cn cellml:units="mV">10.1</cn>
               </apply>
             </apply>
           </apply>
@@ -2424,7 +2424,7 @@
             <plus/>
             <apply>
               <times/>
-              <cn cellml:units="dimensionless">0.00332</cn>
+              <cn cellml:units="dimensionless"> 1.27830000000000001e-04</cn>
               <apply>
                 <exp/>
                 <apply>
@@ -2433,19 +2433,19 @@
                     <minus/>
                     <ci>V</ci>
                   </apply>
-                  <cn cellml:units="mV">16.54103</cn>
+                  <cn cellml:units="mV">9.2424</cn>
                 </apply>
               </apply>
             </apply>
             <apply>
               <times/>
-              <cn cellml:units="dimensionless">23.71839</cn>
+              <cn cellml:units="dimensionless">121.6092</cn>
               <apply>
                 <exp/>
                 <apply>
                   <divide/>
                   <ci>V</ci>
-                  <cn cellml:units="mV">16.54103</cn>
+                  <cn cellml:units="mV">9.2424</cn>
                 </apply>
               </apply>
             </apply>
@@ -2476,10 +2476,10 @@
   <component name="ik1">
     <variable name="EK" units="mV" public_interface="in"/>
     <variable name="FRT" units="per_mV" public_interface="in"/>
-    <variable name="IK1" units="pA" public_interface="out"/>
+    <variable name="IK1" units="pA" public_interface="out" cmeta:id="IK1"/>
     <variable name="Ko" units="mM" public_interface="in"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gK1" units="nS"/>
+    <variable name="gK1" units="nS" cmeta:id="gK1"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
@@ -2546,12 +2546,12 @@
   </component>
   <component name="ikr">
     <variable name="EK" units="mV" public_interface="in"/>
-    <variable name="IKr" units="pA" public_interface="out"/>
+    <variable name="IKr" units="pA" public_interface="out" cmeta:id="IKr"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gKr" units="nS" initial_value="0.5"/>
+    <variable name="gKr" units="nS" initial_value="0.5" cmeta:id="gKr"/>
     <variable name="ikr_pa_inf" units="dimensionless"/>
     <variable name="ikr_pa_tau" units="second"/>
-    <variable name="pa" units="hertz" initial_value="4.18941700000000008e-05"/>
+    <variable name="pa" units="dimensionless" initial_value="4.18941700000000008e-05"/>
     <variable name="pi" units="dimensionless"/>
     <variable name="time" units="second" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -2681,12 +2681,12 @@
   </component>
   <component name="iks">
     <variable name="EK" units="mV" public_interface="in"/>
-    <variable name="IKs" units="pA" public_interface="out"/>
+    <variable name="IKs" units="pA" public_interface="out" cmeta:id="IKs"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gKs" units="nS" initial_value="1.0"/>
+    <variable name="gKs" units="nS" initial_value="1.0" cmeta:id="gKs"/>
     <variable name="iks_n_inf" units="dimensionless"/>
     <variable name="iks_n_tau" units="second"/>
-    <variable name="n" units="hertz" initial_value="4.10975100000000003e-03"/>
+    <variable name="n" units="dimensionless" initial_value="4.10975100000000003e-03"/>
     <variable name="time" units="second" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
@@ -2787,15 +2787,15 @@
   </component>
   <component name="ikur">
     <variable name="EK" units="mV" public_interface="in"/>
-    <variable name="IKur" units="pA" public_interface="out"/>
+    <variable name="IKur" units="pA" public_interface="out" cmeta:id="IKur"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gKur" units="nS"/>
+    <variable name="gKur" units="nS" cmeta:id="gKur"/>
     <variable name="ikur_r_inf" units="dimensionless"/>
     <variable name="ikur_r_tau" units="second"/>
     <variable name="ikur_s_inf" units="dimensionless"/>
     <variable name="ikur_s_tau" units="second"/>
-    <variable name="r" units="hertz" initial_value="3.11170299999999984e-04"/>
-    <variable name="s" units="hertz" initial_value="0.9751094"/>
+    <variable name="r" units="dimensionless" initial_value="3.11170299999999984e-04"/>
+    <variable name="s" units="dimensionless" initial_value="0.9751094"/>
     <variable name="time" units="second" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
@@ -2979,18 +2979,18 @@
     <variable name="ENa" units="mV" public_interface="in"/>
     <variable name="F" units="C_per_mol" public_interface="in"/>
     <variable name="FRT" units="per_mV" public_interface="in"/>
-    <variable name="INa" units="pA" public_interface="out"/>
+    <variable name="INa" units="pA" public_interface="out" cmeta:id="INa"/>
     <variable name="Nao" units="mM" public_interface="in"/>
     <variable name="PNa" units="m3_per_s_times_1e_minus_12" initial_value="0.0018"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="h1" units="hertz" initial_value="0.90391"/>
-    <variable name="h2" units="hertz" initial_value="0.9039673"/>
+    <variable name="h1" units="dimensionless" initial_value="0.90391"/>
+    <variable name="h2" units="dimensionless" initial_value="0.9039673"/>
     <variable name="h_inf" units="dimensionless"/>
     <variable name="ina_h1_tau" units="second"/>
     <variable name="ina_h2_tau" units="second"/>
     <variable name="ina_m_inf" units="dimensionless"/>
     <variable name="ina_m_tau" units="second"/>
-    <variable name="m" units="hertz" initial_value="2.77581199999999990e-03"/>
+    <variable name="m" units="dimensionless" initial_value="2.77581199999999990e-03"/>
     <variable name="time" units="second" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
@@ -3271,9 +3271,9 @@
   </component>
   <component name="inab">
     <variable name="ENa" units="mV" public_interface="in"/>
-    <variable name="INab" units="pA" public_interface="out"/>
+    <variable name="INab" units="pA" public_interface="out" cmeta:id="INab"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gNab" units="nS" initial_value="0.060599"/>
+    <variable name="gNab" units="nS" initial_value="0.060599" cmeta:id="gNab"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
@@ -3294,7 +3294,7 @@
     <variable name="Cao" units="mM" public_interface="in"/>
     <variable name="Cass" units="mM" public_interface="in"/>
     <variable name="FRT" units="per_mV" public_interface="in"/>
-    <variable name="INaCa" units="pA" public_interface="out"/>
+    <variable name="INaCa" units="pA" public_interface="out" cmeta:id="INaCa"/>
     <variable name="Nao" units="mM" public_interface="in"/>
     <variable name="Nass" units="mM" public_interface="in"/>
     <variable name="V" units="mV" public_interface="in"/>
@@ -3409,7 +3409,7 @@
     </math>
   </component>
   <component name="inak">
-    <variable name="INaK" units="pA" public_interface="out"/>
+    <variable name="INaK" units="pA" public_interface="out" cmeta:id="INaK"/>
     <variable name="INaKmax" units="pA" initial_value="70.8253"/>
     <variable name="Ko" units="mM" public_interface="in"/>
     <variable name="Nass" units="mM" public_interface="in"/>
@@ -3484,15 +3484,15 @@
   </component>
   <component name="it">
     <variable name="EK" units="mV" public_interface="in"/>
-    <variable name="It" units="pA" public_interface="out"/>
+    <variable name="It" units="pA" public_interface="out" cmeta:id="It"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gt" units="nS"/>
+    <variable name="gt" units="nS" cmeta:id="gt"/>
     <variable name="it_r_inf" units="dimensionless"/>
     <variable name="it_r_tau" units="second"/>
     <variable name="it_s_inf" units="dimensionless"/>
     <variable name="it_s_tau" units="second"/>
-    <variable name="r" units="hertz" initial_value="9.59425800000000026e-04"/>
-    <variable name="s" units="hertz" initial_value="0.954338"/>
+    <variable name="r" units="dimensionless" initial_value="9.59425800000000026e-04"/>
+    <variable name="s" units="dimensionless" initial_value="0.954338"/>
     <variable name="time" units="second" public_interface="in"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
@@ -3693,7 +3693,7 @@
     <variable name="INab" units="pA" public_interface="in"/>
     <variable name="If" units="pA" public_interface="in"/>
     <variable name="It" units="pA" public_interface="in"/>
-    <variable name="V" units="mV" public_interface="out" initial_value="-75.42786" cmeta:id="membrane_V"/>
+    <variable name="V" units="mV" public_interface="out" initial_value="-75.42786" cmeta:id="V"/>
     <variable name="i_ion" units="pA"/>
     <variable name="i_stim" units="pA" public_interface="in"/>
     <variable name="time" units="second" public_interface="in"/>
@@ -3781,9 +3781,9 @@
   <component name="nernst">
     <variable name="Cao" units="mM" public_interface="in"/>
     <variable name="Cass" units="mM" public_interface="in"/>
-    <variable name="ECa" units="mV" public_interface="out"/>
-    <variable name="EK" units="mV" public_interface="out"/>
-    <variable name="ENa" units="mV" public_interface="out"/>
+    <variable name="ECa" units="mV" public_interface="out" cmeta:id="ECa"/>
+    <variable name="EK" units="mV" public_interface="out" cmeta:id="EK"/>
+    <variable name="ENa" units="mV" public_interface="out" cmeta:id="ENa"/>
     <variable name="Ki" units="mM" public_interface="in"/>
     <variable name="Ko" units="mM" public_interface="in"/>
     <variable name="Nao" units="mM" public_interface="in"/>
@@ -3845,11 +3845,11 @@
     </math>
   </component>
   <component name="phys">
-    <variable name="F" units="C_per_mol" public_interface="out" initial_value="96487.0"/>
+    <variable name="F" units="C_per_mol" public_interface="out" initial_value="96487.0" cmeta:id="F"/>
     <variable name="FRT" units="per_mV" public_interface="out"/>
-    <variable name="R" units="mJ_per_mol_per_K" initial_value="8314.0"/>
+    <variable name="R" units="mJ_per_mol_per_K" initial_value="8314.0" cmeta:id="R"/>
     <variable name="RTF" units="mV" public_interface="out"/>
-    <variable name="T" units="kelvin" initial_value="306.15"/>
+    <variable name="T" units="kelvin" initial_value="306.15" cmeta:id="T"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
@@ -3884,7 +3884,7 @@
     <variable name="INaK" units="pA" public_interface="in"/>
     <variable name="IfK" units="pA" public_interface="in"/>
     <variable name="It" units="pA" public_interface="in"/>
-    <variable name="Ki" units="mM" public_interface="out" initial_value="134.6313"/>
+    <variable name="Ki" units="mM" public_interface="out" initial_value="134.6313" cmeta:id="Ki"/>
     <variable name="Vcytosol" units="nL" public_interface="in"/>
     <variable name="i_stim" units="pA" public_interface="in"/>
     <variable name="i_tot" units="pA"/>
@@ -3975,34 +3975,34 @@
     <variable name="Vnonjunct2" units="nL" public_interface="in"/>
     <variable name="Vnonjunct3" units="nL" public_interface="in"/>
     <variable name="Vss" units="nL" public_interface="in"/>
-    <variable name="a1" units="hertz" initial_value="0.1925362"/>
-    <variable name="a2" units="hertz" initial_value="0.2010345"/>
-    <variable name="a3" units="hertz" initial_value="0.2163122"/>
+    <variable name="a1" units="dimensionless" initial_value="0.1925362"/>
+    <variable name="a2" units="dimensionless" initial_value="0.2010345"/>
+    <variable name="a3" units="dimensionless" initial_value="0.2163122"/>
     <variable name="ainf1" units="dimensionless"/>
     <variable name="ainf2" units="dimensionless"/>
     <variable name="ainf3" units="dimensionless"/>
     <variable name="ainfss" units="dimensionless"/>
-    <variable name="ass" units="hertz" initial_value="0.2455297"/>
-    <variable name="c1" units="hertz" initial_value="0.9993722"/>
-    <variable name="c2" units="hertz" initial_value="0.9995086"/>
-    <variable name="c3" units="hertz" initial_value="0.9995604"/>
+    <variable name="ass" units="dimensionless" initial_value="0.2455297"/>
+    <variable name="c1" units="dimensionless" initial_value="0.9993722"/>
+    <variable name="c2" units="dimensionless" initial_value="0.9995086"/>
+    <variable name="c3" units="dimensionless" initial_value="0.9995604"/>
     <variable name="cinf1" units="dimensionless"/>
     <variable name="cinf2" units="dimensionless"/>
     <variable name="cinf3" units="dimensionless"/>
     <variable name="cinfss" units="dimensionless"/>
-    <variable name="css" units="hertz" initial_value="0.9999717"/>
+    <variable name="css" units="dimensionless" initial_value="0.9999717"/>
     <variable name="nu1" units="m3_per_s_times_1e_minus_12"/>
     <variable name="nu2" units="m3_per_s_times_1e_minus_12"/>
     <variable name="nu3" units="m3_per_s_times_1e_minus_12"/>
     <variable name="nuss" units="m3_per_s_times_1e_minus_12"/>
-    <variable name="o1" units="hertz" initial_value="9.47851400000000044e-05"/>
-    <variable name="o2" units="hertz" initial_value="7.76550300000000031e-05"/>
-    <variable name="o3" units="hertz" initial_value="5.67494700000000006e-05"/>
+    <variable name="o1" units="dimensionless" initial_value="9.47851400000000044e-05"/>
+    <variable name="o2" units="dimensionless" initial_value="7.76550300000000031e-05"/>
+    <variable name="o3" units="dimensionless" initial_value="5.67494700000000006e-05"/>
     <variable name="oinf1" units="dimensionless"/>
     <variable name="oinf2" units="dimensionless"/>
     <variable name="oinf3" units="dimensionless"/>
     <variable name="oinfss" units="dimensionless"/>
-    <variable name="oss" units="hertz" initial_value="3.97509699999999973e-05"/>
+    <variable name="oss" units="dimensionless" initial_value="3.97509699999999973e-05"/>
     <variable name="tau_act" units="second" initial_value="0.01875"/>
     <variable name="tau_actss" units="second" initial_value="0.005"/>
     <variable name="tau_adapt" units="second" initial_value="1.0"/>
@@ -5387,7 +5387,7 @@
     <variable name="IfNa" units="pA" public_interface="in"/>
     <variable name="JNa" units="kat_times_1e_minus_12"/>
     <variable name="KdBNa" units="mM" initial_value="10.0"/>
-    <variable name="Nai" units="mM" initial_value="9.28686"/>
+    <variable name="Nai" units="mM" initial_value="9.28686" cmeta:id="Nai"/>
     <variable name="Nass" units="mM" public_interface="out" initial_value="8.691504"/>
     <variable name="Vnonjunct_Nai" units="nL" public_interface="in"/>
     <variable name="Vss" units="nL" public_interface="in"/>
@@ -5545,7 +5545,7 @@
   <component name="stimulus">
     <variable name="amplitude" units="pA" cmeta:id="amplitude"/>
     <variable name="duration" units="second" initial_value="0.001" cmeta:id="duration"/>
-    <variable name="i_stim" units="pA" public_interface="out"/>
+    <variable name="i_stim" units="pA" public_interface="out" cmeta:id="i_stim"/>
     <variable name="offset" units="second" initial_value="0.01" cmeta:id="offset"/>
     <variable name="period" units="second" initial_value="1.0" cmeta:id="period"/>
     <variable name="time" units="second" public_interface="in"/>
@@ -5980,88 +5980,138 @@
     <map_components component_1="potassium" component_2="stimulus"/>
     <map_variables variable_1="i_stim" variable_2="i_stim"/>
   </connection>
-  
-
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:oxmeta="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-<rdf:Description rdf:about="#amplitude">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude"/>
-</rdf:Description>
-<rdf:Description rdf:about="#duration">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration"/>
-</rdf:Description>
-<rdf:Description rdf:about="#offset">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_offset"/>
-</rdf:Description>
-<rdf:Description rdf:about="#period">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period"/>
-</rdf:Description><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_on">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#cyto_buffer_flux">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#delta_max">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#submembrane_buffer_flux">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#dyadic_buffer_flux">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:local#K_d">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_time">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_voltage">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cass">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cad">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#initial_calcium_cai">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:fc:local#conductance_scale_factor">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#holding">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v1">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v7">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c4">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c5">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c0">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx2">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#tx1">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t3">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t0">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t1">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c3">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmax">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c8">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v4">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v6">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v8">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c6">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v2">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t5">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t2">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t8">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v3">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t6">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c7">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c2">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t4">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#c1">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#vmin">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v0">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#t7">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="dummy:name#v5">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation><oxmeta:Annotation rdf:about="urn:temp-names#membrane_total_sodium_current">
-<rdf:type rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#CustomAnnotations"/></oxmeta:Annotation>
-<rdf:Description rdf:about="#engine_time">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
-</rdf:Description>
-<rdf:Description rdf:about="#ical_ICaL">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
-</rdf:Description>
-<rdf:Description rdf:about="#cell_Cm">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
-</rdf:Description>
-<rdf:Description rdf:about="#membrane_V">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
-</rdf:Description>
-<rdf:Description rdf:about="#calcium_Cass">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#dyadic_space_calcium_concentration"/>
-</rdf:Description>
-<rdf:Description rdf:about="#ical_driving_term_ohmic">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
-</rdf:Description>
-<rdf:Description rdf:about="#ical_open_prob">
-<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
-</rdf:Description>
-</rdf:RDF></model>
+  <rdf:RDF>
+    <rdf:Description rdf:about="#Cao">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_calcium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Cm">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#ECa">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#calcium_reversal_potential"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#EK">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#potassium_reversal_potential"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#ENa">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#sodium_reversal_potential"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#F">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#faraday_constant"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#ICaL">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#ICaP">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_calcium_pump_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#ICab">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#IK1">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#IKr">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#IKs">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#IKur">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_ultrarapid_delayed_rectifier_potassium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#INa">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_fast_sodium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#INaCa">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_calcium_exchanger_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#INaK">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_sodium_potassium_pump_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#INab">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#If">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_hyperpolarisation_activated_funny_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#IfK">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_hyperpolarisation_activated_funny_current_potassium_component"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#IfNa">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_hyperpolarisation_activated_funny_current_sodium_component"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#It">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Ki">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_potassium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Ko">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_potassium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Nai">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#cytosolic_sodium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Nao">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#extracellular_sodium_concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#R">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#gas_constant"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#T">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#temperature"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#V">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#amplitude">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_amplitude"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#driving_term_ohmic">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_ohmic_driving_term"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#duration">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_duration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gCaL">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gCab">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_calcium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gK1">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_inward_rectifier_potassium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gKr">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_rapid_delayed_rectifier_potassium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gKs">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_slow_delayed_rectifier_potassium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gKur">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_ultrarapid_delayed_rectifier_potassium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gNab">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_background_sodium_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#gt">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_transient_outward_current_conductance"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#i_stim">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#offset">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_offset"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#open_prob">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_open_probability"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#period">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current_period"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#time">
+      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#time"/>
+    </rdf:Description>
+  </rdf:RDF>
+</model>
