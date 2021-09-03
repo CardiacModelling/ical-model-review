@@ -2,7 +2,7 @@
 This repository contains all protocols, models, codes, figure generating files and animation for the CaV Review.
 
 - [Example Models](https://github.com/CardiacModelling/ical-review/blob/master/Example_Models.ipynb) gives the equations for a Hodgkin-Huxley model and a Markov model. 
-- [Models](https://github.com/CardiacModelling/ical-review/tree/master/Models)
+- [Models](https://github.com/CardiacModelling/ical-review/tree/master/Models) contains the CellML implementations for all models used (quantitatively) in this study, with links to the original sources and an overview of major [data sources](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Models/data.md) used in their construction.
 - [Figure 6](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Driving_term/Driving_Term_Voltage_dependence.pdf)
 	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Driving_Term_Range).
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Driving_term).
@@ -26,8 +26,7 @@ This repository contains all protocols, models, codes, figure generating files a
 - **Web Lab** Simulations were run using the Cardiac Electrophysiology Web Lab.
   See the resultant experiment matrix at [https://tinyurl.com/y5vdjb8h](https://tinyurl.com/y5vdjb8h).
   Find out more about Web Lab from [doi: 10.1016/j.bpj.2015.12.012](https://dx.doi.org/10.1016%2Fj.bpj.2015.12.012).
-- **Python** The code requires Python (either 2.7 or 3.3+) and the Python dependencies PINTS, Myokit, `pandas`, and `warnings`.
-  PINTS can be installed using the instructions on [https://github.com/pints-team/pints](https://github.com/pints-team/pints).
+- **Python** The code requires Python (either 2.7 or 3.3+) and the Python dependencies Myokit, and `pandas`.
   The other dependencies can be installed with `pip`, e.g. `pip install myokit` (or `pip3 install myokit` for some python 3 environments).
 - **CellML** All model files are available in the CellML format.
   You can find out more about CellML from [cellml.org](https://www.cellml.org/).
