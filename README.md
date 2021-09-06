@@ -4,7 +4,7 @@ This repository contains all protocols, models, codes, figure generating files a
 - [Example Models](https://github.com/CardiacModelling/ical-review/blob/master/Example_Models.ipynb) gives the equations for a Hodgkin-Huxley model and a Markov model. 
 - [Models](https://github.com/CardiacModelling/ical-review/tree/master/Models) contains the CellML implementations for all models used (quantitatively) in this study, with links to the original sources and an overview of major [data sources](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Models/data.md) used in their construction.
 - [Figure 1](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Data_Analysis/AP_CaT_Clamp/AP_Clamp_protocol/ICaL_block.pdf)
-	- - Figure generating file is [here](https://github.com/CardiacModelling/ical-model-comparison/tree/master/Data_Analysis/AP_CaT_Clamp/AP_Clamp_protocol)
+	- Figure generating file is [here](https://github.com/CardiacModelling/ical-model-comparison/tree/master/Data_Analysis/AP_CaT_Clamp/AP_Clamp_protocol)
 - [Figure 6](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Driving_term/Driving_Term_Voltage_dependence.pdf)
 	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Web%20Lab/Driving_Term_Range).
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/Driving_term).
