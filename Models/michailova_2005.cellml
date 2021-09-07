@@ -1,5 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="michailova_2005">
+<model xmlns="http://www.cellml.org/cellml/1.0#" xmlns:cellml="http://www.cellml.org/cellml/1.0#" xmlns:cmeta="http://www.cellml.org/metadata/1.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" name="michailova_2005" cmeta:id="michailova_2005">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+           xmlns:bqs="http://www.cellml.org/bqs/1.0#" 
+           xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <rdf:Description rdf:about="#michailova_2005">
+      <bqs:reference rdf:parseType="Resource">
+        <dc:subject rdf:parseType="Resource">
+          <bqs:subject_type>keyword</bqs:subject_type>
+          <rdf:value>
+            <rdf:Bag>
+              <rdf:li>electrophysiology</rdf:li>
+            </rdf:Bag>
+          </rdf:value>
+        </dc:subject>
+      </bqs:reference>
+    </rdf:Description>
+  </rdf:RDF>
+
   <units name="A_per_F">
     <unit units="gram" multiplier="1000"/>
     <unit units="metre" exponent="2.0"/>
@@ -806,7 +823,7 @@
     <variable name="b" units="dimensionless" initial_value="2.0"/>
     <variable name="beta" units="hertz"/>
     <variable name="beta_prime" units="hertz"/>
-    <variable name="driving_term_ghk" units="s_A_per_m3_times_1e3" cmeta:id="driving_term_ghk"/>
+    <variable name="driving_term_ghk" units="s_A_per_m3_times_1e3"/>
     <variable name="driving_term_ghk_Ca" units="s_A_per_m3_times_1e3"/>
     <variable name="driving_term_ghk_K" units="s_A_per_m3_times_1e3"/>
     <variable name="f" units="hertz" initial_value="300.0"/>
@@ -5141,9 +5158,6 @@
     </rdf:Description>
     <rdf:Description rdf:about="#V">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="#driving_term_ghk">
-      <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current_GHK_driving_term"/>
     </rdf:Description>
     <rdf:Description rdf:about="#i_ca_tot">
       <bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_L_type_calcium_current"/>
