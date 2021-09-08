@@ -37,11 +37,12 @@ The index in the gating type table (which is also used as a general index for ea
 - [Dokos et al. 1996](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3) 
    - The original CellML file had units that were internally consistent but did not match the paper.
      For example, ICaL maximum conductance was given as 400nS in the paper, but as 0.4nS in the CellML file.
-     To fix this, we changed the CellML file value to 0.4μS, and updated current and capacitance to nA and μF respectively.
+     To fix this, we changed the CellML file value to 0.4μS, and updated current and capacitance to nA and μF respectively to correspond to the simulated resuslts published in the paper.
    - Further unit issues were seen in the CellML file, but these did not affect our simulations.
 - Faber 2007 (ICaL only): New implementation. (48)
 - [Fink et al. 2008](https://models.physiomeproject.org/exposure/eeb81adc372c2f172399ec7160b0331e) 
 - [Fox et al. 2002](http://models.physiomeproject.org/exposure/13f8cb8b26258e359da674a7bf3435ad)
+   - This published paper along wiht this model has PCa and PCaK units in cm/ms, however this is probably incorrect and should be cm/s to correspond to the simulated results published in the paper. 
 - [Jafri et al. 1998](https://models.physiomeproject.org/exposure/5230da0476e9764a7d513a5d18af2a58) 
    - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
      This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.
