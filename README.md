@@ -28,7 +28,7 @@ This repository contains all protocols, models, codes, figure generating files a
 
 ## Software
 - **Web Lab** Simulations were run using the Cardiac Electrophysiology Web Lab.
-  See the resultant experiment matrix at [https://tinyurl.com/vb7eye4j](https://tinyurl.com/vb7eye4j).
+  See the resultant experiment matrix at [https://bit.ly/LtypeCa](https://bit.ly/LtypeCa).
   Find out more about Web Lab from [doi: 10.1016/j.bpj.2015.12.012](https://dx.doi.org/10.1016%2Fj.bpj.2015.12.012).
 - **Python** The code requires Python (either 2.7 or 3.3+) and the Python dependencies Myokit, and `pandas`.
   The other dependencies can be installed with `pip`, e.g. `pip install myokit` (or `pip3 install myokit` for some python 3 environments).
