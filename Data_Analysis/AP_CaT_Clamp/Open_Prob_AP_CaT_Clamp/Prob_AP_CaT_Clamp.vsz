@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.1)
-# Saved at 2021-08-09T14:52:29.185463
+# Saved at 2021-09-09T13:25:08.503337
 
 AddImportPath(u'C:\\Users\\Aditi\\Documents\\ical-review\\Data_Analysis\\AP_CaT_Clamp\\Open_Prob_AP_CaT_Clamp')
 ImportFileCSV(u'outputs_Open_Probability_gnuplot_data.csv', linked=True, numericlocale=u'en_IN')
@@ -15448,7 +15448,7 @@ Set('Text/size', u'8pt')
 To('..')
 Add('label', name=u'label1', autoadd=False)
 To(u'label1')
-Set('label', u'NRMSD_{relative} 0')
+Set('label', u'NRMSD_{relative} n/a')
 Set('xPos', [0.3])
 Set('yPos', [0.9])
 Set('Text/font', u'Arial')
