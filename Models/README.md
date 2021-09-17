@@ -49,7 +49,7 @@ The index in the gating type table (which is also used as a general index for ea
    - The definition of the units `mm_per_ms` was corrected.
 - Grandi et al. 2010 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/26/versions/ebe0634280215163f94c1a247a78f44d6637dae7)).
 - Grandi et al. 2011 ([original file](https://models.physiomeproject.org/e/596/view)).
-- Heijman et al. 2011: New implementation. 
+- Heijman et al. 2011: [Added new implementation to PMR](https://models.physiomeproject.org/e/70a).
 - Hilgemann & Noble 1987 ([original file](https://models.physiomeproject.org/exposure/49f298f54f3e916fca650c8e76d82e46)).
    - The CellML implementation for this model is based on the OXSOFT HEART source code, which corrects some of the published equations.
    - This model contains variables representing the inactivated fraction `F` instead of the more conventional recovered fraction `f = 1 - F`.
