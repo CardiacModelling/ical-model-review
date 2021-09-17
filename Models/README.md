@@ -147,6 +147,7 @@ Full list:
 - Pohl et al. 2016 
   - Initial values of ACh equation not published
   - Incompatible units of gCa
+
 ## Unchanged ICaL
 
 The models below were all inspected but then omitted as their equations and (non-conductance) parameters were found to be equivalent to a previous model.
