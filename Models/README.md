@@ -33,7 +33,7 @@ In the list below, models are ordered by the name of the first author.
    - The CellML implementation for this model is based on the OXSOFT HEART source code, which corrects some of the published equations.
    - Although the paper argues against a sodium component of ICaL, the CellML version does include it.
    - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
-- Dokos et al. 1996 ([original file](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3)).
+- Dokos et al. 1996 (ICaL)([original file](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3)).
    - The original CellML file had units that were internally consistent but did not match the paper.
      For example, ICaL maximum conductance was given as 400nS in the paper, but as 0.4nS in the CellML file.
      Since the CellML file simulated current and AP consistent with the published results, we did not change the discrepencies between the file and the paper.
@@ -105,9 +105,9 @@ In the list below, models are ordered by the name of the first author.
 - Sato et al. 2006: New implementation (ICaL only).
 - Shannon et al. 2004 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/39/versions/827a07937facdeda84fb6838c06e7676ca3c6489)).
 - Ten Tusscher et al. 2004 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/41/versions/84972529041015ff0e5504e615d58bb303b29ef7)).
-   - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML )Model Repository.
+   - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML) Model Repository.
 - Ten Tusscher & Panfilov 2006 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/41/versions/84972529041015ff0e5504e615d58bb303b29ef7)).
-  - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML )Model Repository.
+  - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML) Model Repository.
 - Tomek et al. 2019 ([original file](https://models.physiomeproject.org/e/5f1)).
 - Trovato et al. 2020 ([original file](https://models.physiomeproject.org/e/5f2)).
 - Wilders et al. 1991: New implementation (ICaL only).
