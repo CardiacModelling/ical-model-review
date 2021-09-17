@@ -37,8 +37,8 @@ The index in the gating type table (which is also used as a general index for ea
 - Dokos et al. 1996 ([original file](https://models.physiomeproject.org/exposure/462ab10275dfc099166c8a0e4f9e1be3)).
    - The original CellML file had units that were internally consistent but did not match the paper.
      For example, ICaL maximum conductance was given as 400nS in the paper, but as 0.4nS in the CellML file.
-     To fix this, we changed the CellML file value to 0.4μS, and updated current and capacitance to nA and μF respectively to correspond to the simulated resuslts published in the paper.
-   - Further unit issues were seen in the CellML file, but these did not affect our simulations.
+     Since the CellML file simulated current and AP consistent with the published results, we did not change the discrepencies between the file and the paper.
+   - Further unit issues were seen in the CellML file, therefore the model was reduced to ICaL only.
 - Faber 2007: New implementation (ICaL only).
 - Fink et al. 2008 ([original file](https://models.physiomeproject.org/exposure/eeb81adc372c2f172399ec7160b0331e)).
 - Fox et al. 2002 ([original file](http://models.physiomeproject.org/exposure/13f8cb8b26258e359da674a7bf3435ad)).
