@@ -2329,7 +2329,7 @@
     <variable name="IfK" units="pA" public_interface="out" cmeta:id="IfK"/>
     <variable name="IfNa" units="pA" public_interface="out" cmeta:id="IfNa"/>
     <variable name="V" units="mV" public_interface="in"/>
-    <variable name="gIf" units="nS" initial_value="2.5"/>
+    <variable name="gIf" units="nS" initial_value="1.0"/>
     <variable name="if_y_inf" units="dimensionless"/>
     <variable name="if_y_tau" units="second"/>
     <variable name="time" units="second" public_interface="in"/>
@@ -2406,9 +2406,9 @@
                 <apply>
                   <plus/>
                   <ci>V</ci>
-                  <cn cellml:units="mV">84.94</cn>
+                  <cn cellml:units="mV">97.82874</cn>
                 </apply>
-                <cn cellml:units="mV">10.1</cn>
+                <cn cellml:units="mV">12.48025</cn>
               </apply>
             </apply>
           </apply>
@@ -2424,7 +2424,7 @@
             <plus/>
             <apply>
               <times/>
-              <cn cellml:units="dimensionless"> 1.27830000000000001e-04</cn>
+              <cn cellml:units="dimensionless">0.00332</cn>
               <apply>
                 <exp/>
                 <apply>
@@ -2433,19 +2433,19 @@
                     <minus/>
                     <ci>V</ci>
                   </apply>
-                  <cn cellml:units="mV">9.2424</cn>
+                  <cn cellml:units="mV">16.54103</cn>
                 </apply>
               </apply>
             </apply>
             <apply>
               <times/>
-              <cn cellml:units="dimensionless">121.6092</cn>
+              <cn cellml:units="dimensionless">23.71839</cn>
               <apply>
                 <exp/>
                 <apply>
                   <divide/>
                   <ci>V</ci>
-                  <cn cellml:units="mV">9.2424</cn>
+                  <cn cellml:units="mV">16.54103</cn>
                 </apply>
               </apply>
             </apply>

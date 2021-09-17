@@ -43,6 +43,7 @@ The index in the gating type table (which is also used as a general index for ea
 - Fink et al. 2008 ([original file](https://models.physiomeproject.org/exposure/eeb81adc372c2f172399ec7160b0331e)).
 - Fox et al. 2002 ([original file](http://models.physiomeproject.org/exposure/13f8cb8b26258e359da674a7bf3435ad)).
    - This published paper along with this model has PCa and PCaK units in cm/ms, however this is probably incorrect and should be cm/s to correspond to the simulated results published in the paper. 
+   - These units have been corrected.
 - Jafri et al. 1998 ([original file](https://models.physiomeproject.org/exposure/5230da0476e9764a7d513a5d18af2a58)).
    - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
      This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.

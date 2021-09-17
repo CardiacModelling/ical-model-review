@@ -21,12 +21,9 @@
   <units name="cm2">
     <unit units="metre" exponent="2.0" multiplier="0.0001"/>
   </units>
-  <units name="cm_per_ms">
-    <unit units="metre" multiplier="10"/>
+  <units name="cm_per_s">
+    <unit units="metre" multiplier="0.01"/>
     <unit units="second" exponent="-1.0"/>
-  </units>
-  <units name="dimensionless_times_1e3">
-    <unit units="dimensionless" multiplier="1000"/>
   </units>
   <units name="dimensionless_times_1e_minus_3">
     <unit units="dimensionless" multiplier="0.001"/>
@@ -89,8 +86,8 @@
     <variable name="F" units="C_per_mmol" public_interface="in"/>
     <variable name="K_i" units="mM" public_interface="in"/>
     <variable name="K_o" units="mM" public_interface="in"/>
-    <variable name="P_Ca" units="cm_per_ms" initial_value="2.26e-05"/>
-    <variable name="P_CaK" units="cm_per_ms" initial_value="5.79e-07"/>
+    <variable name="P_Ca" units="cm_per_s" initial_value="2.26e-05"/>
+    <variable name="P_CaK" units="cm_per_s" initial_value="5.79e-07"/>
     <variable name="R" units="J_per_mol_per_K" public_interface="in"/>
     <variable name="T" units="kelvin" public_interface="in"/>
     <variable name="V" units="mV" public_interface="in"/>
@@ -318,11 +315,7 @@
               <times/>
               <apply>
                 <divide/>
-                <apply>
-                  <times/>
-                  <cn cellml:units="dimensionless_times_1e_minus_3">1.0</cn>
-                  <ci>P_CaK</ci>
-                </apply>
+                <ci>P_CaK</ci>
                 <ci>C_sc</ci>
               </apply>
               <ci>open_prob</ci>
@@ -355,11 +348,7 @@
           <times/>
           <apply>
             <divide/>
-            <apply>
-              <times/>
-              <cn cellml:units="dimensionless_times_1e_minus_3">1.0</cn>
-              <ci>P_Ca</ci>
-            </apply>
+            <ci>P_Ca</ci>
             <ci>C_sc</ci>
           </apply>
           <ci>driving_term_ghk_ca</ci>
@@ -369,21 +358,17 @@
         <eq/>
         <ci>i_ca_tot</ci>
         <apply>
-          <divide/>
+          <times/>
           <apply>
             <times/>
             <apply>
-              <times/>
-              <apply>
-                <divide/>
-                <ci>P_Ca</ci>
-                <ci>C_sc</ci>
-              </apply>
-              <ci>driving_term_ghk</ci>
+              <divide/>
+              <ci>P_Ca</ci>
+              <ci>C_sc</ci>
             </apply>
-            <ci>open_prob</ci>
+            <ci>driving_term_ghk</ci>
           </apply>
-          <cn cellml:units="dimensionless_times_1e3">1.0</cn>
+          <ci>open_prob</ci>
         </apply>
       </apply>
       <apply>
