@@ -22,11 +22,11 @@ The index in the gating type table (which is also used as a general index for ea
 - Bartolucci et al. 2020 ([original file](https://models.physiomeproject.org/workspace/5fd))
 - Beeler & Reuter 1977 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/1/versions/4680f3e8395da43250412aa3a16013090da62570))
 - Bondarenko et al. 2004 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/15/versions/141530c77eadc8bafe865083a5a5ccf2dc0c2ca6))
-- Cabo & Boyden 2003 (ICaL only): New implementation. 
+- Cabo & Boyden 2003: New implementation (ICaL only).
 - Corrias et al. 2011 ([original file](https://github.com/Chaste/cellml/blob/master/cellml/corrias_purkinje_2011.cellml))
   - The available CellML file has different parameter values for `tau_y_Ltype` and `tau_yCa` than the published paper.
   - However, after contacting the original authors it was confirmed that this was a typesetting error and that the CellML file was correct.
-- Cortassa et al. 2006 (ICaL only): New implementation. 
+- Cortassa et al. 2006: New implementation (ICaL only).
 - Courtemanche et al. 1998 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/19/versions/30d0616f05d88d875cf594db2950052879aae204))
 - Decker et al. 2009 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/20/versions/82b79061559c63cce7ee9b4413f31f1ba580793d))
 - Demir et al. 1994 ([original file](https://models.physiomeproject.org/exposure/15dc665c02ca9955b8e79fbace81a9e5))
@@ -39,7 +39,7 @@ The index in the gating type table (which is also used as a general index for ea
      For example, ICaL maximum conductance was given as 400nS in the paper, but as 0.4nS in the CellML file.
      To fix this, we changed the CellML file value to 0.4μS, and updated current and capacitance to nA and μF respectively to correspond to the simulated resuslts published in the paper.
    - Further unit issues were seen in the CellML file, but these did not affect our simulations.
-- Faber 2007 (ICaL only): New implementation. (48)
+- Faber 2007: New implementation (ICaL only).
 - Fink et al. 2008 ([original file](https://models.physiomeproject.org/exposure/eeb81adc372c2f172399ec7160b0331e))
 - Fox et al. 2002 ([original file](http://models.physiomeproject.org/exposure/13f8cb8b26258e359da674a7bf3435ad))
    - This published paper along with this model has PCa and PCaK units in cm/ms, however this is probably incorrect and should be cm/s to correspond to the simulated results published in the paper. 
@@ -55,26 +55,26 @@ The index in the gating type table (which is also used as a general index for ea
    - This model contains variables representing the inactivated fraction `F` instead of the more conventional recovered fraction `f = 1 - F`.
    - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - Hund & Rudy 2004 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/72/versions/bd9b7bb2cf9d96abe1f6299a83da1ed9b1b013fb))
-- Hund et al. 2008 (ICaL only): New implementation. 
+- Hund et al. 2008: New implementation (ICaL only).
 - Inada et al. 2009 ([original file](https://models.physiomeproject.org/exposure/08bcead2dc05cf2709a598e7f61a6182))
 - Iyer et al. 2004 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/27/versions/b374722702a941b1beedcc0822f8f1f333f09449))
    - In the available file, `tau _yCa` is given as `1 / ( 0.00336... / (0.5 + exp(-V / 5.54...)) + 0.00790... * exp(-V / 49.5...) )`.
      This has been changed to `1 / (0.00653 / (0.5 + exp(-V / 7.1)) + 0.00512 * exp(-V / 39.8))` in accordance with the published equations.
-- Kernik et al. 2019 (ICaL only): New implementation.
+- Kernik et al. 2019: New implementation (ICaL only).
 - Koivumaki et al. 2011 ([original file](https://models.physiomeproject.org/e/631/koivumaki-2011-pmr.cellml/))
 - Kurata et al. 2002 (ICaL) ([original file](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986))
    - The original CellML file gave `alpha_fCa` as 0.021 1/ms.
      This has been set to 0.035 1/ms in accordance with the published equations.
      Please note that the corrected CellML file contains only the ICaL component.
 - Li et al. 2010 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/29/versions/8c33fb1cc93bed4886e30c6679a4454cff6222fe))
-- Li & Rudy 2011 (ICaL only): New implementation.
+- Li & Rudy 2011: New implementation (ICaL only).
 - Lindblad et al. 1996 ([original file](https://models.physiomeproject.org/exposure/036dcdf013d736a376bf4d8f429bb804))
   - The original CellML file has `ICaL` given as `gCaL * dL * fL * dp * (V - ECa)`.
     This has been changed to `gCaL * (dL * fL + dp) * (V - ECa)` in accordance with the published equations.
-- Liu et al. 1993 (ICaL only): New implementation.
-- Livshitz & Rudy 2007 HRd (ICaL only): New implementation. 
+- Liu et al. 1993: New implementation (ICaL only).
+- Livshitz & Rudy 2007 HRd: New implementation (ICaL only).
   - This study describes modifications of the Hund et al. 2004 and Luo & Rudy 1994 models.
-    Only the Hund modification includes an updated ICaL, for which we created a new (ICaL only) implementation.
+    Only the Hund modification includes an updated ICaL, for which we created a new implementation.
     A CellML file for the Luo & Rudy modification is available from PMR.
 - Lovell et al. 2004 (ICaL) ([original file](https://models.physiomeproject.org/exposure/5055e8e1a4fb76cc90067d9e0997bb29))
   - The original file gave the ODE for `A_CaL` contained a term `beta_1 * I_1` that was corrected to `beta_2 * I_1`,  in accordance with the published equations.
@@ -92,7 +92,7 @@ The index in the gating type table (which is also used as a general index for ea
 - Noble et al. 1998 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/34/versions/ea4fb7f64829a16197c54a2efd15306573bb87f3))
    - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
    - Note that the paper does not describe this model in detail, the CellML implementation is based on the OXSOFT HEART source code, version 3.3.
-- Nordin et al. 1993 (ICaL only): New implementation
+- Nordin et al. 1993: New implementation (ICaL only).
 - Nygren et al. 1998 ([original file](https://models.physiomeproject.org/exposure/ad761ce160f3b4077bbae7a004c229e3))
 - O'Hara et al. 2011 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/4/versions/b6f19db6d1697e56945a9b825a7026f0799b4005))
 - Paci et al. 2013 ([original file](https://models.physiomeproject.org/e/594))
@@ -102,7 +102,7 @@ The index in the gating type table (which is also used as a general index for ea
   - Have equated Vms = Vmt for purpose of this study
 - Priebe & Beuckelmann 1998 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/38/versions/2a634280b8ddfa3d9b16b396af548b07858af34d))
 - Ramirez et al. 2000 ([original file](https://models.physiomeproject.org/exposure/fc3dbf2134db2e5efc2990483b27d7ae))
-- Sato et al. 2006 (ICaL only): New implementation
+- Sato et al. 2006: New implementation (ICaL only).
 - Shannon et al. 2004 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/39/versions/827a07937facdeda84fb6838c06e7676ca3c6489))
 - Ten Tusscher et al. 2004 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/41/versions/84972529041015ff0e5504e615d58bb303b29ef7))
    - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML )Model Repository.
@@ -110,7 +110,7 @@ The index in the gating type table (which is also used as a general index for ea
   - The units for this model were corrected, and corrected versions were uploaded to the Physiome (CellML )Model Repository.
 - Tomek et al. 2019 ([original file](https://models.physiomeproject.org/e/5f1))
 - Trovato et al. 2020 ([original file](https://models.physiomeproject.org/e/5f2))
-- Wilders et al. 1991 (ICaL only): New implementation. 
+- Wilders et al. 1991: New implementation (ICaL only).
   - The variable `PCa` in this model includes a factor `F`, so that the true permeability is given by `PCa/F`.
 - Winslow et al. 1999 ([original file](https://scrambler.cs.ox.ac.uk/entities/models/43/versions/a4e21d2010a87b4e79e384ddebc84e5e0e30c506))
 - Zeng et al. 1995 (ICaL only) ([original file](https://models.physiomeproject.org/exposure/15dc665c02ca9955b8e79fbace81a9e5))
