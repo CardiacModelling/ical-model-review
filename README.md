@@ -1,5 +1,5 @@
 # Models of the cardiac L-type calcium current: a quantitative comparison
-This repository contains all protocols, models, codes, figure generating files and animation for the CaV Review.
+This repository contains all protocols, models, codes, figure generating files and animation for the comparison of ICaL models.
 
 - [Example Models](https://github.com/CardiacModelling/ical-review/blob/master/Example_Models.ipynb) gives the equations for a Hodgkin-Huxley model and a Markov model. 
 - [Models](https://github.com/CardiacModelling/ical-review/tree/master/Models) contains the CellML implementations for all models used (quantitatively) in this study, with links to the original sources and an overview of major [data sources](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Models/data.md) used in their construction.
