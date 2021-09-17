@@ -15,7 +15,6 @@ In some cases this was difficult to do for the full action-potential model, so w
 Where CellML implementations could not be found we attempted to create them ourselves (usually for only the ICaL component).
 
 In the list below, models are ordered by the name of the first author.
-The index in the gating type table (which is also used as a general index for each model) is shown in brackets.
 
 - Aslanidi et al. 2009a Atrial ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/11/versions/7318d0a67f7077494165b4c981703c121aafb3a4)).
 - Aslanidi et al. 2009 Purkinje ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/12/versions/2f737b824b45ed115155a0e5991aba4df74b1582)).
