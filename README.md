@@ -16,7 +16,7 @@ This repository contains all protocols, models, codes, figure generating files, 
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/CDI).
 - [Figure 12](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/figure12.pdf)
 	- Protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/ic50).
-	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/ic50).
+	- Figure generating files and graphical tests of the regression line are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/calcium_sensitivity/ic50).
 - [Figure 13](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Data_Analysis/AP_CaT_Clamp/AP_Clamp_protocol/figure13.pdf)
 	- Figure generating file is [here](https://github.com/CardiacModelling/ical-model-comparison/tree/master/Data_Analysis/AP_CaT_Clamp/AP_Clamp_protocol).  
 - [Figure 14](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/ICal_All/figure14.pdf)

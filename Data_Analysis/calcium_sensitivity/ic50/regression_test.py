@@ -57,6 +57,7 @@ ax2.set_title('')
 ax3 = fig.add_subplot(133)
 ax3.scatter(vol, res)
 ax3.set_xlabel('Volume')
+ax3.axhline(y=0, color = 'red')
 
 plt.tight_layout()
 plt.savefig('linear_regression_test.pdf')
