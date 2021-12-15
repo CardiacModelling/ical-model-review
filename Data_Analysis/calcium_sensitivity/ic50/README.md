@@ -1,4 +1,7 @@
-The assumptions of the linear regression line (after taking logarithm of both the volume and the IC50 values) of [Figure 12](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/figure12.pdf) are tested graphically in this ![figure](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/linear_regression_test.png).
+The assumptions of the linear regression line (after taking logarithm of both the volume and the IC50 values) of [Figure 12](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/figure12.pdf) are tested graphically in the figure below:
+
+![figure](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/linear_regression_test.png)
+
 This figure was generated using the script [regression_test.py](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/calcium_sensitivity/ic50/regression_test.py).
 The assumptions are discussed below:
 1. Homoscedasticity: Subplot 1 (left) shows that there the residuals are randomly distributed about the y = 0 line indicating that the variance is not dependent on the level of the predicted value.
