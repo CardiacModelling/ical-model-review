@@ -60,6 +60,6 @@ ax3.set_xlabel('Volume')
 ax3.axhline(y=0, color = 'red')
 
 plt.tight_layout()
-plt.savefig('linear_regression_test.pdf')
+plt.savefig('linear_regression_test.png')
 plt.close()
 
