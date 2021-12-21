@@ -46,11 +46,7 @@ ax1.set_ylabel('Residual')
 # normality: 
 # qq plot should fall on 45 degree angle
 ax2 = fig.add_subplot(133)
-sm.qqplot(res, line='s', ax = ax2, fit = '45')
-# a = stats.probplot(res, dist="norm", plot=ax2, fit = True, line = 's')
-# print(len(a[0]))
-# print(a[1])
-# exit()
+sm.qqplot(res, line='45', ax = ax2, fit = True)
 ax2.get_lines()[0].set_markerfacecolor('#1f77b4')
 ax2.get_lines()[0].set_markeredgecolor('#1f77b4')
 ax2.set_ylabel('Sample Quantile')
