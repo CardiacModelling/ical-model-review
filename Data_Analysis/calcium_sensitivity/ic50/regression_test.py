@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
-import scipy.stats as stats
+import statsmodels.api as sm
 
 # load data
 data = pd.read_csv('ic50.csv', usecols=['x', 'y'])
@@ -45,18 +45,23 @@ ax1.set_ylabel('Residual')
 
 # normality: 
 # qq plot should fall on 45 degree angle
-ax2 = fig.add_subplot(132)
-stats.probplot(res, dist="norm", plot=ax2)
+ax2 = fig.add_subplot(133)
+sm.qqplot(res, line='s', ax = ax2, fit = '45')
+# a = stats.probplot(res, dist="norm", plot=ax2, fit = True, line = 's')
+# print(len(a[0]))
+# print(a[1])
+# exit()
 ax2.get_lines()[0].set_markerfacecolor('#1f77b4')
 ax2.get_lines()[0].set_markeredgecolor('#1f77b4')
-ax2.set_ylabel('')
+ax2.set_ylabel('Sample Quantile')
 ax2.set_xlabel('Theoretical Quantile')
 ax2.set_title('')
 
 # independence wrt to the independent variabele vol
-ax3 = fig.add_subplot(133)
+ax3 = fig.add_subplot(132)
 ax3.scatter(vol, res)
 ax3.set_xlabel('Volume')
+ax3.set_ylabel('Residual')
 ax3.axhline(y=0, color = 'red')
 
 plt.tight_layout()
