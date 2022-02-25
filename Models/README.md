@@ -188,7 +188,7 @@ The models below were all inspected but then omitted as their equations and (non
 - Livshitz 2007 (Guinea Pig) - Luo 1994
 - Niederer 2007 - Pandit 2001
 - Benson 2008 - Hund 2004
-- Kuzomoto 2008 - Matsuoka 2003
+- Kuzumoto 2008 - Matsuoka 2003
 - Saucerman 2008 - Shannon 2004
 - Wang 2008 - Bondarenko 2004
 - Ahrens-Nicklas 2009 - Faber 2007
