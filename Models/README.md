@@ -197,6 +197,7 @@ The models below were all inspected but then omitted as their equations and (non
 - Koivumaki 2009 - Bondarenko 2004, or full equations not given
 - Maleckar 2009 - Nygren 1998
 - Stewart 2009 - Ten Tusscher 2004
+- Hashambhoy 2010 - Hashambhoy 2009 (except dephosphorylation rate)
 - Rovetti 2010 - Hinch 2004
 - Sampson 2010 - Iyer 2004
 - Soltis 2010 - Mahajan 2008
