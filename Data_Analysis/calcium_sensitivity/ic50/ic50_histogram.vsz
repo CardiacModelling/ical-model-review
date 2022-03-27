@@ -1,5 +1,5 @@
 # Veusz saved document (version 3.4)
-# Saved at 2022-03-16T14:41:27.189879
+# Saved at 2022-03-21T08:57:38.732676
 
 SetCompatLevel(1)
 AddImportPath('C:\\Users\\aditi-project\\Documents\\ical-model-review\\Data_Analysis\\calcium_sensitivity\\ic50')
@@ -187,7 +187,7 @@ Set('TickLabels/size', '8pt')
 To('..')
 Add('xy', name='dyadic', autoadd=False)
 To('dyadic')
-Set('marker', 'circle')
+Set('marker', 'cross')
 Set('color', 'blue')
 Set('xData', [-0.6, 0.8, -0.2, 1.0, 0.2, -0.2, 0.4, -0.4, -0.4, -0.6, 0.4, 0.2, 0.8, -1.0, -0.4, -0.4, -0.2, 1.0, 0.6, -0.6, 0.0, -0.8, -1.0, 0.6, 0.6, 0.2, -0.2, -0.6, 0.8, 0.0, 0.4, 0.2, -0.8, 0.2, -0.2, -0.6, 0.0, 0.8, -0.4, 0.2, -0.2, 0.4, 0.6, 0.0, 0.6, -0.8, 0.4])
 Set('yData', 'y')
