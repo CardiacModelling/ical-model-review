@@ -43,10 +43,6 @@ In the list below, models are ordered by the name of the first author.
 - Fox et al. 2002 ([original file](http://models.physiomeproject.org/exposure/13f8cb8b26258e359da674a7bf3435ad)).
    - This published paper along with this model has PCa and PCaK units in cm/ms, however this is probably incorrect and should be cm/s to correspond to the simulated results published in the paper. 
    - These units have been corrected.
-- Jafri et al. 1998 ([original file](https://models.physiomeproject.org/exposure/5230da0476e9764a7d513a5d18af2a58)).
-   - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
-     This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.
-   - The definition of the units `mm_per_ms` was corrected.
 - Grandi et al. 2010 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/26/versions/ebe0634280215163f94c1a247a78f44d6637dae7)).
 - Grandi et al. 2011 ([original file](https://models.physiomeproject.org/e/596/view)).
 - Heijman et al. 2011: [Added new implementation to PMR](https://models.physiomeproject.org/e/70a).
@@ -60,6 +56,10 @@ In the list below, models are ordered by the name of the first author.
 - Iyer et al. 2004 ([original file](https://chaste.cs.ox.ac.uk/WebLab/entities/models/27/versions/b374722702a941b1beedcc0822f8f1f333f09449)).
    - In the available file, `tau _yCa` is given as `1 / ( 0.00336... / (0.5 + exp(-V / 5.54...)) + 0.00790... * exp(-V / 49.5...) )`.
      This has been changed to `1 / (0.00653 / (0.5 + exp(-V / 7.1)) + 0.00512 * exp(-V / 39.8))` in accordance with the published equations.
+- Jafri et al. 1998 ([original file](https://models.physiomeproject.org/exposure/5230da0476e9764a7d513a5d18af2a58)).
+   - The original CellML file gave the ODE for `C_Ca0` as `beta_b * C_Ca1 + gamma * C_Ca0 - (4 * alpha_a + omega) * C_Ca0`
+     This has been corrected to `beta_b * C_Ca1 + gamma * C_0 - (4 * alpha_a + omega) * C_Ca0`, in accordance with the published equations.
+   - The definition of the units `mm_per_ms` was corrected.
 - Kernik et al. 2019: New implementation (ICaL only).
 - Koivumaki et al. 2011 ([original file](https://models.physiomeproject.org/e/631/koivumaki-2011-pmr.cellml/)).
 - Kurata et al. 2002 (ICaL) ([original file](https://models.physiomeproject.org/exposure/47b969553fcfe6f875d4e38d1fd33986)).
