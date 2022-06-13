@@ -1,0 +1,114 @@
+[[model]]
+author: Myokit CellML 1 API
+documentation: """
+    nygren reduced
+    """
+name: nygren_fiset_firek_clark_lindblad_clark_giles_1998
+# Initial values
+L_type_Ca_current.d_L                      =  1.30050000000000000e-5
+L_type_Ca_current.f_L_1                   = 0.9986
+L_type_Ca_current.f_L_2                   = 0.9986
+
+[L_type_Ca_current]
+E_Ca_app = 60 [mV]
+    in [mV]
+driving_term_ohmic = membrane.V - E_Ca_app
+    in [mV]
+    oxmeta: membrane_L_type_calcium_current_ohmic_driving_term
+f_Ca = intracellular_ion_concentrations.Ca_d / (intracellular_ion_concentrations.Ca_d + k_Ca)
+    in [1]
+g_Ca_L = p17 
+    in [nS]
+open = d_L * (f_Ca * f_L_1 + (1 - f_Ca) * f_L_2)
+    in [1]
+i_CaL = g_Ca_L * driving_term_ohmic * open  
+    in [pA]
+    oxmeta: membrane_L_type_calcium_current
+k_Ca = 0.025 [mM]
+    in [mM]
+
+dot(d_L) = (d_L_infinity - d_L) / tau_d_L
+    in [1]
+d_L_infinity = 1 / (1 + p1 * exp(- p2 * membrane.V))
+    in [1]
+tau_d_L = (1000[ms]/1[s]) * p3 * exp(-p4 * membrane.V^2 - p5 * membrane.V) + (1000[ms]/1[s]) * p6
+    in [ms]
+
+dot(f_L_1) = (f_L_infinity - f_L_1) / tau_f_L1
+    in [1]
+f_L_infinity = 1 / (1 + p7 * exp(p8 * membrane.V))
+    in [1]
+tau_f_L1 = (1000[ms]/1[s])*p9 * exp(-p10 * membrane.V^2 - p11 * membrane.V) + (1000[ms]/1[s])*p12
+    in [ms]
+
+dot(f_L_2) = (f_L_infinity - f_L_2) / tau_f_L2
+    in [1]
+tau_f_L2 = (1000[ms]/1[s])*p13 * exp(-p14 * membrane.V^2 - p15 * membrane.V) + (1000[ms]/1[s])*p16
+    in [ms]
+
+p1 = 0.21188
+p2 = 0.17241379
+p3 = 0.0006922 in [s]
+p4 = 0.0011111 in [1/mV^2]
+p5 = 0.0777777 in [1/mV]
+p6 = 0.002 in [s]
+p7 = 47.425256
+p8 = 0.140845
+p9 = 7.1744e-5 [s] in [s]
+p10 = 0.00482253 in [1/mV^2]
+p11 = 0.3858 in [1/mV]
+p12 = 0.01 [s] in [s]
+p13 = 0.0004772389 [s] in [s]
+p14 = 0.004959 in [1/mV^2]
+p15 = 0.39671999 in [1/mV]
+p16 = 0.0626 [s] in [s]
+p17 = 6.75 in [nS]
+
+[environment]
+time = 0 [ms] bind time
+    in [ms]
+    oxmeta: time
+
+[intracellular_ion_concentrations]
+Ca_d = 0.0001
+    in [mM]
+    oxmeta: dyadic_space_calcium_concentration
+
+[membrane]
+Cm = 0.05 [nF]
+    in [nF]
+    oxmeta: membrane_capacitance
+F = 96487 [C/mol]
+    in [C/mol]
+R = 8314 [mJ/mol/K]
+    in [mJ/mol/K]
+T = 306.15 [K]
+    in [K]
+V = -90 [mV] bind pace
+    in [mV]
+    label membrane_potential
+    oxmeta: membrane_voltage
+
+[[protocol]]
+# Level  Start    Length   Period   Multiplier
+1.0      0.1      0.006    1.0      0
+
+[[script]]
+import matplotlib.pyplot as plt
+import myokit
+
+# Get model and protocol, create simulation
+m = get_model()
+p = get_protocol()
+s = myokit.Simulation(m, p)
+
+# Run simulation
+d = s.run(1.0)
+
+# Display the results
+var = 'membrane.V'
+plt.figure()
+plt.plot(d.time(), d[var])
+plt.title(var)
+plt.show()
+

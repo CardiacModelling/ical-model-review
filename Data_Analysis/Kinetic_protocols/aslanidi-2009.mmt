@@ -1,0 +1,113 @@
+[[model]]
+author: Myokit CellML 1 API
+name: aslanidi_2009
+# Initial values
+L_type_Ca_current.d                       =  2.32222386514736302e-6
+L_type_Ca_current.f2                     =  8.17343543667465755e-1
+L_type_Ca_current.f                       =  9.98560732946235818e-1
+
+[Ca_r]
+Ca_r = 0.0001
+    in [mM]
+    oxmeta: dyadic_space_calcium_concentration
+
+[environment]
+time = 0 [ms] bind time
+    in [ms]
+    oxmeta: time
+
+[L_type_Ca_current]
+Driving_term_ghk = 2^2 * (membrane.V - 15 [mV]) * model_parameters.F^2 / (model_parameters.R * model_parameters.T) * (1 * Ca_r.Ca_r * exp(2 * model_parameters.F * (membrane.V - 15 [mV]) / (model_parameters.R * model_parameters.T)) - 0.341 * 1.8 [mM]) / (exp(2 * model_parameters.F * (membrane.V - 15 [mV]) / (model_parameters.R * model_parameters.T)) - 1)
+    in [s*A/m^3]
+    oxmeta: membrane_L_type_calcium_current_GHK_driving_term
+i_CaL = d * f * f2 * p_Ca / model_parameters.Cm * Driving_term_ghk
+    in [A/F]
+    oxmeta: membrane_L_type_calcium_current
+p_Ca = p16
+    in [cm/s]
+
+dot(d) = (d_infinity - d) / tau_d
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_d_gate
+d_infinity = 1 / (1 + p1 * exp(-p2 * membrane.V))
+    in [1]
+tau_d = 1 [ms]/(p3 * exp(-p4 * membrane.V) + p5 * exp(p6 * membrane.V)) + p7
+    in [ms]
+
+dot(f2) = (f2_infinity - f2) / tau_f2
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_f2_gate
+f2_infinity = f_infinity
+    in [1]
+tau_f2 = p13 * membrane.V^2 - p14 * membrane.V + p15
+    in [ms]
+    oxmeta: membrane_L_type_calcium_current_f2_gate_tau
+
+dot(f) = (f_infinity - f) / tau_f
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_f_gate
+f_infinity = 1 / (1 + p8 * exp(p9 * membrane.V))
+    in [1]
+tau_f = p10 * membrane.V^2 - p11 * membrane.V + p12
+    in [ms]
+    oxmeta: membrane_L_type_calcium_current_f_gate_tau
+
+p1 = 1.8102
+p2 = 0.148367
+p3 = 0.6358094
+p4 = 0.052
+p5 = 3.5365
+p6 = 0.08
+p7 = 0.59 in [ms]
+p8 = 6.0496
+p9 = 0.1
+p10 = 0.005 in [ms/mV^2]
+p11 = 0.025 in [ms/mV]
+p12 = 4.03125 in [ms]
+p13 = 0.07 in [ms/mV^2]
+p14 = 2.604 in [ms/mV]
+p15 = 62.2172 in [ms]
+p16 = 0.000243 in [cm/s]
+
+[membrane]
+V = -90 bind pace
+    in [mV]
+    label membrane_potential
+    oxmeta: membrane_voltage
+
+[model_parameters]
+Ca_o = 1.8 [mM]
+    in [mM]
+    oxmeta: extracellular_calcium_concentration
+Cm = 1 [uF/cm^2]
+    in [uF/cm^2]
+F = 96485 [C/mol]
+    in [C/mol]
+R = 8314 [mJ/mol/K]
+    in [mJ/mol/K]
+T = 310 [K]
+    in [K]
+
+[[protocol]]
+# Level  Start    Length   Period   Multiplier
+1.0      100.0    1.0      800.0    0
+
+[[script]]
+import matplotlib.pyplot as plt
+import myokit
+
+# Get model and protocol, create simulation
+m = get_model()
+p = get_protocol()
+s = myokit.Simulation(m, p)
+
+# Run simulation
+d = s.run(1000)
+
+# Display the results
+var = 'membrane.V'
+plt.figure()
+plt.plot(d.time(), d[var])
+plt.title(var)
+plt.show()
+

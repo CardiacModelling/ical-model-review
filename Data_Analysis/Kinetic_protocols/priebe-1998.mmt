@@ -1,0 +1,103 @@
+[[model]]
+author: Myokit CellML 1 API
+name: priebe_beuckelmann_1998
+# Initial values
+L_type_Ca_current.d                =  2.50653215966786014e-10
+L_type_Ca_current.f                =  9.21303768505480014e-1
+
+[L_type_Ca_current]
+E_Ca = log(Ionic_concentrations.Cao / Ionic_concentrations.Cai) / (2 * membrane.FonRT)
+    in [mV]
+    oxmeta: calcium_reversal_potential
+driving_term_ohmic = membrane.V - E_Ca
+    in [mV]
+    oxmeta: membrane_L_type_calcium_current_ohmic_driving_term
+g_Ca_max = 0.064 [mS/uF]
+    in [mS/uF]
+    oxmeta: membrane_L_type_calcium_current_conductance
+i_CaL = g_Ca_max * open * driving_term_ohmic
+    in [A/F]
+    oxmeta: membrane_L_type_calcium_current
+open = d * f #* f_Ca
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_open_probability
+    
+alpha_d = 14.9859 [mS/uF] / (16.6813 * sqrt(2 *  3.14159265358979312)) * exp(-((membrane.V - 22.36 [mV]) / 16.6813 [mV])^2 / 2)
+    in [mS/uF]
+beta_d = 0.1471 [mS/uF] - 5.3 [mS/uF] / (14.93 * sqrt(2 *  3.14159265358979312)) * exp(-((membrane.V - 6.2744 [mV]) / 14.93 [mV])^2 / 2)
+    in [mS/uF]
+dot(d) = alpha_d * (1 - d) - beta_d * d
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_d_gate
+    
+alpha_f = 0.006872 [mS/uF] / (1 + exp((membrane.V - 6.1546 [mV]) / 6.1223 [mV]))
+    in [mS/uF]
+beta_f = (0.0687 [mS/uF] * exp(-0.1081 [1/mV] * (membrane.V + 9.8255 [mV])) + 0.0112 [mS/uF]) / (1 + exp(-0.2779 [1/mV] * (membrane.V + 9.8255 [mV]))) + 0.0005474 [mS/uF]
+    in [mS/uF]
+dot(f) = alpha_f * (1 - f) - beta_f * f
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_f_gate
+tau_f = 1 / (alpha_f + beta_f)
+    in [ms]
+    oxmeta: membrane_L_type_calcium_current_f_gate_tau
+
+Km_Ca = 0.0006 [mM]
+    in [mM]
+f_Ca = Km_Ca / (Km_Ca + Ionic_concentrations.Cai)
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_fCa_gate
+
+
+
+[Ionic_concentrations]
+Cai = 0.0001
+    in [mM]
+    oxmeta: cytosolic_calcium_concentration
+Cao = 2
+    in [mM]
+
+
+[membrane]
+F = 96.4867 [C/mmol]
+    in [C/mmol]
+    oxmeta: faraday_constant
+FonRT = F / (R * T)
+    in [1/mV]
+R = 8.3143 [J/mol/K]
+    in [J/mol/K]
+    oxmeta: gas_constant
+T = 310.15 [K]
+    in [K]
+    oxmeta: temperature
+V = -90 [mV] bind pace
+    in [mV]
+    oxmeta: membrane_voltage
+
+[environment]
+time = 0 [ms] bind time
+    in [ms]
+    oxmeta: time
+
+[[protocol]]
+# Level  Start    Length   Period   Multiplier
+1.0      100.0    0.5      1000.0   0
+
+[[script]]
+import matplotlib.pyplot as plt
+import myokit
+
+# Get model and protocol, create simulation
+m = get_model()
+p = get_protocol()
+s = myokit.Simulation(m, p)
+
+# Run simulation
+d = s.run(1000)
+
+# Display the results
+var = 'cell.V'
+plt.figure()
+plt.plot(d.time(), d[var])
+plt.title(var)
+plt.show()
+
