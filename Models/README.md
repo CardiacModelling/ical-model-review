@@ -147,7 +147,7 @@ Full list:
 - Pohl et al. 2016 
   - Initial values of ACh equation not published
   - Incompatible units of gCa
-- Kettlewell et al. 2019 - Initial values of the state variables not available.
+- Kettlewell et al. 2019 - Initial values of the state variables along with the parameter value of conductance is not available.
 
 ## Unchanged ICaL
 
