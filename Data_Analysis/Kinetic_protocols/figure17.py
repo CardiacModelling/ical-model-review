@@ -90,9 +90,9 @@ ax2.plot(
     [0.1, 0.1, 0.4, 0.4, 0.21, 0.21],
     'k', transform=ax2.transAxes)
 
-ax2.text(-7, -1.95, '$-90$ mV')
-ax2.text(50, -1.25, '$+60$ mV')
-ax2.text(90, -1.7, '$+5$ mV')
+ax2.text(-7, -2.05, '$-90$ mV')
+ax2.text(50, -1.32, '$+60$ mV')
+ax2.text(90, -1.80, '$+5$ mV')
 
 
 # Step transition
@@ -110,6 +110,7 @@ ax2.yaxis.set_minor_locator(MultipleLocator(0.1))
 # Plot IV curves from web lab
 ax1.set_xlabel('Membrane potential (mV)')
 ax1.set_ylabel('Peak Current (normalised')
+ax1.set_xlim(-45, 60)
 ax1.set_ylim(-1.05, 0.15)
 d = myokit.DataLog.load_csv('data/iv-priebe-inada.csv')
 ax1.plot(d['vm'], d['priebe'], label='Priebe & Beuckelmann 1998')
