@@ -1,4 +1,8 @@
 [[model]]
+desc: """
+ICaL model extracted from Priebe & Beuckelmann 
+
+"""
 author: Myokit CellML 1 API
 name: priebe_beuckelmann_1998
 # Initial values
@@ -47,15 +51,12 @@ f_Ca = Km_Ca / (Km_Ca + Ionic_concentrations.Cai)
     in [1]
     oxmeta: membrane_L_type_calcium_current_fCa_gate
 
-
-
 [Ionic_concentrations]
-Cai = 0.0001
+Cai = 0.0002 [mM]
     in [mM]
     oxmeta: cytosolic_calcium_concentration
-Cao = 2
+Cao = 2 [mM]
     in [mM]
-
 
 [membrane]
 F = 96.4867 [C/mmol]
