@@ -25,7 +25,6 @@ This repository contains all protocols, models, codes, figure generating files, 
 - [Figure 15](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/figure15.pdf) and [Figure 16](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp/figure16.pdf)
 	- WebLab protocol can be viewed [here](https://github.com/CardiacModelling/ical-review/tree/master/Protocols/Action_Potential_Clamps/AP%20CaT%20Clamp%20(inherent%20localization)).
 	- Figure generating files are [here](https://github.com/CardiacModelling/ical-review/tree/master/Data_Analysis/AP_CaT_Clamp/Open_Prob_AP_CaT_Clamp).
-
 - [Figure 17](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Kinetic_protocols/figure17.pdf) generated using the python script [here](https://github.com/CardiacModelling/ical-review/blob/master/Data_Analysis/Kinetic_protocols/figure17.py).
 
 ## Software
