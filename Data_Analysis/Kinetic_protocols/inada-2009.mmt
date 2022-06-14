@@ -1,0 +1,79 @@
+[[model]]
+author: Myokit CellML 1 API
+documentation: """
+    ICaL model from Inada 2009 (One-dimensional mathematical model of the
+    atrioventricular node including atrio-nodal, nodal, and nodal-his cells).
+   
+    The original paper reference is cited below:
+    
+    One-dimensional mathematical model of the atrioventricular node including
+    atrio-nodal, nodal, and nodal-his cells, S. Inada, J.C. Hancox, H. Zhang
+    and M.R. Boyett, 2009, Biophysical Journal , 97, 2117-2127. PubMed ID:
+    19843444
+    """
+name: inada_AN_model_2009
+# Initial values
+L_type_Ca_current_d_gate.d                        =  3.22867334326129983e-5
+L_type_Ca_current_f_gate.f                        =  9.98822085003545967e-1
+L_type_Ca_current_f2_gate.f2                      =  9.98815467202694984e-1
+
+[environment]
+time = 0 [ms]
+    in [ms]
+    bind time
+
+[membrane]
+V = 0 [mV]
+    in [mV]
+
+[L_type_Ca_current]
+E_CaL = 62.5 [mV]
+    in [mV]
+driving_term_ohmic = membrane.V - E_CaL
+    in [mV]
+    oxmeta: membrane_L_type_calcium_current_ohmic_driving_term
+g_CaL = 0.0185 [uS]
+    in [uS]
+i_CaL = g_CaL * open_prob * driving_term_ohmic
+    in [nA]
+    oxmeta: membrane_L_type_calcium_current
+open_prob = L_type_Ca_current_d_gate.d * (0.675 * L_type_Ca_current_f_gate.f + 0.325 * L_type_Ca_current_f2_gate.f2)
+    in [1]
+    oxmeta: membrane_L_type_calcium_current_open_probability
+
+[L_type_Ca_current_d_gate]
+act_shift = 0 [mV]
+    in [mV]
+alpha_d = -26.12 [s^2*A/g/m^2] * (membrane.V + 35 [mV]) / (exp((membrane.V + 35 [mV]) / -2.5 [mV]) - 1) + -78.11 [s^2*A/g/m^2] * membrane.V / (exp(-0.208 [1/mV] * membrane.V) - 1)
+    in [S/F]
+beta_d = 10.52 [s^2*A/g/m^2] * (membrane.V - 5 [mV]) / (exp(0.4 [1/mV] * (membrane.V - 5 [mV])) - 1)
+    in [S/F]
+dot(d) = (d_inf - d) / (1000 [ms/s] * tau_d)
+    in [1]
+d_inf = 1 / (1 + exp((membrane.V - (-3.2 [mV] + act_shift)) / slope_factor_act))
+    in [1]
+slope_factor_act = -6.61 [mV]
+    in [mV]
+tau_d = 1 / (alpha_d + beta_d)
+    in [s]
+
+[L_type_Ca_current_f2_gate]
+dot(f2) = (f2_inf - f2) / (1000 [ms/s] * tau_f2)
+    in [1]
+f2_inf = 1 / (1 + exp((membrane.V - (-24 [mV] + inact_shift)) / 6.31 [mV]))
+    in [1]
+inact_shift = -5 [mV]
+    in [mV]
+tau_f2 = 0.06 [s] + 0.48076 [s] * 2.25 * exp(-(membrane.V - -40 [mV])^2 / 138.04 [mV^2])
+    in [s]
+
+[L_type_Ca_current_f_gate]
+dot(f) = (f_inf - f) / (1000 [ms/s] * tau_f)
+    in [1]
+f_inf = 1 / (1 + exp((membrane.V - (-24 [mV] + inact_shift)) / 6.31 [mV]))
+    in [1]
+inact_shift = -5 [mV]
+    in [mV]
+tau_f = 0.01 [s] + 0.1539 [s] * exp(-(membrane.V + 40 [mV])^2 / 185.67 [mV^2])
+    in [s]
+
