@@ -63,88 +63,23 @@ for ax, step in zip(axes, pro_step1):
 
         print('-----------')
 
-# axes = [ax1]
-# pro_step1 = [60.01]
-
-# for ax, step in zip(axes, pro_step1):
-#     for model in models:
-
-#         print(model)
-#         m = myokit.load_model(model)
-
-#         v = m.get('membrane.V')
-#         v.set_binding(None)
-#         s = myokit.Simulation(m)
-
-#         # Stabilise the model a steady state by running for 10 seconds
-#         s.set_constant('membrane.V', - 90.01)
-#         s.run(10000, log = [])
-#         s.set_time(0)
-
-#         # Step to 60 mV
-#         s.set_constant('membrane.V', step)
-#         d = s.run(150, log=['L_type_Ca_current.i_CaL', 'environment.time'])
-
-#         tlast = d['environment.time'][-1]
-#         ical = d['L_type_Ca_current.i_CaL']
-#         ical_min = np.min(d['L_type_Ca_current.i_CaL'])
-
-#         # Step to 5 mV
-#         s.set_constant('membrane.V', 5.01)
-#         d = s.run(150, d).npview()
-
-#         ical = d['L_type_Ca_current.i_CaL']
-
-#         if model[0] == 'p':
-#             lab = 'Priebe & Beuckelmann 1998'
-#         else:
-#             lab = 'Inada et al. 2009'
-
-#         ax.plot(d['environment.time'], ical / -ical_min, label=lab)
-
-#         print('-----------')
-
-
-'''
-# Voltage protocol
-ax1.axhline(-1, xmin = 0.35, xmax = 0.4, color = 'black', ls = '-')
-ax1.axvline(10117, ymin = 0.045, ymax = 0.225, color = 'black', ls = '-')
-ax1.axhline(-0.8, xmin = 0.4, xmax = 0.5, color = 'black', ls = '-')
-ax1.axvline(10150, ymin = 0.180, ymax = 0.225, color = 'black', ls = '-')
-ax1.axhline(-0.85, xmin = 0.5, xmax = 0.6, color = 'black', ls = '-')
-ax1.axvline(10183, ymin = 0.180, ymax = 0.045, color = 'black', ls = '-')
-ax1.axhline(-1, xmin = 0.6, xmax = 0.65, color = 'black', ls = '-')
-ax1.text(0.38, 0.234, '10 mV', transform = ax1.transAxes)
-ax1.text(0.51, 0.19, '5 mV', transform = ax1.transAxes)
-ax1.text(0.61, 0.052, '- 90 mV', transform = ax1.transAxes)
-
-ax2.axhline(-2.3, xmin=0.35, xmax=0.4, color = 'black', ls = '-')
-ax2.axvline(117, ymin=0.045, ymax=0.250, color = 'black', ls = '-')
-ax2.axhline(-1.78, xmin=0.4, xmax=0.5, color = 'black', ls = '-')
-ax2.axvline(150, ymin=0.150, ymax=0.250, color = 'black', ls = '-')
-ax2.axhline(-2.0, xmin=0.5, xmax=0.6, color = 'black', ls = '-')
-ax2.axvline(183, ymin=0.162, ymax=0.045, color = 'black', ls = '-')
-ax2.axhline(-2.3, xmin=0.6, xmax=0.65, color = 'black', ls = '-')
-
-'''
-
 ax3.plot(
-    [0.1, 0.2, 0.2, 0.3, 0.3, 0.4],
+    [0.16, 0.26, 0.26, 0.36, 0.36, 0.46],
     [0.1, 0.1, 0.4, 0.4, 0.21, 0.21],
     'k', transform=ax3.transAxes)
 
-ax3.text(2, -1.9, '$-90$ mV')
-ax3.text(42, -1.25, '$+60$ mV')
-ax3.text(90, -1.70, '$+5$ mV')
+ax3.text(0, 0.12, '$-90$ mV', transform = ax3.transAxes)
+ax3.text(0.17, 0.42, '$+60$ mV', transform = ax3.transAxes)
+ax3.text(0.36, 0.23, '$+5$ mV', transform = ax3.transAxes)
 
 ax2.plot(
     [0.55, 0.65, 0.65, 0.75, 0.75, 0.85],
     [0.1, 0.1, 0.3, 0.3, 0.21, 0.21],
     'k', transform=ax2.transAxes)
 
-ax2.text(112, -0.92, '$-90$ mV')
-ax2.text(190, -0.7, '$+10$ mV')
-ax2.text(235, -0.80, '$+5$ mV')
+ax2.text(0.38, 0.12, '$-90$ mV', transform = ax2.transAxes)
+ax2.text(0.56, 0.32, '$+10$ mV', transform = ax2.transAxes)
+ax2.text(0.75, 0.23, '$+5$ mV', transform = ax2.transAxes)
 
 
 # Step transition
@@ -159,18 +94,17 @@ ax3.set_xlabel('Time (ms)')
 
 ax3.set_ylabel('Current (normalised)')
 
-ax2.tick_params(bottom = True, top = True, left = True, right = True)
+ax1.tick_params(which = 'both', direction = 'in', bottom = True, top = True, \
+    left = True, right = True)
+ax1.minorticks_on()
 
-#ax2.legend(frameon=False)
+ax2.tick_params(which = 'both', direction = 'in', bottom = True, top = True, \
+    left = True, right = True)
+ax2.minorticks_on()
 
-ax1.xaxis.set_minor_locator(MultipleLocator(10))
-ax1.yaxis.set_minor_locator(MultipleLocator(0.1))
-
-ax2.xaxis.set_minor_locator(MultipleLocator(10))
-ax2.yaxis.set_minor_locator(MultipleLocator(0.1))
-
-ax3.xaxis.set_minor_locator(MultipleLocator(10))
-ax3.yaxis.set_minor_locator(MultipleLocator(0.1))
+ax3.tick_params(which = 'both', direction = 'in', bottom = True, top = True, \
+    left = True, right = True)
+ax3.minorticks_on()
 
 # Plot IV curves from web lab
 ax1.set_xlabel('Membrane potential (mV)')
