@@ -1,6 +1,8 @@
 # Models of the cardiac L-type calcium current: a quantitative comparison
 This repository contains all protocols, models, codes, figure generating files, and animation for the comparison of ICaL models.
 
+An interactive view of our main results can be viewed on the [Cardiac Electrophysiology Web Lab](https://scrambler.cs.ox.ac.uk/stories/8).
+
 - [Example Models](https://github.com/CardiacModelling/ical-review/blob/master/Example_Models.ipynb) gives the equations for a Hodgkin-Huxley model and a Markov model. 
 - [Models](https://github.com/CardiacModelling/ical-review/tree/master/Models) contains the CellML implementations for all models used (quantitatively) in this study, with links to the original sources and an overview of major [data sources](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Models/data.md) used in their construction.
 - [Figure 1](https://github.com/CardiacModelling/ical-model-comparison/blob/master/Data_Analysis/AP_CaT_Clamp/AP_Clamp_protocol/figure1.pdf)
@@ -29,7 +31,7 @@ This repository contains all protocols, models, codes, figure generating files, 
 
 ## Software
 - **Web Lab** Simulations were run using the Cardiac Electrophysiology Web Lab.
-  See the resultant experiment matrix at [https://bit.ly/LtypeCa](https://bit.ly/LtypeCa).
+  An interactive overview of our results is [available here](https://scrambler.cs.ox.ac.uk/stories/8).
   Find out more about Web Lab from [doi: 10.1016/j.bpj.2015.12.012](https://dx.doi.org/10.1016%2Fj.bpj.2015.12.012).
 - **Python** The code requires Python (either 2.7 or 3.3+) and the Python dependencies Myokit, and `pandas`.
   The other dependencies can be installed with `pip`, e.g. `pip install myokit` (or `pip3 install myokit` for some python 3 environments).
