@@ -1,0 +1,16 @@
+To cite this work, please use:
+
+Agrawal, A., Wang, K., Polonchuk, L., Cooper, J., Hendrix, M., Gavaghan, D. J., Mirams, G. R. & Clerx, M. (2023). Models of the cardiac L‐type calcium current: A quantitative review. WIREs Mechanisms of Disease, 15(1), e1581.
+
+A BibTeX entry for LaTeX users is
+
+@article{agrawal2023models,
+  title={Models of the cardiac L-type calcium current: A quantitative review},
+  author={Agrawal, Aditi and Wang, Ken and Polonchuk, Liudmila and Cooper, Jonathan and Hendrix, Maurice and Gavaghan, David J and Mirams, Gary R and Clerx, Michael},
+  journal={WIREs Mechanisms of Disease},
+  volume={15},
+  number={1},
+  pages={e1581},
+  year={2023},
+  publisher={Wiley Online Library}
+}

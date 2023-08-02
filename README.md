@@ -40,3 +40,6 @@ An interactive view of our main results can be viewed on the [Cardiac Electrophy
 - **Veusz** We have used this scientific plotting and graphing program to generate the figures for this work.
   This can be download from [https://veusz.github.io/](https://veusz.github.io/download/).
 
+## Citing this repository
+
+Please refer to the information in the [CITATION file](./CITATION).
